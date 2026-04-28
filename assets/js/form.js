@@ -143,9 +143,12 @@
     } catch (err) {
       console.error('[form] all providers failed:', err);
       setStatus('error', t(
-        'Could not send. Please email ebaias.muc@gmail.com directly.',
-        'Konnte nicht senden. Bitte direkt an ebaias.muc@gmail.com schreiben.'
+        "Couldn't send the form. Use one of the channels below.",
+        'Formular konnte nicht gesendet werden. Bitte unten einen Kanal wählen.'
       ));
+      // PX-008: show graceful fallback (mailto + WhatsApp + Telegram) instead of plain-text email
+      const fb = document.getElementById('form-fallback');
+      if (fb) fb.hidden = false;
     } finally {
       setLoading(false);
     }

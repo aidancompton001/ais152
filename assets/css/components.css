@@ -396,6 +396,28 @@
   background: rgba(248, 113, 113, 0.06);
 }
 
+/* PX-008: graceful fallback shown when both form providers fail */
+.form-fallback {
+  margin-top: var(--sp-3);
+  padding: var(--sp-4);
+  border: 1px solid var(--bd-strong);
+  background: var(--bg-elev-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.form-fallback-text {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--tx-mu);
+  letter-spacing: var(--lt-wide);
+}
+.form-fallback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
 #contact-form .form-submit-loading { display: none; }
 #contact-form.is-loading .form-submit-idle { display: none; }
 #contact-form.is-loading .form-submit-loading { display: inline; }

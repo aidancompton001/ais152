@@ -299,7 +299,9 @@
   color: var(--tx-mu);
   letter-spacing: var(--lt-wide);
   text-transform: uppercase;
-  animation: marquee 40s linear infinite;
+  /* PX-008: 60s (was 40s) — main.js doubles the content for infinite loop, so
+     the same visual speed needs longer duration over the doubled track. */
+  animation: marquee 60s linear infinite;
   will-change: transform;
 }
 .marquee-track > span:nth-child(odd) { color: var(--tx); }
@@ -350,6 +352,14 @@
   text-transform: uppercase;
   letter-spacing: var(--lt-wide);
   color: var(--tx-mu);
+}
+/* PX-008: small print under stat-label, mirrors .section-fineprint style */
+.stat-fineprint {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-fa);
+  margin-top: var(--sp-1);
 }
 
 /* ════════════════ SECTION HEAD (shared) ════════════════ */

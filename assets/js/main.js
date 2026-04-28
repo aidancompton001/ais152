@@ -127,6 +127,23 @@
     });
   }
 
+  // ──────────────── MARQUEE INFINITE LOOP (PX-008) ────────────────
+  // CSS keyframe animates translateX(0 → -50%); requires the track content to be
+  // doubled so the second half slides into the original's position seamlessly.
+  // Skip on reduced-motion (motion.css already disables the animation there).
+  const marqueeTrack = document.getElementById('marquee-track');
+  if (marqueeTrack && !REDUCED_MOTION) {
+    const originals = Array.from(marqueeTrack.children);
+    originals.forEach((node) => {
+      const c = node.cloneNode(true);
+      c.setAttribute('aria-hidden', 'true');
+      marqueeTrack.appendChild(c);
+    });
+    if (hasGSAP && hasST) {
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    }
+  }
+
   // ──────────────── COUNTERS ────────────────
   const counters = document.querySelectorAll('.counter');
   const animateCounter = (el) => {

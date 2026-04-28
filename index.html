@@ -36,14 +36,14 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<!-- Stylesheets (cache-busted via ?v=2026-04-28-px007, replace with git hash on deploy) -->
-<link rel="stylesheet" href="assets/css/tokens.css?v=2026-04-28-px007">
-<link rel="stylesheet" href="assets/css/base.css?v=2026-04-28-px007">
-<link rel="stylesheet" href="assets/css/layout.css?v=2026-04-28-px007">
-<link rel="stylesheet" href="assets/css/components.css?v=2026-04-28-px007">
-<link rel="stylesheet" href="assets/css/motion.css?v=2026-04-28-px007">
-<link rel="stylesheet" href="assets/css/hero.css?v=2026-04-28-px007">
-<link rel="stylesheet" href="assets/css/marks.css?v=2026-04-28-px007">
+<!-- Stylesheets (cache-busted via ?v=2026-04-28-px008, replace with git hash on deploy) -->
+<link rel="stylesheet" href="assets/css/tokens.css?v=2026-04-28-px008">
+<link rel="stylesheet" href="assets/css/base.css?v=2026-04-28-px008">
+<link rel="stylesheet" href="assets/css/layout.css?v=2026-04-28-px008">
+<link rel="stylesheet" href="assets/css/components.css?v=2026-04-28-px008">
+<link rel="stylesheet" href="assets/css/motion.css?v=2026-04-28-px008">
+<link rel="stylesheet" href="assets/css/hero.css?v=2026-04-28-px008">
+<link rel="stylesheet" href="assets/css/marks.css?v=2026-04-28-px008">
 
 <!-- JSON-LD Organization -->
 <script type="application/ld+json">
@@ -242,9 +242,11 @@
         <div class="stat-label" data-lang-de>Ø Kostensenkung</div>
       </div>
       <div class="stat">
-        <div class="stat-num"><span class="counter" data-target="30">0</span><span class="stat-suffix" data-lang-en>d</span><span class="stat-suffix" data-lang-de>T</span></div>
+        <div class="stat-num"><span class="counter" data-target="3">0</span><span class="stat-suffix" data-lang-en>d</span><span class="stat-suffix" data-lang-de>T</span></div>
         <div class="stat-label" data-lang-en>To first ship</div>
         <div class="stat-label" data-lang-de>Bis Launch</div>
+        <div class="stat-fineprint" data-lang-en>For landings &amp; MVPs</div>
+        <div class="stat-fineprint" data-lang-de>Für Landings &amp; MVPs</div>
       </div>
       <div class="stat">
         <div class="stat-num">24/7</div>
@@ -574,6 +576,26 @@
         </div>
 
         <output class="form-status" id="form-status" aria-live="polite"></output>
+
+        <!-- PX-008: graceful fallback shown when both providers fail -->
+        <div class="form-fallback" id="form-fallback" hidden>
+          <p class="form-fallback-text">
+            <span data-lang-en>Couldn't reach our form service. Pick another channel:</span>
+            <span data-lang-de>Formular-Dienst nicht erreichbar. Wähle einen anderen Kanal:</span>
+          </p>
+          <div class="form-fallback-actions">
+            <a href="mailto:ebaias.muc@gmail.com?subject=Project%20inquiry%20%E2%80%94%20AiS152" class="btn btn-ghost btn-sm">
+              <span data-lang-en>Email</span>
+              <span data-lang-de>E-Mail</span>
+            </a>
+            <button type="button" class="btn btn-ghost btn-sm" data-wa-trigger>
+              <span>WhatsApp</span>
+            </button>
+            <a href="https://t.me/assit_ais152_bot" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">
+              <span>Telegram</span>
+            </a>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -672,13 +694,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
 
 <!-- App scripts -->
-<script src="assets/js/lang.js?v=2026-04-28-px007"></script>
-<script src="assets/js/dotgrid.js?v=2026-04-28-px007"></script>
-<script src="assets/js/terminal.js?v=2026-04-28-px007"></script>
-<script src="assets/js/projects.js?v=2026-04-28-px007"></script>
-<script src="assets/js/form.js?v=2026-04-28-px007"></script>
-<script src="assets/js/whatsapp.js?v=2026-04-28-px007"></script>
-<script src="assets/js/main.js?v=2026-04-28-px007"></script>
+<script src="assets/js/lang.js?v=2026-04-28-px008"></script>
+<script src="assets/js/dotgrid.js?v=2026-04-28-px008"></script>
+<script src="assets/js/terminal.js?v=2026-04-28-px008"></script>
+<script src="assets/js/projects.js?v=2026-04-28-px008"></script>
+<script src="assets/js/form.js?v=2026-04-28-px008"></script>
+<script src="assets/js/whatsapp.js?v=2026-04-28-px008"></script>
+<script src="assets/js/main.js?v=2026-04-28-px008"></script>
 
 </body>
 </html>
