@@ -107,6 +107,33 @@
 
 **Бонус Bing:** Bing index = backbone для DuckDuckGo + Yahoo + Ecosia. Один verify = 4 поисковика покрыты.
 
+**⚠️ Bing URL Inspection показал stale data (2026-04-28 evening):**
+
+CEO сделал URL Inspection в Bing на `https://ais152.com/` → результат:
+
+```
+Indexed but blocked by robots.txt
+Discovered on    13 Feb 2026
+Last crawl       13 Feb 2026 at 18:49
+Crawl allowed?   No
+Page Fetch       Failed
+Indexing allowed? Yes
+```
+
+**Анализ:** crawl date `13 Feb 2026` — за **2.5 месяца ДО** PX-010 deploy (28 Apr 2026). Тогда robots.txt был 404 (HTTP error) → Bing закэшировал fallback policy «block all».
+
+**Доказательство что текущий live корректный** (curl + Python urllib.robotparser, 2026-04-28):
+
+- `/robots.txt` HTTP 200, content-type text/plain
+- `User-agent: * / Allow: /` присутствует
+- `bingbot can_fetch("/")` → **True** ✓
+- `Googlebot can_fetch("/")` → **True** ✓
+- `any UA can_fetch("/")` → **True** ✓
+
+**Лечение:** CEO делает URL Submission в Bing UI → Bing перечитает за 24-48h → status обновится (`Crawl allowed: Yes`, `Page Fetch: Success`). Этот же flow покрывает submit sitemap (Sitemaps section в Bing).
+
+**IDX-2 (новый):** через 48h перепроверить URL Inspection в Bing — должен показать `Crawl allowed: Yes`.
+
 **Коммиты этой сессии:**
 
 - `cdf6fa7` feat(seo): full SEO pass — meta, JSON-LD, sitemap, robots, hreflang
