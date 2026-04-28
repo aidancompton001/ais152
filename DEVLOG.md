@@ -2,6 +2,59 @@
 
 ## Журнал разработки
 
+### [S008] — 2026-04-28 — PX-006: Speed is the moat — реальные сроки 1h/24h/3d
+
+**Роли:** #1 Viktor (lead/копирайт) · #3 Andrei (HTML+JS+i18n) · #14 Hans Landa (review)
+**Статус:** завершено (commit `c7c9496`, откат-тег `v2-pre-px006` → `aa5b0dd`)
+**Скилл:** brainstorming (3 варианта подачи Process до правки) + systematic copywriting
+
+**Жалоба CEO:** в публичном Process висит враньё — «Four weeks. Week 1-3. Week 4. Days 1-2». Реальность: 1h reply / 24h concept / 3d ship. Это и есть главное конкурентное преимущество, упрятанное в обычный таймлайн.
+
+**P10 research (найдено):**
+
+- `index.html:384-385` — section-title «Four weeks. Four steps.» / «Vier Wochen. Vier Schritte.»
+- `index.html:398, 410, 422` — process-step-time «Days 1–2», «Week 1–3», «Week 4»
+- `index.html:407-408` — Step 02 текст «Daily commits… Weekly demo on Zoom»
+- `index.html:183` — hero-meta «Response: <24h»
+- `index.html:235` — stats counter `data-target="9"` (Selected Work уже = 8)
+- `assets/js/terminal.js:51-65` — process.md в hero terminal с теми же сроками
+- `assets/js/terminal.js:84` — commits.log хвост «last deploy 4h ago»
+
+**Что сделано (CEO выбрал Вариант A — Минимализм + оба disclaimer + counter fix):**
+
+- Section title → «Hour. Day. Days.» / «Stunde. Tag. Tage.»
+- Subtitle → «Reply in 1 hour. Concept in 24 hours. Live in 3 days.» / «Antwort in 1 Stunde. Konzept in 24 Stunden. Live in 3 Tagen.»
+- Disclaimer (mono fineprint) → «Business hours, Mon–Fri 09–19 CET. For landing pages & MVPs — complex SaaS quoted separately.» / DE-аналог
+- Step 01: Discover → **Reply** / Antwort, time «Within 1 hour» / «Innerhalb 1 Stunde»
+- Step 02: Build → **Concept** / Konzept, time «Within 24 hours» / «Innerhalb 24 Stunden»
+- Step 03: Ship / Live, time «Within 3 days» / «Innerhalb 3 Tagen»
+- Step 04: Maintain (+30 days) — без изменений (после-релизная гарантия, не врёт)
+- Hero meta: «Response < 24h» → «**< 1h**»
+- Stats counter: `data-target="9"` → `8` (синхрон с Selected Work)
+- Terminal process.md: rewrite «# Speed is the moat», 3 шага с реальными сроками
+- Terminal commits.log: «last deploy 4h ago» → «last reply 12m ago» (живее)
+- Новый CSS-класс `.section-fineprint` в `layout.css` (mono, fs-xs, tx-fa)
+
+**Тесты (Phase 4):**
+
+- 11/11 lie-strings removed (`Four weeks`, `Week 1-3`, `Week 4`, `Days 1-2`, `// week 4` — везде count=0)
+- 13/13 new-copy strings present
+- i18n balance: 92 EN-spans / 92 DE-spans
+- Counter `data-target="8"` подтверждён
+
+**Артефакты:** `index.html`, `assets/js/terminal.js`, `assets/css/layout.css`
+**Откатный тег:** `v2-pre-px006` → `aa5b0dd`
+
+**Hans Landa замечания (учтены):**
+
+- 🔴 «1h reply» юридический риск → disclaimer «business hours Mon–Fri 09–19 CET»
+- 🔴 «3d ship» зависит от типа → disclaimer «landings & MVPs — complex SaaS quoted separately»
+- 🟡 counter 9 vs 8 рассинхрон → исправлен в той же PX
+- 🟡 terminal.js animation ритм → новые токены протестированы локально, не выходят за контейнер
+- 🟡 вариант C (terminal-style) не выбран — нет конфликта с hero terminal
+
+---
+
 ### [S007] — 2026-04-28 — PX-005: Финальный список 8 проектов в порядке CEO
 
 **Роли:** #1 Viktor (lead) · #3 Andrei (JSON+JS) · #14 Landa (review)

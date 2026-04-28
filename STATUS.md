@@ -2,15 +2,21 @@
 
 **Live:** https://ais152.com
 **Production версия:** v2 (Editorial Ink, multi-asset)
-**Last deploy:** 2026-04-28 (PX-005 — `c18967e`)
-**Откат-теги:** `v2-pre-px005` (`576cc14`), `v2-pre-px004` (`22691c3`), `v1-pre-redesign` (`7568a39`)
+**Last deploy:** 2026-04-28 (PX-006 — `c7c9496`)
+**Откат-теги:** `v2-pre-px006` (`aa5b0dd`), `v2-pre-px005` (`576cc14`), `v2-pre-px004` (`22691c3`), `v1-pre-redesign` (`7568a39`)
 
 ## Текущая активная задача
-— нет (последняя завершена: PX-005 финальный список 8 проектов)
+— нет (последняя завершена: PX-006 «Speed is the moat» — реальные сроки 1h/24h/3d)
+
+## Brand-сообщение (PX-006)
+- Process: «Hour. Day. Days.» — Reply 1h / Concept 24h / Live 3d / Maintain +30d
+- Disclaimer: business hours Mon-Fri 09-19 CET; landings & MVPs only (complex SaaS quoted separately)
+- Hero meta «Response < 1h»
+- Terminal process.md = «# Speed is the moat»
 
 ## Состав портфолио (PX-005, 8 проектов в порядке CEO)
 1. BauPreis AI SaaS *(featured)* — https://baupreis.ais152.com
-2. Eko-OYLIS Bulgaria — https://eco-oylis.info
+2. EKO-OYLIS UA — https://eko.ais152.com/en/
 3. Rund ums Haus Littawe — https://rundumshaus-littawe.de
 4. StormGuard Professional V2 — https://www.stormguardprofessional.eu/
 5. EDMI — https://aidancompton001.github.io/edmi-landing/variant-d.html
