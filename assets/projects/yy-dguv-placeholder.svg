@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="YY-DGUV — preview">
+  <defs>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#11151B"/>
+      <stop offset="100%" stop-color="#0B0E12"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF6A3C" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#FF6A3C" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="rgba(244,239,229,0.06)"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg-grad)"/>
+  <rect width="1600" height="1000" fill="url(#dots)"/>
+  <circle cx="800" cy="500" r="380" fill="url(#glow)"/>
+  <g transform="translate(680,340) scale(13.33)" stroke="#FF6A3C" stroke-width="0.9" fill="#FF6A3C" fill-opacity="0.12" stroke-linejoin="round">
+    <polygon points="13,2 4,14 11,14 9,22 20,9 13,9"/>
+  </g>
+  <text x="800" y="800" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="32" fill="#F4EFE5" letter-spacing="6">YY-DGUV</text>
+  <text x="800" y="850" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="18" fill="rgba(244,239,229,0.42)" letter-spacing="3">PRÜFSERVICE · WERNAU</text>
+</svg>
