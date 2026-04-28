@@ -63,6 +63,13 @@
   will-change: transform;
 }
 
+/* PX-007: stabilize variable-font hover/scroll axis changes — contain layout
+   so that font-variation-settings transitions don't trigger page-level reflow. */
+[data-vfont-hover] {
+  contain: layout style;
+  transition: font-variation-settings 220ms var(--ease-out);
+}
+
 /* ════════════════ PROJECT CARD — UNIFIED (PX-004) ════════════════ */
 /* All cards share one width, one aspect-ratio, one composition.
    Variation lives ONLY in content (mark, title, tags), not size. */

@@ -40,7 +40,10 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  /* PX-007: LEFT widened to 1.3fr (≈ 56% of 1200px = 583px) so 'Engineering' at
+     clamped 6.5rem (≈ 560px) fits without overflowing into terminal column.
+     RIGHT minmax(380px, 1fr) protects terminal from collapsing. */
+  grid-template-columns: minmax(0, 1.3fr) minmax(380px, 1fr);
   gap: clamp(2rem, 4vw, 4rem);
   align-items: center;
 }
@@ -79,11 +82,17 @@
 }
 
 .hero-title {
-  font-size: var(--fs-display);
+  /* PX-007: capped at 6.5rem (≈ 104px) instead of var(--fs-display) (max 9rem/144px).
+     At 144px 'Engineering' was ~770px wide, overflowing the 583px LEFT grid-cell into the
+     terminal column. At 104px it's ~560px and fits cleanly. */
+  font-size: clamp(2.75rem, 1rem + 5.5vw, 6.5rem);
   line-height: var(--lh-tight);
   letter-spacing: var(--lt-tighter);
   font-variation-settings: "wght" var(--wght-semibold), "wdth" var(--wdth-normal);
-  max-width: 14ch;
+  max-width: 12ch;
+  text-wrap: balance;             /* graceful no-op on Safari < 17.4 */
+  overflow-wrap: break-word;      /* defense-in-depth: rare super-long word can break */
+  contain: layout style;          /* isolate variable-axis font changes from page reflow */
 }
 .hero-title-line { display: block; }
 .hero-title em {
@@ -261,7 +270,9 @@
 }
 
 /* ── Responsive ──────────────────────────────────────── */
-@media (max-width: 1024px) {
+/* PX-007: breakpoint moved 1024 → 1280 — between 1024 and 1280 the 2-col layout
+   couldn't guarantee H1 fit beside the terminal (only proven safe ≥ ~1400px). */
+@media (max-width: 1280px) {
   .hero { min-height: auto; }
   .hero > .container {
     grid-template-columns: 1fr;

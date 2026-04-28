@@ -331,9 +331,13 @@
   if (hasGSAP && hasST && !REDUCED_MOTION) {
     const heroH1 = document.querySelector('.hero-title');
     if (heroH1) {
-      const obj = { wght: 620, wdth: 100 };
+      // PX-007: removed wdth axis from scroll — width changes per character were
+      // causing layout reflow on every scroll frame (visible jitter on H1 next to
+      // the terminal panel). wght-only axis is composite-friendly and visually
+      // sufficient (text gets bolder as the hero scrolls out).
+      const obj = { wght: 620 };
       const apply = () => {
-        heroH1.style.fontVariationSettings = `"wght" ${obj.wght.toFixed(0)}, "wdth" ${obj.wdth.toFixed(0)}`;
+        heroH1.style.fontVariationSettings = `"wght" ${obj.wght.toFixed(0)}`;
       };
       ScrollTrigger.create({
         trigger: '.hero',
@@ -341,8 +345,7 @@
         end: 'bottom 30%',
         scrub: 0.4,
         onUpdate: (st) => {
-          obj.wght = 620 + st.progress * 220;   // 620 → 840
-          obj.wdth = 100 - st.progress * 18;    // 100 →  82
+          obj.wght = 620 + st.progress * 200;   // 620 → 820
           apply();
         },
       });
@@ -350,9 +353,10 @@
   }
 
   // ──────────────── VARIABLE FONT — HOVER PULSE ────────────────
+  // PX-007: dropped wdth from hover (was 88) — same reflow reason as scroll axis above.
   document.querySelectorAll('[data-vfont-hover]').forEach((el) => {
     el.addEventListener('mouseenter', () => {
-      el.style.fontVariationSettings = `"wght" 740, "wdth" 88`;
+      el.style.fontVariationSettings = `"wght" 740`;
     });
     el.addEventListener('mouseleave', () => {
       el.style.fontVariationSettings = '';
