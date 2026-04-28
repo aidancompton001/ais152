@@ -2,6 +2,81 @@
 
 ## Журнал разработки
 
+### [S007] — 2026-04-28 — PX-005: Финальный список 8 проектов в порядке CEO
+
+**Роли:** #1 Viktor (lead) · #3 Andrei (JSON+JS) · #14 Landa (review)
+**Статус:** завершено (commit `c18967e`, откат-тег `v2-pre-px005` → `576cc14`)
+**Скилл:** dispatching-parallel-agents (P10-research через Explore-агента 8× source folders)
+
+**Задача CEO:** зафиксировать ровно 8 проектов в строгом порядке, BauPreis на 1-й позиции featured, MONO исключить.
+
+**Финальный порядок:**
+
+1. BauPreis AI SaaS (featured) — https://baupreis.ais152.com
+2. Eko-OYLIS Bulgaria — https://eco-oylis.info
+3. Rund ums Haus Littawe — https://rundumshaus-littawe.de
+4. StormGuard Professional V2 — https://www.stormguardprofessional.eu/
+5. EDMI — https://aidancompton001.github.io/edmi-landing/variant-d.html
+6. Provenly Homes — https://aidancompton001.github.io/provenly-homes/
+7. Studio of Glamour — https://glamour.ais152.com/
+8. YY-DGUV Prüfservice (новый) — https://aidancompton001.github.io/yy-dguv/
+
+**Что сделано:**
+
+- Перезаписан `data/projects.json` массивом из 8 записей в строгом порядке CEO. MONO удалён.
+- Все summaries/taglines/stacks взяты из исходных папок (CLAUDE.md / README.md / package.json) через P10-агента — не выдумано.
+- Slugs нормализованы: `eko-oylis` → `eko-oylis-ua`, `stormguard` → `stormguard-v2`.
+- Добавлен новый SVG-mark `mark-yy-dguv` (молния, символ электробезопасности) в `assets/marks.svg`.
+- Создан плейсхолдер-скриншот `assets/projects/yy-dguv-placeholder.svg` (тёмный фон Editorial Ink + коралловый mark + caption «PRÜFSERVICE · WERNAU») — пока нет реального превью YY-DGUV.
+- Cache-bust `?v=2026-04-28-px005` в index.html.
+
+**Тест (Phase 4 step 1):** Python-валидатор проверяет (1) ровно 8 записей, (2) точный порядок slug'ов, (3) BauPreis featured + order=1, (4) MONO отсутствует, (5) все 8 имеют summary_en/de + tagline_en/de + url + status + mark + tags. **Passed.**
+
+**Артефакты:** `data/projects.json`, `assets/marks.svg`, `assets/projects/yy-dguv-placeholder.svg`, `index.html`
+**Откатный тег:** `v2-pre-px005` → `576cc14` (запушен на origin)
+
+**Следующие шаги (open):**
+
+- Реальные скриншоты YY-DGUV → отдельная PX (когда production задеплоится)
+- BauPreis subdomain `baupreis.ais152.com` — CEO подтвердил, что задеплоен (если нет — карточка ведёт в никуда)
+- StormGuard на live = V1 (V2 rebuild ещё не на проде); карточка позиционирует как V2 в названии + tagline. Совпадение «название vs реальный сайт» — точка триггера для отдельной PX когда V2 пойдёт live.
+
+---
+
+### [S006] — 2026-04-28 — PX-004: Унификация карточек + маскировка cookie-баннеров
+
+**Роли:** #2 Lena (CSS) · #3 Andrei (verify) · #14 Landa (review)
+**Статус:** завершено (commit `576cc14`, откат-тег `v2-pre-px004` → `22691c3`)
+
+**Жалоба CEO:**
+- Карточки разной ширины и aspect-ratio — выглядит как нарезка случайных скринов
+- Cookie-баннеры в кадре скриншотов (StormGuard, Eko-OYLIS, RundUmsHaus)
+- Тёмные пустоты под изображением
+- Карусель работает (это не баг)
+
+**Корень (systematic-debugging Phase 1):**
+- `.card.layout-{feature,wide,square,tall,tile}` имели разные `flex-basis` и разные `aspect-ratio` на `.card-media` — это и был «зоопарк размеров»
+- `.card-link { height: 100% }` + `.card-body { flex: 1 }` → тянутся до высоты самой высокой карточки трека (layout-tall) → пустоты у square/wide
+- Скриншоты — full-page снимки реальных продакшен-сайтов с cookie-баннерами в кадре
+
+**Что сделано:**
+- `.card` → одна ширина для всех: `clamp(360px, 38vw, 520px)`; mobile `clamp(300px, 80vw, 480px)`
+- Удалены 5 layout-классов (.layout-feature/wide/square/tall/tile) — оставлен `.is-featured` как content marker
+- `.card-media` → одна aspect-ratio 16:10 для всех
+- `.card-img` → `object-position: center top` + filter brightness/contrast/saturate под тёмную палитру
+- `.card-media::before` — top vignette 22% (`var(--bg)` → transparent) маскирует cookie-баннеры
+- `.card-media::after` — bottom vignette 28% маскирует footers/sticky CTAs + плавный fade в body
+- `.card-link { align-self: start }` + `.card-body { без flex:1 }` → высота карточки = высота её контента, без тёмных пустот
+- Карусель (.work-pin/.work-track horizontal pinned scrub) **не тронута**
+- Cache-bust → `?v=2026-04-28-px004`
+
+**Артефакты:** `assets/css/components.css`, `index.html`
+**Откатный тег:** `v2-pre-px004` → `22691c3` (запушен на origin)
+
+**Следующие шаги:** если CEO хочет полностью убрать cookie-баннеры (не просто замаскировать) — отдельная PX с чистыми скриншотами от CEO в `assets/projects/{slug}.webp`.
+
+---
+
 ### [S005] — 2026-04-28 — PX-003: Deploy v2 (Editorial Ink) на production
 
 **Роли:** #1 Viktor (lead) · #3 Andrei (deploy/verify) · #2 Lena (font/visual) · #14 Hans Landa (pre-merge gate)

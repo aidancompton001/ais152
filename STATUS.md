@@ -2,11 +2,21 @@
 
 **Live:** https://ais152.com
 **Production версия:** v2 (Editorial Ink, multi-asset)
-**Last deploy:** 2026-04-28 (PX-003)
-**Откат-тег:** `v1-pre-redesign` (`7568a39`) — `git checkout v1-pre-redesign && git push -f origin v1-pre-redesign:master` для роллбэка
+**Last deploy:** 2026-04-28 (PX-005 — `c18967e`)
+**Откат-теги:** `v2-pre-px005` (`576cc14`), `v2-pre-px004` (`22691c3`), `v1-pre-redesign` (`7568a39`)
 
 ## Текущая активная задача
-— нет (последняя завершена: PX-003 deploy v2)
+— нет (последняя завершена: PX-005 финальный список 8 проектов)
+
+## Состав портфолио (PX-005, 8 проектов в порядке CEO)
+1. BauPreis AI SaaS *(featured)* — https://baupreis.ais152.com
+2. Eko-OYLIS Bulgaria — https://eco-oylis.info
+3. Rund ums Haus Littawe — https://rundumshaus-littawe.de
+4. StormGuard Professional V2 — https://www.stormguardprofessional.eu/
+5. EDMI — https://aidancompton001.github.io/edmi-landing/variant-d.html
+6. Provenly Homes — https://aidancompton001.github.io/provenly-homes/
+7. Studio of Glamour — https://glamour.ais152.com/
+8. YY-DGUV Prüfservice — https://aidancompton001.github.io/yy-dguv/
 
 ## Open issues / TODO
 - **FORM-1** Web3Forms access key — placeholder в `assets/js/form.js`. Primary FormSubmit работает; fallback неактивен. Открывать PX по триггеру первого 429/500 от FormSubmit.
