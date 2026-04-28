@@ -34,36 +34,95 @@
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-<!-- Stylesheets (cache-busted via ?v=2026-04-28-px008, replace with git hash on deploy) -->
-<link rel="stylesheet" href="assets/css/tokens.css?v=2026-04-28-px008">
-<link rel="stylesheet" href="assets/css/base.css?v=2026-04-28-px008">
-<link rel="stylesheet" href="assets/css/layout.css?v=2026-04-28-px008">
-<link rel="stylesheet" href="assets/css/components.css?v=2026-04-28-px008">
-<link rel="stylesheet" href="assets/css/motion.css?v=2026-04-28-px008">
-<link rel="stylesheet" href="assets/css/hero.css?v=2026-04-28-px008">
-<link rel="stylesheet" href="assets/css/marks.css?v=2026-04-28-px008">
+<!-- Stylesheets (cache-busted via ?v=2026-04-28-px010, replace with git hash on deploy) -->
+<link rel="stylesheet" href="assets/css/tokens.css?v=2026-04-28-px010">
+<link rel="stylesheet" href="assets/css/base.css?v=2026-04-28-px010">
+<link rel="stylesheet" href="assets/css/layout.css?v=2026-04-28-px010">
+<link rel="stylesheet" href="assets/css/components.css?v=2026-04-28-px010">
+<link rel="stylesheet" href="assets/css/motion.css?v=2026-04-28-px010">
+<link rel="stylesheet" href="assets/css/hero.css?v=2026-04-28-px010">
+<link rel="stylesheet" href="assets/css/marks.css?v=2026-04-28-px010">
 
-<!-- JSON-LD Organization -->
+<!-- Hreflang (PX-010) — bilingual same-URL; Google tolerates same-href across alternates -->
+<link rel="alternate" hreflang="en" href="https://ais152.com/" />
+<link rel="alternate" hreflang="de" href="https://ais152.com/" />
+<link rel="alternate" hreflang="x-default" href="https://ais152.com/" />
+
+<!-- JSON-LD @graph: Person + ProfessionalService + WebSite (PX-010) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "AiS1.52",
-  "description": "Engineering studio for AI systems, mobile applications, and automation.",
-  "url": "https://ais152.com",
-  "email": "ebaias.muc@gmail.com",
-  "telephone": "+4915563675772",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Munich",
-    "addressRegion": "Bayern",
-    "addressCountry": "DE"
-  },
-  "areaServed": "Worldwide",
-  "knowsAbout": ["Artificial Intelligence", "Mobile Development", "Automation", "Full-Stack Engineering", "SaaS Platforms"],
-  "sameAs": []
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ais152.com/#person",
+      "name": "Eduard Baias",
+      "jobTitle": "Independent Software Engineer",
+      "url": "https://ais152.com",
+      "image": "https://ais152.com/assets/og-image.jpg",
+      "email": "ebaias.muc@gmail.com",
+      "telephone": "+4915563675772",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Munich",
+        "addressRegion": "Bayern",
+        "addressCountry": "DE"
+      },
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Mobile Development",
+        "Full-Stack Engineering",
+        "SaaS Platforms",
+        "Automation",
+        "React Native",
+        "Next.js",
+        "PostgreSQL",
+        "Claude API"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/eduard-baias/"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://ais152.com/#service",
+      "name": "AiS1.52",
+      "description": "Independent engineering studio for AI systems, mobile applications, and automation. Munich, Germany.",
+      "url": "https://ais152.com",
+      "image": "https://ais152.com/assets/og-image.jpg",
+      "founder": { "@id": "https://ais152.com/#person" },
+      "areaServed": "Worldwide",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Munich",
+        "addressRegion": "Bayern",
+        "addressCountry": "DE"
+      },
+      "email": "ebaias.muc@gmail.com",
+      "telephone": "+4915563675772",
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Mobile Development",
+        "Automation",
+        "Full-Stack Engineering",
+        "SaaS Platforms"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/eduard-baias/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ais152.com/#website",
+      "url": "https://ais152.com",
+      "name": "AiS1.52 — Engineering AI systems",
+      "inLanguage": ["en", "de"],
+      "publisher": { "@id": "https://ais152.com/#person" }
+    }
+  ]
 }
 </script>
 </head>
@@ -303,7 +362,7 @@
     <span class="card-num"></span>
     <a class="card-link" target="_blank" rel="noopener noreferrer">
       <div class="card-media">
-        <img class="card-img" alt="" loading="lazy" decoding="async">
+        <img class="card-img" alt="Project preview" loading="lazy" decoding="async">
         <span class="card-status"></span>
       </div>
       <div class="card-body">
@@ -694,13 +753,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
 
 <!-- App scripts -->
-<script src="assets/js/lang.js?v=2026-04-28-px008"></script>
-<script src="assets/js/dotgrid.js?v=2026-04-28-px008"></script>
-<script src="assets/js/terminal.js?v=2026-04-28-px008"></script>
-<script src="assets/js/projects.js?v=2026-04-28-px008"></script>
-<script src="assets/js/form.js?v=2026-04-28-px008"></script>
-<script src="assets/js/whatsapp.js?v=2026-04-28-px008"></script>
-<script src="assets/js/main.js?v=2026-04-28-px008"></script>
+<script src="assets/js/lang.js?v=2026-04-28-px010"></script>
+<script src="assets/js/dotgrid.js?v=2026-04-28-px010"></script>
+<script src="assets/js/terminal.js?v=2026-04-28-px010"></script>
+<script src="assets/js/projects.js?v=2026-04-28-px010"></script>
+<script src="assets/js/form.js?v=2026-04-28-px010"></script>
+<script src="assets/js/whatsapp.js?v=2026-04-28-px010"></script>
+<script src="assets/js/main.js?v=2026-04-28-px010"></script>
 
 </body>
 </html>

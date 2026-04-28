@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/projects/yy-dguv-placeholder.svg
+
+Sitemap: https://ais152.com/sitemap.xml
