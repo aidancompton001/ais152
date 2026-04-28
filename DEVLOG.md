@@ -89,9 +89,23 @@
 
 **❌ Open после CEO actions:**
 
-- BING-1 — Bing Webmaster Tools (CEO option: «Import from Google Search Console» — 1 клик)
+- BING-1 — Bing Webmaster Tools — частично сделано (см. ниже)
 - LH-1 — Lighthouse mobile/desktop baseline (CEO Chrome DevTools → 5 минут)
 - IDX-1 (новый) — проверить Search Console Coverage report через 2-7 дней; если 0 indexed — диагностика
+
+---
+
+#### CEO actions (продолжение, 2026-04-28 evening) — BING-1 в работе
+
+**🟡 BING-1 — Bing Webmaster Tools (Import from GSC):**
+
+- ✅ CEO импортировал ais152.com в Bing Webmaster Tools через «Import from Google Search Console» (1 click)
+- ✅ Property `ais152.com/` создан, Bing dashboard виден
+- ⏳ Bing-сообщение: «Your data and reports are being processed and it may take upto 48 hours to reflect»
+- ❌ Sitemap submit в Bing — pending (CEO выполняет: Sitemaps → Submit `https://ais152.com/sitemap.xml`)
+- ❌ URL Submission первой страницы — pending (10 URLs/day бесплатно)
+
+**Бонус Bing:** Bing index = backbone для DuckDuckGo + Yahoo + Ecosia. Один verify = 4 поисковика покрыты.
 
 **Коммиты этой сессии:**
 
