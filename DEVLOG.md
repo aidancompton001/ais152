@@ -134,6 +134,8 @@ Indexing allowed? Yes
 
 **IDX-2 (новый):** через 48h перепроверить URL Inspection в Bing — должен показать `Crawl allowed: Yes`.
 
+**✅ CEO выполнил URL Submission в Bing 2026-04-28 evening:** «Indexing requested.» — Bing поставил `https://ais152.com/` в очередь recrawl. Ожидание: 24-48h до обновления URL Inspection статуса.
+
 **Коммиты этой сессии:**
 
 - `cdf6fa7` feat(seo): full SEO pass — meta, JSON-LD, sitemap, robots, hreflang
