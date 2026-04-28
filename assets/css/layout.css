@@ -372,6 +372,15 @@
   line-height: var(--lh-snug);
   max-width: 56ch;
 }
+.section-fineprint {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--tx-fa);
+  letter-spacing: var(--lt-wide);
+  line-height: var(--lh-base);
+  max-width: 64ch;
+  margin-top: calc(var(--sp-2) * -1);
+}
 
 /* ════════════════ WORK (pinned horizontal) ════════════════ */
 .work {
