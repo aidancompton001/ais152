@@ -136,6 +136,24 @@ Indexing allowed? Yes
 
 **✅ CEO выполнил URL Submission в Bing 2026-04-28 evening:** «Indexing requested.» — Bing поставил `https://ais152.com/` в очередь recrawl. Ожидание: 24-48h до обновления URL Inspection статуса.
 
+**✅ BING-1 ЗАКРЫТ полностью 2026-04-28:** CEO submitted sitemap.xml → Bing UI показал:
+
+- Known sitemaps: 1 · Errors: 0 · Warnings: 0
+- `https://ais152.com/sitemap.xml` · Last submit 4/28/2026 · Last crawl 4/28/2026 · **Status: Success** · URLs discovered: 1
+
+**Состояние SEO-стека (после полного PX-010):**
+
+- ✅ Google Search Console: verified, sitemap submitted, URL indexing requested (priority queue)
+- ✅ Bing Webmaster: imported, verified, URL submitted, sitemap submitted (Status: Success)
+- ⏳ Bing index ребилд (включая cache update «blocked by robots.txt» → «allowed»): 24-48h
+- ⏳ Google index первый crawl: 1-3 дня (priority queue)
+
+**Open после полного закрытия BING-1:**
+
+- 🟡 LH-1 — Lighthouse mobile/desktop baseline (CEO Chrome DevTools, 5 минут)
+- 🟡 IDX-1 — Coverage report Google Search Console через 2-7 дней
+- 🟡 IDX-2 — re-check Bing URL Inspection через 48h (status должен сменится на Crawl allowed: Yes)
+
 **Коммиты этой сессии:**
 
 - `cdf6fa7` feat(seo): full SEO pass — meta, JSON-LD, sitemap, robots, hreflang

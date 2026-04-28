@@ -18,7 +18,7 @@
 ## CEO actions
 - ✅ **SC-1** Google Search Console — **DONE 2026-04-28**: verification HTML-file (`google9d7cbb1b47be4897.html`) live + Ownership verified + Sitemap submitted + URL Inspection → Request Indexing added to priority queue. Coverage check expected 2026-04-30 → 2026-05-01.
 - 🟡 **LH-1** Lighthouse mobile/desktop run → закинуть числа в STATUS (Perf/A11y/BP/SEO)
-- 🟡 **BING-1** Bing Webmaster Tools — import+verify ✅ + URL Submission ✅ DONE 2026-04-28; pending optional: Sitemap submit в Bing UI (но GSC import уже передал sitemap reference)
+- ✅ **BING-1** Bing Webmaster Tools — **DONE 2026-04-28** (import+verify + URL Submission + Sitemap submit). Sitemap status: Success, URLs discovered: 1. Bing recrawl ETA 24-48h.
 - 🟡 **IDX-1** (новый) проверить Coverage report в Search Console через 2-7 дней; если 0 indexed — диагностика
 
 ## Текущая активная задача
