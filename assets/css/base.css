@@ -1,0 +1,151 @@
+/* ─────────────────────────────────────────────────────────────
+   AiS1.52 — Base Reset & Typography
+   ───────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+* { margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis takes over */
+  scrollbar-gutter: stable;
+}
+
+body {
+  background: var(--bg);
+  color: var(--tx);
+  font-family: var(--ff-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--lt-base);
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  min-height: 100vh;
+}
+
+img, svg, video, canvas, picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+ol, ul { list-style: none; }
+
+::selection {
+  background: var(--ac);
+  color: var(--tx-on-ac);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bd-strong); }
+::-webkit-scrollbar-thumb:hover { background: var(--ac); }
+
+/* ── Headings ──────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ff-display);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--lt-tighter);
+  color: var(--tx);
+}
+
+p { line-height: var(--lh-base); }
+
+em { font-style: italic; color: var(--ac); }
+
+code, pre, kbd, samp {
+  font-family: var(--ff-mono);
+  font-size: 0.92em;
+}
+
+code {
+  background: var(--bg-elev-1);
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--bd);
+  letter-spacing: var(--lt-mono);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--ac);
+  outline-offset: 3px;
+}
+
+/* ── Bilingual default visibility ──────────────────────── */
+[data-lang-de] { display: none !important; }
+html[data-lang="de"] [data-lang-en] { display: none !important; }
+html[data-lang="de"] [data-lang-de] { display: inline !important; }
+html[data-lang="de"] [data-lang-de].block { display: block !important; }
+html[data-lang="de"] [data-lang-de].flex  { display: flex  !important; }
+
+/* ── Skip link (a11y) ──────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--sp-4);
+  background: var(--ac);
+  color: var(--tx-on-ac);
+  padding: var(--sp-3) var(--sp-4);
+  font-weight: var(--fw-semibold);
+  z-index: var(--z-modal);
+  transition: top var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus { top: var(--sp-4); }
+
+/* ── Utilities ─────────────────────────────────────────── */
+.overline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--lt-wide);
+  text-transform: uppercase;
+  color: var(--tx-mu);
+}
+.overline::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--bd-strong);
+  margin-right: var(--sp-2);
+}
+
+.link-inline {
+  color: var(--ac);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.link-inline:hover { opacity: 0.75; }

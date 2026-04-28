@@ -35,13 +35,14 @@
 
 | Слой | Технология | Статус |
 |------|-----------|--------|
-| Markup | HTML5 (single-file, inline CSS/JS) | Locked |
-| Стили | Vanilla CSS (Custom Properties, clamp(), grid, flex) | Locked |
-| Скрипты | Vanilla JS (IntersectionObserver, requestAnimationFrame) | Locked |
-| Smooth Scroll | Lenis 1.1.14 (CDN) | Locked |
-| Шрифты | Google Fonts — Outfit (200-900) | Locked |
-| Хостинг | TBD (static, Cloudflare Pages / GitHub Pages / Hetzner) | Open |
-| Языки | EN/DE (data-lang attribute switching) | Locked |
+| Markup | HTML5 (multi-file: index + impressum + datenschutz + 404) | Locked v2 (PX-002/PX-003) |
+| Стили | Vanilla CSS, разнесён в `assets/css/{tokens,base,layout,components,motion,hero,marks}.css` | Locked v2 |
+| Скрипты | Vanilla JS, разнесён в `assets/js/{lang,dotgrid,terminal,projects,form,whatsapp,main}.js` | Locked v2 |
+| Smooth Scroll + Animations | Lenis + GSAP + ScrollTrigger (CDN) | Locked v2 |
+| Шрифты | Self-hosted WOFF2 — Mona Sans (variable wdth/wght/opsz/ital) + JetBrains Mono | Locked v2 (DSGVO) |
+| Хостинг | GitHub Pages, домен ais152.com (CNAME) | Live |
+| Языки | EN/DE на index, DE-only legal, EN-only 404 | Locked v2 |
+| Данные | `data/projects.json` (8 проектов, JSON Schema валидация) | Locked v2 |
 
 ---
 

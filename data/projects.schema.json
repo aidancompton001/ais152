@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AiS152 Projects",
+  "description": "Source-of-truth schema for portfolio projects. Renders into the Selected Work section.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "slug", "title", "year", "url", "status", "tags",
+      "screenshot", "order"
+    ],
+    "properties": {
+      "slug": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9-]{1,40}$",
+        "description": "URL-safe identifier, kebab-case, 2-40 chars"
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 60
+      },
+      "tagline_en": {
+        "type": "string",
+        "maxLength": 80,
+        "description": "One-line English tagline shown under the title"
+      },
+      "tagline_de": {
+        "type": "string",
+        "maxLength": 80,
+        "description": "One-line German tagline"
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 2020,
+        "maximum": 2030
+      },
+      "url": {
+        "type": "string",
+        "description": "Live URL or '#' for projects without public URL",
+        "anyOf": [
+          { "format": "uri" },
+          { "const": "#" }
+        ]
+      },
+      "status": {
+        "type": "string",
+        "enum": ["live", "in-development", "archived"]
+      },
+      "tags": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 6,
+        "items": {
+          "type": "string",
+          "maxLength": 24
+        }
+      },
+      "summary_en": {
+        "type": "string",
+        "maxLength": 280
+      },
+      "summary_de": {
+        "type": "string",
+        "maxLength": 280
+      },
+      "screenshot": {
+        "type": "string",
+        "description": "Relative path to 1x screenshot, e.g. assets/projects/slug.jpg"
+      },
+      "screenshot_2x": {
+        "type": "string",
+        "description": "Relative path to 2x retina screenshot (optional)"
+      },
+      "featured": {
+        "type": "boolean",
+        "default": false
+      },
+      "order": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Sort order in the Selected Work section (1 = first)"
+      }
+    }
+  }
+}

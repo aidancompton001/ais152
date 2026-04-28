@@ -1,0 +1,51 @@
+/* ─────────────────────────────────────────────────────────────
+   AiS1.52 — Project Marks
+   Custom geometric SVG glyphs per project.
+   ───────────────────────────────────────────────────────────── */
+
+.card-mark {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--ac);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  transition: color var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-spring);
+  margin-bottom: var(--sp-1);
+}
+.card-link:hover .card-mark {
+  color: var(--ac-hover);
+  transform: rotate(-6deg) scale(1.08);
+}
+
+/* draw-in animation on scroll-reveal (controlled by JS adding .is-drawn) */
+.card-mark path,
+.card-mark line,
+.card-mark circle,
+.card-mark rect,
+.card-mark polyline,
+.card-mark polygon {
+  stroke-dasharray: var(--len, 100);
+  stroke-dashoffset: var(--len, 100);
+  transition: stroke-dashoffset 1.2s var(--ease-out);
+}
+.card-mark.is-drawn path,
+.card-mark.is-drawn line,
+.card-mark.is-drawn circle,
+.card-mark.is-drawn rect,
+.card-mark.is-drawn polyline,
+.card-mark.is-drawn polygon {
+  stroke-dashoffset: 0;
+}
+
+/* hidden sprite container */
+.svg-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}

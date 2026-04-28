@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="svg-sprite" aria-hidden="true">
+  <defs>
+
+    <!-- baupreis: stacked cost bars rising -->
+    <symbol id="mark-baupreis" viewBox="0 0 24 24">
+      <line x1="3" y1="20" x2="21" y2="20"/>
+      <rect x="5" y="14" width="3" height="6"/>
+      <rect x="10.5" y="9" width="3" height="11"/>
+      <rect x="16" y="4" width="3" height="16"/>
+      <line x1="19.5" y1="3" x2="22" y2="3"/>
+    </symbol>
+
+    <!-- mono: single perfect circle (M) -->
+    <symbol id="mark-mono" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8"/>
+      <line x1="12" y1="4" x2="12" y2="20"/>
+    </symbol>
+
+    <!-- edmi: microscope lens — concentric -->
+    <symbol id="mark-edmi" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <circle cx="12" cy="12" r="5"/>
+      <circle cx="12" cy="12" r="1.4" fill="currentColor"/>
+      <line x1="12" y1="3" x2="12" y2="6"/>
+      <line x1="12" y1="18" x2="12" y2="21"/>
+      <line x1="3" y1="12" x2="6" y2="12"/>
+      <line x1="18" y1="12" x2="21" y2="12"/>
+    </symbol>
+
+    <!-- stormguard: shield -->
+    <symbol id="mark-stormguard" viewBox="0 0 24 24">
+      <path d="M12 3 L20 6 V12 C20 17 16 20 12 21 C8 20 4 17 4 12 V6 Z"/>
+      <path d="M9 12 L11 14 L15 10"/>
+    </symbol>
+
+    <!-- eko-oylis: oil drop with reflection -->
+    <symbol id="mark-eko-oylis" viewBox="0 0 24 24">
+      <path d="M12 3 C12 3 5 11 5 15 C5 19 8 21 12 21 C16 21 19 19 19 15 C19 11 12 3 12 3 Z"/>
+      <path d="M9 14 C9 11.5 10 10 12 9"/>
+    </symbol>
+
+    <!-- rundumshaus: house with roof tilted -->
+    <symbol id="mark-rundumshaus" viewBox="0 0 24 24">
+      <polygon points="12,3 21,11 18,11 18,21 6,21 6,11 3,11"/>
+      <rect x="10" y="14" width="4" height="7"/>
+    </symbol>
+
+    <!-- provenly-homes: keyhole inside outline house -->
+    <symbol id="mark-provenly-homes" viewBox="0 0 24 24">
+      <polyline points="3,12 12,3 21,12"/>
+      <polyline points="5,11 5,21 19,21 19,11"/>
+      <circle cx="12" cy="14" r="1.6"/>
+      <line x1="12" y1="15.5" x2="12" y2="19"/>
+    </symbol>
+
+    <!-- studioglamour: eye + lash -->
+    <symbol id="mark-studioglamour" viewBox="0 0 24 24">
+      <path d="M3 12 C7 6 17 6 21 12 C17 18 7 18 3 12 Z"/>
+      <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+      <line x1="6" y1="7" x2="5" y2="5"/>
+      <line x1="12" y1="5.5" x2="12" y2="3"/>
+      <line x1="18" y1="7" x2="19" y2="5"/>
+    </symbol>
+
+  </defs>
+</svg>
