@@ -63,30 +63,18 @@
   will-change: transform;
 }
 
-/* ════════════════ PROJECT CARD ════════════════ */
+/* ════════════════ PROJECT CARD — UNIFIED (PX-004) ════════════════ */
+/* All cards share one width, one aspect-ratio, one composition.
+   Variation lives ONLY in content (mark, title, tags), not size. */
 .card {
-  flex: 0 0 clamp(320px, 64vw, 760px);
+  flex: 0 0 clamp(360px, 38vw, 520px);
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-/* ── Magazine layouts (varied widths, varied aspect ratios) ── */
-.card.layout-feature  { flex: 0 0 clamp(560px, 60vw, 920px); }
-.card.layout-wide     { flex: 0 0 clamp(480px, 50vw, 720px); }
-.card.layout-square   { flex: 0 0 clamp(420px, 38vw, 560px); }
-.card.layout-tall     { flex: 0 0 clamp(360px, 32vw, 460px); }
-.card.layout-tile     { flex: 0 0 clamp(300px, 26vw, 360px); }
-
-.card.layout-feature .card-media { aspect-ratio: 16 / 9; }
-.card.layout-wide    .card-media { aspect-ratio: 16 / 9; }
-.card.layout-square  .card-media { aspect-ratio: 1 / 1; }
-.card.layout-tall    .card-media { aspect-ratio: 3 / 4; }
-.card.layout-tile    .card-media { aspect-ratio: 4 / 5; }
-
-/* Feature card gets bigger title + muted bg signal */
-.card.layout-feature .card-title { font-size: var(--fs-3xl); }
-.card.layout-feature::before {
+/* Featured pill — kept as content marker, but no size/layout impact */
+.card.is-featured::before {
   content: 'Featured';
   position: absolute;
   top: -1px;
@@ -102,19 +90,8 @@
   font-variation-settings: "wght" 600;
 }
 
-.card.layout-tile .card-title { font-size: var(--fs-lg); }
-.card.layout-tile .card-tagline { font-size: var(--fs-sm); }
-.card.layout-tile .card-tags { display: none; }
-.card.layout-tile .card-body { padding: var(--sp-4); gap: var(--sp-2); }
-
 @media (max-width: 1024px) {
-  .card.layout-feature,
-  .card.layout-wide,
-  .card.layout-square,
-  .card.layout-tall,
-  .card.layout-tile {
-    flex: 0 0 clamp(280px, 80vw, 560px);
-  }
+  .card { flex: 0 0 clamp(300px, 80vw, 480px); }
 }
 
 .card-num {
@@ -131,7 +108,7 @@
   flex-direction: column;
   background: var(--bg-elev-1);
   border: 1px solid var(--bd);
-  height: 100%;
+  align-self: start;
   transition: border-color var(--dur-base) var(--ease-out),
               background var(--dur-base) var(--ease-out);
 }
@@ -143,19 +120,50 @@
 .card-link:hover .card-cta { color: var(--ac); }
 .card-link:hover .card-title { color: var(--ac); }
 
+/* PX-004: unified media — 16:10, dark frame, gradient overlays mask
+   any cookie banner / light-bg dissonance from full-page screenshots */
 .card-media {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border-bottom: 1px solid var(--bd);
   background: var(--bg-elev-2);
+  isolation: isolate;
 }
 .card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--dur-slow) var(--ease-out);
+  object-position: center top;
+  filter: brightness(0.94) contrast(1.02) saturate(0.95);
+  transition: transform var(--dur-slow) var(--ease-out),
+              filter var(--dur-base) var(--ease-out);
 }
+.card-link:hover .card-img {
+  filter: brightness(1) contrast(1.05) saturate(1);
+}
+/* Top vignette — masks cookie banners that sit at the top of full-page snapshots */
+.card-media::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 22%;
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(11,14,18,0.72) 45%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+/* Bottom vignette — soft fade to card body, masks footers / sticky CTAs */
+.card-media::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 28%;
+  background: linear-gradient(0deg, var(--bg-elev-1) 0%, rgba(17,21,27,0.55) 50%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+/* Lift status badge above the vignette */
+.card-status { z-index: 2; }
 .card-status {
   position: absolute;
   top: var(--sp-3);
@@ -186,7 +194,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--sp-3);
-  flex: 1;
 }
 .card-meta {
   font-family: var(--ff-mono);
