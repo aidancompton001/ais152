@@ -2,8 +2,23 @@
 
 **Live:** https://ais152.com
 **Production версия:** v2 (Editorial Ink, multi-asset)
-**Last deploy:** 2026-04-28 (PX-008 — `832b2dd`)
-**Откат-теги:** `v2-pre-px008` (`7aeb689`), `v2-pre-px007` (`658175e`), `v2-pre-px006` (`aa5b0dd`), `v2-pre-px005` (`576cc14`), `v2-pre-px004` (`22691c3`), `v1-pre-redesign` (`7568a39`)
+**Last deploy:** 2026-04-28 (PX-010 — `cdf6fa7`)
+**Откат-теги:** `v2-pre-px010` (`01e3e5f`), `v2-pre-px008` (`7aeb689`), `v2-pre-px007` (`658175e`), `v2-pre-px006` (`aa5b0dd`), `v2-pre-px005` (`576cc14`), `v2-pre-px004` (`22691c3`), `v1-pre-redesign` (`7568a39`)
+
+## SEO infrastructure (PX-010)
+- ✅ `/robots.txt` (Allow + Sitemap directive)
+- ✅ `/sitemap.xml` (1 URL + 3 hreflang alternates)
+- ✅ `/favicon.ico` (multi-res 16/32/48/64 для Bing legacy)
+- ✅ `/apple-touch-icon.png` (root для iOS pings)
+- ✅ Hreflang en/de/x-default на index, de+x-default на impressum/datenschutz
+- ✅ JSON-LD @graph: Person + ProfessionalService + WebSite (linked via @id refs)
+- ✅ canonical на всех 4 страницах
+- ✅ 404.html: meta description + canonical + noindex,follow
+
+## CEO actions (open, blocking metrics)
+- 🟡 **LH-1** Lighthouse mobile/desktop run → закинуть числа в STATUS (Perf/A11y/BP/SEO)
+- 🟡 **SC-1** Google Search Console verification (HTML-file upload)
+- 🟡 **BING-1** Bing Webmaster Tools verification
 
 ## Текущая активная задача
 — нет (последняя завершена: PX-008 marquee infinite + stats 3d + form activation)

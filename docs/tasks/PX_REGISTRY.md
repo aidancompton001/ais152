@@ -580,4 +580,125 @@
 
 ---
 
-<!-- Последний номер: PX-009 -->
+## PX-010
+
+**Дата:** 2026-04-28
+**Статус:** новая
+**DEVLOG:** —
+**Источник:** чат AiS152, PX-формулировка CEO («что у нас с SEO, индексируется ли, всё ли ахуенно»). Search Console **не зарегистрирован** (CEO подтвердил).
+
+**Задача:** Полный SEO-аудит и фикс ais152.com — meta-теги, OpenGraph/Twitter Cards, robots.txt, sitemap.xml, structured data (JSON-LD), hreflang EN/DE, canonical, Core Web Vitals, Lighthouse SEO, регистрация и верификация в Google Search Console + Bing Webmaster Tools, разметка alt/semantic HTML
+**Контекст:**
+- Live: `https://ais152.com` (после серии PX-001…PX-009)
+- Стек: Static HTML/CSS/JS на GitHub Pages + custom domain (CNAME `ais152.com`, HTTPS)
+- 4 страницы: `index.html` (EN/DE двуязычная), `impressum.html` (DE), `datenschutz.html` (DE), `404.html` (EN)
+- Контент: 8 production-проектов (PX-005), 4-этапный процесс (PX-006), Founder block (PX-009 в работе)
+- Известные SEO-артефакты по DEVLOG:
+  - S005: og-image.jpg + apple-touch-icon.png созданы Claude Desktop, теги `<meta og:image>`, `<meta twitter:image>`, `<link rel="apple-touch-icon">` присутствуют в `index.html`
+  - S004: Lighthouse baseline **не замерен** (DEVLOG S004/S005 open issue), цели заявлены: Perf ≥ 90, A11y ≥ 95, BP = 100, SEO ≥ 90
+  - S004: импрессум/датеншуц/404 одноязычные (DE/DE/EN) — потенциальная проблема для туристов и SEO
+- Двуязычность: EN + DE через `data-lang-en/de` атрибуты, `<html lang>` обновляется динамически через `assets/js/lang.js`, `<title>` синхронится из `<meta name="title-en|de">`
+- Локация целевой аудитории: Munich, Germany — **локальное SEO** должно работать (Google Maps, Local Pack)
+- Целевые ключевики (предположения, уточнить с CEO): «AI engineer Munich», «Webentwicklung München», «Freelance AI developer Germany», «AI SaaS Entwickler München»
+- **Search Console / Bing Webmaster:** не настроены, не верифицированы
+**Проблема:**
+- **Неизвестно индексируется ли сайт** в Google / Bing — нет верификации в Search Console
+- **Lighthouse не замерен** — KPI Perf/A11y/BP/SEO без цифр; не знаем что именно проседает
+- **sitemap.xml** — статус неизвестен (обычно GitHub Pages не генерирует автоматически)
+- **robots.txt** — есть в листинге проекта (по аудиту YY_DGUV пример), но содержимое не проверено
+- **Structured data (JSON-LD)** — стандартная практика для портфолио (Person / ProfessionalService / WebSite schema), статус неизвестен
+- **hreflang теги** — для двуязычного сайта обязательны (`<link rel="alternate" hreflang="en">`, `hreflang="de">`, `hreflang="x-default">`); статус неизвестен
+- **Canonical URLs** — для предотвращения дублирования; статус неизвестен
+- **OG/Twitter Cards** — присутствуют по DEVLOG, но не верифицировано через debugger (developers.facebook.com/tools/debug, cards-dev.twitter.com)
+- **Alt-теги** на скриншотах проектов / founder-фото — статус неизвестен
+- **Semantic HTML** — `<main>`, `<article>`, `<nav>`, `<header>`, `<footer>`, `<section>` — статус неизвестен
+- **Internal linking** — структура внутренних ссылок, anchor text для SEO веса
+- **Локальное SEO Munich:** Google Business Profile, Schema.org `LocalBusiness` + `address` + `geo`, статус неизвестен
+- **Core Web Vitals (LCP/CLS/INP/FID):** не замерено, особенно после серии правок PX-004-007 (vignette на карточках, terminal анимация, Mona Sans 529KB, dot grid canvas)
+- **Mobile-friendly** — формально работает (PX-004 фиксил responsive), но Mobile-Friendly Test не прогнан
+- **Title/meta description** — длина, ключевики, CTA — статус неизвестен
+- **Page load speed:** Mona Sans 529KB + GSAP CDN + Lenis CDN — это весомые ассеты для портфолио, может проседать LCP на mobile 3G/4G
+**Цель:**
+- Сайт **гарантированно индексируется** в Google и Bing, верифицирован в Google Search Console + Bing Webmaster Tools
+- Lighthouse mobile: **Perf ≥ 90, A11y ≥ 95, Best Practices = 100, SEO ≥ 95**
+- Все meta/OG/Twitter теги корректны и проверены через официальные debuggers
+- robots.txt + sitemap.xml — корректные, sitemap отправлен в Google + Bing
+- JSON-LD: `Person` / `ProfessionalService` schemas с корректными полями (name, jobTitle, address, geo, sameAs, hasOccupation, knowsAbout)
+- hreflang теги для EN/DE (alternate + x-default)
+- Canonical URLs на всех 4 страницах
+- 100% alt на images, semantic HTML на 100%
+- Local SEO Munich: structured address, NAP консистентность (Name/Address/Phone)
+- Core Web Vitals — green на всех 4 страницах для mobile + desktop
+- Целевые keyword'ы (после согласования с CEO) — присутствуют в title, h1, h2, meta description, alt, internal links — без переспама
+**Скоуп:**
+1. **Аудит-фаза (P6) — без правок:**
+   - Lighthouse mobile + desktop на live (Perf/A11y/BP/SEO/PWA)
+   - PageSpeed Insights → Core Web Vitals real-data + lab-data
+   - Mobile-Friendly Test (search.google.com/test/mobile-friendly)
+   - Rich Results Test (search.google.com/test/rich-results)
+   - meta tags inspector (metatags.io или ручной просмотр view-source)
+   - OpenGraph debugger (opengraph.xyz, developers.facebook.com)
+   - Twitter Card validator (cards-dev.twitter.com)
+   - robots.txt → `/robots.txt` доступен, корректный
+   - sitemap.xml → `/sitemap.xml` доступен, валиден (XML schema)
+   - Schema markup (JSON-LD) → есть ли вообще, какие типы
+   - hreflang проверка
+   - Canonical проверка
+   - Alt-теги: grep по всем `<img>` без alt
+   - Semantic HTML: проверить `<main>`/`<nav>`/`<article>`/`<section>`
+   - **Отчёт:** baseline-таблица «что есть / что не работает / приоритеты CRITICAL/HIGH/MEDIUM/LOW»
+2. **Согласование с CEO (P0-стоп до фикса):**
+   - целевые ключевые слова EN + DE (5-10 штук)
+   - meta description варианты EN + DE (на index)
+   - Person schema поля — какие данные публиковать (имя из PX-009, job title, область знаний)
+   - Local Business — публиковать ли точный адрес Munich или только город
+   - LinkedIn / GitHub / Twitter / Telegram — какие профили в `sameAs`
+3. **Фикс-фаза (P1) — после ОК CEO:**
+   - meta title/description оптимизированные EN + DE на 4 страницах
+   - keywords meta (опционально, малый вес)
+   - canonical URLs
+   - hreflang (en, de, x-default)
+   - JSON-LD: Person + ProfessionalService + WebSite + BreadcrumbList
+   - Local SEO: `LocalBusiness` schema с address/geo/openingHours/priceRange
+   - robots.txt — Allow + Sitemap directive
+   - sitemap.xml — все 4 страницы + lastmod + alternate hreflang в sitemap
+   - OG/Twitter Cards — проверить картинку 1200×630, теги через debugger
+   - alt-теги на ВСЕ `<img>` (включая founder-portrait из PX-009)
+   - Semantic HTML — `<main>`, `<article>`, `<nav>`, `<header>`, `<footer>`, `<section>` корректные
+   - Core Web Vitals оптимизация: lazy-loading изображений, font-display:swap, preload critical assets, defer non-critical JS
+   - При необходимости: subset Mona Sans (если 529KB режет mobile LCP), либо `font-display:optional`
+   - apple-touch-icon (180×180) + favicon.ico legacy (для Bing) если ещё не было
+   - Open Graph для каждой страницы (impressum/datenschutz тоже)
+4. **Регистрация в поисковиках (P1, новая часть — Search Console пока нет):**
+   - Google Search Console → добавить property `https://ais152.com`, выбрать метод верификации (HTML-файл или DNS TXT — CEO выполняет вручную если DNS), отправить sitemap, запросить индексацию
+   - Bing Webmaster Tools → то же (можно импортировать из GSC)
+   - DuckDuckGo и Yandex — опционально (они подхватят через Google/Bing)
+   - Google Business Profile (для Munich) — опционально, согласовать с CEO
+5. **Верификация после фикса:**
+   - Lighthouse: цели достигнуты (Perf/A11y/BP/SEO)
+   - Rich Results: schemas корректны, без ошибок
+   - Search Console: страницы submitted и indexed (через 1-7 дней)
+   - Mobile-Friendly: PASSED
+   - OG/Twitter Card preview корректный
+6. **Деплой:** commit `feat(seo): full SEO pass — meta, JSON-LD, sitemap, robots, hreflang, schema`
+7. **Update DEVLOG.md + STATUS.md** с замеренными цифрами Lighthouse (закрытие open issue из S004/S005)
+8. **Followup PX (мониторинг через 7-14 дней):** проверить Search Console на indexation coverage и organic impressions — отдельная PX (рекомендую запланировать через `/schedule`)
+**Ограничения:**
+- НЕ менять дизайн / палитру / контент текстов (только meta + schema, не visible-копирайт)
+- НЕ ломать существующие функции (form, WhatsApp, terminal, marquee)
+- НЕ удалять `concept-*.html × 8`
+- НЕ ломать EN/DE — двуязычность в schema/meta тоже
+- DSGVO: при добавлении Google Search Console / Analytics — обновить datenschutz.html (Drittanbieter-Hinweis); если CEO не хочет аналитики — Search Console только для индексации (это допустимо без cookie-banner)
+- НЕ выдумывать ключевые слова — согласовать с CEO
+- НЕ публиковать в Person schema личные данные не подтверждённые CEO (адрес, телефон личный, банковские реквизиты)
+- Mona Sans оптимизация: если решено subset/font-display:optional — это не должно сломать вариативные оси PX-007 hover-эффектов; согласовать
+- GSAP/Lenis CDN — DSGVO compromise задокументирован в datenschutz § 2.6; если для SEO нужно self-host — отдельная PX
+- LCP цель ≤ 2.5s mobile, CLS ≤ 0.1, INP ≤ 200ms (Core Web Vitals green)
+- Sitemap.xml включает все индексируемые страницы; impressum/datenschutz/404 — `noindex` если CEO решит
+- 404.html — оставить `noindex` через meta robots
+- Search Console verification — **метод автоматизированный (CEO решил)**: HTML-файл в корне репо или meta-tag в `<head>`. DNS-верификация не требуется. Исполнитель сам коммитит верификационный файл/тег после получения от CEO.
+**Рекомендуемый промпт:** **P6** (полный аудит — baseline + приоритизация) → **P0** (стоп для согласования ключевиков и schema-полей) → **P1** (исполнение фикса + регистрация GSC/Bing) → **P10** (постфактум-мониторинг через 7-14 дней — отдельная PX). Размер: **L**.
+
+---
+
+<!-- Последний номер: PX-010 -->

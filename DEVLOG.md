@@ -2,6 +2,72 @@
 
 ## Журнал разработки
 
+### [S011] — 2026-04-28 — PX-010: Full SEO pass — meta, JSON-LD, sitemap, robots, hreflang
+
+**Роли:** #1 Viktor (lead/coord) · #3 Andrei (HTML+JSON-LD+sitemap+robots+hreflang+canonical) · #2 Lena (alt+favicon) · #14 Hans Landa (review)
+**Статус:** code-фаза завершена (commit `cdf6fa7`, откат-тег `v2-pre-px010` → `01e3e5f`); CEO action остаётся: Lighthouse + Search Console + Bing verification
+**Скилл:** P6 audit → P0 stop → P1 fix (3-фазный протокол)
+
+**Phase 1 (audit) findings:**
+
+- 🔴 `/robots.txt` HTTP 404 (отдавался 404.html)
+- 🔴 `/sitemap.xml` HTTP 404
+- 🔴 hreflang отсутствует на всех 4 страницах
+- 🔴 JSON-LD: 1 schema (ProfessionalService), нет Person/WebSite
+- 🟡 Mona Sans 529 KB (LCP risk)
+- 🟡 `/favicon.ico` 404 (Bing legacy)
+- 🟡 `/apple-touch-icon.png` 404 в корне
+- 🟡 404.html без canonical и meta description
+- ✅ HTML semantic: `<main>×1, <article>×4, <nav>×2, <section>×8` на index — отлично
+- ✅ canonical на 3/4, robots-noindex корректно на legal/404
+- ✅ lang.js уже обновляет `<html lang>` (audit-замечание #6 снято)
+
+**Phase 2 (CEO sync — 7 ответов):**
+
+1. Keywords — мой draft принят
+2. Person: Eduard Baias / Independent Software Engineer / linkedin.com/in/eduard-baias/
+3. LocalBusiness: только city Munich (приватнее)
+4. Sitemap: только index, legal noindex
+5. Mona Sans: оставить full 529 KB
+6. Search Console: CEO делает сам (HTML-файл upload потом)
+7. Hreflang: same-URL для всех языков (option a)
+
+**Phase 3 (fix — что сделано):**
+
+- `robots.txt` создан (User-agent *, Allow /, Sitemap directive)
+- `sitemap.xml` создан (index + 3 hreflang alternates)
+- `favicon.ico` сгенерирован (multi-res 16/32/48/64 из apple-touch-icon.png через Python PIL)
+- `apple-touch-icon.png` скопирован в корень (для iOS root pings)
+- `index.html`: hreflang en/de/x-default; JSON-LD `@graph` с Person + ProfessionalService + WebSite (founder/publisher refs); favicon.ico + apple-touch-icon в `<link>` chain; project-card template `alt="Project preview"` fallback для no-JS crawlers
+- `impressum.html` + `datenschutz.html`: hreflang de + x-default
+- `404.html`: meta description, canonical, robots noindex,follow (вместо просто noindex), apple-touch-icon link
+
+**Тесты (Phase 4):**
+
+- JSON-LD валидируется через Python json.loads, содержит @graph с 3 типами (Person, ProfessionalService, WebSite); поля Person matches CEO data
+- sitemap.xml валидируется через Python ElementTree, 1 URL + 3 alternates
+- Hreflang counts: index=3, impressum=2, datenschutz=2
+- robots.txt 115 bytes, favicon.ico 8.8 KB multi-res, apple-touch-icon.png 4 KB
+
+**Артефакты (новые):** `robots.txt`, `sitemap.xml`, `favicon.ico`, `apple-touch-icon.png` (в корне)
+**Артефакты (изменённые):** `index.html`, `impressum.html`, `datenschutz.html`, `404.html`
+**Откатный тег:** `v2-pre-px010` → `01e3e5f`
+
+**Hand-off CEO (то что только ты можешь):**
+
+1. **Google Search Console:** добавить property `https://ais152.com`, верифицировать через HTML-file upload (Google даст файл вида `googleXXXXXX.html` → сохрани в `c:\Projects\AiS152\` → скажи мне → закоммичу) → отправить sitemap → проверить indexing coverage через 2-7 дней
+2. **Bing Webmaster Tools:** аналогично (https://www.bing.com/webmasters)
+3. **Lighthouse:** Chrome DevTools → Lighthouse tab → mobile + desktop run → закинь скрины/числа в STATUS.md (закроет open issue из S004/S005 «baseline не замерен»)
+4. **(Опц)** Google Business Profile для Munich — если решишь публиковать street-address (CEO option 3 = только city, поэтому Local Pack ограничен)
+
+**Open issues после PX-010:**
+
+- LH-1 — Lighthouse baseline всё ещё не замерен (CEO action)
+- SC-1 — Search Console verification (CEO action, blocking metric tracking)
+- BING-1 — Bing Webmaster verification (CEO action)
+
+---
+
 ### [S010] — 2026-04-28 — PX-008: Marquee infinite + stats 3d + form activation
 
 **Роли:** #2 Lena (CSS marquee + stats) · #3 Andrei (JS clone + form fallback) · #14 Hans Landa (review)
