@@ -2,11 +2,11 @@
 
 **Live:** https://ais152.com
 **Production версия:** v2 (Editorial Ink, multi-asset)
-**Last deploy:** 2026-04-28 (PX-006 — `c7c9496`)
-**Откат-теги:** `v2-pre-px006` (`aa5b0dd`), `v2-pre-px005` (`576cc14`), `v2-pre-px004` (`22691c3`), `v1-pre-redesign` (`7568a39`)
+**Last deploy:** 2026-04-28 (PX-007 — `4a04ead`)
+**Откат-теги:** `v2-pre-px007` (`658175e`), `v2-pre-px006` (`aa5b0dd`), `v2-pre-px005` (`576cc14`), `v2-pre-px004` (`22691c3`), `v1-pre-redesign` (`7568a39`)
 
 ## Текущая активная задача
-— нет (последняя завершена: PX-006 «Speed is the moat» — реальные сроки 1h/24h/3d)
+— нет (последняя завершена: PX-007 hero overlap + variable-font layout shift fix)
 
 ## Brand-сообщение (PX-006)
 - Process: «Hour. Day. Days.» — Reply 1h / Concept 24h / Live 3d / Maintain +30d

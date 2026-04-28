@@ -384,4 +384,78 @@
 
 ---
 
-<!-- Последний номер: PX-006 -->
+## PX-007
+
+**Дата:** 2026-04-28
+**Статус:** ✅ выполнено 2026-04-28
+**DEVLOG:** AiS152 DEVLOG.md S009
+**Commit:** `4a04ead`
+**Откат-тег:** `v2-pre-px007` → `658175e`
+**Источник:** чат AiS152, 3 скриншота live от CEO
+
+**Задача:** Фикс hero-секции на live https://ais152.com — terminal-панель налезает на H1 (последнее слово «that…» обрезается), шрифт прыгает/перерасчитывается при hover и скролле, layout нестабильный на разных viewport
+**Контекст:**
+- Live: `https://ais152.com` (v2 после деплоя PX-003)
+- Hero: `index.html` секция hero + `assets/css/hero.css` + `assets/js/terminal.js` + `assets/js/dotgrid.js` + `assets/js/main.js` (variable font scroll axis)
+- H1: «Engineering AI systems for teams that actually ship.» (или аналог) — large display type, Mona Sans
+- Terminal-панель: блок с вкладками `quote.ts` / `process.md` / `commits.log`, печатающийся код, фиксированный фрейм
+- Variable font: Mona Sans hover-эффекты на CTA / заголовках / card-titles + scroll-axis-эффект (H1 уплотняется/сужается при скролле hero вниз)
+- Скриншоты CEO: 3 ширины окна — на узких H1 расползается под terminal-панель, на широких всё ещё пересекаются. На 3-м скриншоте видно частичный coral-окрас слова «actually» — намёк что какая-то анимация наложилась/застряла
+**Проблема:**
+- **(A) Overlap H1 ↔ terminal-панель.** Последнее слово H1 («that…») обрезается / уезжает под terminal. Корень один из:
+  - Hero `grid-template-columns` не разделяет колонки чисто — H1 разливается под terminal
+  - Terminal позиционирован `absolute` или `position: fixed` поверх H1 без резерва пространства
+  - H1 не имеет `max-width` / `inline-size` ограничения по своей колонке
+  - На определённых соотношениях сторон viewport (не widescreen) grid считает колонки не так, как замышлялось
+- **(B) Variable font axis hover «прыгает».** При наведении мыши шрифт меняет вес/ширину (`font-variation-settings: 'wght' / 'wdth'`) — это меняет метрики символов и пересчитывает layout, текст съезжает на пиксели. На больших display-заголовках это видно как «прыжок»
+- **(C) Scroll-axis-эффект H1.** При скролле hero вниз H1 «уплотняется и сужается» — то же самое: меняется `wdth`/`wght`, layout пересчитывается, остальные элементы реагируют на смену высоты H1
+- **(D) Возможный coral-glitch.** На 3-м скриншоте слово «actually» окрашено в coral — либо это намеренный hover-state застрял, либо `:target`/scroll-trigger остался в активном состоянии
+- **(E) Terminal-панель на узких viewport.** На 3-м скрине terminal сжимается, теряет читаемость, налезает на текст
+**Цель:**
+- H1 и terminal-панель **никогда не пересекаются** на любой ширине окна (320 → 4K). У каждой свой grid-track, оба респектят границы
+- Variable font hover/scroll эффекты работают **без layout shift**: либо через `font-size-adjust` / fixed `width` контейнеров, либо использовать `transform: scale()` вместо font-variation для визуального эффекта. CLS должен быть ~0
+- Никаких застрявших coral-окрасок в H1 — анимация чистится после события
+- Terminal-панель на узких viewport либо переезжает под H1 (стек), либо скрывается — но не налезает
+**Скоуп:**
+1. **Аудит hero-секции:**
+   - DevTools на live: computed CSS H1 (`width`, `max-inline-size`, `grid-column`, `font-variation-settings`), terminal-панели (`position`, `grid-column`, `z-index`), родительского grid (`grid-template-columns`, `gap`, `min-height`)
+   - Прогнать ширины 320 / 480 / 768 / 1024 / 1280 / 1440 / 1920 — на каждой зафиксировать состояние (overlap / clean)
+   - Записать: где конкретно ломается, на какой ширине, какой computed style виноват
+   - Profile в DevTools → Performance / Layout Shift при hover на CTA и при скролле hero — измерить CLS
+2. **Корень проблемы (гипотезы для проверки):**
+   - (A) `hero.css` — `grid-template-columns` фиксированная без min-width защиты H1
+   - (B) terminal `position: absolute` без reserved space в parent
+   - (C) variable font axis change → reflow вместо composite-only change
+   - (D) `main.js` scroll-axis обработчик не дебаунсит и не использует `requestAnimationFrame` адекватно
+3. **Решение:**
+   - Hero grid: `grid-template-columns: minmax(0, 1fr) minmax(360px, 480px)` или подобная защита, плюс `gap: clamp(...)` чтобы пересечения были невозможны
+   - H1: `max-inline-size: 18ch` (или по дизайн-макету), `text-wrap: balance` для красивого переноса, `overflow-wrap: break-word` чтобы не уползал за колонку
+   - Terminal: убрать `absolute` если есть, посадить в свою grid-cell с `align-self: start`
+   - Variable font: либо обернуть hover/scroll-эффект в `font-size-adjust` стабилизатор, либо заменить на `transform: scale()` + `will-change: transform` (composite-only, без reflow)
+   - Coral-glitch: проверить `:hover` / `.is-active` в `components.css`, обнулять состояние на `pointerleave` / scroll-end
+   - На узких viewport (<768px): terminal переезжает под H1, либо скрывается с `display: none` — обсудить с CEO стратегию
+4. **Верификация:**
+   - локально `npx serve .`, плавный resize 320 → 1920 — H1 и terminal никогда не пересекаются
+   - hover на CTA / заголовки — нет layout shift (CLS = 0 в DevTools)
+   - скролл hero вниз — H1 эффект работает плавно, остальной контент не дёргается
+   - переход EN ↔ DE — DE-текст обычно длиннее, проверить что не ломает hero
+5. **Деплой:**
+   - commit `fix(hero): prevent H1/terminal overlap and stop variable-font layout shift`
+   - push master → live проверка
+6. **Update `DEVLOG.md`**
+**Ограничения:**
+- НЕ редизайнить hero — palette, typography (Mona Sans), terminal-панель структура, dot grid, marks **остаются**
+- НЕ убирать variable font эффекты — только сделать их composite-only, без reflow
+- НЕ убирать scroll-axis эффект H1 — только стабилизировать
+- НЕ ломать EN/DE (DE длиннее — проверить)
+- НЕ ломать `prefers-reduced-motion` (если включён — variable font axis эффекты выключаются)
+- Terminal-панель на mobile — допустимо переехать под H1 (стек) или скрыть, но решение согласовать
+- Адаптивность БЕЗ привязки к конкретным breakpoint'ам — плавно на любой ширине (правило CEO из PX-004 продолжает действовать)
+- НЕ трогать остальной сайт (Process, About, Selected Work, Contact)
+- НЕ трогать `concept-*.html × 8`
+- DSGVO/self-hosted шрифты — без изменений
+**Рекомендуемый промпт:** **P2** (явный визуальный баг с конкретными симптомами + 3 скриншота от CEO + аудит → фикс → верификация). Размер: **M**.
+
+---
+
+<!-- Последний номер: PX-007 -->

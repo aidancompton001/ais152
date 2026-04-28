@@ -2,6 +2,59 @@
 
 ## Журнал разработки
 
+### [S009] — 2026-04-28 — PX-007: Hero overlap + variable-font layout shift fix
+
+**Роли:** #2 Lena (CSS hero/grid) · #3 Andrei (JS variable-font axis) · #14 Hans Landa (review)
+**Статус:** завершено (commit `4a04ead`, откат-тег `v2-pre-px007` → `658175e`)
+**Скилл:** systematic-debugging (Phase 1 root cause проверен математикой, не догадкой)
+
+**Жалоба CEO:** на live ais152.com terminal-панель в hero налезает на H1 («for teams that…» обрезается); шрифт прыгает при hover/scroll.
+
+**Корень (математика):**
+
+- `.hero-title font-size: var(--fs-display)` → clamp `(3.5rem, 2rem + 7.5vw, 9rem)` → **на любом viewport ≥970px = 144px**
+- `.hero > .container { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 4rem }` → LEFT col ≈ **583px** на viewport 1700px
+- Слово «Engineering» в Mona Sans semibold 144px ≈ **770px** wide
+- 770 > 583 → слово **физически не влезает** в свою grid-cell
+- `min-width: 0` разрешает колонке быть узкой, но `overflow-wrap: normal` (default) НЕ разбивает одиночные слова
+- Результат: слово вылазит за пределы своей колонки и **визуально перекрывает terminal**
+
+**Дополнительно — variable font layout shift:**
+
+- `data-vfont-hover` в main.js менял `wght: 620→740` И `wdth: 100→88` на hover
+- ScrollTrigger в main.js менял `wght: 620→840` И `wdth: 100→82` при scroll hero
+- `wdth` axis change → буквы становятся уже → ширина слова падает → **reflow на каждый scroll-frame** = визуальный «прыжок»
+
+**Coral «actually»:** НЕ баг, это намеренный `<em>` стиль из `hero.css:89-93` (`.hero-title em { color: var(--ac); font-variation-settings: bold + narrow }`). Не трогал.
+
+**Что сделано (CEO выбрал Вариант A — font-size 104px):**
+
+- `.hero > .container` → `grid-template-columns: minmax(0, 1.3fr) minmax(380px, 1fr)` (LEFT шире, RIGHT защищён минимумом 380px)
+- `.hero-title font-size: clamp(2.75rem, 1rem + 5.5vw, 6.5rem)` (max 104px — слово «Engineering» 560px ≤ 583px колонки)
+- `.hero-title { max-width: 12ch; text-wrap: balance; overflow-wrap: break-word; contain: layout style }` (graceful переносы + изоляция reflow)
+- Responsive breakpoint `1024px` → `1280px` (single-column раньше; 1024-1280 был unsafe zone)
+- `[data-vfont-hover] { contain: layout style; transition: font-variation-settings 220ms }` в components.css
+- main.js scroll axis: убран `obj.wdth = 100 - st.progress * 18`, оставлен только `obj.wght = 620 + st.progress * 200` (composite-friendly, без reflow)
+- main.js hover: убран `"wdth" 88`, оставлен `"wght" 740`
+
+**Тесты (Phase 4):**
+
+- 9/9 grep-проверок passed (presence: 5 hero.css + 1 components.css + 1 main.js wght-only + 1 cache-bust; absence: wdth axis из main.js удалён, breakpoint 1024 в hero.css удалён)
+- Live verify: hero.css/main.js на сервере содержат новые правила, старые сигнатуры отсутствуют
+
+**Артефакты:** `assets/css/hero.css`, `assets/css/components.css`, `assets/js/main.js`, `index.html`
+**Откатный тег:** `v2-pre-px007` → `658175e`
+
+**Hans Landa замечания (учтены):**
+
+- 🔴 font-size 144→104 = -28% «вес» H1 → CEO явно выбрал A через 3 варианта
+- 🔴 `text-wrap: balance` Safari < 17.4 → graceful no-op fallback, принято
+- 🟡 Убирание wdth из scroll = потеря визуальной сигнатуры → wght-эффект сохранён (text bolder при scroll)
+- 🟡 breakpoint 1024→1280 сужает desktop range → принято за стабильность
+- 🟡 coral «actually» — НЕ трогаю (em-стиль)
+
+---
+
 ### [S008] — 2026-04-28 — PX-006: Speed is the moat — реальные сроки 1h/24h/3d
 
 **Роли:** #1 Viktor (lead/копирайт) · #3 Andrei (HTML+JS+i18n) · #14 Hans Landa (review)
