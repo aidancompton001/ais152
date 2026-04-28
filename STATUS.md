@@ -2,11 +2,17 @@
 
 **Live:** https://ais152.com
 **Production версия:** v2 (Editorial Ink, multi-asset)
-**Last deploy:** 2026-04-28 (PX-007 — `4a04ead`)
-**Откат-теги:** `v2-pre-px007` (`658175e`), `v2-pre-px006` (`aa5b0dd`), `v2-pre-px005` (`576cc14`), `v2-pre-px004` (`22691c3`), `v1-pre-redesign` (`7568a39`)
+**Last deploy:** 2026-04-28 (PX-008 — `832b2dd`)
+**Откат-теги:** `v2-pre-px008` (`7aeb689`), `v2-pre-px007` (`658175e`), `v2-pre-px006` (`aa5b0dd`), `v2-pre-px005` (`576cc14`), `v2-pre-px004` (`22691c3`), `v1-pre-redesign` (`7568a39`)
 
 ## Текущая активная задача
-— нет (последняя завершена: PX-007 hero overlap + variable-font layout shift fix)
+— нет (последняя завершена: PX-008 marquee infinite + stats 3d + form activation)
+
+## ✅ Resolved (PX-008)
+- **FormSubmit активирован** CEO 2026-04-28 (Activate-link clicked, endpoint verified live `success:true`)
+- Marquee теперь infinite loop (cloned content)
+- Stats counter синхронен с PX-006 (3d)
+- Form fallback с 3 graceful CTA (mailto + WhatsApp + Telegram)
 
 ## Brand-сообщение (PX-006)
 - Process: «Hour. Day. Days.» — Reply 1h / Concept 24h / Live 3d / Maintain +30d
@@ -25,7 +31,7 @@
 8. YY-DGUV Prüfservice — https://aidancompton001.github.io/yy-dguv/
 
 ## Open issues / TODO
-- **FORM-1** Web3Forms access key — placeholder в `assets/js/form.js`. Primary FormSubmit работает; fallback неактивен. Открывать PX по триггеру первого 429/500 от FormSubmit.
+- **FORM-1** Web3Forms access key — placeholder. Primary FormSubmit ✅ активирован (PX-008). Web3Forms fallback всё ещё неактивен. Триггер: первый 429/500 от FormSubmit.
 - **LH-1** Lighthouse baseline mobile — не снят (PX-002a Open Q #1). Отдельная PX-004.
 - **LEGAL-1** impressum.html — содержит `[TODO CEO]` плейсхолдеры (полное имя, адрес, USt/Kleinunternehmer). До широкой публикации.
 - **I18N-1** impressum/datenschutz — DE only. EN-перевод желателен для иностранных лидов (отдельная PX по решению CEO).

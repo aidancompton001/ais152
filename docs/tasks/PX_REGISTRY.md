@@ -14,8 +14,8 @@
 ## PX-001
 
 **Дата:** 2026-04-17
-**Статус:** новая
-**DEVLOG:** —
+**Статус:** ✅ выполнено 2026-04-17
+**DEVLOG:** AiS152 DEVLOG.md S002 (commits `4720b41`, `15f411c`)
 **Источник:** чат MainCore, PX-формулировка CEO
 
 **Задача:** Обновление портфолио AiS152 — замена проектов на реальные сайты с живыми ссылками и скриншотами
@@ -172,8 +172,9 @@
 ## PX-004
 
 **Дата:** 2026-04-28
-**Статус:** новая
-**DEVLOG:** —
+**Статус:** ✅ выполнено 2026-04-28
+**DEVLOG:** AiS152 DEVLOG.md S006
+**Откат-тег:** `v2-pre-px004` → `22691c3` (commit `576cc14`)
 **Источник:** чат AiS152, скриншот live от CEO
 
 **Задача:** Переделать карточки проектов на live https://ais152.com — заменить full-page скриншоты с cookie-баннерами на чистые превью + починить адаптивность magazine-layout (карточки уезжают за viewport, тёмные пустоты под изображением)
@@ -458,4 +459,125 @@
 
 ---
 
-<!-- Последний номер: PX-007 -->
+## PX-008
+
+**Дата:** 2026-04-28
+**Статус:** ✅ выполнено 2026-04-28
+**DEVLOG:** AiS152 DEVLOG.md S010
+**Commit:** `832b2dd`
+**Откат-тег:** `v2-pre-px008` → `7aeb689`
+**Источник:** чат AiS152, 3 скриншота live от CEO
+
+**Задача:** Фикс трёх багов на live https://ais152.com — (A) marquee стека технологий обрывается вместо infinite-scroll; (B) счётчик «30d TO FIRST SHIP» противоречит PX-006 (должно быть «3d»); (C) контактная форма выдаёт «Could not send» — реальная отправка не работает
+**Контекст:**
+- Live: `https://ais152.com` (после PX-007 hero-фикса)
+- **(A) Marquee стека:** `NODE · POSTGRES · SUPABASE · N8N · OPENAI · ANTHROPIC · TAILWIND · SHADCN/UI · GSAP · CLOUDFLARE · GITHUB ACTIONS · …` — `index.html` секция services/about/тех-стек, `assets/css/components.css` или `motion.css`, возможно `assets/js/main.js`
+- **(B) Stats counter:** 4 карточки `8 PRODUCTION PROJECTS / 85% AVG. COST REDUCTION / 30d TO FIRST SHIP / 24/7 SYSTEMS RUNNING`. По PX-006 «to first ship» = 3 дня (не 30). Coral «d» суффикс
+- **(C) Форма:** `assets/js/form.js` — FormSubmit primary + Web3Forms fallback. Web3Forms key — placeholder `YOUR_WEB3FORMS_ACCESS_KEY` (DEVLOG S005 open issue), либо FormSubmit endpoint не подтверждён CEO
+**Проблема:**
+- (A) Marquee имеет видимый «конец» — последний токен доезжает до края, появляется пустота/рывок. Корень: одиночный track без duplicate, либо неверная анимация
+- (B) «30d» = старое враньё, не зачищенное при PX-006. Нарратив рассыпается: hero/Process говорят «3 days», stats — «30 days»
+- (C) Форма не отправляет. Возможные корни: FormSubmit endpoint не активирован одноразовым confirm-email; Web3Forms key — placeholder; CSP/network блок; JS error handler ловит ложный сбой
+**Цель:**
+- (A) Marquee бесконечный без видимого «прыжка», без пустого края, на любой ширине
+- (B) Stats показывает «3d» (или «3 DAYS»), синхрон с PX-006. Coral «d» суффикс
+- (C) Форма реально шлёт письмо — primary FormSubmit или Web3Forms fallback. Если оба отказали — graceful error с альтернативами (mailto/Telegram/WhatsApp)
+**Скоуп:**
+1. **Аудит trio:**
+   - (A) marquee структура (single vs duplicated track), `@keyframes`, `prefers-reduced-motion`
+   - (B) `data-target="30"` или inline в `index.html`; проверить нет ещё рассинхронов с PX-006
+   - (C) DevTools network на тестовой отправке — endpoint, response.status, JS handler
+2. **(A) Фикс marquee:** дублировать содержимое track (CSS pattern или JS-клон), `@keyframes translate(-50%)` без скачка, GPU-friendly transform, prefers-reduced-motion = stop/slow
+3. **(B) Фикс stats:** `30` → `3`, EN/DE «3d / 3 days / 3 Tage», counter-анимация работает на новом числе, проверка остальных 3 stats (8 ✓, 85%, 24/7)
+4. **(C) Фикс формы:**
+   - FormSubmit endpoint подтвердить (CEO кликает confirm-email)
+   - Web3Forms access_key (CEO регистрируется → ключ в `form.js`)
+   - Error-handling: graceful mailto + WhatsApp + Telegram
+   - Тестовая реальная отправка → email пришёл
+   - Двуязычность EN+DE сообщений об ошибке
+5. **Верификация:** локально + live, desktop + mobile, EN + DE, реальная отправка формы
+6. **Деплой:** commit `fix(ux): infinite marquee + stats sync (3d) + working contact form`
+7. **Update DEVLOG.md**
+**Ограничения:**
+- НЕ менять дизайн (палитра, типографика, layout)
+- НЕ менять Process/About/Selected Work/Hero контент
+- НЕ ломать EN/DE
+- НЕ ломать prefers-reduced-motion
+- Marquee GPU-friendly (transform), composite-only, без CLS
+- API-ключи — реальные от CEO, не выдумывать
+- Если CEO не подтверждает FormSubmit — задача не закрыта
+- WhatsApp/Telegram/mailto — graceful fallback
+- Двуязычность ошибок EN+DE обязательна
+- Не показывать `ebaias.muc@gmail.com` plain text без mailto-обёртки
+**Рекомендуемый промпт:** **P2** с под-этапом **P10** на старте. Размер: **M**.
+
+---
+
+## PX-009
+
+**Дата:** 2026-04-28
+**Статус:** новая
+**DEVLOG:** —
+**Источник:** чат AiS152, PX-формулировка CEO («хочу вставить себя в сайт + фото стильно»)
+
+**Задача:** Добавить на ais152.com персональный блок CEO — короткий текст «обо мне как специалисте» (на основе Lebenslauf из `c:\Projects\PersonalAssistant`) + стильное фото в обработке под палитру сайта (EN + DE)
+**Контекст:**
+- Live: `https://ais152.com`
+- Текущая секция About / hero / footer — упоминает Munich, имя в форме, но нет персонального портрета и развёрнутого «about me»
+- Источник текста: Lebenslauf CEO в `c:\Projects\PersonalAssistant` (CEO даёт ОК на чтение этой папки в рамках PX-009)
+- Источник фото: CEO кладёт файл вручную в `c:\Projects\AiS152\assets\founder\portrait.<ext>` (jpg/png/webp — любое, исполнитель оптимизирует)
+- Палитра: тёмный фон + coral/orange акцент + cream/off-white текст
+**Проблема:**
+- Сайт говорит «инженер делает AI-системы» абстрактно, без лица — клиент не видит кто за этим стоит
+- Доверие к фрилансеру при УТП «1h reply / 3d ship» сильно зависит от персонального бренда
+- Lebenslauf существует, но не использован на сайте
+- Фото CEO без обработки под тёмную палитру вызовет диссонанс (как со скриншотами проектов до PX-004)
+**Цель:**
+- На сайте отдельный блок (расширенный About или новая секция «Founder» / «Who builds this») с короткой подачей CEO как специалиста (3-5 предложений из Lebenslauf, EN + DE)
+- Фото в стильной обработке под палитру (1-2 варианта: B&W high-contrast / duotone coral/dark / контурный SVG / polaroid-frame с coral border)
+- Файл фото оптимизирован: `assets/founder/portrait.webp` ≤150KB, retina @2x при необходимости
+- Двуязычность EN + DE (CEO подтвердил)
+- a11y: alt-text, semantic HTML
+**Скоуп:**
+1. **Сбор материала (P10, после ОК CEO на чтение `c:\Projects\PersonalAssistant`):**
+   - найти Lebenslauf / CV
+   - извлечь: имя, роль, ключевые навыки (3-5), опыт одной строкой, Munich, годы
+   - **только профессиональный портрет** — без адреса, телефона личного, паспорта, банковских реквизитов
+2. **Копирайт (3-5 предложений EN + DE):**
+   - кто / что делает / УТП скорости (PX-006) / proof-point (8 проектов из PX-005) / хук
+   - тон: уверенный, инженерный, без AI-баззвордов
+   - 2-3 варианта подачи (короткий / средний / расширенный) на выбор CEO
+3. **Фото:**
+   - читать `c:\Projects\AiS152\assets\founder\portrait.<ext>`
+   - 2 варианта обработки на выбор CEO (например duotone coral/dark vs B&W high-contrast)
+   - сохранить как `assets/founder/portrait.webp` ≤150KB, опционально @2x
+   - alt-text EN + DE
+4. **Интеграция в `index.html`:**
+   - расширенный About с фото слева/справа, или новая секция «Founder» между Process и Selected Work — на выбор CEO
+   - layout: фото + 3-5 предложений + ссылки (LinkedIn / GitHub / Telegram / WhatsApp если CEO подтвердит)
+   - mobile: фото сверху, текст снизу
+   - hover-эффекты как в остальном сайте
+5. **Дизайн-варианты до интеграции (2-3 на выбор CEO):**
+   - (a) Polaroid-card с coral border + лёгкая ротация
+   - (b) Duotone half-portrait full-bleed с текстом overlay
+   - (c) SVG-traced contour portrait под brutalist стиль
+6. **Двуязычность:** `data-lang-en` + `data-lang-de` на каждый текст
+7. **Верификация:** desktop + mobile, EN + DE, фото быстрое, alt работает
+8. **Деплой:** commit `feat(about): add founder block — portrait + bio (EN/DE)`
+9. **Update DEVLOG.md**
+**Ограничения:**
+- НЕ публиковать личные данные (адрес, телефон личный, паспорт, банк)
+- НЕ копировать Lebenslauf целиком — только 3-5 предложений
+- НЕ AI-баззвордов
+- Photo treatment попадает в палитру (coral/dark)
+- Размер фото на live ≤150KB
+- EN + DE одинаково сильные, не калька
+- alt-text обязателен
+- Если фото нет в `assets/founder/` — задача блокируется, без stock/AI-генерации
+- GitHub/LinkedIn ссылки — только подтверждённые CEO профили
+- DSGVO: внешние ссылки (LinkedIn) учесть в `datenschutz.html` (Drittanbieter)
+**Рекомендуемый промпт:** **P10** (исследование Lebenslauf) → **P1** (исполнение). Размер: **M**.
+
+---
+
+<!-- Последний номер: PX-009 -->

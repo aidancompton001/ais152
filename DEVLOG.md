@@ -2,6 +2,54 @@
 
 ## Журнал разработки
 
+### [S010] — 2026-04-28 — PX-008: Marquee infinite + stats 3d + form activation
+
+**Роли:** #2 Lena (CSS marquee + stats) · #3 Andrei (JS clone + form fallback) · #14 Hans Landa (review)
+**Статус:** завершено (commit `832b2dd`, откат-тег `v2-pre-px008` → `7aeb689`)
+**Скилл:** systematic-debugging (Phase 1 closed by curl evidence + DOM math)
+
+**Жалоба CEO:** 3 бага на live — marquee рывок, counter «30d» врёт, форма «Could not send».
+
+**Корни (доказаны, не догадки):**
+
+- **(A) Marquee:** `layout.css:302` `animation: marquee 40s` + `@keyframes 0 → translateX(-50%)`. HTML содержит ОДИН набор tokens — нет дубликата. Стандартный CSS-pattern infinite marquee требует `[оригинал][клон]` чтобы при сдвиге на -50% клон встал на место оригинала. Без дубликата → пустота → автоматический reset → рывок.
+- **(B) Stats:** `index.html:245` `data-target="30"` — PX-006 не пропатчил. Атомарная пропущенная строка.
+- **(C) Form:** Diagnostic curl POST на `formsubmit.co/ajax/ebaias.muc@gmail.com` с правильными Origin/Referer вернул `{"success":"false","message":"This form needs Activation. We've sent you an email containing an 'Activate Form' link."}`. CEO кликнул link → verification POST вернул `{"success":"true"}`. Endpoint жив.
+
+**Что сделано:**
+
+- `main.js`: clone children of `#marquee-track` on load (skip on `prefers-reduced-motion`); `requestAnimationFrame` → `ScrollTrigger.refresh()` чтобы work-pin пересчитался корректно
+- `layout.css`: `marquee` animation duration `40s → 60s` (doubled content, тот же визуальный темп)
+- `index.html:245`: `data-target="30"` → `data-target="3"`
+- `index.html`: новые `.stat-fineprint` строки «For landings & MVPs» / «Für Landings & MVPs» под counter — синхрон с PX-006 disclaimer
+- `layout.css`: новый класс `.stat-fineprint` (mono, fs-2xs, tx-fa)
+- `index.html`: hidden `.form-fallback` контейнер с 3 CTA — Email (mailto, anti-spam), WhatsApp (data-wa-trigger, DSGVO 2-click), Telegram bot
+- `form.js` catch block: вместо plain-text email раскрывает `.form-fallback` контейнер
+- `components.css`: стили `.form-fallback` + `.form-fallback-text` + `.form-fallback-actions`
+- Cache-bust `?v=2026-04-28-px008`
+
+**Тесты (Phase 4):**
+
+- (A) main.js содержит `marqueeTrack` + `cloneNode` (6 occurrences); layout.css содержит `60s linear infinite`
+- (B) `data-target="3"` присутствует, `data-target="30"` отсутствует, fineprint «For landings» присутствует
+- (C) `form-fallback` присутствует в HTML/JS/CSS; FormSubmit endpoint diagnostic POST → `success:true`
+- Cache-bust ×15 в index.html
+
+**Артефакты:** `assets/js/main.js`, `assets/js/form.js`, `assets/css/layout.css`, `assets/css/components.css`, `index.html`
+**Откатный тег:** `v2-pre-px008` → `7aeb689`
+
+**Hans Landa замечания (учтены):**
+
+- 🔴 Race condition с GSAP work-pin → `ScrollTrigger.refresh()` через `requestAnimationFrame` после clone
+- 🔴 Plain-text email раскрывал spam-vector → теперь mailto: обёртка
+- 🟡 «3d to first ship» без disclaimer — добавлен fineprint «For landings & MVPs»
+- 🟡 Marquee 40s × 2× content = в 2 раза быстрее → duration 40s → 60s
+- 🟡 reduced-motion → clone skipped через `if (!REDUCED_MOTION)`
+
+**Закрыто из STATUS.md open issues:** FORM-1 был частично fixed (FormSubmit активирован; Web3Forms key всё ещё placeholder, но primary канал работает).
+
+---
+
 ### [S009] — 2026-04-28 — PX-007: Hero overlap + variable-font layout shift fix
 
 **Роли:** #2 Lena (CSS hero/grid) · #3 Andrei (JS variable-font axis) · #14 Hans Landa (review)
