@@ -17,7 +17,7 @@
 
 ## CEO actions
 - ✅ **SC-1** Google Search Console — **DONE 2026-04-28**: verification HTML-file (`google9d7cbb1b47be4897.html`) live + Ownership verified + Sitemap submitted + URL Inspection → Request Indexing added to priority queue. Coverage check expected 2026-04-30 → 2026-05-01.
-- 🟡 **LH-1** Lighthouse mobile/desktop run → закинуть числа в STATUS (Perf/A11y/BP/SEO)
+- ✅ **LH-1** Lighthouse mobile **DONE 2026-04-28**: Performance **93** · Accessibility **96** · Best Practices **100** · SEO **100** (все 4 KPI ≥ цели PX-002a). LCP 2.3s ✅ · FCP 2.3s 🟡 · Speed Index 2.8s ✅. lighthouseVersion 13.0.2.
 - ✅ **BING-1** Bing Webmaster Tools — **DONE 2026-04-28** (import+verify + URL Submission + Sitemap submit). Sitemap status: Success, URLs discovered: 1. Bing recrawl ETA 24-48h.
 - 🟡 **IDX-1** (новый) проверить Coverage report в Search Console через 2-7 дней; если 0 indexed — диагностика
 

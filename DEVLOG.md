@@ -136,6 +136,33 @@ Indexing allowed? Yes
 
 **✅ CEO выполнил URL Submission в Bing 2026-04-28 evening:** «Indexing requested.» — Bing поставил `https://ais152.com/` в очередь recrawl. Ожидание: 24-48h до обновления URL Inspection статуса.
 
+**✅ LH-1 ЗАКРЫТ 2026-04-28:** CEO запустил Lighthouse mobile (gatherMode: navigation) на live https://ais152.com/. Все 4 KPI из PX-002a достигнуты:
+
+| Категория | Score | Цель | Статус |
+|---|---|---|---|
+| Performance | **93** | ≥ 90 | ✅ |
+| Accessibility | **96** | ≥ 95 | ✅ |
+| Best Practices | **100** | = 100 | ✅ |
+| SEO | **100** | ≥ 90 | ✅ |
+
+**Core Web Vitals (Lighthouse navigation simulate):**
+
+- LCP: **2265 ms** ≈ 2.3 s ✅ (target ≤ 2500 ms)
+- FCP: **2253 ms** ≈ 2.3 s 🟡 (target ≤ 1800 ms — на грани, но Performance 93 зелёный)
+- Speed Index: **2789 ms** ≈ 2.8 s ✅ (target ≤ 3387 ms)
+
+**Lighthouse audit timestamp:** 2026-04-28T09:39:38.099Z · `lighthouseVersion: 13.0.2` · UA: Chrome 146 / Android 11 (moto g power 2022 emulation)
+**Benchmark index:** 1887.5
+
+**Open issues после LH-1 closure:**
+
+- ✅ LH-1 ЗАКРЫТ
+- ⏳ IDX-1 — Google Coverage check 2026-04-30 → 05-01
+- ⏳ IDX-2 — Bing URL Inspection re-check 2026-04-30 (через 48h)
+- (потенциальный) PERF-1 — FCP 2.3s можно довести до ≤1.8s subset Mona Sans / preload critical assets, но non-blocking (Performance 93 уже зелёный, KPI достигнут)
+
+---
+
 **✅ BING-1 ЗАКРЫТ полностью 2026-04-28:** CEO submitted sitemap.xml → Bing UI показал:
 
 - Known sitemaps: 1 · Errors: 0 · Warnings: 0
