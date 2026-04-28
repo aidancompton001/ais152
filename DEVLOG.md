@@ -60,11 +60,44 @@
 3. **Lighthouse:** Chrome DevTools → Lighthouse tab → mobile + desktop run → закинь скрины/числа в STATUS.md (закроет open issue из S004/S005 «baseline не замерен»)
 4. **(Опц)** Google Business Profile для Munich — если решишь публиковать street-address (CEO option 3 = только city, поэтому Local Pack ограничен)
 
-**Open issues после PX-010:**
+**Open issues после PX-010 (изначально):**
 
 - LH-1 — Lighthouse baseline всё ещё не замерен (CEO action)
 - SC-1 — Search Console verification (CEO action, blocking metric tracking)
 - BING-1 — Bing Webmaster verification (CEO action)
+
+---
+
+#### CEO actions — выполнено CEO в тот же день (2026-04-28, late session)
+
+**✅ SC-1 — Google Search Console полностью настроен:**
+
+1. CEO положил `google9d7cbb1b47be4897.html` в корень проекта → закоммитил как `b42b433` → файл live на `https://ais152.com/google9d7cbb1b47be4897.html`
+2. CEO нажал **VERIFY** в Search Console UI → Google прочитал файл → **Ownership verified** (HTML file method)
+3. CEO в Sitemaps section → submit `sitemap.xml` → Google ответил **«Sitemap submitted successfully. Google will periodically process it and look for changes.»**
+4. CEO через URL Inspection → ввёл `https://ais152.com/` → нажал **Request Indexing** → Google: **«URL was added to a priority crawl queue»**
+
+Подтверждение что live HTML на момент verify содержит весь PX-010 SEO-стек (CEO прислал view-source dump):
+
+- Hreflang × 3 (en/de/x-default)
+- JSON-LD @graph: Person + ProfessionalService + WebSite (Eduard Baias, Independent Software Engineer, Munich, sameAs LinkedIn)
+- favicon.ico + apple-touch-icon в `<link>` chain
+- Cache-bust `?v=2026-04-28-px010`
+- Counter "3" + .stat-fineprint (PX-008), Hour/Day/Days (PX-006), marquee duplicated (PX-008), hero «<1h» (PX-006), card alt + Featured pill (PX-005)
+
+**Индексация ожидается:** 1-3 дня (priority queue). Coverage check: 2026-04-30 — 2026-05-01.
+
+**❌ Open после CEO actions:**
+
+- BING-1 — Bing Webmaster Tools (CEO option: «Import from Google Search Console» — 1 клик)
+- LH-1 — Lighthouse mobile/desktop baseline (CEO Chrome DevTools → 5 минут)
+- IDX-1 (новый) — проверить Search Console Coverage report через 2-7 дней; если 0 indexed — диагностика
+
+**Коммиты этой сессии:**
+
+- `cdf6fa7` feat(seo): full SEO pass — meta, JSON-LD, sitemap, robots, hreflang
+- `ff133c7` docs: log PX-010 completion (S011 + STATUS + registry)
+- `b42b433` chore: add Google Search Console verification file
 
 ---
 
