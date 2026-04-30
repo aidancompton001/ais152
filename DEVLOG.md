@@ -2,6 +2,60 @@
 
 ## Журнал разработки
 
+### [S012] — 2026-04-30 — PX-010 IDX-1/IDX-2 monitoring check (scheduled +48h)
+
+**Роли:** #1 Viktor (monitoring agent — automated)
+**Статус:** частично — автоматическая верификация поисковиков заблокирована сетевым sandbox; CEO action требуется
+
+**1. Google indexing (IDX-1)**
+
+- `WebFetch https://www.google.com/search?q=site%3Aais152.com` → HTTP 403 (Google блокирует автоматизированные запросы — стандартное поведение)
+- `WebFetch https://duckduckgo.com/html/?q=site%3Aais152.com` → HTTP 403
+- **Результат: не определено.** Требует ручной проверки в GSC Coverage UI.
+
+**2. Bing indexing (IDX-2)**
+
+- `WebFetch https://www.bing.com/search?q=site%3Aais152.com` → HTTP 403 (Bing блокирует scrapers)
+- **Результат: не определено.** Требует ручной проверки в Bing Webmaster → URL Inspection.
+
+**3. SEO-стек — верификация из репозитория (commit `86750dd`)**
+
+| Артефакт | Что проверено | Статус |
+|---|---|---|
+| `robots.txt` | User-agent: * · Allow: / · Sitemap directive | ✅ |
+| `sitemap.xml` | Valid XML · 1 URL · 3 hreflang alternates (en/de/x-default) | ✅ |
+| `index.html` hreflang | en/de/x-default (lines 50–52) | ✅ |
+| `index.html` canonical | `https://ais152.com/` (line 16) | ✅ |
+| JSON-LD @graph | Person + ProfessionalService + WebSite — все поля intact | ✅ |
+| `favicon.ico` | 8 836 bytes (8.8 KB multi-res 16/32/48/64) | ✅ |
+| `apple-touch-icon.png` | 4 051 bytes (4 KB) | ✅ |
+| GSC verification file | `google9d7cbb1b47be4897.html` — 53 bytes present | ✅ |
+| `<link rel="icon">` | `/favicon.ico` (line 37) | ✅ |
+| `<link rel="apple-touch-icon">` | `/apple-touch-icon.png` (line 38) | ✅ |
+
+10/10 ✅
+
+**4. Live-site HTTP checks**
+
+- `curl https://ais152.com/*` → `HTTP 403 Host not in allowlist` — сетевой sandbox агента
+- `WebFetch` для всех внешних URL → 403 — то же ограничение среды
+- **Это ограничение агентской среды, не проблема production.** SEO-стек полностью верифицирован по репозиторию.
+
+**Ключевые решения:**
+
+- IDX-1 и IDX-2 → PARTIAL: автоматическая проверка невозможна из этой среды; CEO верифицирует вручную
+- PX-011 **не создаётся**: нет доказательств 0 проиндексированных URL (только сетевой блок агента, не провал индексации)
+- SEO-стек интактен: 10/10 проверок по repo-источнику
+
+**CEO action (≤5 минут):**
+
+1. **IDX-1 — Google GSC UI:** Coverage → убедиться что `https://ais152.com/` в «Valid». Если 0 — сообщить в следующей сессии → создаём PX-011.
+2. **IDX-2 — Bing Webmaster UI:** URL Inspection → `https://ais152.com/` → ожидается `Crawl allowed: Yes`. Если всё ещё `No` — сообщить → создаём PX-011.
+
+**Артефакты:** `DEVLOG.md`, `STATUS.md`
+
+---
+
 ### [S011] — 2026-04-28 — PX-010: Full SEO pass — meta, JSON-LD, sitemap, robots, hreflang
 
 **Роли:** #1 Viktor (lead/coord) · #3 Andrei (HTML+JSON-LD+sitemap+robots+hreflang+canonical) · #2 Lena (alt+favicon) · #14 Hans Landa (review)
