@@ -1,5 +1,23 @@
 [
   {
+    "slug": "pomp",
+    "title": "POMP",
+    "tagline_en": "Sparkling water brand — generated end-to-end with AI",
+    "tagline_de": "Sparkling-Water-Marke — vollständig mit KI generiert",
+    "year": 2026,
+    "url": "https://pomp-landing.vercel.app",
+    "status": "live",
+    "tags": ["Brand", "Landing", "Next.js 16", "GSAP", "Higgsfield"],
+    "summary_en": "Full brand pack + production landing for a colourful sparkling water concept. Generated through Claude Desktop + Higgsfield MCP CDP pipeline (~41 credits). Six flavours, AI-generated hero video, scroll-pinned carousel, native mobile snap-scroll.",
+    "summary_de": "Komplettes Brand-Paket plus Produktions-Landing für ein farbenfrohes Sparkling-Water-Konzept. Erzeugt mit Claude Desktop + Higgsfield MCP CDP-Pipeline (~41 Credits). Sechs Sorten, KI-generiertes Hero-Video, scroll-gepinnte Karussell, native Mobile-Snap-Scroll.",
+    "screenshot": "assets/projects/pomp-landing.jpg",
+    "screenshot_2x": "assets/projects/pomp-landing@2x.jpg",
+    "mark": "pomp",
+    "layout": "feature",
+    "featured": true,
+    "order": 1
+  },
+  {
     "slug": "baupreis",
     "title": "BauPreis AI SaaS",
     "tagline_en": "AI forecasts for smarter building budgets",
@@ -15,7 +33,7 @@
     "mark": "baupreis",
     "layout": "feature",
     "featured": true,
-    "order": 1
+    "order": 2
   },
   {
     "slug": "eko-oylis-ua",
@@ -33,7 +51,7 @@
     "mark": "eko-oylis",
     "layout": "tile",
     "featured": false,
-    "order": 2
+    "order": 3
   },
   {
     "slug": "rundumshaus",
@@ -51,7 +69,7 @@
     "mark": "rundumshaus",
     "layout": "tile",
     "featured": false,
-    "order": 3
+    "order": 4
   },
   {
     "slug": "stormguard-v2",
@@ -69,7 +87,7 @@
     "mark": "stormguard",
     "layout": "wide",
     "featured": false,
-    "order": 4
+    "order": 5
   },
   {
     "slug": "edmi",
@@ -87,7 +105,7 @@
     "mark": "edmi",
     "layout": "tall",
     "featured": false,
-    "order": 5
+    "order": 6
   },
   {
     "slug": "provenly-homes",
@@ -105,7 +123,7 @@
     "mark": "provenly-homes",
     "layout": "square",
     "featured": false,
-    "order": 6
+    "order": 7
   },
   {
     "slug": "studioglamour",
@@ -123,7 +141,7 @@
     "mark": "studioglamour",
     "layout": "wide",
     "featured": false,
-    "order": 7
+    "order": 8
   },
   {
     "slug": "yy-dguv",
@@ -141,6 +159,6 @@
     "mark": "yy-dguv",
     "layout": "tile",
     "featured": false,
-    "order": 8
+    "order": 9
   }
 ]
