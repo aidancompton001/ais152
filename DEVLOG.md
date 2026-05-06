@@ -2,6 +2,65 @@
 
 ## Журнал разработки
 
+### [S013] — 2026-05-03 — PX-011 Quiz Landing — engine TDD (Phase 3 partial)
+
+**Роли:** #1 Product Architect, #14 Hans Landa (TS review)
+**Задача:** [PX-011](docs/tasks/PX-011_quiz_landing.md) — Quiz Landing «Какие соцсети нужны вашему бизнесу»
+**Статус:** частично — frontend quiz engine (scoring + exit logic) реализован с TDD, 17/17 тестов зелёные. Ждёт CEO blockers (B-1..B-5) для Phase 1 backend.
+
+**Что сделано:**
+
+- P3 протокол: ТС1 → Hans Landa REJECTED (8 замечаний) → ТС2 (10 доп. AC) → ОК CEO
+- TDD setup: `package.json` + node:test (zero deps)
+- `assets/js/quiz-engine.js` создан: 2 чистые функции
+  - `calculateScore(answers, scoringTable)` → суммирование баллов по платформам
+  - `determineExit(answers, score, requirements, hoursByQ11, budgetByQ12, platformsOrder)` → C→B→A с tie-breaker
+- 17/17 тестов в `tests/scoring.test.js` + `tests/exit-logic.test.js`:
+  - 5 для scoring (включая 15-question full integration)
+  - 12 для exit logic (5 для C, 2 для B, 3 для A, 2 для priority order)
+- TS2 acceptance покрытые: AC-3 (scoring), AC-4 (exit logic), AC-Edge-cases (tie-breaker, all-zero → C)
+
+**Артефакты:**
+
+- `package.json` (новый, type:module, npm test)
+- `data/quiz-config.json` (version 1.0.0, bot_username AisQuizBot, 11 platforms order)
+- `assets/js/quiz-engine.js` (~50 строк, 2 функции)
+- `tests/scoring.test.js` (5 кейсов)
+- `tests/exit-logic.test.js` (12 кейсов)
+- `docs/tasks/PX-011_quiz_landing.md` (P0 roadmap, 28 шагов)
+
+**Что осталось (по фазам roadmap):**
+
+- Phase 1 backend (8 шагов) — BLOCKED CEO B-1..B-5: bot token, домен setup, chat_id, Sheet, Apps Script
+- Phase 2 HTML/CSS (5 шагов) — можно делать параллельно без блокеров
+- Phase 3 JS логика (10 шагов) — 30% готово (engine ✅), осталось state/render/POST/Plausible
+- Phase 4 тесты (4 шага) — частично (unit ✅), осталось integration + responsive UAT
+- Phase 5 деплой (1 шаг) — не начат
+
+**Блокеры (нужны от CEO):**
+
+- B-1: создать @AisQuizBot через @BotFather → bot token
+- B-2: `/setdomain ais152.com` для бота
+- B-3: chat_id CEO (через @userinfobot)
+- B-4: Google Sheet «AisQuizLeads» (или дать доступ — создам сам)
+- B-5: Apps Script привязанный к Sheet (или доступ к Google аккаунту)
+
+**Ключевые решения:**
+
+- Stack тестов: `node:test` встроенный (Node 24+), zero npm deps — соблюдает «Vanilla JS, без фреймворков» из ТС2
+- Тай-брейкер: при равных баллах побеждает платформа с меньшим индексом в `platforms_order` (TС2 AC-Edge-cases)
+- All-zero score → выход C (деградация по умолчанию, TС2 AC)
+
+**Следующие шаги:**
+
+1. CEO выполняет B-1..B-3 (~10 минут)
+2. Параллельно я делаю Phase 2 HTML/CSS + Phase 3 завершение (state/render)
+3. После B-1..B-5 — Apps Script Web App + интеграция
+
+> DEVLOG updated: S013
+
+---
+
 ### [S012] — 2026-04-30 — PX-010 IDX-1/IDX-2 monitoring check (scheduled +48h)
 
 **Роли:** #1 Viktor (monitoring agent — automated)

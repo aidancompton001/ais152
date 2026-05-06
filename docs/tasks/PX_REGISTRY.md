@@ -701,4 +701,58 @@
 
 ---
 
-<!-- Последний номер: PX-010 -->
+## PX-011
+
+**Дата:** 2026-05-03
+**Статус:** новая
+**DEVLOG:** —
+**Источник:** чат CEO (PX-сессия 2026-05-03, файл ТЗ `docs/tasks/quiz-spec.md`)
+
+**Задача:** Лендинг с интерактивным квизом «Какие соцсети нужны вашему бизнесу» на ais152.com — с захватом лида через Telegram Login Widget на старте, 5-блочный пошаговый квиз с промежуточными выводами и финальным экраном (3 варианта вывода: A/B/C)
+
+**Контекст:**
+
+- **Проект:** AiS152 — портфолио-сайт Eduard, ais152.com (Static HTML/CSS/JS, GitHub Pages)
+- **Файл ТЗ:** `c:\Projects\AiS152\docs\tasks\quiz-spec.md` (полная логика, скоринг, тексты — готово, как есть)
+- **URL:** `/quiz` (новая страница на ais152.com)
+- **Язык:** Русский (UI + вопросы + выводы)
+- **Объём:** 15 вопросов / 5 блоков / 4 промежуточных вывода + финал из 3 вариантов
+- **Скоринг:** 15 матриц по 11 платформам (Instagram, Telegram, TikTok, YouTube, LinkedIn, Facebook, WhatsApp, Pinterest, Threads, Twitter/X, YouTube Shorts)
+
+**Проблема:**
+На сайте нет инструмента генерации лидов через интерактив. Нет канала захвата контактов (особенно Telegram). Нет автоквалификации лидов до первого контакта.
+
+**Цель:**
+
+1. Лендинг + квиз на ais152.com/quiz по спеке `quiz-spec.md`
+2. Захват контакта **Telegram Login Widget** (verified OAuth) ДО первого вопроса
+3. Сохранение результата + контакта в **Google Sheets** через Apps Script webhook
+4. Уведомление CEO в Telegram через нового бота **AisQuizBot** с резюме лида
+
+**Скоуп:**
+
+1. **Дизайн (следуем стилю ais152.com):** hero → lead capture (Telegram Login Widget) → 15 вопросов с прогресс-баром → 4 промежуточных экрана → финал A/B/C → "Пройти заново". Адаптив 375+/1024+
+2. **Frontend (vanilla JS, без фреймворков):** state management, 15 вопросов с кодами, 4 промежуточных матрицы (Q1+Q2 / Q5+Q6 / Q9 / Q11+Q12+Q13), скоринг по 11 платформам, проверка финала C→B→A, 11 карточек платформ
+3. **Telegram Login Widget:** регистрация бота `AisQuizBot` через @BotFather, привязка домена ais152.com, виджет на странице, верификация подписи на backend (Apps Script)
+4. **Backend (Google Sheets + Apps Script Web App):** endpoint POST {timestamp, telegram_user, all 15 answers, scoring top-2, exit A/B/C}; запись в Sheet
+5. **Telegram-уведомление CEO** через `AisQuizBot`: emoji-приоритет + контакт (Telegram link) + ниша Q1 + бюджет Q12 + срочность Q15 + выход + топ-2 платформы
+6. **SEO:** meta tags (RU), OpenGraph, Plausible analytics + drop-off events
+7. **Деплой:** GitHub Actions auto-deploy на push в main, ссылка в навигации сайта
+8. **Тест:** прохождение по 6 нишам × несколько комбинаций, триггеры всех 3 выходов, mobile responsive, лид в Telegram
+
+**Ограничения:**
+
+- ❗ Стек статический — vanilla JS, без тяжёлых фреймворков
+- ❗ Дизайн в стиле ais152.com (тёмный фон, текущие акценты)
+- ❗ Не сломать остальные страницы
+- ❗ GDPR: чекбокс согласия + privacy policy при захвате
+- ❗ Telegram Login Widget требует HTTPS-домен (ais152.com уже есть)
+- ❗ Apps Script webhook URL хранить в репо как secret (env var в build) или прямо в JS (он public-readable но не записывает данные кроме лидов)
+- ❗ Контент русскоязычный, не переписывать
+- Бюджет сложности: **20 итераций (L)**
+
+**Рекомендуемый промпт:** **P0** (L+, мультикомпонентная: UX/логика/backend/деплой/Telegram OAuth)
+
+---
+
+<!-- Последний номер: PX-011 -->

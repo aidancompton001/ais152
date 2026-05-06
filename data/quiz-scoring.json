@@ -1,0 +1,106 @@
+{
+  "_comment": "Scoring tables Q1-Q15 × 10 platforms. Source: docs/tasks/quiz-spec.md, section ИТОГОВЫЙ СКОРИНГ.",
+  "q1": {
+    "ecom":   { "Instagram": 3, "TikTok": 2, "Facebook": 2, "Pinterest": 2 },
+    "b2c":    { "Instagram": 3, "TikTok": 1, "Facebook": 1, "WhatsApp": 2 },
+    "b2b":    { "Telegram": 2, "LinkedIn": 3, "Facebook": 1 },
+    "info":   { "Instagram": 1, "Telegram": 3, "YouTube": 3 },
+    "expert": { "Instagram": 1, "Telegram": 2, "YouTube": 2, "LinkedIn": 1, "Threads": 2, "Twitter": 1 },
+    "realty": { "Instagram": 2, "Telegram": 1, "YouTube": 2, "Facebook": 2 }
+  },
+  "q2": {
+    "local":     { "Instagram": 2, "TikTok": 2, "Facebook": 2, "WhatsApp": 3 },
+    "city_ship": { "Instagram": 2, "TikTok": 1, "Facebook": 1, "WhatsApp": 3 },
+    "national":  { "Instagram": 2, "TikTok": 2, "YouTube": 1, "Facebook": 2, "Pinterest": 1 },
+    "online":    { "Instagram": 1, "Telegram": 2, "TikTok": 2, "YouTube": 2, "Threads": 1 },
+    "mixed":     { "Instagram": 2, "Telegram": 1, "Facebook": 1, "WhatsApp": 1 }
+  },
+  "q3": {
+    "impulse": { "Instagram": 2, "TikTok": 3, "Facebook": 1, "WhatsApp": 2 },
+    "days":    { "Instagram": 2, "Telegram": 1, "TikTok": 1, "Facebook": 1 },
+    "long":    { "Telegram": 3, "YouTube": 3, "LinkedIn": 1 }
+  },
+  "q4": {
+    "low":     { "Instagram": 1, "TikTok": 3, "Facebook": 2, "WhatsApp": 1, "Threads": 1 },
+    "mid":     { "Instagram": 2, "Telegram": 1, "TikTok": 1, "Facebook": 1, "WhatsApp": 1 },
+    "high":    { "Telegram": 3, "YouTube": 2, "LinkedIn": 1 },
+    "premium": { "Telegram": 3, "YouTube": 2, "LinkedIn": 3 }
+  },
+  "q5": {
+    "person": { "Instagram": 2, "TikTok": 2, "Facebook": 1, "WhatsApp": 1 },
+    "biz":    { "Telegram": 2, "LinkedIn": 3, "Facebook": 1 },
+    "both":   { "Instagram": 1, "Telegram": 1, "LinkedIn": 1, "Facebook": 1 }
+  },
+  "q6": {
+    "ref":      { "Instagram": 2, "LinkedIn": 1, "WhatsApp": 2 },
+    "search":   { "Instagram": 1, "TikTok": 2, "YouTube": 2, "LinkedIn": 1 },
+    "outreach": { "Instagram": 1, "Telegram": 2, "LinkedIn": 3 },
+    "new":      { "Instagram": 2, "Telegram": 1, "TikTok": 3, "Facebook": 1, "Threads": 1 }
+  },
+  "q7": {
+    "visual":    { "Instagram": 3, "TikTok": 2, "Pinterest": 2 },
+    "partial":   { "Instagram": 2, "Telegram": 1, "TikTok": 1 },
+    "nonvisual": { "Telegram": 3, "YouTube": 2, "LinkedIn": 2, "Threads": 1, "Twitter": 1 }
+  },
+  "q8": {
+    "face_yes":     { "Instagram": 2, "Telegram": 1, "TikTok": 1, "YouTube": 2, "LinkedIn": 1, "Threads": 2, "Twitter": 1 },
+    "face_partial": { "Instagram": 2, "TikTok": 1, "Threads": 1 },
+    "face_no":      { "Instagram": 1, "TikTok": 1, "Facebook": 1, "Pinterest": 2 }
+  },
+  "q9": {
+    "short_v": { "Instagram": 2, "TikTok": 3, "YouTube": 2 },
+    "long_v":  { "YouTube": 4 },
+    "text":    { "Telegram": 3, "LinkedIn": 2, "Threads": 2, "Twitter": 2 },
+    "photo":   { "Instagram": 3, "Facebook": 1, "Pinterest": 3 },
+    "none":    { "Instagram": 1, "Telegram": 2, "WhatsApp": 1 }
+  },
+  "q10": {
+    "zero":   { "Instagram": 1, "Telegram": 1, "TikTok": 2, "Threads": 2 },
+    "empty":  { "Instagram": 2, "Telegram": 1, "TikTok": 1 },
+    "small":  { "Instagram": 1, "Telegram": 2, "YouTube": 1 },
+    "active": { "Instagram": 1, "Telegram": 1, "YouTube": 2, "LinkedIn": 1 }
+  },
+  "q11": {
+    "t_low":  { "Telegram": 2, "WhatsApp": 2, "Threads": 1 },
+    "t_mid":  { "Instagram": 1, "Telegram": 1, "TikTok": 1, "Facebook": 1, "Threads": 1 },
+    "t_high": { "Instagram": 1, "TikTok": 2, "YouTube": 1, "LinkedIn": 1, "Pinterest": 1 },
+    "t_team": { "Instagram": 2, "TikTok": 1, "YouTube": 2, "LinkedIn": 1, "Facebook": 1, "Pinterest": 1 }
+  },
+  "q12": {
+    "b_zero": { "Telegram": 2, "TikTok": 3, "YouTube": 1, "Threads": 2 },
+    "b_low":  { "Instagram": 1, "TikTok": 1, "Facebook": 1 },
+    "b_mid":  { "Instagram": 2, "Facebook": 2 },
+    "b_high": { "Instagram": 1, "YouTube": 1, "LinkedIn": 1, "Facebook": 3 }
+  },
+  "q13": {
+    "solo": { "Telegram": 2, "WhatsApp": 1, "Threads": 1 },
+    "part": { "Instagram": 1, "Telegram": 1, "TikTok": 1 },
+    "smm":  { "Instagram": 2, "TikTok": 1, "YouTube": 1, "Facebook": 1 },
+    "team": { "Instagram": 2, "TikTok": 1, "YouTube": 2, "LinkedIn": 1, "Facebook": 1, "Pinterest": 1 }
+  },
+  "q14": {
+    "sales":    { "Instagram": 1, "Telegram": 2, "Facebook": 1, "WhatsApp": 3 },
+    "aware":    { "Instagram": 2, "TikTok": 3, "YouTube": 1, "Threads": 2, "Twitter": 1 },
+    "audience": { "Instagram": 1, "Telegram": 3, "YouTube": 2, "Threads": 1 },
+    "system":   { "Instagram": 1, "Telegram": 2, "WhatsApp": 1 }
+  },
+  "q15": {
+    "now":  { "Instagram": 1, "Telegram": 2, "Facebook": 1, "WhatsApp": 3 },
+    "soon": { "Instagram": 2, "Telegram": 1, "TikTok": 1, "Facebook": 1, "Threads": 1 },
+    "long": { "Telegram": 1, "YouTube": 4, "LinkedIn": 1, "Pinterest": 1 }
+  },
+  "_requirements": {
+    "Instagram":   { "minHoursPerWeek": 4 },
+    "Telegram":    { "minHoursPerWeek": 2 },
+    "TikTok":      { "minHoursPerWeek": 5 },
+    "YouTube":     { "minHoursPerWeek": 3 },
+    "LinkedIn":    { "minHoursPerWeek": 2 },
+    "Facebook":    { "minHoursPerWeek": 2, "minBudgetEur": 50 },
+    "WhatsApp":    { "minHoursPerWeek": 1 },
+    "Pinterest":   { "minHoursPerWeek": 2 },
+    "Threads":     { "minHoursPerWeek": 2 },
+    "Twitter":     { "minHoursPerWeek": 5 }
+  },
+  "_hoursByQ11":  { "t_low": 1, "t_mid": 3, "t_high": 7, "t_team": 10 },
+  "_budgetByQ12": { "b_zero": 0, "b_low": 100, "b_mid": 300, "b_high": 700 }
+}

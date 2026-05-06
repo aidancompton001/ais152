@@ -10,4 +10,10 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://ais152.com/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ais152.com/" />
   </url>
+  <url>
+    <loc>https://ais152.com/quiz</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

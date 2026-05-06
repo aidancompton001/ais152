@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru" data-lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B0E12">
+<meta name="color-scheme" content="dark">
+
+<title>Квиз — Какие соцсети нужны вашему бизнесу · AiS1.52</title>
+<meta name="description" content="Бесплатный квиз: 15 вопросов за 5 минут — определим, какие платформы дадут результат вашему бизнесу. Без воды.">
+<link rel="canonical" href="https://ais152.com/quiz">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Квиз — Какие соцсети нужны вашему бизнесу">
+<meta property="og:description" content="15 вопросов за 5 минут — рекомендация платформ под ваш бизнес, ресурс и цели.">
+<meta property="og:url" content="https://ais152.com/quiz">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://ais152.com/assets/og-image.jpg">
+
+<!-- Content Security Policy — Telegram Login Widget + Plausible -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://telegram.org https://oauth.telegram.org https://plausible.io 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://t.me https://telegram.org; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://plausible.io; frame-src https://oauth.telegram.org;">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<!-- Stylesheets — переиспользуем tokens из основного сайта + quiz.css -->
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/quiz.css">
+
+<!-- Plausible analytics -->
+<script defer data-domain="ais152.com" src="https://plausible.io/js/script.outbound-links.js"></script>
+</head>
+<body class="quiz-body">
+
+<main id="quiz-app" aria-live="polite">
+  <!-- Screen: Hero -->
+  <section class="screen screen-hero" data-screen="hero">
+    <div class="screen-inner">
+      <div class="badge">5 минут · 15 вопросов · бесплатно</div>
+      <h1 class="hero-title">Какие соцсети нужны вашему бизнесу</h1>
+      <p class="hero-sub">Без воды. По вашей нише, ресурсу и цели — рекомендация платформ, которые реально дадут результат.</p>
+      <button class="btn btn-primary" id="btn-start">Пройти квиз</button>
+      <p class="hero-foot"><a href="/">← На главную</a></p>
+    </div>
+  </section>
+
+  <!-- Screen: Lead Capture (Telegram Login) -->
+  <section class="screen screen-lead" data-screen="lead" hidden>
+    <div class="screen-inner">
+      <h2>Ещё один шаг</h2>
+      <p class="lead-sub">Войдите через Telegram — мы пришлём результат в чат и сохраним прогресс. Никакого спама.</p>
+
+      <div id="telegram-login-container">
+        <!-- Telegram Login Widget вставляется через JS после установки bot username -->
+      </div>
+
+      <label class="gdpr-check">
+        <input type="checkbox" id="gdpr-consent" required>
+        <span>Я согласен(а) на обработку моих данных согласно <a href="/datenschutz" target="_blank" rel="noopener">политике конфиденциальности</a>.</span>
+      </label>
+
+      <button class="btn btn-primary" id="btn-lead-continue" disabled>Начать квиз</button>
+    </div>
+  </section>
+
+  <!-- Screen: Question (рендерится динамически) -->
+  <section class="screen screen-question" data-screen="question" hidden>
+    <div class="screen-inner">
+      <header class="question-header">
+        <div class="block-name" id="block-name">Блок 1 — Ваш бизнес</div>
+        <div class="progress">
+          <div class="progress-bar" id="progress-bar"></div>
+          <span class="progress-label" id="progress-label">1 / 15</span>
+        </div>
+      </header>
+
+      <h2 class="question-text" id="question-text"></h2>
+      <ul class="options" id="options-list" role="radiogroup"></ul>
+
+      <footer class="question-footer">
+        <button class="btn btn-ghost" id="btn-back">← Назад</button>
+        <button class="btn btn-primary" id="btn-next" disabled>Далее →</button>
+      </footer>
+    </div>
+  </section>
+
+  <!-- Screen: Intermediate output -->
+  <section class="screen screen-intermediate" data-screen="intermediate" hidden>
+    <div class="screen-inner">
+      <h2 class="intermediate-title" id="intermediate-title"></h2>
+      <div class="intermediate-text" id="intermediate-text"></div>
+      <div class="platform-cards" id="intermediate-platforms"></div>
+      <button class="btn btn-primary" id="btn-continue">Продолжить →</button>
+    </div>
+  </section>
+
+  <!-- Screen: Final A/B/C -->
+  <section class="screen screen-final" data-screen="final" hidden>
+    <div class="screen-inner">
+      <h2 class="final-title" id="final-title"></h2>
+      <div class="final-text" id="final-text"></div>
+      <div class="platform-cards" id="final-platforms"></div>
+      <button class="btn btn-ghost" id="btn-restart">Пройти заново</button>
+    </div>
+  </section>
+
+  <!-- Screen: Error/Loading -->
+  <section class="screen screen-status" data-screen="status" hidden>
+    <div class="screen-inner">
+      <div id="status-message"></div>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="assets/js/quiz.js"></script>
+
+</body>
+</html>

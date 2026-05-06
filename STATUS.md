@@ -23,7 +23,28 @@
 - 🟡 **IDX-2** PARTIAL (S012 2026-04-30) — Bing URL Inspection: автоматическая проверка невозможна. CEO должен открыть Bing Webmaster → URL Inspection → `https://ais152.com/` → проверить `Crawl allowed: Yes`. Если `No` → сообщить → PX-011.
 
 ## Текущая активная задача
-— нет (последняя завершена: PX-008 marquee infinite + stats 3d + form activation)
+
+**PX-011 — Quiz Landing «Какие соцсети нужны вашему бизнесу»** (P3 in progress, S013)
+
+- Roadmap: [docs/tasks/PX-011_quiz_landing.md](docs/tasks/PX-011_quiz_landing.md)
+- Размер: L (20 итераций), 28 шагов в 5 фазах
+- Прогресс: Phase 3 (JS логика) 30% — engine + tests ✅; Phase 1 backend — BLOCKED CEO
+
+**BLOCKED — нужны действия CEO (B-1..B-5):**
+
+- B-1: создать @AisQuizBot через @BotFather → дать bot token
+- B-2: `/setdomain ais152.com` в @BotFather
+- B-3: дать chat_id CEO (через @userinfobot)
+- B-4: Google Sheet «AisQuizLeads» (или дать доступ к Drive — создам сам)
+- B-5: Apps Script доступ (Web App для верификации Telegram + запись в Sheet)
+
+**Тесты:** 17/17 ✅ (`npm test`)
+
+---
+
+## Завершённые задачи
+
+— **PX-008** (marquee infinite + stats 3d + form activation)
 
 ## ✅ Resolved (PX-008)
 - **FormSubmit активирован** CEO 2026-04-28 (Activate-link clicked, endpoint verified live `success:true`)

@@ -1,0 +1,85 @@
+{
+  "_comment": "Intermediate outputs after each block. Block 1: Q1+Q2; Block 2: Q5+Q6; Block 3: Q9; Block 4: Q11+Q13.",
+
+  "block1": {
+    "title": "Базовые платформы для вашего бизнеса",
+    "matrix": {
+      "ecom_local": { "platforms": ["Instagram", "Facebook", "WhatsApp"], "text": "Офлайн-точка или личная продажа. Instagram показывает товар, Facebook — где местные спрашивают «где купить», WhatsApp для приёма заказов. Местные группы Facebook дают первых покупателей быстрее чем раскрученный аккаунт." },
+      "ecom_city_ship": { "platforms": ["Instagram", "WhatsApp", "Facebook"], "text": "Локальная доставка. WhatsApp для заказов, Facebook и Instagram для видимости. TikTok даёт органику в пределах города." },
+      "ecom_national": { "platforms": ["TikTok", "Instagram", "Facebook"], "text": "Доставка по стране. TikTok — органический охват без бюджета, показывает товар в действии. Instagram — витрина и доверие. Facebook — таргетированная реклама по регионам." },
+      "ecom_online": { "platforms": ["TikTok", "Instagram"], "text": "Цифровой продукт или маркетплейс. TikTok максимальный органический охват, Instagram витрина и точка доверия перед покупкой. Pinterest добавить если товар визуальный." },
+      "ecom_mixed": { "platforms": ["Instagram", "Facebook", "WhatsApp"], "text": "Instagram закрывает оба формата — Stories для локальных, Reels для широкого охвата. WhatsApp для заказов, Facebook для рекламы." },
+
+      "b2c_local": { "platforms": ["Instagram", "WhatsApp", "Facebook"], "text": "Локальная услуга. Instagram показывает работу — процесс, до/после, отзывы. WhatsApp для записи. Facebook — где люди в городе просят рекомендации. TikTok хорошо стартует локально." },
+      "b2c_city_ship": { "platforms": ["Instagram", "WhatsApp"], "text": "Услуга с выездом по городу. WhatsApp основной канал связи и записи, Instagram витрина." },
+      "b2c_national": { "platforms": ["Instagram", "Telegram"], "text": "Услуга по стране. Instagram охватывает новых, Telegram удерживает и конвертирует тех кто уже знаком." },
+      "b2c_online": { "platforms": ["Instagram", "Telegram"], "text": "Онлайн-услуга. Instagram привлекает, Telegram конвертирует. Telegram-канал заменяет email-рассылку и стоит ноль." },
+      "b2c_mixed": { "platforms": ["Instagram", "Telegram", "WhatsApp"], "text": "Instagram единая точка куда ведёте всех. Telegram для онлайн-аудитории, WhatsApp для локальных клиентов." },
+
+      "b2b_local": { "platforms": ["Facebook", "WhatsApp", "Telegram"], "text": "B2B офлайн в одном городе. Личные знакомства важнее контента. Facebook Groups — местные бизнес-сообщества активны во многих странах. WhatsApp — оперативная коммуникация." },
+      "b2b_city_ship": { "platforms": ["Facebook", "WhatsApp"], "text": "Локальный B2B с доставкой. Видимость в местных сообществах плюс прямая связь." },
+      "b2b_national": { "platforms": ["LinkedIn", "Telegram", "Facebook"], "text": "LinkedIn для Западной Европы. Telegram для русскоязычного сегмента — мало кто из B2B ведёт канал хорошо, легко выделиться. Facebook Groups там где LinkedIn неактивен." },
+      "b2b_online": { "platforms": ["LinkedIn", "Telegram"], "text": "LinkedIn — бизнес-аудитория Западной Европы. Telegram для остальных." },
+      "b2b_mixed": { "platforms": ["LinkedIn", "Telegram", "Facebook"], "text": "Приоритет по тому сегменту где больше клиентов. LinkedIn если есть аудитория в крупных европейских рынках." },
+
+      "info_local": { "platforms": ["Instagram", "Facebook"], "text": "Офлайн-занятия в городе. Facebook Events и местные группы — основной канал анонсов. Instagram для личного бренда." },
+      "info_city_ship": { "platforms": ["Instagram", "Telegram"], "text": "Telegram для коммуникации со студентами, Instagram для охвата." },
+      "info_national": { "platforms": ["YouTube", "Telegram"], "text": "YouTube — поисковый трафик который приходит сам и работает годами. Telegram собирает аудиторию которая читает и готова к покупке. Классическая связка инфобизнеса." },
+      "info_online": { "platforms": ["YouTube", "Telegram"], "text": "Сильнейшая связка для онлайн-обучения. YouTube привлекает через поиск, Telegram продаёт." },
+      "info_mixed": { "platforms": ["Telegram", "Instagram"], "text": "Telegram собирает обе аудитории. Instagram для новых людей и личного бренда." },
+
+      "expert_local": { "platforms": ["Instagram", "Threads", "Facebook"], "text": "Instagram личный бренд, Threads охват и видимость, Facebook местные сообщества." },
+      "expert_city_ship": { "platforms": ["Instagram", "Telegram"], "text": "Нетипичная комбинация — скорее всего физические ивенты или материалы." },
+      "expert_national": { "platforms": ["YouTube", "Telegram", "Threads"], "text": "YouTube строит авторитет через поиск, Telegram конвертирует аудиторию, Threads даёт охват и трафик на другие каналы." },
+      "expert_online": { "platforms": ["YouTube", "Telegram", "Twitter"], "text": "YouTube авторитет, Telegram аудитория и продажи, Twitter/X охват и дискуссия для широкой темы." },
+      "expert_mixed": { "platforms": ["YouTube", "Telegram", "Instagram"], "text": "YouTube привлекает через поиск, Telegram держит аудиторию, Instagram для визуальной части личного бренда." },
+
+      "realty_local": { "platforms": ["Instagram", "Facebook", "WhatsApp"], "text": "Визуальные объекты в Instagram, Facebook Groups — где ищут варианты, WhatsApp для прямой связи." },
+      "realty_city_ship": { "platforms": ["Instagram", "WhatsApp"], "text": "Управление объектами или локальная аренда. Instagram витрина, WhatsApp коммуникация." },
+      "realty_national": { "platforms": ["YouTube", "Instagram"], "text": "YouTube для обзоров рынка и объектов — видео работает годами. Instagram для текущих объектов и местной узнаваемости." },
+      "realty_online": { "platforms": ["YouTube", "Telegram"], "text": "Иностранцы ищут через поиск — YouTube закрывает это. Telegram для аудитории которая хочет купить удалённо." },
+      "realty_mixed": { "platforms": ["YouTube", "Instagram"], "text": "YouTube для удалённой аудитории, Instagram для местных клиентов." }
+    }
+  },
+
+  "block2": {
+    "title": "Кто ваши клиенты — где их искать",
+    "matrix": {
+      "person_ref":      { "platforms": ["Instagram", "WhatsApp"], "text": "Рекомендации — сильный канал, но не масштабируется. Instagram и WhatsApp как витрина куда ведёте новых людей. Профиль должен закрывать доверие." },
+      "person_search":   { "platforms": ["TikTok", "YouTube", "Instagram"], "text": "Клиенты сами ищут — значит спрос есть. TikTok и YouTube Shorts дают охват через алгоритм. Instagram если продукт визуальный." },
+      "person_outreach": { "platforms": ["Instagram", "Telegram"], "text": "Вы выходите первым — профиль это визитка которую смотрят перед ответом. Instagram или Telegram должны закрывать вопрос «кто это и почему ему доверять»." },
+      "person_new":      { "platforms": ["Instagram", "TikTok"], "text": "Запуск с нуля. TikTok даёт органику на старте без подписчиков. Instagram минимальный порог входа для любой ниши." },
+      "biz_ref":         { "platforms": ["LinkedIn", "Telegram"], "text": "Бизнес-клиент пришёл по рекомендации — проверяет вас серьёзнее. LinkedIn профиль или Telegram-канал должны показывать экспертизу и кейсы." },
+      "biz_search":      { "platforms": ["LinkedIn", "YouTube"], "text": "Бизнес-аудитория ищет экспертизу. LinkedIn для профессионального поиска, YouTube для контент-авторитета." },
+      "biz_outreach":    { "platforms": ["LinkedIn", "Telegram"], "text": "Вы выходите первым на бизнес-клиента. LinkedIn профиль — первое что смотрят. Telegram-канал показывает что вы думаете и что умеете." },
+      "biz_new":         { "platforms": ["LinkedIn", "Facebook", "Telegram"], "text": "Запуск с нуля в B2B. LinkedIn если аудитория в крупных рынках. Facebook Groups для местных сообществ. Telegram-канал для накопления аудитории." },
+      "both_ref":        { "platforms": ["Instagram", "LinkedIn"], "text": "Смешанная аудитория по рекомендации. Instagram закрывает потребителей, LinkedIn закрывает бизнес-клиентов." },
+      "both_search":     { "platforms": ["Instagram", "YouTube"], "text": "Instagram для потребителей, YouTube для обеих групп через поисковый трафик." },
+      "both_outreach":   { "platforms": ["Instagram", "LinkedIn", "Telegram"], "text": "Instagram для потребителей, LinkedIn для бизнеса, Telegram для удержания." },
+      "both_new":        { "platforms": ["Instagram", "TikTok"], "text": "Универсальный старт. Instagram точка входа, TikTok органика без бюджета." }
+    }
+  },
+
+  "block3": {
+    "title": "Ваш формат контента",
+    "matrix": {
+      "short_v": { "platforms": ["TikTok", "Instagram", "YouTube"], "text": "Короткие видео сейчас получают наибольший органический охват на всех платформах. Алгоритмы TikTok, Instagram Reels и YouTube Shorts показывают контент незнакомым людям — это единственный формат где новый аккаунт может получить реальный охват без бюджета." },
+      "long_v":  { "platforms": ["YouTube"], "text": "Длинные видео — это YouTube. Единственная платформа где видео набирает просмотры через год после публикации. Алгоритм ранжирует по поисковым запросам — люди сами находят ваш контент. Медленный старт, 3-6 месяцев до первого ощутимого трафика. Потом работает само." },
+      "text":    { "platforms": ["Telegram", "LinkedIn", "Threads"], "text": "Тексты читают там где их ждут. Telegram — подписываются именно чтобы читать, нет алгоритма который режет охват. LinkedIn — текстовый пост с личным мнением собирает охват без рекламы. Threads — высокий органический охват пока платформа молодая." },
+      "photo":   { "platforms": ["Instagram", "Pinterest"], "text": "Instagram для охвата и узнаваемости — карусель алгоритм показывает повторно тем кто не досмотрел. Pinterest для визуальных ниш даёт пассивный трафик годами — пин опубликованный сегодня работает через два года." },
+      "none":    { "platforms": ["Telegram", "Instagram"], "text": "Минимальный порог входа. Telegram — написать несколько постов в неделю о своём деле, не нужна техника. Instagram — фото с телефона и подпись. Оба формата не требуют специального оборудования или навыков." }
+    }
+  },
+
+  "block4": {
+    "title": "Сколько платформ реально вести",
+    "matrix": {
+      "t_low_solo":  { "platforms": [], "text": "Одна платформа — без исключений. При 1 часе в неделю три канала не дадут ничего ни одному. Выбираем ту где минимальная частота публикаций." },
+      "t_low_help":  { "platforms": [], "text": "Помощник берёт производство, вы — стратегию и смысл. Реально вести 1-2 платформы." },
+      "t_mid_solo":  { "platforms": [], "text": "Одна платформа полноценно плюс один дополнительный канал в пассивном режиме (например Telegram + WhatsApp статусы)." },
+      "t_mid_help":  { "platforms": [], "text": "Две платформы полноценно." },
+      "t_high_solo": { "platforms": [], "text": "Две платформы полноценно. Три — на пределе, требует системы." },
+      "t_high_help": { "platforms": [], "text": "Три платформы и больше." }
+    }
+  }
+}
