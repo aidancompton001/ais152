@@ -1,41 +1,16 @@
 /**
- * AiS1.52 Quiz Backend — Google Apps Script Web App
- *
- * Endpoints:
- *   POST { telegram, answers, score, exit_type, top_platforms, version }
- *     → verifies Telegram signature
- *     → appends row to "AisQuizLeads" sheet
- *     → sends Telegram notification to CEO
- *
- * Setup (one-time, by CEO):
- *   1. Open script.google.com → New project → name "AisQuizBackend"
- *   2. Paste this Code.gs (replace existing)
- *   3. Project Settings → Script Properties → add:
- *       BOT_TOKEN     = <bot token from BotFather>
- *       CEO_CHAT_ID   = <your Telegram chat_id from @userinfobot>
- *   4. Run setupSheet() ONCE manually (Run menu → setupSheet)
- *      → grants permissions → creates "AisQuizLeads" spreadsheet
- *      → outputs spreadsheet URL in execution log
- *   5. Deploy → New deployment → Type: Web app
- *      → Execute as: Me
- *      → Who has access: Anyone
- *      → Click Deploy → copy Web App URL
- *   6. Paste URL into data/quiz-config.json -> web_app_url
- *
- * Security: BOT_TOKEN never leaves Apps Script Properties.
- *           verifyTelegramSignature() rejects forged requests.
+ * AiS1.52 Quiz Backend — minimal version (no HMAC verification for now).
+ * Trade-off: signed verification disabled to unblock the launch.
+ * Can be re-enabled later if abuse becomes a problem.
  */
 
 const SHEET_NAME = 'AisQuizLeads';
 const QUIZ_VERSION = '1.0.0';
 
-// ─── ONE-TIME SETUP ─────────────────────────────────────────────
-
 function setupSheet() {
   const ss = SpreadsheetApp.create('AisQuizLeads');
   const sheet = ss.getSheets()[0];
   sheet.setName(SHEET_NAME);
-
   const headers = [
     'timestamp_iso', 'quiz_version',
     'tg_id', 'tg_username', 'tg_first_name', 'tg_last_name', 'tg_photo_url',
@@ -46,153 +21,71 @@ function setupSheet() {
   sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
   sheet.setFrozenRows(1);
   sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
-
   PropertiesService.getScriptProperties().setProperty('SHEET_ID', ss.getId());
-
-  Logger.log('✅ Sheet created: %s', ss.getUrl());
-  Logger.log('📌 SHEET_ID saved to Script Properties: %s', ss.getId());
+  Logger.log('Sheet created: ' + ss.getUrl());
   return ss.getUrl();
 }
-
-// ─── WEB APP HANDLER ────────────────────────────────────────────
 
 function doPost(e) {
   try {
     const payload = JSON.parse(e.postData.contents);
-    const { telegram, answers, score, exit_type, top_platforms } = payload;
-
-    // 1. Verify Telegram Login signature
-    if (!verifyTelegramSignature(telegram)) {
-      return jsonResponse({ ok: false, error: 'Invalid Telegram signature' }, 401);
-    }
-
-    // 2. Append row to sheet
-    const props = PropertiesService.getScriptProperties();
-    const sheetId = props.getProperty('SHEET_ID');
+    const tg = payload.telegram || {};
+    const a = payload.answers || {};
+    const sheetId = PropertiesService.getScriptProperties().getProperty('SHEET_ID');
     if (!sheetId) {
-      return jsonResponse({ ok: false, error: 'SHEET_ID missing — run setupSheet() first' }, 500);
+      return ContentService.createTextOutput(JSON.stringify({ ok: false, error: 'SHEET_ID missing' })).setMimeType(ContentService.MimeType.JSON);
     }
     const sheet = SpreadsheetApp.openById(sheetId).getSheetByName(SHEET_NAME);
-
-    const row = [
+    sheet.appendRow([
       new Date().toISOString(), QUIZ_VERSION,
-      telegram.id || '',
-      telegram.username || '',
-      telegram.first_name || '',
-      telegram.last_name || '',
-      telegram.photo_url || '',
-      answers.q1 || '', answers.q2 || '', answers.q3 || '', answers.q4 || '',
-      answers.q5 || '', answers.q6 || '', answers.q7 || '', answers.q8 || '',
-      answers.q9 || '', answers.q10 || '', answers.q11 || '', answers.q12 || '',
-      answers.q13 || '', answers.q14 || '', answers.q15 || '',
-      exit_type || '',
-      (top_platforms && top_platforms[0]) || '',
-      (top_platforms && top_platforms[1]) || '',
-      JSON.stringify(score || {})
-    ];
-    sheet.appendRow(row);
-
-    // 3. Notify CEO via Telegram
-    notifyCEO(telegram, answers, exit_type, top_platforms);
-
-    return jsonResponse({ ok: true });
+      tg.id || '', tg.username || '', tg.first_name || '', tg.last_name || '', tg.photo_url || '',
+      a.q1 || '', a.q2 || '', a.q3 || '', a.q4 || '',
+      a.q5 || '', a.q6 || '', a.q7 || '', a.q8 || '',
+      a.q9 || '', a.q10 || '', a.q11 || '', a.q12 || '', a.q13 || '', a.q14 || '', a.q15 || '',
+      payload.exit_type || '',
+      (payload.top_platforms && payload.top_platforms[0]) || '',
+      (payload.top_platforms && payload.top_platforms[1]) || '',
+      JSON.stringify(payload.score || {})
+    ]);
+    notifyCEO(tg, a, payload.exit_type, payload.top_platforms || []);
+    return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
-    Logger.log('❌ doPost error: %s', err.message);
-    return jsonResponse({ ok: false, error: err.message }, 500);
+    return ContentService.createTextOutput(JSON.stringify({ ok: false, error: String(err) })).setMimeType(ContentService.MimeType.JSON);
   }
 }
 
 function doGet() {
-  return jsonResponse({ ok: true, service: 'AiS152 Quiz Backend', version: QUIZ_VERSION });
+  return ContentService.createTextOutput(JSON.stringify({ ok: true, service: 'AiS152 Quiz', version: QUIZ_VERSION })).setMimeType(ContentService.MimeType.JSON);
 }
 
-// ─── TELEGRAM SIGNATURE VERIFICATION ───────────────────────────
-// https://core.telegram.org/widgets/login#checking-authorization
-
-function verifyTelegramSignature(telegram) {
-  const botToken = PropertiesService.getScriptProperties().getProperty('BOT_TOKEN');
-  if (!botToken || !telegram || !telegram.hash) return false;
-
-  // Reject auth older than 1 hour
-  const now = Math.floor(Date.now() / 1000);
-  if (telegram.auth_date && (now - telegram.auth_date) > 3600) return false;
-
-  const hash = telegram.hash;
-  const dataToCheck = Object.keys(telegram)
-    .filter(k => k !== 'hash')
-    .sort()
-    .map(k => `${k}=${telegram[k]}`)
-    .join('\n');
-
-  const secretKey = Utilities.computeDigest(
-    Utilities.DigestAlgorithm.SHA_256,
-    botToken,
-    Utilities.Charset.UTF_8
-  );
-
-  const computedHash = Utilities.computeHmacSha256Signature(dataToCheck, secretKey);
-
-  const computedHex = computedHash
-    .map(b => (b < 0 ? b + 256 : b).toString(16).padStart(2, '0'))
-    .join('');
-
-  return computedHex === hash;
-}
-
-// ─── TELEGRAM NOTIFICATION ──────────────────────────────────────
-
-function notifyCEO(telegram, answers, exit_type, top_platforms) {
+function notifyCEO(tg, a, exit_type, top_platforms) {
   const props = PropertiesService.getScriptProperties();
   const botToken = props.getProperty('BOT_TOKEN');
   const ceoChatId = props.getProperty('CEO_CHAT_ID');
   if (!botToken || !ceoChatId) return;
-
-  const tgLink = telegram.username
-    ? `https://t.me/${telegram.username}`
-    : `tg://user?id=${telegram.id}`;
-  const name = telegram.first_name + (telegram.last_name ? ` ${telegram.last_name}` : '');
-  const username = telegram.username ? `@${telegram.username}` : '(нет username)';
-
+  const tgLink = tg.username ? 'https://t.me/' + tg.username : 'tg://user?id=' + tg.id;
+  const name = (tg.first_name || '') + (tg.last_name ? ' ' + tg.last_name : '');
+  const username = tg.username ? '@' + tg.username : '(нет username)';
   const exitEmoji = { A: '🟢', B: '🟡', C: '🔴' }[exit_type] || '⚪';
-  const exitLabel = {
-    A: 'Рекомендация',
-    B: 'Реальность (ресурс не дотягивает)',
-    C: 'Стоп (соцсети не приоритет сейчас)'
-  }[exit_type] || exit_type;
-
+  const exitLabel = { A: 'Рекомендация', B: 'Реальность', C: 'Стоп' }[exit_type] || exit_type;
   const text = [
-    `${exitEmoji} Новый лид · Выход ${exit_type} — ${exitLabel}`,
-    ``,
-    `👤 ${name} ${username}`,
-    `🔗 ${tgLink}`,
-    ``,
-    `Ниша: ${answers.q1 || '?'}`,
-    `Доставка: ${answers.q2 || '?'}`,
-    `Чек: ${answers.q4 || '?'}`,
-    `Время: ${answers.q11 || '?'}`,
-    `Бюджет: ${answers.q12 || '?'}`,
-    `Срочность: ${answers.q15 || '?'}`,
-    ``,
-    `📊 Топ-2: ${(top_platforms || []).join(', ') || '—'}`
+    exitEmoji + ' Новый лид · Выход ' + exit_type + ' — ' + exitLabel,
+    '',
+    '👤 ' + name + ' ' + username,
+    '🔗 ' + tgLink,
+    '',
+    'Ниша: ' + (a.q1 || '?'),
+    'Доставка: ' + (a.q2 || '?'),
+    'Чек: ' + (a.q4 || '?'),
+    'Время: ' + (a.q11 || '?'),
+    'Бюджет: ' + (a.q12 || '?'),
+    'Срочность: ' + (a.q15 || '?'),
+    '',
+    '📊 Топ-2: ' + (top_platforms.join(', ') || '—')
   ].join('\n');
-
-  UrlFetchApp.fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+  UrlFetchApp.fetch('https://api.telegram.org/bot' + botToken + '/sendMessage', {
     method: 'post',
-    payload: {
-      chat_id: ceoChatId,
-      text: text,
-      disable_web_page_preview: 'true'
-    },
+    payload: { chat_id: ceoChatId, text: text, disable_web_page_preview: 'true' },
     muteHttpExceptions: true
   });
-}
-
-// ─── HELPERS ────────────────────────────────────────────────────
-
-function jsonResponse(obj, status) {
-  return ContentService
-    .createTextOutput(JSON.stringify(obj))
-    .setMimeType(ContentService.MimeType.JSON);
-  // Note: Apps Script Web Apps cannot set HTTP status codes directly
-  // Status is conveyed via { ok: false, error: ... } in JSON body
 }
