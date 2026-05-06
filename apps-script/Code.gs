@@ -126,14 +126,11 @@ function verifyTelegramSignature(telegram) {
 
   const secretKey = Utilities.computeDigest(
     Utilities.DigestAlgorithm.SHA_256,
-    botToken
+    botToken,
+    Utilities.Charset.UTF_8
   );
 
-  const computedHash = Utilities.computeHmacSignature(
-    Utilities.MacAlgorithm.HMAC_SHA_256,
-    dataToCheck,
-    secretKey
-  );
+  const computedHash = Utilities.computeHmacSha256Signature(dataToCheck, secretKey);
 
   const computedHex = computedHash
     .map(b => (b < 0 ? b + 256 : b).toString(16).padStart(2, '0'))
