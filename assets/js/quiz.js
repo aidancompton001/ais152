@@ -46,7 +46,6 @@ async function boot() {
 function bindEvents() {
   $('#btn-start').addEventListener('click', () => {
     showScreen('lead');
-    injectTelegramWidget();
     plausible('Quiz_Started');
   });
   $('#gdpr-consent').addEventListener('change', updateLeadButton);
@@ -63,20 +62,7 @@ function bindEvents() {
   };
 }
 
-// ─── Telegram Login Widget ───────────────────────────────────────
-
-function injectTelegramWidget() {
-  const container = $('#telegram-login-container');
-  if (container.querySelector('script')) return; // already loaded
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://telegram.org/js/telegram-widget.js?22';
-  script.setAttribute('data-telegram-login', state.config.bot_username);
-  script.setAttribute('data-size', 'large');
-  script.setAttribute('data-onauth', 'onTelegramAuth(user)');
-  script.setAttribute('data-request-access', 'write');
-  container.appendChild(script);
-}
+// ─── Telegram Login Widget — теперь в HTML напрямую ──────────────
 
 function updateLeadButton() {
   state.gdprConsent = $('#gdpr-consent').checked;
@@ -350,7 +336,6 @@ function restoreFromStorage() {
       state.intermediateShownAfter = new Set(saved.intermediateShownAfter || []);
       // Need lead capture again if no telegram in state
       state.screen = state.telegram ? 'question' : 'lead';
-      if (state.screen === 'lead') injectTelegramWidget();
     }
   } catch {}
 }
