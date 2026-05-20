@@ -1,0 +1,25 @@
+{
+  "_comment": "Шаблон. Каждый критерий приёмки задачи = одна исполняемая проверка. Скопируй в verify/acceptance.json проекта и впиши реальные проверки задачи.",
+  "_expect_types": {
+    "expect_exit":    "команда вернула этот exit code",
+    "expect_equal":   "stdout (trimmed) РОВНО равен значению",
+    "expect_min":     "stdout как число >= значения",
+    "expect_contain": "stdout содержит подстроку"
+  },
+  "task": "PXX-NNN — краткое название задачи",
+  "checks": [
+    { "id": "AC1", "desc": "целевой файл существует",
+      "cmd": "test -f path/to/file && echo OK",          "expect_contain": "OK" },
+    { "id": "AC2", "desc": "тесты проходят",
+      "cmd": "npm test 2>&1 | grep -E '. pass'",          "expect_contain": "pass" },
+    { "id": "AC3", "desc": "0 проваленных тестов",
+      "cmd": "npm test 2>&1 | grep -E '. fail'",          "expect_contain": "fail 0" },
+    { "id": "AC4", "desc": "сборка без ошибок",
+      "cmd": "npm run build 2>&1 | tail -1",              "expect_contain": "" },
+    { "id": "AC5", "desc": "нужная строка присутствует N раз",
+      "cmd": "grep -c 'PATTERN' path/to/file",            "expect_min": 1 },
+    { "id": "AC6", "desc": "страница/эндпоинт отдаёт 200",
+      "cmd": "node -e \"fetch('https://URL').then(r=>console.log(r.status))\"",
+      "expect_equal": "200" }
+  ]
+}
