@@ -2,6 +2,31 @@
 
 ## Журнал разработки
 
+### [S014] — 2026-05-22 — PX-012 KONTUR добавлен в портфолио (Selected Work #1)
+
+**Задача:** [PX-012](docs/tasks/PX-012_kontur_portfolio_entry.md) — добавить новый проект KONTUR на ais152.com первой карточкой, обновить счётчик 9 → 10
+**Статус:** ✅ завершено — commit `e3aee4c`, GitHub Pages deploy success, live verified
+
+**Что сделано:**
+- KONTUR (`https://kontur.ais152.com`) — кастомная WordPress + WooCommerce тема, online-shop specialty-кофейной Rösterei. Создан 2026-05-22, уже LIVE. Добавлен первой карточкой Selected Work
+- `data/projects.json`: новый entry `order:1`, `featured:true`, `layout:"feature"`; остальные 9 проектов сдвинуты `order +1`
+- `index.html`: SVG-symbol `mark-kontur` (кофейное зерно); счётчик 9 → 10 в 6 местах (hero lead EN/DE, hero-meta, terminal-строка, stats counter `data-target`, work section title EN/DE, about-параграф EN/DE)
+- `assets/kontur-site.jpg`: чистый hero-скриншот (Playwright, верифицирован — 0 console errors, 0 placeholders, production-quality)
+- `verify/acceptance.json`: 13 критериев приёмки PX-012 (Закон 21)
+
+**Ключевые решения:**
+- KONTUR не «загружался» на AiS152 — он уже live на своём поддомене (отдельный WordPress/Docker-проект). Задача = portfolio-entry, не deploy
+- Скриншот `kontur-golive.png` из репо KONTUR не использован (cookie-баннер + недогруженные секции) — снят свежий чистый hero через Playwright
+- summary_en/de подрезаны до ≤280 символов под `projects.schema.json`
+- Замечен pre-existing дефект: `projects.schema.json` устарела (не содержит `mark`/`layout`, которые используют все 10 проектов) — не чинил, вне скоупа PX-012
+
+**Верификация (Закон 21):** `python verify/verify.py` → **13/13 PASSED (100%)** → TASK VERIFIED
+**Live:** ais152.com — KONTUR карточка «01 / 10», скриншот грузится, 10 карточек, 0 console errors
+
+**Артефакты:** `data/projects.json`, `index.html`, `assets/kontur-site.jpg`, `verify/acceptance.json`, `docs/tasks/PX-012_kontur_portfolio_entry.md`, `docs/tasks/PX_REGISTRY.md`
+
+---
+
 ### [S013] — 2026-05-03 — PX-011 Quiz Landing — engine TDD (Phase 3 partial)
 
 **Роли:** #1 Product Architect, #14 Hans Landa (TS review)
