@@ -755,4 +755,42 @@
 
 ---
 
-<!-- Последний номер: PX-011 -->
+## PX-012
+
+**Дата:** 2026-05-22
+**Статус:** завершено
+**DEVLOG:** S-запись 2026-05-22
+**Источник:** чат CEO (2026-05-22) — «новый проект KONTUR, загрузить на AiS152, поставить первым»
+
+**Задача:** Добавить новый проект KONTUR (`https://kontur.ais152.com`) в портфолио AiS152 — первой карточкой в Selected Work, с описанием EN/DE, обновить счётчик проектов 9 → 10
+
+**Контекст:**
+
+- KONTUR создан 2026-05-22 — кастомная WordPress + WooCommerce тема, online-shop вымышленной немецкой specialty-кофейной Rösterei. Production-кейс, рождён из MainCore PX-021 / T028.
+- Сайт уже LIVE на `https://kontur.ais152.com` (KONTUR STATUS.md S011 — T001 завершён, go-live смоук пройден).
+- AiS152: source of truth `data/projects.json`, рендер `assets/js/projects.js`, счётчик «9» захардкожен в `index.html`.
+
+**Проблема:** KONTUR отсутствует в `projects.json` → не виден на ais152.com. Счётчик показывает 9.
+
+**Цель:** KONTUR первой карточкой портфолио, посетители видят и открывают новый кейс. Счётчик 10.
+
+**Скоуп:**
+
+1. Свежий чистый hero-скриншот → `assets/kontur-site.jpg` (снят Playwright, верифицирован: 0 console errors, 0 placeholders)
+2. Entry в `data/projects.json` — `order:1`, `featured:true`, `layout:"feature"`; остальные 9 проектов `order +1`
+3. SVG-symbol `mark-kontur` в спрайте `index.html`
+4. Счётчик 9 → 10 во всех местах `index.html` (EN + DE)
+
+**Ограничения:**
+
+- Не трогать сам сайт KONTUR (отдельный live-проект)
+- `projects.json` соответствует схеме
+- Не сломать остальные карточки
+
+**Рекомендуемый промпт:** self-formalized (S, по контракту секции Selected Work — «один JSON-entry + два скриншота»)
+
+**Артефакт ТЗ:** `docs/tasks/PX-012_kontur_portfolio_entry.md`
+
+---
+
+<!-- Последний номер: PX-012 -->

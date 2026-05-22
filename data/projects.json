@@ -1,5 +1,23 @@
 [
   {
+    "slug": "kontur",
+    "title": "KONTUR",
+    "tagline_en": "Specialty coffee roastery — custom WooCommerce store",
+    "tagline_de": "Specialty-Kaffeerösterei — individueller WooCommerce-Shop",
+    "year": 2026,
+    "url": "https://kontur.ais152.com",
+    "status": "live",
+    "tags": ["E-commerce", "WordPress", "WooCommerce", "Custom Theme", "DE"],
+    "summary_en": "Online store for a German specialty coffee roastery. Hand-coded WordPress theme — no page builder — with WooCommerce: catalog, product pages, cart, checkout and a coffee subscription. Editorial design, compliant with German e-commerce law (DSGVO, PAngV, LMIV).",
+    "summary_de": "Online-Shop für eine deutsche Specialty-Kaffeerösterei. Handgeschriebenes WordPress-Theme — kein Page-Builder — mit WooCommerce: Katalog, Produktseiten, Warenkorb, Checkout und Kaffee-Abo. Editorial-Design, konform mit deutschem E-Commerce-Recht (DSGVO, PAngV, LMIV).",
+    "screenshot": "assets/kontur-site.jpg",
+    "screenshot_2x": "assets/kontur-site.jpg",
+    "mark": "kontur",
+    "layout": "feature",
+    "featured": true,
+    "order": 1
+  },
+  {
     "slug": "pomp",
     "title": "POMP",
     "tagline_en": "Brand identity + landing for a colourful sparkling water",
@@ -15,7 +33,7 @@
     "mark": "pomp",
     "layout": "feature",
     "featured": true,
-    "order": 1
+    "order": 2
   },
   {
     "slug": "baupreis",
@@ -33,7 +51,7 @@
     "mark": "baupreis",
     "layout": "feature",
     "featured": true,
-    "order": 2
+    "order": 3
   },
   {
     "slug": "eko-oylis-ua",
@@ -51,7 +69,7 @@
     "mark": "eko-oylis",
     "layout": "tile",
     "featured": false,
-    "order": 3
+    "order": 4
   },
   {
     "slug": "rundumshaus",
@@ -69,7 +87,7 @@
     "mark": "rundumshaus",
     "layout": "tile",
     "featured": false,
-    "order": 4
+    "order": 5
   },
   {
     "slug": "stormguard-v2",
@@ -87,7 +105,7 @@
     "mark": "stormguard",
     "layout": "wide",
     "featured": false,
-    "order": 5
+    "order": 6
   },
   {
     "slug": "edmi",
@@ -105,7 +123,7 @@
     "mark": "edmi",
     "layout": "tall",
     "featured": false,
-    "order": 6
+    "order": 7
   },
   {
     "slug": "provenly-homes",
@@ -123,7 +141,7 @@
     "mark": "provenly-homes",
     "layout": "square",
     "featured": false,
-    "order": 7
+    "order": 8
   },
   {
     "slug": "studioglamour",
@@ -141,7 +159,7 @@
     "mark": "studioglamour",
     "layout": "wide",
     "featured": false,
-    "order": 8
+    "order": 9
   },
   {
     "slug": "yy-dguv",
@@ -159,6 +177,6 @@
     "mark": "yy-dguv",
     "layout": "tile",
     "featured": false,
-    "order": 9
+    "order": 10
   }
 ]
