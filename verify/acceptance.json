@@ -39,6 +39,9 @@
       "expect_contain": "OK" },
     { "id": "AC13", "desc": "Manual verification log file существует",
       "cmd": "test -f docs/verification/PX-013_mobile_verification.md && echo OK",
-      "expect_contain": "OK" }
+      "expect_contain": "OK" },
+    { "id": "AC14", "desc": "ТИПОГРАФИКА: 0 точек в конце <h1>-<h4> (включая lang-spans)",
+      "cmd": "python verify/check_no_periods_in_headings.py index.html",
+      "expect_equal": "0" }
   ]
 }
