@@ -796,8 +796,11 @@
 ## PX-013
 
 **Дата:** 2026-05-22
-**Статус:** новая
-**DEVLOG:** —
+**Статус:** ✅ выполнено 2026-05-22 (CEO real-device sign-off получен)
+**DEVLOG:** S015
+**Commit:** `33d1442` (fix) + `cf21db6` (docs)
+**Landa review:** docs/tasks/PX-013_HANS_LANDA_REVIEW.md (4 MF + 5 W, все адресованы в TS2)
+**Verify:** 13/13 PASSED (100%) + CEO real-device тест на iPhone — работает
 **Источник:** чат CEO 2026-05-22 (скриншот Selected Work + жалоба «на телефоне зависает, не крутится назад»)
 
 **Задача:** Починить горизонтальный pin-scroll Selected Work на мобильных устройствах — секция зависает, не скроллится назад
