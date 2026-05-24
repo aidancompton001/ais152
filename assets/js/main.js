@@ -10,6 +10,9 @@
 
   const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const IS_MOBILE = matchMedia('(max-width: 1024px)').matches;
+  // PX-013: distinct touch-small breakpoint — keeps iPad landscape on desktop pin-scroll
+  // while routing phones to native CSS scroll-snap carousel (no GSAP pin).
+  const IS_TOUCH_SMALL = matchMedia('(max-width: 768px)').matches;
 
   // ──────────────── SAFE LIBRARY DETECTION ────────────────
   const hasLenis = typeof window.Lenis === 'function';
@@ -301,6 +304,15 @@
 
   function initWorkHorizontal() {
     if (!hasGSAP || !hasST || REDUCED_MOTION) return;
+    // PX-013: on touch-small viewports the pin freezes the page (no wheel events to
+    // drive scrub, touch consumed by pin without advancing tween). Route to native
+    // CSS scroll-snap path. iPad landscape (>768px) keeps the desktop pin experience.
+    // Note: Lenis stays active on all devices — with smoothTouch=off (default) it's
+    // dormant on touch and only handles wheel + lenis.scrollTo() for anchor clicks.
+    // Disabling Lenis would break smooth-anchor and gain nothing. (Landa WARN-3)
+    // Known limitation: desktop→mobile resize in the same session does NOT re-route
+    // (IS_TOUCH_SMALL is evaluated once at load). Reload needed. (Landa WARN-2)
+    if (IS_TOUCH_SMALL) return initWorkMobileSnap();
 
     const pin = document.getElementById('work-pin');
     const track = document.getElementById('work-track');
@@ -340,6 +352,35 @@
 
     // Resize handle
     window.addEventListener('resize', () => ScrollTrigger.refresh());
+  }
+
+  // PX-013: mobile path — native horizontal scroll-snap, no pin. Repurposes the
+  // .work-progress-current "NN" counter via IntersectionObserver on cards.
+  // .work-progress-track is hidden via CSS (pin-bound bar makes no sense without pin).
+  // The total "/ NN" already comes from projects.js render (no change needed).
+  function initWorkMobileSnap() {
+    const track = document.getElementById('work-track');
+    const cur = document.getElementById('work-progress-current');
+    const tot = document.getElementById('work-progress-total');
+    if (!track) return;
+    const cards = Array.from(track.querySelectorAll('.card'));
+    if (!cards.length) return;
+    if (tot) tot.textContent = String(cards.length).padStart(2, '0');
+    if (!cur || !('IntersectionObserver' in window)) return;
+    const obs = new IntersectionObserver((entries) => {
+      // Pick the most-visible card; update counter to its index.
+      let best = null;
+      entries.forEach((e) => {
+        if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) {
+          best = e;
+        }
+      });
+      if (best) {
+        const idx = cards.indexOf(best.target) + 1;
+        if (idx > 0) cur.textContent = String(idx).padStart(2, '0');
+      }
+    }, { root: track, threshold: [0.5, 0.75, 1.0] });
+    cards.forEach((c) => obs.observe(c));
   }
 
   // ──────────────── VARIABLE FONT — HERO H1 SCROLL AXIS ────────────────

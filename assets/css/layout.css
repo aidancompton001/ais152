@@ -446,6 +446,28 @@
 .work-progress-current { color: var(--ac); }
 .work-progress-sep { color: var(--tx-fa); margin: 0 4px; }
 
+/* PX-013: mobile fallback — native CSS scroll-snap instead of GSAP pin.
+   Scoped to (prefers-reduced-motion: no-preference) so the existing motion.css
+   reduced-motion vertical-stack fallback wins for users who request it.
+   NOT setting touch-action — default 'auto' lets browser route vertical swipes
+   to the page (touch-action: pan-x consumed them, re-creating the original bug).
+   NOT setting -webkit-overflow-scrolling — deprecated since iOS 13, no-op. */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .work-pin {
+    height: auto;
+    overflow: visible;
+  }
+  .work-track {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    padding-right: var(--container-px);
+  }
+  .work-progress-track {
+    display: none; /* pin-bound bar meaningless without pin */
+  }
+}
+
 /* ════════════════ SERVICES ════════════════ */
 .services { padding: var(--section-py) 0; }
 .services-grid {

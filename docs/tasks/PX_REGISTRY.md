@@ -793,4 +793,50 @@
 
 ---
 
-<!-- Последний номер: PX-012 -->
+## PX-013
+
+**Дата:** 2026-05-22
+**Статус:** новая
+**DEVLOG:** —
+**Источник:** чат CEO 2026-05-22 (скриншот Selected Work + жалоба «на телефоне зависает, не крутится назад»)
+
+**Задача:** Починить горизонтальный pin-scroll Selected Work на мобильных устройствах — секция зависает, не скроллится назад
+
+**Контекст:**
+- Проект AiS152 — портфолио (`https://ais152.com`), Static HTML + Vanilla JS, GitHub Pages
+- Затронутый модуль: **секция `#work`** (Selected Work) в `index.html` — горизонтальный pinned-scroll карусели из 10 проектных карточек (KONTUR → ... → YY-DGUV), счётчик «NN / 10»
+- Скрипты: `assets/js/projects.js` (рендер карточек), `assets/js/main.js` (ScrollTrigger pin), Lenis + GSAP + ScrollTrigger через CDN
+- Стек согласно CLAUDE.md: «Lenis + GSAP + ScrollTrigger (CDN)», CSS в `assets/css/{layout,components,motion}.css`
+
+**Проблема:**
+- На desktop — работает корректно (горизонтальная карусель + прогресс «01 / 10»)
+- На мобильном (все устройства — iOS Safari, iOS Chrome, Android Chrome) — секция Selected Work зависает: не скроллится назад (ни горизонтально по карточкам, ни обратно вверх по странице)
+- Классический симптом конфликта Lenis smooth-scroll + GSAP ScrollTrigger pin + touch events (touch gestures перехватываются pin-spacer'ом, scroll back становится невозможен)
+
+**Цель:**
+На мобильном (375-430px) Selected Work должна:
+- (a) либо корректно работать pin-scroll touch-жестами с возможностью свайпать карточки вперёд И назад, и нормально выходить из секции вверх/вниз
+- (b) либо использовать другой mobile-fallback (native horizontal swipe / snap-scroll контейнер БЕЗ pin), оставив pin-scroll только для desktop
+- Решение по варианту (a) или (b) — на основе результатов диагностики (CEO: «решай сам»)
+
+**Скоуп:**
+- Воспроизвести зависание на реальном мобильном (iOS Safari + Android Chrome) и через DevTools mobile emulation
+- Диагностировать root cause: Lenis ↔ ScrollTrigger конфликт / pin-spacer / `touch-action` CSS / pointer events / `prefers-reduced-motion` ветка
+- Принять решение (a) починить mobile pin-scroll или (b) перевести mobile на native CSS scroll-snap fallback (рекомендуется для phone — стандартная практика)
+- Реализовать выбранный путь в `assets/js/*.js` и/или `assets/css/{components,motion}.css`
+- Не сломать desktop pin-scroll, не сломать прогресс-индикатор «NN / 10», не сломать кастомный курсор
+- Проверить на 375px / 390px / 414px / 430px + landscape + Chrome DevTools throttling
+
+**Ограничения:**
+- НЕ менять остальные секции (Hero, About, Stats, Contact)
+- НЕ менять `projects.json` и контракт карточек
+- НЕ добавлять внешние JS-библиотеки без одобрения CEO (CLAUDE.md ЗАПРЕЩЕНО)
+- НЕ ломать двуязычность EN/DE
+- Соблюдать `prefers-reduced-motion`
+- Виртуальный курсор и так выключен на mobile — не трогать
+
+**Рекомендуемый промпт:** **P2** (debug — конкретный воспроизводимый баг, нужен root-cause + fix). Размер: M.
+
+---
+
+<!-- Последний номер: PX-013 -->

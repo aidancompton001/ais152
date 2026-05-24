@@ -101,6 +101,12 @@
   .card { flex: 0 0 clamp(300px, 80vw, 480px); }
 }
 
+/* PX-013: scroll-snap alignment for mobile native-snap carousel.
+   Scoped to no-preference to coexist with motion.css reduced-motion vertical stack. */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .card { scroll-snap-align: start; }
+}
+
 .card-num {
   font-family: var(--ff-mono);
   font-size: var(--fs-xs);
