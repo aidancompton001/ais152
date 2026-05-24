@@ -2,7 +2,7 @@
 
 **Live:** https://ais152.com
 **Production версия:** v2 (Editorial Ink, multi-asset)
-**Last deploy:** 2026-04-28 (PX-010 — `cdf6fa7` + verification file `b42b433`)
+**Last deploy:** 2026-05-22 (PX-013 — `33d1442` mobile #work freeze fix; ранее: PX-012 KONTUR `877911d`, PX-010 SEO `cdf6fa7`)
 **Откат-теги:** `v2-pre-px010` (`01e3e5f`), `v2-pre-px008` (`7aeb689`), `v2-pre-px007` (`658175e`), `v2-pre-px006` (`aa5b0dd`), `v2-pre-px005` (`576cc14`), `v2-pre-px004` (`22691c3`), `v1-pre-redesign` (`7568a39`)
 
 ## SEO infrastructure (PX-010)

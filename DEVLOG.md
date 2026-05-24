@@ -2,6 +2,46 @@
 
 ## Журнал разработки
 
+### [S015] — 2026-05-22 — PX-013 Mobile #work pin-scroll freeze → native scroll-snap
+
+**Задача:** [PX-013](docs/tasks/PX_REGISTRY.md#px-013) — на мобильных секция Selected Work зависала: невозможно скроллить карточки назад и выйти вверх. Bug report CEO 2026-05-22.
+**Роли:** #3 Andrei Volkov (Frontend, ведущий) + #14 Hans Landa (TS1 critical review → 4 must-fix + 5 warnings) + #1 Viktor Neumann (формализация, координация)
+**Статус:** ✅ commit `33d1442`, GitHub Pages deploy success, live verified; **ждёт CEO real-device sign-off** (Landa WARN-4)
+
+**Root cause (singular, Occam):**
+`initWorkHorizontal()` ([main.js:302](assets/js/main.js#L302)) активировал GSAP ScrollTrigger pin безусловно. На touch-viewport: нет wheel events для scrub, touch на pinSpacer потребляется самим pin без продвижения tween → page lock. Lenis к этому не причастен (smoothTouch=off по умолчанию, touch hijack — confabulation TS1, опровергнут Landa).
+
+**Fix (TS2 после Landa):**
+- `assets/js/main.js`: новый const `IS_TOUCH_SMALL = matchMedia('(max-width: 768px)')`. В `initWorkHorizontal()` early-return → новая функция `initWorkMobileSnap()` которая через IntersectionObserver на cards обновляет `.work-progress-current` (счётчик `NN`) от native scroll position
+- `assets/css/layout.css`: `@media (max-width: 768px) and (prefers-reduced-motion: no-preference)` — `.work-pin { height: auto; overflow: visible }`, `.work-track { overflow-x: auto; scroll-snap-type: x mandatory }`, `.work-progress-track { display: none }`
+- `assets/css/components.css`: `scroll-snap-align: start` на `.card` в том же media
+- **Anti-traps:** НЕ ставим `touch-action: pan-x` (Landa MF-3 — потребляет vertical swipes → re-creates bug), НЕ ставим `-webkit-overflow-scrolling: touch` (Landa MF-2 — deprecated с iOS 13)
+
+**Ключевые решения:**
+- **Breakpoint 768px, не 1024px** (Landa MF-4): iPad landscape сохраняет desktop pin — judged-on-iPad
+- **Scope `(prefers-reduced-motion: no-preference)`** (Landa MF-1): не конфликтует с существующим `motion.css` reduced-motion fallback
+- **Lenis остаётся на mobile** (Landa WARN-3): с smoothTouch=off он dormant, отключение сломало бы `lenis.scrollTo` для anchor smooth-scroll
+- **Известное ограничение:** desktop→mobile resize в одной сессии требует reload (IS_TOUCH_SMALL вычисляется один раз, Landa WARN-2 — задокументировано в коде)
+- **Прогресс-индикатор:** скрыт `.work-progress-track` (pin-bound bar бессмыслен), но `.work-progress-current` (`NN`) сохранён и обновляется через IO
+
+**Артефакты:**
+- `assets/js/main.js`, `assets/css/layout.css`, `assets/css/components.css` — fix
+- `verify/acceptance.json` — 13 critериев приёмки (PX-013)
+- `docs/verification/PX-013_mobile_verification.md` — manual real-device log (CEO заполняет)
+- `docs/tasks/PX-013_HANS_LANDA_REVIEW.md` — adversarial review TS1 (4 MF + 5 W)
+- `docs/tasks/PX_REGISTRY.md` — PX-013 запись
+
+**Верификация (Закон 21):** `python verify/verify.py` → **13/13 PASSED (100%)** → TASK VERIFIED
+**Live:** `IS_TOUCH_SMALL` (3 hits) + `scroll-snap-type: x mandatory` (1 hit) подтверждены через `curl https://ais152.com/assets/{js,css}/...`
+
+**KB:** Gotcha обновлена — [[AiS152/Gotchas and Solutions]] (mobile pin freeze pattern + scope-to-no-preference cascade trap)
+
+**Следующие шаги:**
+- CEO: открыть `https://ais152.com` на реальном iPhone Safari + iOS Chrome + Android Chrome, прогнать чек-лист в `docs/verification/PX-013_mobile_verification.md`, подписать
+- Если real-device тест fails → re-open PX-013, новый цикл Phase 1
+
+---
+
 ### [S014] — 2026-05-22 — PX-012 KONTUR добавлен в портфолио (Selected Work #1)
 
 **Задача:** [PX-012](docs/tasks/PX-012_kontur_portfolio_entry.md) — добавить новый проект KONTUR на ais152.com первой карточкой, обновить счётчик 9 → 10
