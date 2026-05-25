@@ -1,5 +1,30 @@
 [
   {
+    "slug": "ofnstube",
+    "title": "Ofnstube",
+    "tagline_en": "Munich craft-burger restaurant — landing with reservation",
+    "tagline_de": "Münchner Craft-Burger-Restaurant — Landing mit Reservierung",
+    "year": 2026,
+    "url": "https://ofnstube.ais152.com",
+    "status": "live",
+    "tags": [
+      "Restaurant",
+      "Bilingual DE/EN",
+      "Vanilla JS",
+      "GSAP",
+      "Lenis",
+      "DSGVO"
+    ],
+    "summary_en": "Landing site for a Munich craft-burger restaurant. Vanilla HTML5 + CSS3 + JS, multi-page (10 screens), self-hosted Fraunces + Inter fonts, GSAP + Lenis. In-house reservation, allergen disclosure (LMIV §1169), JuSchG, BFSG 2025 accessibility — fully DSGVO-compliant.",
+    "summary_de": "Landing-Site für ein Münchner Craft-Burger-Restaurant. Vanilla HTML5 + CSS3 + JS, Multi-Page (10 Seiten), self-hosted Fraunces + Inter, GSAP + Lenis. In-House-Reservierung, Allergen-Kennzeichnung (LMIV §1169), JuSchG, BFSG 2025 Barrierefreiheit — vollständig DSGVO-konform.",
+    "screenshot": "assets/ofnstube-site.jpg",
+    "screenshot_2x": "assets/ofnstube-site.jpg",
+    "mark": "ofnstube",
+    "layout": "feature",
+    "featured": true,
+    "order": 1
+  },
+  {
     "slug": "kontur",
     "title": "KONTUR",
     "tagline_en": "Specialty coffee roastery — custom WooCommerce store",
@@ -7,7 +32,13 @@
     "year": 2026,
     "url": "https://kontur.ais152.com",
     "status": "live",
-    "tags": ["E-commerce", "WordPress", "WooCommerce", "Custom Theme", "DE"],
+    "tags": [
+      "E-commerce",
+      "WordPress",
+      "WooCommerce",
+      "Custom Theme",
+      "DE"
+    ],
     "summary_en": "Online store for a German specialty coffee roastery. Hand-coded WordPress theme — no page builder — with WooCommerce: catalog, product pages, cart, checkout and a coffee subscription. Editorial design, compliant with German e-commerce law (DSGVO, PAngV, LMIV).",
     "summary_de": "Online-Shop für eine deutsche Specialty-Kaffeerösterei. Handgeschriebenes WordPress-Theme — kein Page-Builder — mit WooCommerce: Katalog, Produktseiten, Warenkorb, Checkout und Kaffee-Abo. Editorial-Design, konform mit deutschem E-Commerce-Recht (DSGVO, PAngV, LMIV).",
     "screenshot": "assets/kontur-site.jpg",
@@ -15,7 +46,7 @@
     "mark": "kontur",
     "layout": "feature",
     "featured": true,
-    "order": 1
+    "order": 2
   },
   {
     "slug": "pomp",
@@ -25,7 +56,13 @@
     "year": 2026,
     "url": "https://pomp-landing.vercel.app",
     "status": "live",
-    "tags": ["Brand", "Landing", "Next.js 16", "GSAP", "Motion"],
+    "tags": [
+      "Brand",
+      "Landing",
+      "Next.js 16",
+      "GSAP",
+      "Motion"
+    ],
     "summary_en": "Full brand pack and production landing for a sparkling water concept with six flavours. Hero video, scroll-pinned flavour carousel on desktop, native snap-scroll on mobile, transparent product shots, dark/cream colour rhythm. Next.js 16, Tailwind 4, GSAP, Lenis.",
     "summary_de": "Komplettes Brand-Paket und Produktions-Landing für ein Sparkling-Water-Konzept mit sechs Sorten. Hero-Video, scroll-gepinnte Sorten-Karussell auf Desktop, natives Snap-Scrollen mobil, freigestellte Produkt-Shots, Dunkel-/Cream-Rhythmus. Next.js 16, Tailwind 4, GSAP, Lenis.",
     "screenshot": "assets/projects/pomp-landing.jpg",
@@ -33,7 +70,7 @@
     "mark": "pomp",
     "layout": "feature",
     "featured": true,
-    "order": 2
+    "order": 3
   },
   {
     "slug": "baupreis",
@@ -43,7 +80,13 @@
     "year": 2025,
     "url": "https://baupreis.ais152.com",
     "status": "live",
-    "tags": ["SaaS", "AI", "Next.js", "Stripe", "Multi-tenant"],
+    "tags": [
+      "SaaS",
+      "AI",
+      "Next.js",
+      "Stripe",
+      "Multi-tenant"
+    ],
     "summary_en": "AI-powered construction material price monitoring for German contractors. 16+ materials, price forecasts, multi-tenant SaaS with three pricing tiers and Claude-driven trend analysis.",
     "summary_de": "KI-gestützte Überwachung von Baustoffpreisen für deutsche Handwerksbetriebe. 16+ Materialien, Preisvorhersagen, Multi-Tenant-SaaS mit drei Tarifebenen und Claude-Trendanalyse.",
     "screenshot": "assets/baupreis-dashboard.png",
@@ -51,7 +94,7 @@
     "mark": "baupreis",
     "layout": "feature",
     "featured": true,
-    "order": 3
+    "order": 4
   },
   {
     "slug": "eko-oylis-ua",
@@ -61,7 +104,13 @@
     "year": 2026,
     "url": "https://eko-oylis.com.ua",
     "status": "live",
-    "tags": ["Corporate", "Bilingual", "Eleventy", "GSAP", "DSGVO"],
+    "tags": [
+      "Corporate",
+      "Bilingual",
+      "Eleventy",
+      "GSAP",
+      "DSGVO"
+    ],
     "summary_en": "Corporate site for a Ukrainian used cooking oil collector with EU expansion via Bulgaria. Bilingual UA/EN, 11-milestone history (2008→2026, 2500+ HoReCa partners, own fleet), Eleventy + GSAP + Lenis, schema.org, fully self-hosted.",
     "summary_de": "Firmenwebsite eines ukrainischen Altspeisefett-Sammlers mit EU-Expansion über Bulgarien. Zweisprachig UA/EN, 11 Meilensteine (2008→2026, 2500+ HoReCa-Partner, eigene Flotte), Eleventy + GSAP + Lenis, schema.org, vollständig self-hosted.",
     "screenshot": "assets/eko-oylis-site.jpg?v=2026-04-28-clean",
@@ -69,7 +118,7 @@
     "mark": "eko-oylis",
     "layout": "tile",
     "featured": false,
-    "order": 4
+    "order": 5
   },
   {
     "slug": "rundumshaus",
@@ -79,7 +128,13 @@
     "year": 2026,
     "url": "https://rundumshaus-littawe.de",
     "status": "live",
-    "tags": ["Website", "SEO", "Next.js", "GSAP", "DE"],
+    "tags": [
+      "Website",
+      "SEO",
+      "Next.js",
+      "GSAP",
+      "DE"
+    ],
     "summary_en": "Premium handyman services website for an Osnabrück business. Five service categories with WhatsApp integration, AI-generated photography, mobile sticky CTA, DSGVO-compliant.",
     "summary_de": "Premium-Website für lokales Handwerk in Osnabrück. Fünf Leistungskategorien mit WhatsApp-Integration, KI-generierte Bildwelt, Mobile-Sticky-CTA, DSGVO-konform.",
     "screenshot": "assets/rundumshaus-site.jpg",
@@ -87,7 +142,7 @@
     "mark": "rundumshaus",
     "layout": "tile",
     "featured": false,
-    "order": 5
+    "order": 6
   },
   {
     "slug": "stormguard-v2",
@@ -97,7 +152,13 @@
     "year": 2025,
     "url": "https://www.stormguardprofessional.eu/",
     "status": "live",
-    "tags": ["E-commerce", "Multi-language", "Eleventy", "Supabase", "BORICA"],
+    "tags": [
+      "E-commerce",
+      "Multi-language",
+      "Eleventy",
+      "Supabase",
+      "BORICA"
+    ],
     "summary_en": "Full rebuild of a premium organic pet care e-commerce platform. Trilingual (EN/BG/DE), Postbank BORICA payment integration, product configurator, merchant dashboard, Hetzner hosting.",
     "summary_de": "Kompletter Neubau einer Premium-Bio-Tierpflege-Plattform. Dreisprachig (EN/BG/DE), BORICA-Zahlungsintegration, Produktkonfigurator, Händler-Dashboard, Hosting auf Hetzner.",
     "screenshot": "assets/stormguard-site.jpg",
@@ -105,7 +166,7 @@
     "mark": "stormguard",
     "layout": "wide",
     "featured": false,
-    "order": 6
+    "order": 7
   },
   {
     "slug": "edmi",
@@ -115,7 +176,12 @@
     "year": 2026,
     "url": "https://aidancompton001.github.io/edmi-landing/variant-d.html",
     "status": "live",
-    "tags": ["Landing", "Bento", "AI Configurator", "Catalog"],
+    "tags": [
+      "Landing",
+      "Bento",
+      "AI Configurator",
+      "Catalog"
+    ],
     "summary_en": "Apple-style bento landing for a dental microscope vendor. Seven real microscopes (Zeiss, CJ-Optik), eleven accessories, AI configurator, real pricing.",
     "summary_de": "Apple-Style Bento-Landing für einen Dentalmikroskop-Anbieter. Sieben echte Mikroskope (Zeiss, CJ-Optik), elf Zubehörteile, KI-Konfigurator, reale Preise.",
     "screenshot": "assets/edmi-landing-site.jpg",
@@ -123,7 +189,7 @@
     "mark": "edmi",
     "layout": "tall",
     "featured": false,
-    "order": 7
+    "order": 8
   },
   {
     "slug": "provenly-homes",
@@ -133,7 +199,13 @@
     "year": 2026,
     "url": "https://aidancompton001.github.io/provenly-homes/",
     "status": "live",
-    "tags": ["Website", "Real Estate", "Next.js", "GSAP", "Motion"],
+    "tags": [
+      "Website",
+      "Real Estate",
+      "Next.js",
+      "GSAP",
+      "Motion"
+    ],
     "summary_en": "Corporate website for a short-term rental management company in Cologne. Awwwards-level scroll animations, GSAP + Motion hybrid, JSON-driven content, GitHub Pages.",
     "summary_de": "Corporate-Website für ein Kurzzeitvermietungs-Unternehmen in Köln. Awwwards-Effekte, GSAP + Motion hybrid, JSON-getriebener Inhalt, GitHub Pages.",
     "screenshot": "assets/provenly-homes-site.jpg",
@@ -141,7 +213,7 @@
     "mark": "provenly-homes",
     "layout": "square",
     "featured": false,
-    "order": 8
+    "order": 9
   },
   {
     "slug": "studioglamour",
@@ -151,7 +223,12 @@
     "year": 2026,
     "url": "https://glamour.ais152.com/",
     "status": "live",
-    "tags": ["Website", "Beauty", "Next.js", "shadcn/ui"],
+    "tags": [
+      "Website",
+      "Beauty",
+      "Next.js",
+      "shadcn/ui"
+    ],
     "summary_en": "Modern website for a Munich eyelash extension studio. Service catalog with pricing, online booking, gallery. Next.js + Tailwind + shadcn/ui.",
     "summary_de": "Moderne Website für ein Münchner Wimpernstudio. Leistungskatalog mit Preisen, Online-Buchung, Galerie. Next.js + Tailwind + shadcn/ui.",
     "screenshot": "assets/studioglamour-site.jpg",
@@ -159,7 +236,7 @@
     "mark": "studioglamour",
     "layout": "wide",
     "featured": false,
-    "order": 9
+    "order": 10
   },
   {
     "slug": "yy-dguv",
@@ -169,7 +246,13 @@
     "year": 2026,
     "url": "https://aidancompton001.github.io/yy-dguv/",
     "status": "live",
-    "tags": ["Landing", "B2B", "GSAP", "Vanilla", "DSGVO"],
+    "tags": [
+      "Landing",
+      "B2B",
+      "GSAP",
+      "Vanilla",
+      "DSGVO"
+    ],
     "summary_en": "B2B lead-generation website for DGUV V3 electrical safety inspections in Wernau, Baden-Württemberg. Industrial design system, fifteen-page skeleton, DSGVO-compliant lead forms.",
     "summary_de": "B2B Lead-Gen-Website für DGUV-V3-Elektroprüfungen in Wernau, Baden-Württemberg. Industrial-Design-System, 15-seitiges Gerüst, DSGVO-konforme Lead-Formulare.",
     "screenshot": "assets/projects/yy-dguv-placeholder.svg",
@@ -177,6 +260,6 @@
     "mark": "yy-dguv",
     "layout": "tile",
     "featured": false,
-    "order": 10
+    "order": 11
   }
 ]

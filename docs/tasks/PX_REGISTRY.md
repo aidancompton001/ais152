@@ -842,4 +842,55 @@
 
 ---
 
-<!-- Последний номер: PX-013 -->
+## PX-014
+
+**Дата:** 2026-05-25
+**Статус:** новая
+**DEVLOG:** —
+**Источник:** чат CEO 2026-05-25
+
+**Задача:** Добавить новый кейс «OFNS Tube» (http://ofnstube.ais152.com/pages/index.html) в портфолио ais152.com первой карточкой Selected Work, обновить счётчик 10 → 11, адаптировать все нумерации и описания
+
+**Контекст:**
+
+- Проект: AiS152 — ais152.com (Static HTML/CSS/JS, GitHub Pages)
+- Затрагиваемые файлы: `data/projects.json`, `index.html`, `assets/ofnstube-site.jpg`, `verify/acceptance.json`
+- Источник кейса: `http://ofnstube.ais152.com/pages/index.html` (исполнитель P0 откроет, извлечёт title/tagline/summary/stack)
+- Шаблон: PX-012 KONTUR (S014) — тот же паттерн portfolio-entry, не deploy
+
+**Проблема:** В портфолио сейчас 10 проектов (после PX-012). Новый кейс OFNS Tube готов и live на поддомене, но не отображается в Selected Work.
+
+**Цель:** OFNS Tube — первой карточкой Selected Work «01 / 11», счётчик 10 → 11, чистый скриншот, ссылка ведёт на сайт, 10 существующих карточек сдвинуты на 1 позицию вниз без потери данных.
+
+**Скоуп:**
+
+- Открыть URL — извлечь title, tagline EN/DE, summary EN/DE (≤ 280), tech stack, визуальный стиль
+- Снять чистый hero-скриншот через Playwright → `assets/ofnstube-site.jpg` (0 console errors, 0 placeholders)
+- `data/projects.json`: новый entry `order:1, featured:true, layout:"feature"` + сдвиг 10 существующих `order +1`
+- `index.html`: SVG-symbol `mark-ofnstube` + счётчик 10 → 11 в 6 локациях (hero lead EN/DE, hero-meta, terminal, stats `data-target`, work title EN/DE, about EN/DE)
+- `verify/acceptance.json` — критерии: карточка существует, скриншот грузится, счётчик = 11, ссылка валидна, link 200, **0 точек в headings** (Global Typography Rule)
+- Применить **Global Typography Rule** (БЕЗ ТОЧЕК) в title/tagline новой карточки
+
+**Ограничения:**
+
+- НЕ трогать остальной контент (только нумерация и портфолио)
+- Tagline/summary ≤ 280 символов под `projects.schema.json`
+- НЕ деплоить сам OFNS Tube — он уже live, задача = portfolio-entry
+- Закон 21: финал — `python verify/verify.py` 100% (exit 0)
+- Тег отката `v2-pre-px014` создать до push
+- Бюджет: 12 итераций (M)
+
+**Открытые вопросы (P0 уточнит у CEO):**
+
+1. Точное название: «OFNS Tube» / «Ofnstube» / другое
+2. URL карточки: `http://ofnstube.ais152.com/pages/index.html` или корневой `http://ofnstube.ais152.com`
+3. HTTPS — почему `http://`? Сертификат есть/нет
+4. Mark SVG-символ — какой использовать
+5. Stack/Tags — техстек для tags
+6. Summary EN/DE — готовые тексты или извлечь со страницы
+
+**Рекомендуемый промпт:** **P0** (M, мультифайловое изменение с верификацией — нужен roadmap-файл)
+
+---
+
+<!-- Последний номер: PX-014 -->
