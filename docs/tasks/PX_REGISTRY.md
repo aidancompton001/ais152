@@ -893,4 +893,38 @@
 
 ---
 
-<!-- Последний номер: PX-014 -->
+## PX-015
+
+**Дата:** 2026-05-25
+**Статус:** новая (P0 in progress)
+**DEVLOG:** —
+**Источник:** чат CEO 2026-05-25
+
+**Задача:** Добавить кейс «ElektroCheck Stuttgart» (https://elektrocheckstuttgart.de) в портфолио ais152.com **второй карточкой** Selected Work, обновить счётчик 11 → 12
+
+**Контекст:** AiS152 portfolio. Затрагивает `data/projects.json`, `index.html`, `assets/elektrocheck-site.jpg`, `verify/acceptance.json`. Источник проекта: `C:\Projects\ElektroCheck-Stuttgart\` (CLAUDE.md, DEVLOG). Yusuf Y.Y., DGUV V3 Elektroprüfungen Wernau/Stuttgart, DE-only, Vanilla HTML+CSS+JS, FormSubmit, GitHub Pages. Шаблон: PX-014 Ofnstube + PX-012 KONTUR.
+
+**Проблема:** Новый кейс live на elektrocheckstuttgart.de, не отображается в Selected Work на ais152.com.
+
+**Цель:** ElektroCheck Stuttgart — вторая карточка Selected Work «02 / 12», Ofnstube остаётся первой, счётчик 11 → 12 во всех 6 локациях, скриншот свежий, ссылка валидна, 10 других проектов сдвинуты `order +1` на позиции 3-12.
+
+**Скоуп:**
+
+- Извлечь title/tagline/summary (DE-primary, EN-secondary)/stack/нишу из `C:\Projects\ElektroCheck-Stuttgart\CLAUDE.md` + live `https://elektrocheckstuttgart.de`
+- Snimat' чистый hero-скриншот через Playwright → `assets/elektrocheck-site.jpg`
+- `data/projects.json`: новый entry `order:2, featured:true` + сдвиг 10 существующих (Ofnstube=1, новый=2, KONTUR 2→3, ..., YY_DGUV 11→12)
+- `index.html`: SVG-symbol `mark-elektrocheck` (электрика/Blitz/Multimeter — #1 решает) + счётчик 11 → 12 в 6 локациях («Eleven» → «Twelve», «Elf» → «Zwölf», «11 live» → «12 live», `data-target="11"` → `12`, «11 projects» → «12 projects», about EN/DE)
+- `verify/acceptance.json`: критерии — карточка существует, `order=2`, Ofnstube остался `order=1`, всего 12, счётчик 12 в 6 местах, ссылка `https://elektrocheckstuttgart.de/` (без `#main`), 0 точек в headings
+
+**Решения CEO (2026-05-25):**
+1. «Обнови инфу на сайте» = счётчик 11→12 и всё связанное (стандартный паттерн)
+2. SVG mark — #1 решает (вероятно молния/Blitz, под нишу Elektroprüfungen)
+3. PX-014 Ofnstube — OK, deployed (counter уже = 11)
+
+**Ограничения:** Не трогать Ofnstube `order=1`. Tagline/summary ≤280. URL без `#main`. Закон 21: 100% verify. Тег отката `v2-pre-px015`. Бюджет 12 итераций (M).
+
+**Рекомендуемый промпт:** P0 → P1 (M, мультифайл + верификация)
+
+---
+
+<!-- Последний номер: PX-015 -->

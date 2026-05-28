@@ -25,6 +25,31 @@
     "order": 1
   },
   {
+    "slug": "elektrocheck-stuttgart",
+    "title": "ElektroCheck Stuttgart",
+    "tagline_en": "DGUV V3 electrical safety inspections — Stuttgart region",
+    "tagline_de": "DGUV V3 Elektroprüfungen — Region Stuttgart",
+    "year": 2026,
+    "url": "https://elektrocheckstuttgart.de",
+    "status": "live",
+    "tags": [
+      "Service",
+      "B2B",
+      "DSGVO",
+      "Vanilla JS",
+      "FormSubmit",
+      "DE"
+    ],
+    "summary_en": "Landing site for a Stuttgart-area electrician offering DGUV V3 legally required safety inspections for businesses and private clients. Fixed-price offer, German contact form via FormSubmit, fully DSGVO-compliant. Vanilla HTML+CSS+JS, GitHub Pages, custom domain.",
+    "summary_de": "Landing-Site für einen Elektromeister im Raum Stuttgart, der DGUV V3 Prüfungen für Betriebe und Privatkunden anbietet. Festpreis-Angebot, deutsches Kontaktformular über FormSubmit, vollständig DSGVO-konform. Vanilla HTML+CSS+JS, GitHub Pages, eigene Domain.",
+    "screenshot": "assets/elektrocheck-site.jpg",
+    "screenshot_2x": "assets/elektrocheck-site.jpg",
+    "mark": "elektrocheck",
+    "layout": "feature",
+    "featured": true,
+    "order": 2
+  },
+  {
     "slug": "kontur",
     "title": "KONTUR",
     "tagline_en": "Specialty coffee roastery — custom WooCommerce store",
@@ -46,7 +71,7 @@
     "mark": "kontur",
     "layout": "feature",
     "featured": true,
-    "order": 2
+    "order": 3
   },
   {
     "slug": "pomp",
@@ -70,7 +95,7 @@
     "mark": "pomp",
     "layout": "feature",
     "featured": true,
-    "order": 3
+    "order": 4
   },
   {
     "slug": "baupreis",
@@ -94,7 +119,7 @@
     "mark": "baupreis",
     "layout": "feature",
     "featured": true,
-    "order": 4
+    "order": 5
   },
   {
     "slug": "eko-oylis-ua",
@@ -118,7 +143,7 @@
     "mark": "eko-oylis",
     "layout": "tile",
     "featured": false,
-    "order": 5
+    "order": 6
   },
   {
     "slug": "rundumshaus",
@@ -142,7 +167,7 @@
     "mark": "rundumshaus",
     "layout": "tile",
     "featured": false,
-    "order": 6
+    "order": 7
   },
   {
     "slug": "stormguard-v2",
@@ -166,7 +191,7 @@
     "mark": "stormguard",
     "layout": "wide",
     "featured": false,
-    "order": 7
+    "order": 8
   },
   {
     "slug": "edmi",
@@ -189,7 +214,7 @@
     "mark": "edmi",
     "layout": "tall",
     "featured": false,
-    "order": 8
+    "order": 9
   },
   {
     "slug": "provenly-homes",
@@ -213,7 +238,7 @@
     "mark": "provenly-homes",
     "layout": "square",
     "featured": false,
-    "order": 9
+    "order": 10
   },
   {
     "slug": "studioglamour",
@@ -236,7 +261,7 @@
     "mark": "studioglamour",
     "layout": "wide",
     "featured": false,
-    "order": 10
+    "order": 11
   },
   {
     "slug": "yy-dguv",
@@ -260,6 +285,6 @@
     "mark": "yy-dguv",
     "layout": "tile",
     "featured": false,
-    "order": 11
+    "order": 12
   }
 ]
