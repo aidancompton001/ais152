@@ -1,5 +1,30 @@
 [
   {
+    "slug": "silkekleinart",
+    "title": "Silke Klein Art",
+    "tagline_en": "Painter portfolio — Kiel · custom WordPress rebuild",
+    "tagline_de": "Künstlerin-Portfolio — Kiel · WordPress-Neubau",
+    "year": 2026,
+    "url": "https://silkekleinart.com",
+    "status": "live",
+    "tags": [
+      "Portfolio",
+      "WordPress",
+      "Custom Theme",
+      "ACF",
+      "CPT",
+      "DE"
+    ],
+    "summary_en": "Premium rebuild of a Kiel-based painter's website. Hand-coded WordPress theme with Advanced Custom Fields and Custom Post Types — the artist manages works, exhibitions and pages through clean WP forms, no page builder. Editorial typography, responsive gallery, fully DSGVO-compliant, self-hosted fonts and accessibility (BFSG 2025).",
+    "summary_de": "Premium-Neubau der Website einer Kieler Malerin. Handgeschriebenes WordPress-Theme mit Advanced Custom Fields und Custom Post Types — die Künstlerin pflegt Werke, Ausstellungen und Seiten über aufgeräumte WP-Formulare, ohne Page-Builder. Editorial-Typografie, responsive Galerie, vollständig DSGVO-konform, self-hosted Schriften und Barrierefreiheit (BFSG 2025).",
+    "screenshot": "assets/silkekleinart-site.jpg",
+    "screenshot_2x": "assets/silkekleinart-site.jpg",
+    "mark": "silkekleinart",
+    "layout": "feature",
+    "featured": true,
+    "order": 1
+  },
+  {
     "slug": "ofnstube",
     "title": "Ofnstube",
     "tagline_en": "Munich craft-burger restaurant — landing with reservation",
@@ -22,7 +47,7 @@
     "mark": "ofnstube",
     "layout": "feature",
     "featured": true,
-    "order": 1
+    "order": 2
   },
   {
     "slug": "elektrocheck-stuttgart",
@@ -47,7 +72,7 @@
     "mark": "elektrocheck",
     "layout": "feature",
     "featured": true,
-    "order": 2
+    "order": 3
   },
   {
     "slug": "kontur",
@@ -71,7 +96,7 @@
     "mark": "kontur",
     "layout": "feature",
     "featured": true,
-    "order": 3
+    "order": 4
   },
   {
     "slug": "pomp",
@@ -95,7 +120,7 @@
     "mark": "pomp",
     "layout": "feature",
     "featured": true,
-    "order": 4
+    "order": 5
   },
   {
     "slug": "baupreis",
@@ -119,7 +144,7 @@
     "mark": "baupreis",
     "layout": "feature",
     "featured": true,
-    "order": 5
+    "order": 6
   },
   {
     "slug": "eko-oylis-ua",
@@ -143,7 +168,7 @@
     "mark": "eko-oylis",
     "layout": "tile",
     "featured": false,
-    "order": 6
+    "order": 7
   },
   {
     "slug": "rundumshaus",
@@ -167,7 +192,7 @@
     "mark": "rundumshaus",
     "layout": "tile",
     "featured": false,
-    "order": 7
+    "order": 8
   },
   {
     "slug": "stormguard-v2",
@@ -191,7 +216,7 @@
     "mark": "stormguard",
     "layout": "wide",
     "featured": false,
-    "order": 8
+    "order": 9
   },
   {
     "slug": "edmi",
@@ -214,7 +239,7 @@
     "mark": "edmi",
     "layout": "tall",
     "featured": false,
-    "order": 9
+    "order": 10
   },
   {
     "slug": "provenly-homes",
@@ -238,7 +263,7 @@
     "mark": "provenly-homes",
     "layout": "square",
     "featured": false,
-    "order": 10
+    "order": 11
   },
   {
     "slug": "studioglamour",
@@ -261,7 +286,7 @@
     "mark": "studioglamour",
     "layout": "wide",
     "featured": false,
-    "order": 11
+    "order": 12
   },
   {
     "slug": "yy-dguv",
@@ -285,6 +310,6 @@
     "mark": "yy-dguv",
     "layout": "tile",
     "featured": false,
-    "order": 12
+    "order": 13
   }
 ]
