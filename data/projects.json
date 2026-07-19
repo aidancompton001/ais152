@@ -1,5 +1,29 @@
 [
   {
+    "slug": "sorrysara",
+    "title": "Sorry Sara",
+    "tagline_en": "Cocktail & fry bar — Burgas · self-managed via a Telegram bot, tickets via Stripe",
+    "tagline_de": "Cocktail- & Fry-Bar — Burgas · Selbstverwaltung per Telegram-Bot, Tickets über Stripe",
+    "year": 2026,
+    "url": "https://sorrysara.space",
+    "status": "live",
+    "tags": [
+      "Telegram-CMS",
+      "Stripe Ticketing",
+      "4 Sprachen",
+      "Anti-Overbooking",
+      "GDPR"
+    ],
+    "summary_en": "A full multilingual site for a Burgas cocktail & fry bar whose owner runs everything from her phone. Instead of a classic admin panel, the entire site — menu, events, photos, prices, translations — is managed through a Telegram bot: tap-tap, type only the value. Paid events sell tickets via Stripe with race-safe, no-overbooking seat control; refunds free the seat automatically. Content written in Bulgarian is auto-translated to EN/UK/DE by Claude, while the owner's manual edits are never overwritten.",
+    "summary_de": "Eine mehrsprachige Website für eine Cocktail- & Fry-Bar in Burgas, deren Inhaberin alles vom Handy aus steuert. Statt klassischem Admin-Panel läuft die komplette Pflege — Menü, Events, Fotos, Preise, Übersetzungen — über einen Telegram-Bot: klick-klick, tippen nur den Wert. Bezahl-Events verkaufen Tickets über Stripe mit garantiert überbuchungsfreier Platzsteuerung; Rückerstattungen geben den Platz automatisch frei. Auf Bulgarisch geschriebene Inhalte werden von Claude nach EN/UK/DE übersetzt, manuelle Korrekturen der Inhaberin bleiben dabei erhalten.",
+    "screenshot": "assets/sorrysara-site.jpg",
+    "screenshot_2x": "assets/sorrysara-site.jpg",
+    "mark": "sorrysara",
+    "layout": "feature",
+    "featured": true,
+    "order": 1
+  },
+  {
     "slug": "silkekleinart",
     "title": "Silke Klein Art",
     "tagline_en": "Painter portfolio — Kiel · custom WordPress rebuild",
@@ -22,7 +46,7 @@
     "mark": "silkekleinart",
     "layout": "feature",
     "featured": true,
-    "order": 1
+    "order": 2
   },
   {
     "slug": "ofnstube",
@@ -47,7 +71,7 @@
     "mark": "ofnstube",
     "layout": "feature",
     "featured": true,
-    "order": 2
+    "order": 3
   },
   {
     "slug": "elektrocheck-stuttgart",
@@ -72,7 +96,7 @@
     "mark": "elektrocheck",
     "layout": "feature",
     "featured": true,
-    "order": 3
+    "order": 4
   },
   {
     "slug": "kontur",
@@ -96,7 +120,7 @@
     "mark": "kontur",
     "layout": "feature",
     "featured": true,
-    "order": 4
+    "order": 5
   },
   {
     "slug": "pomp",
@@ -120,7 +144,7 @@
     "mark": "pomp",
     "layout": "feature",
     "featured": true,
-    "order": 5
+    "order": 6
   },
   {
     "slug": "baupreis",
@@ -144,7 +168,7 @@
     "mark": "baupreis",
     "layout": "feature",
     "featured": true,
-    "order": 6
+    "order": 7
   },
   {
     "slug": "eko-oylis-ua",
@@ -168,7 +192,7 @@
     "mark": "eko-oylis",
     "layout": "tile",
     "featured": false,
-    "order": 7
+    "order": 8
   },
   {
     "slug": "rundumshaus",
@@ -192,7 +216,7 @@
     "mark": "rundumshaus",
     "layout": "tile",
     "featured": false,
-    "order": 8
+    "order": 9
   },
   {
     "slug": "stormguard-v2",
@@ -216,7 +240,7 @@
     "mark": "stormguard",
     "layout": "wide",
     "featured": false,
-    "order": 9
+    "order": 10
   },
   {
     "slug": "edmi",
@@ -239,7 +263,7 @@
     "mark": "edmi",
     "layout": "tall",
     "featured": false,
-    "order": 10
+    "order": 11
   },
   {
     "slug": "provenly-homes",
@@ -263,7 +287,7 @@
     "mark": "provenly-homes",
     "layout": "square",
     "featured": false,
-    "order": 11
+    "order": 12
   },
   {
     "slug": "studioglamour",
@@ -286,7 +310,7 @@
     "mark": "studioglamour",
     "layout": "wide",
     "featured": false,
-    "order": 12
+    "order": 13
   },
   {
     "slug": "yy-dguv",
@@ -310,6 +334,6 @@
     "mark": "yy-dguv",
     "layout": "tile",
     "featured": false,
-    "order": 13
+    "order": 14
   }
 ]
