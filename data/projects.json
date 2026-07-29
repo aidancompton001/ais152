@@ -1,5 +1,30 @@
 [
   {
+    "slug": "taxi-moennigmann",
+    "title": "Taxi Mönnigmann",
+    "tagline_en": "Taxi company in Leer (Ostfriesland) — day and night, 20+ years",
+    "tagline_de": "Taxiunternehmen in Leer (Ostfriesland) — Tag und Nacht, seit über 20 Jahren",
+    "year": 2026,
+    "url": "https://taxi-moennigmann.de",
+    "status": "live",
+    "tags": [
+      "Corporate",
+      "Astro",
+      "3 Sprachen (DE/EN/Plattdeutsch)",
+      "Hero Video",
+      "WCAG 2.1 AA",
+      "DSGVO"
+    ],
+    "summary_en": "Corporate website for a Leer-based taxi company covering all Ostfriesland. Astro static build with git-CMS for news, self-hosted WOFF2 fonts, hero-video, 8 service sections (Krankenfahrten, Inklusionstaxi, Flughafentransfers, Schülertransporte, Zeitlosreisen, ...). WCAG 2.1 AA accessibility as a differentiator, phone-first mobile UX, trilingual DE/EN/Plattdeutsch (Plattdeutsch on client request), DSGVO/TTDSG compliant, hosted on ALL-INKL Germany.",
+    "summary_de": "Firmenwebsite eines Taxiunternehmens in Leer für ganz Ostfriesland. Astro-Static-Build mit Git-CMS für News, self-hosted WOFF2-Schriften, Hero-Video, 8 Leistungsbereiche (Krankenfahrten, Inklusionstaxi, Flughafentransfers, Schülertransporte, Zeitlosreisen, ...). WCAG 2.1 AA Barrierefreiheit als Differenzierungsmerkmal, Phone-first Mobile-UX, dreisprachig DE/EN/Plattdeutsch (Plattdeutsch auf Kundenwunsch), DSGVO/TTDSG-konform, Hosting bei ALL-INKL in Deutschland.",
+    "screenshot": "assets/taxi-moennigmann-site.jpg",
+    "screenshot_2x": "assets/taxi-moennigmann-site.jpg",
+    "mark": "taxi-moennigmann",
+    "layout": "feature",
+    "featured": true,
+    "order": 1
+  },
+  {
     "slug": "sorrysara",
     "title": "Sorry Sara",
     "tagline_en": "Cocktail & fry bar — Burgas · self-managed via a Telegram bot, tickets via Stripe",
@@ -21,7 +46,7 @@
     "mark": "sorrysara",
     "layout": "feature",
     "featured": true,
-    "order": 1
+    "order": 2
   },
   {
     "slug": "silkekleinart",
@@ -46,7 +71,7 @@
     "mark": "silkekleinart",
     "layout": "feature",
     "featured": true,
-    "order": 2
+    "order": 3
   },
   {
     "slug": "ofnstube",
@@ -71,7 +96,7 @@
     "mark": "ofnstube",
     "layout": "feature",
     "featured": true,
-    "order": 3
+    "order": 4
   },
   {
     "slug": "elektrocheck-stuttgart",
@@ -96,7 +121,7 @@
     "mark": "elektrocheck",
     "layout": "feature",
     "featured": true,
-    "order": 4
+    "order": 5
   },
   {
     "slug": "kontur",
@@ -120,7 +145,7 @@
     "mark": "kontur",
     "layout": "feature",
     "featured": true,
-    "order": 5
+    "order": 6
   },
   {
     "slug": "pomp",
@@ -144,7 +169,7 @@
     "mark": "pomp",
     "layout": "feature",
     "featured": true,
-    "order": 6
+    "order": 7
   },
   {
     "slug": "baupreis",
@@ -168,7 +193,7 @@
     "mark": "baupreis",
     "layout": "feature",
     "featured": true,
-    "order": 7
+    "order": 8
   },
   {
     "slug": "eko-oylis-ua",
@@ -192,7 +217,7 @@
     "mark": "eko-oylis",
     "layout": "tile",
     "featured": false,
-    "order": 8
+    "order": 9
   },
   {
     "slug": "rundumshaus",
@@ -216,7 +241,7 @@
     "mark": "rundumshaus",
     "layout": "tile",
     "featured": false,
-    "order": 9
+    "order": 10
   },
   {
     "slug": "stormguard-v2",
@@ -240,7 +265,7 @@
     "mark": "stormguard",
     "layout": "wide",
     "featured": false,
-    "order": 10
+    "order": 11
   },
   {
     "slug": "edmi",
@@ -263,7 +288,7 @@
     "mark": "edmi",
     "layout": "tall",
     "featured": false,
-    "order": 11
+    "order": 12
   },
   {
     "slug": "provenly-homes",
@@ -287,7 +312,7 @@
     "mark": "provenly-homes",
     "layout": "square",
     "featured": false,
-    "order": 12
+    "order": 13
   },
   {
     "slug": "studioglamour",
@@ -310,7 +335,7 @@
     "mark": "studioglamour",
     "layout": "wide",
     "featured": false,
-    "order": 13
+    "order": 14
   },
   {
     "slug": "yy-dguv",
@@ -334,6 +359,6 @@
     "mark": "yy-dguv",
     "layout": "tile",
     "featured": false,
-    "order": 14
+    "order": 15
   }
 ]
