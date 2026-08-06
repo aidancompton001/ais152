@@ -1,5 +1,30 @@
 [
   {
+    "slug": "hennerheede",
+    "title": "Henner Heede",
+    "tagline_en": "Design Director portfolio — BOSS, MANGO, Baldessarini, Mustang",
+    "tagline_de": "Design-Director-Portfolio — BOSS, MANGO, Baldessarini, Mustang",
+    "year": 2026,
+    "url": "https://henner.ais152.com",
+    "status": "live",
+    "tags": [
+      "Portfolio",
+      "Fashion",
+      "WordPress",
+      "ACF",
+      "Editorial",
+      "DE/EN"
+    ],
+    "summary_en": "Editorial portfolio for a Munich-based Design Director in fashion & lifestyle (BOSS, MANGO, Baldessarini, Mustang, ALPHATAURI). Hand-coded WordPress theme with ACF — 11 pages: four brand case studies with mood imagery and looped video, Philosophy, CV timeline, About, Contact. Tight editorial typography, original brand logos 1:1, self-hosted fonts, DSGVO-compliant.",
+    "summary_de": "Editorial-Portfolio für einen Münchner Design Director in Fashion & Lifestyle (BOSS, MANGO, Baldessarini, Mustang, ALPHATAURI). Handgeschriebenes WordPress-Theme mit ACF — 11 Seiten: vier Marken-Case-Studies mit Mood-Bildern und Loop-Video, Philosophy, CV-Zeitleiste, About, Contact. Enge Editorial-Typografie, Original-Markenlogos 1:1, self-hosted Schriften, DSGVO-konform.",
+    "screenshot": "assets/hennerheede-site.jpg",
+    "screenshot_2x": "assets/hennerheede-site.jpg",
+    "mark": "hennerheede",
+    "layout": "feature",
+    "featured": true,
+    "order": 1
+  },
+  {
     "slug": "taxi-moennigmann",
     "title": "Taxi Mönnigmann",
     "tagline_en": "Taxi company in Leer (Ostfriesland) — day and night, 20+ years",
@@ -22,7 +47,7 @@
     "mark": "taxi-moennigmann",
     "layout": "feature",
     "featured": true,
-    "order": 1
+    "order": 2
   },
   {
     "slug": "sorrysara",
@@ -46,7 +71,7 @@
     "mark": "sorrysara",
     "layout": "feature",
     "featured": true,
-    "order": 2
+    "order": 3
   },
   {
     "slug": "silkekleinart",
@@ -71,7 +96,7 @@
     "mark": "silkekleinart",
     "layout": "feature",
     "featured": true,
-    "order": 3
+    "order": 4
   },
   {
     "slug": "ofnstube",
@@ -96,7 +121,7 @@
     "mark": "ofnstube",
     "layout": "feature",
     "featured": true,
-    "order": 4
+    "order": 5
   },
   {
     "slug": "elektrocheck-stuttgart",
@@ -121,7 +146,7 @@
     "mark": "elektrocheck",
     "layout": "feature",
     "featured": true,
-    "order": 5
+    "order": 6
   },
   {
     "slug": "kontur",
@@ -145,7 +170,7 @@
     "mark": "kontur",
     "layout": "feature",
     "featured": true,
-    "order": 6
+    "order": 7
   },
   {
     "slug": "pomp",
@@ -169,7 +194,7 @@
     "mark": "pomp",
     "layout": "feature",
     "featured": true,
-    "order": 7
+    "order": 8
   },
   {
     "slug": "baupreis",
@@ -193,7 +218,7 @@
     "mark": "baupreis",
     "layout": "feature",
     "featured": true,
-    "order": 8
+    "order": 9
   },
   {
     "slug": "eko-oylis-ua",
@@ -217,7 +242,7 @@
     "mark": "eko-oylis",
     "layout": "tile",
     "featured": false,
-    "order": 9
+    "order": 10
   },
   {
     "slug": "rundumshaus",
@@ -241,7 +266,7 @@
     "mark": "rundumshaus",
     "layout": "tile",
     "featured": false,
-    "order": 10
+    "order": 11
   },
   {
     "slug": "stormguard-v2",
@@ -265,7 +290,7 @@
     "mark": "stormguard",
     "layout": "wide",
     "featured": false,
-    "order": 11
+    "order": 12
   },
   {
     "slug": "edmi",
@@ -288,7 +313,7 @@
     "mark": "edmi",
     "layout": "tall",
     "featured": false,
-    "order": 12
+    "order": 13
   },
   {
     "slug": "provenly-homes",
@@ -312,7 +337,7 @@
     "mark": "provenly-homes",
     "layout": "square",
     "featured": false,
-    "order": 13
+    "order": 14
   },
   {
     "slug": "studioglamour",
@@ -335,7 +360,7 @@
     "mark": "studioglamour",
     "layout": "wide",
     "featured": false,
-    "order": 14
+    "order": 15
   },
   {
     "slug": "yy-dguv",
@@ -359,6 +384,6 @@
     "mark": "yy-dguv",
     "layout": "tile",
     "featured": false,
-    "order": 15
+    "order": 16
   }
 ]
