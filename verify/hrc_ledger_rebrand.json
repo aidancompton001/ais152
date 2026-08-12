@@ -5,11 +5,11 @@
   "claims": [
     {
       "id": "01",
-      "text": "HEAD = origin/master, включая Landa-fixes d2da1be",
+      "text": "HEAD = origin/master, включая финальный фикс b427c9e (favicon)",
       "asserted": true,
       "proof": {
         "cmd": "cd c:/Projects/AiS152 && test \"$(git rev-parse HEAD)\" = \"$(git rev-parse origin/master)\" && git log --oneline -1",
-        "expect_contain": "d2da1be"
+        "expect_contain": "b427c9e"
       }
     },
     {
@@ -41,10 +41,10 @@
     },
     {
       "id": "05",
-      "text": "Во ВСЕХ tracked не-Markdown файлах (включая svg/json/html/js/gs/py) — 0 вхождений старого бренда (AiS1.52, AiS152, глиф >AiS<); остатки только в internal *.md (история DEVLOG/STATUS/TEAM)",
+      "text": "Во ВСЕХ tracked не-Markdown файлах (включая svg/json/html/js/gs/py) — 0 вхождений старого бренда (AiS1.52, AiS152, глиф >AiS<); остатки только в internal *.md (история) и verify/-артефактах (сами HRC-реестры содержат паттерны поиска)",
       "asserted": true,
       "proof": {
-        "cmd": "cd c:/Projects/AiS152 && NONMD=$(git grep -lE 'AiS1\\.52|AiS152|>AiS<' -- ':!*.md' | wc -l); echo nonmd_files=$NONMD; [ \"$NONMD\" -eq 0 ] && echo NONMD_CLEAN",
+        "cmd": "cd c:/Projects/AiS152 && NONMD=$(git grep -lE 'AiS1\\.52|AiS152|>AiS<' -- ':!*.md' ':!verify/' | wc -l); echo nonmd_files=$NONMD; [ \"$NONMD\" -eq 0 ] && echo NONMD_CLEAN",
         "expect_contain": "NONMD_CLEAN"
       }
     },
@@ -116,11 +116,11 @@
     },
     {
       "id": "14",
-      "text": "GitHub Pages билд последнего коммита d2da1be завершён (built)",
+      "text": "GitHub Pages билд последнего коммита b427c9e завершён (built)",
       "asserted": true,
       "proof": {
         "cmd": "gh api repos/aidancompton001/ais152/pages/builds | py -c \"import sys,json; b=json.load(sys.stdin)[0]; print(b['status'], b['commit'][:7])\"",
-        "expect_contain": "built d2da1be"
+        "expect_contain": "built b427c9e"
       }
     },
     {
