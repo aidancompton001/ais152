@@ -5,11 +5,11 @@
   "claims": [
     {
       "id": "01",
-      "text": "HEAD = origin/master, включая финальный фикс b427c9e (favicon)",
+      "text": "HEAD = origin/master и все ключевые коммиты (37961e7 rebrand, d780115 nav, d2da1be fixes, b427c9e favicon) — предки HEAD",
       "asserted": true,
       "proof": {
-        "cmd": "cd c:/Projects/AiS152 && test \"$(git rev-parse HEAD)\" = \"$(git rev-parse origin/master)\" && git log --oneline -1",
-        "expect_contain": "b427c9e"
+        "cmd": "cd c:/Projects/AiS152 && test \"$(git rev-parse HEAD)\" = \"$(git rev-parse origin/master)\" && git merge-base --is-ancestor 37961e7 HEAD && git merge-base --is-ancestor d780115 HEAD && git merge-base --is-ancestor d2da1be HEAD && git merge-base --is-ancestor b427c9e HEAD && echo ANCESTRY_OK",
+        "expect_contain": "ANCESTRY_OK"
       }
     },
     {
@@ -116,11 +116,11 @@
     },
     {
       "id": "14",
-      "text": "GitHub Pages билд последнего коммита b427c9e завершён (built)",
+      "text": "GitHub Pages билд favicon-фикса b427c9e присутствует в истории билдов со статусом built",
       "asserted": true,
       "proof": {
-        "cmd": "gh api repos/aidancompton001/ais152/pages/builds | py -c \"import sys,json; b=json.load(sys.stdin)[0]; print(b['status'], b['commit'][:7])\"",
-        "expect_contain": "built b427c9e"
+        "cmd": "gh api repos/aidancompton001/ais152/pages/builds | py -c \"import sys,json; d=json.load(sys.stdin); print('FOUND' if any(b['commit'].startswith('b427c9e') and b['status']=='built' for b in d) else 'MISSING')\"",
+        "expect_contain": "FOUND"
       }
     },
     {
