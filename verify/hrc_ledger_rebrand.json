@@ -1,0 +1,148 @@
+{
+  "task": "Ребрендинг AIS.152 — полная валидация (37961e7 + d780115 nav + d2da1be Landa-fixes)",
+  "threshold": 1e-08,
+  "require_landa": true,
+  "claims": [
+    {
+      "id": "01",
+      "text": "HEAD = origin/master, включая Landa-fixes d2da1be",
+      "asserted": true,
+      "proof": {
+        "cmd": "cd c:/Projects/AiS152 && test \"$(git rev-parse HEAD)\" = \"$(git rev-parse origin/master)\" && git log --oneline -1",
+        "expect_contain": "d2da1be"
+      }
+    },
+    {
+      "id": "02",
+      "text": "Рабочее дерево чистое — 0 незакоммиченных изменений в tracked-файлах",
+      "asserted": true,
+      "proof": {
+        "cmd": "cd c:/Projects/AiS152 && git status --porcelain | grep -v '^??' | wc -l",
+        "expect_equal": "0"
+      }
+    },
+    {
+      "id": "03",
+      "text": "В user-facing HTML — 0 вхождений старого бренда, включая разорванные тегами варианты (AiS<span>, AiS <em>)",
+      "asserted": true,
+      "proof": {
+        "cmd": "cd c:/Projects/AiS152 && L=$(grep -lE 'AiS1\\.52|AiS<span|AiS <em' *.html | wc -l); echo files_with_old=$L; [ \"$L\" -eq 0 ] && echo CLEAN",
+        "expect_contain": "CLEAN"
+      }
+    },
+    {
+      "id": "04",
+      "text": "В data/projects.json — 0 вхождений AiS1.52 и JSON валиден (16 проектов)",
+      "asserted": true,
+      "proof": {
+        "cmd": "cd c:/Projects/AiS152 && grep -c 'AiS1.52' data/projects.json; py -c \"import json; d=json.load(open('data/projects.json',encoding='utf-8')); print('VALID', len(d))\"",
+        "expect_contain": "VALID 16"
+      }
+    },
+    {
+      "id": "05",
+      "text": "Во ВСЕХ tracked не-Markdown файлах (включая svg/json/html/js/gs/py) — 0 вхождений старого бренда (AiS1.52, AiS152, глиф >AiS<); остатки только в internal *.md (история DEVLOG/STATUS/TEAM)",
+      "asserted": true,
+      "proof": {
+        "cmd": "cd c:/Projects/AiS152 && NONMD=$(git grep -lE 'AiS1\\.52|AiS152|>AiS<' -- ':!*.md' | wc -l); echo nonmd_files=$NONMD; [ \"$NONMD\" -eq 0 ] && echo NONMD_CLEAN",
+        "expect_contain": "NONMD_CLEAN"
+      }
+    },
+    {
+      "id": "06",
+      "text": "Live главная ais152.com содержит новый бренд AIS.152 (>=10 вхождений) и 0 старого AiS1.52",
+      "asserted": true,
+      "proof": {
+        "cmd": "NEW=$(curl -s https://ais152.com/ | grep -c 'AIS.152'); OLD=$(curl -s https://ais152.com/ | grep -c 'AiS1.52'); echo \"new=$NEW old=$OLD\"; [ \"$NEW\" -ge 10 ] && [ \"$OLD\" -eq 0 ] && echo BRAND_OK",
+        "expect_contain": "BRAND_OK"
+      }
+    },
+    {
+      "id": "07",
+      "text": "Все 8 production-страниц (/, wartung, impressum, datenschutz, agb, widerruf, avv, quiz) отдают HTTP 200 на live",
+      "asserted": true,
+      "proof": {
+        "cmd": "FAIL=0; for p in '' wartung.html impressum.html datenschutz.html agb.html widerruf.html avv.html quiz.html; do CODE=$(curl -s -o /dev/null -w '%{http_code}' \"https://ais152.com/$p\"); echo \"$p:$CODE\"; [ \"$CODE\" != 200 ] && FAIL=1; done; [ $FAIL -eq 0 ] && echo ALL_200",
+        "expect_contain": "ALL_200"
+      }
+    },
+    {
+      "id": "08",
+      "text": "Live-страницы правовых текстов не содержат старого бренда AiS1.52 (impressum, datenschutz, agb, widerruf, avv, wartung)",
+      "asserted": true,
+      "proof": {
+        "cmd": "TOTAL=0; for p in impressum.html datenschutz.html agb.html widerruf.html avv.html wartung.html; do C=$(curl -s \"https://ais152.com/$p\" | grep -c 'AiS1.52'); TOTAL=$((TOTAL+C)); done; echo \"old_total=$TOTAL\"; [ $TOTAL -eq 0 ] && echo LEGAL_CLEAN",
+        "expect_contain": "LEGAL_CLEAN"
+      }
+    },
+    {
+      "id": "09",
+      "text": "Разметка главной не сломана ребрендингом: title присутствует, schema.org JSON-LD парсится, og:title есть",
+      "asserted": true,
+      "proof": {
+        "cmd": "curl -s https://ais152.com/ > /tmp/ais_home.html; T=$(grep -c '<title>' /tmp/ais_home.html); OG=$(grep -c 'property=\"og:title\"' /tmp/ais_home.html); LD=$(grep -c 'application/ld+json' /tmp/ais_home.html); echo \"title=$T og=$OG ldjson=$LD\"; [ \"$T\" -ge 1 ] && [ \"$OG\" -ge 1 ] && [ \"$LD\" -ge 1 ] && echo MARKUP_OK",
+        "expect_contain": "MARKUP_OK"
+      }
+    },
+    {
+      "id": "10",
+      "text": "GitHub Pages билд ребрендинг-коммита 37961e7 в истории билдов со статусом built",
+      "asserted": true,
+      "proof": {
+        "cmd": "gh api repos/aidancompton001/ais152/pages/builds | py -c \"import sys,json; d=json.load(sys.stdin); print('FOUND' if any(b['commit'].startswith('37961e7') and b['status']=='built' for b in d) else 'MISSING')\"",
+        "expect_contain": "FOUND"
+      }
+    },
+    {
+      "id": "11",
+      "text": "Ребрендинг прошёл HRC+Landa валидацию ДО пуша",
+      "asserted": false,
+      "note": "Ложь — коммит 37961e7 был запушен другой сессией до валидации. Эта проверка пост-фактум. Заявлять «валидировано до пуша» нельзя."
+    },
+    {
+      "id": "12",
+      "text": "36 файлов / 90 вхождений — точный объём ребрендинга",
+      "asserted": false,
+      "note": "Числа из брифа CEO-сессии, самостоятельно не пересчитывал diff коммита. Историческое утверждение — проверяемо через git show --stat 37961e7, но не заявляю фактом без прогона."
+    },
+    {
+      "id": "13",
+      "text": "Пункт Wartung/Maintenance присутствует в обоих live-меню (desktop nav-link + mobile nav-mobile-link) после коммита d780115",
+      "asserted": true,
+      "proof": {
+        "cmd": "curl -s https://ais152.com/ > /tmp/ais_nav.html; DESK=$(grep -c 'href=\"wartung.html\" class=\"nav-link\"' /tmp/ais_nav.html); MOB=$(grep -c 'href=\"wartung.html\" class=\"nav-mobile-link\"' /tmp/ais_nav.html); echo \"desk=$DESK mob=$MOB\"; [ \"$DESK\" -eq 1 ] && [ \"$MOB\" -eq 1 ] && echo NAV_OK",
+        "expect_contain": "NAV_OK"
+      }
+    },
+    {
+      "id": "14",
+      "text": "GitHub Pages билд последнего коммита d2da1be завершён (built)",
+      "asserted": true,
+      "proof": {
+        "cmd": "gh api repos/aidancompton001/ais152/pages/builds | py -c \"import sys,json; b=json.load(sys.stdin)[0]; print(b['status'], b['commit'][:7])\"",
+        "expect_contain": "built d2da1be"
+      }
+    },
+    {
+      "id": "15",
+      "text": "Мой диагноз «сервер актуален, проблема кеш браузера» был ЛОЖНЫМ — прав был CEO: ссылки Wartung в nav-меню физически не было до d780115",
+      "asserted": false,
+      "note": "Landa F-03. Доклад CEO содержал неверный вывод: 3 curl-вхождения wartung.html были вне меню (services-карточка + footer), а не в nav. Исправлено d780115."
+    },
+    {
+      "id": "16",
+      "text": "Landa-findings F-01/F-02/F-05/F-07 исправлены и live: 0 старого бренда (включая разорванные варианты и favicon-глиф) на всех 3 concept-страницах, в form.js, на главной и в favicon.svg",
+      "asserted": true,
+      "proof": {
+        "cmd": "TOTAL=0; for u in concept-c.html concept-d-plus.html concept-g.html assets/js/form.js assets/favicon.svg ''; do C=$(curl -s \"https://ais152.com/$u\" | grep -cE 'AiS1\\.52|AiS152|AiS<span|AiS <em|>AiS<'); echo \"$u:$C\"; TOTAL=$((TOTAL+C)); done; echo total=$TOTAL; [ \"$TOTAL\" -eq 0 ] && echo FIXES_LIVE",
+        "expect_contain": "FIXES_LIVE"
+      }
+    },
+    {
+      "id": "17",
+      "text": "Apps Script deployed-версия Code.gs обновлена (redeploy)",
+      "asserted": false,
+      "note": "Правка Code.gs в репо НЕ меняет задеплоенный Apps Script — redeploy через clasp/UI = отдельный шаг CEO. Quiz endpoint пока может отдавать старый service-string."
+    }
+  ]
+}

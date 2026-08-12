@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "AiS152 Projects",
+  "title": "AIS.152 Projects",
   "description": "Source-of-truth schema for portfolio projects. Renders into the Selected Work section.",
   "type": "array",
   "items": {

@@ -1,7 +1,7 @@
 {
   "name": "ais152-quiz",
   "version": "1.0.0",
-  "description": "AiS152 quiz logic — pure functions tested with node:test",
+  "description": "AIS.152 quiz logic — pure functions tested with node:test",
   "type": "module",
   "private": true,
   "scripts": {
