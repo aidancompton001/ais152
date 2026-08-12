@@ -143,6 +143,45 @@
       "text": "Apps Script deployed-версия Code.gs обновлена (redeploy)",
       "asserted": false,
       "note": "Правка Code.gs в репо НЕ меняет задеплоенный Apps Script — redeploy через clasp/UI = отдельный шаг CEO. Quiz endpoint пока может отдавать старый service-string."
+    },
+    {
+      "id": "18",
+      "text": "Разметка не сломана на ВСЕХ 8 production-страницах (не только главной)",
+      "asserted": true,
+      "proof": {
+        "cmd": "PASS=0; TOTAL=0; for p in '' wartung.html impressum.html datenschutz.html agb.html widerruf.html avv.html quiz.html; do TOTAL=$((TOTAL+1)); B=$(curl -s \"https://ais152.com/$p\"); T=$(echo \"$B\" | grep -c '<title>'); O=$(echo \"$B\" | grep -o '<div' | wc -l); C=$(echo \"$B\" | grep -o '</div>' | wc -l); [ \"$T\" -ge 1 ] && [ \"$O\" -eq \"$C\" ] && PASS=$((PASS+1)); done; echo \"pass=$PASS/$TOTAL\"; [ \"$PASS\" -eq \"$TOTAL\" ] && echo ALL_MARKUP_OK",
+        "expect_contain": "ALL_MARKUP_OK"
+      }
+    },
+    {
+      "id": "19",
+      "text": "Гейт-инфраструктура: landa_review.json на фиксированном пути — параллельные задачи в одном репо затирают ревью друг друга (склейка с задачей kanaele)",
+      "asserted": false,
+      "note": "Инфраструктурный дефект HRC-протокола, найден Ландой на собственном ревью. Фикс (path из имени леджера + поле ledger) — отдельная задача в MainCore core/verify/hrc.py."
+    },
+    {
+      "id": "20",
+      "text": "og-теги отсутствуют на wartung.html и правовых страницах — ссылка на платную услугу уходит в мессенджеры без превью",
+      "asserted": false,
+      "note": "Вне скоупа ребрендинга (их не было с создания страниц, git show 5df025d). Кандидат на отдельную задачу — Wartung это коммерческая услуга, превью в WhatsApp важно."
+    },
+    {
+      "id": "21",
+      "text": "Мобильная выдача 375/768/1440, кликабельность пункта меню и отсутствие переполнения проверены",
+      "asserted": false,
+      "note": "НЕ проверялось. Claim 13 подтверждает только присутствие в DOM. Именно DOM-vs-видимость подмена породила ложный диагноз claim 15. Требуется браузерная проверка (Playwright) — отдельный прогон."
+    },
+    {
+      "id": "22",
+      "text": "Консоль браузера без ошибок на всех страницах",
+      "asserted": false,
+      "note": "НЕ проверялось ни на одной странице."
+    },
+    {
+      "id": "23",
+      "text": "sitemap.xml покрывает все production-страницы",
+      "asserted": false,
+      "note": "Ложь — sitemap содержит только / и /quiz. wartung.html (коммерческая услуга) и правовые страницы отсутствуют. Кандидат на отдельную задачу."
     }
   ]
 }
