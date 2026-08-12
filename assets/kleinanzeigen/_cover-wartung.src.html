@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1200px; height:900px; }
+  body {
+    background:#0B0E12;
+    color:#F4EFE5;
+    font-family:'Inter',-apple-system,'Segoe UI',Arial,sans-serif;
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding:78px 76px 66px;
+    position:relative; overflow:hidden;
+  }
+  .glow {
+    position:absolute; width:900px; height:900px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,106,60,0.16) 0%, rgba(255,106,60,0) 62%);
+    top:-330px; right:-300px; pointer-events:none;
+  }
+  .top { position:relative; z-index:2; }
+  .brand {
+    display:flex; align-items:baseline; gap:5px;
+    font-weight:800; font-size:34px; letter-spacing:-0.5px; margin-bottom:64px;
+  }
+  .brand .v { color:#FF6A3C; }
+  .brand .city {
+    margin-left:20px; font-size:19px; font-weight:600; letter-spacing:3.4px;
+    color:#8A8F98; text-transform:uppercase;
+  }
+  h1 {
+    font-size:96px; line-height:0.98; font-weight:800; letter-spacing:-3.4px;
+    margin-bottom:40px;
+  }
+  h1 .or { color:#FF6A3C; display:block; }
+  .price {
+    display:inline-flex; align-items:baseline; gap:16px;
+    border:2px solid #FF6A3C; border-radius:6px;
+    padding:20px 34px; background:rgba(255,106,60,0.09);
+  }
+  .price .num { font-size:76px; font-weight:800; letter-spacing:-2.6px; color:#FF6A3C; line-height:1; }
+  .price .per { font-size:31px; font-weight:600; color:#F4EFE5; }
+  .price .ab  { font-size:26px; font-weight:600; color:#8A8F98; }
+  .proof { margin-top:52px; }
+  .proof-head {
+    font-size:21px; font-weight:700; letter-spacing:2.6px; text-transform:uppercase;
+    color:#8A8F98; margin-bottom:14px;
+  }
+  .proof-list { font-size:27px; font-weight:600; color:#F4EFE5; }
+  .bottom { position:relative; z-index:2; }
+  ul { list-style:none; display:flex; gap:44px; margin-bottom:44px; }
+  li { font-size:29px; font-weight:600; display:flex; align-items:center; gap:13px; }
+  li::before {
+    content:''; width:12px; height:12px; border-radius:50%;
+    background:#FF6A3C; flex:none;
+  }
+  .foot {
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:1px solid #23282F; padding-top:34px;
+    font-size:25px; color:#8A8F98; font-weight:500;
+  }
+  .foot b { color:#F4EFE5; font-weight:700; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+
+  <div class="top">
+    <div class="brand">
+      <span>AiS</span><span class="v">1.52</span>
+      <span class="city">München</span>
+    </div>
+
+    <h1>
+      Ihre Website
+      <span class="or">in guten Händen</span>
+    </h1>
+
+    <div class="price">
+      <span class="ab">ab</span>
+      <span class="num">39 €</span>
+      <span class="per">/ Monat</span>
+    </div>
+
+    <div class="proof">
+      <div class="proof-head">16 abgeschlossene Projekte seit 2025</div>
+      <div class="proof-list">
+        taxi-moennigmann.de &nbsp;·&nbsp; elektrocheckstuttgart.de &nbsp;·&nbsp; silkekleinart.com
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <ul>
+      <li>Updates</li>
+      <li>Backups</li>
+      <li>Monitoring</li>
+      <li>DSGVO</li>
+    </ul>
+    <div class="foot">
+      <span>Monatlich kündbar · keine Mindestlaufzeit</span>
+      <span><b>ais152.com</b></span>
+    </div>
+  </div>
+</body>
+</html>
