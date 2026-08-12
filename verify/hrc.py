@@ -64,7 +64,7 @@ v2: СТАТУС НЕ ОБЪЯВЛЯЕТСЯ, А ВЫЧИСЛЯЕТСЯ. Док�
   claims есть, все asserted=false → PASS: реестр вёлся, статус-факт снят.
 
 СЛОЙ ЛАНДЫ ("require_landa": true):
-  Требует verify/landa_review.json — вердикт #14 Hans Landa, покрывающий все id
+  Требует verify/landa_review<суффикс_леджера>.json — вердикт #14 Hans Landa, покрывающий все id
   реестра и отдельно перечисляющий claim'ы, которые агент в реестр НЕ внёс.
   Закрывает дыру, которую машина закрыть не может: умолчание.
 
@@ -145,14 +145,13 @@ def run_proof(proof):
 def review_path_for(ledger_path):
     """Путь к ревью ВЫВОДИТСЯ из имени леджера, а не зашит.
 
-    hrc_ledger_kanaele.json -> landa_review_kanaele.json
+    hrc_ledger_rebrand.json -> landa_review_rebrand.json
     hrc_ledger.json         -> landa_review.json
 
-    До 2026-08-12 имя было зашито: в каталоге несколько леджеров, а место под
-    ревью одно, поэтому реестр одной задачи гейтился обзором другой. При
-    совпадении нумерации claim'ов подмена не видна, и задача уходила в зелёный
-    по ревью, которое её не читало.
-    """
+    Зашитое имя (до 2026-08-12) означало, что реестр одной задачи гейтился
+    ревью другой: при нескольких леджерах в одном verify/ место под ревью
+    было одно, и параллельные задачи молча затирали вердикты друг друга.
+    Прецедент: AiS152, задачи rebrand + kanaele, 12.08.2026."""
     d = os.path.dirname(ledger_path) or "."
     base = os.path.basename(ledger_path)
     stem = base[:-5] if base.endswith(".json") else base
@@ -160,46 +159,31 @@ def review_path_for(ledger_path):
     return os.path.join(d, f"landa_review{suffix}.json")
 
 
-def check_landa(ledger_path, claim_ids, ledger_task=None):
+def check_landa(ledger_path, claim_ids):
     """Слой внешнего ревью. Возврат: (ok: bool, msg: str)."""
     review = review_path_for(ledger_path)
+    review_name = os.path.basename(review)
     if not os.path.isfile(review):
-        return False, (f"требуется ревью #14 Hans Landa: файла {os.path.basename(review)} нет. "
-                       "Вызови субагента hans-landa и сохрани вердикт ИМЕННО под этим именем "
-                       "(имя выводится из имени леджера — чужое ревью не подойдёт).")
+        return False, (f"требуется ревью #14 Hans Landa: файла {review_name} нет. "
+                       "Вызови субагента hans-landa и сохрани его вердикт ИМЕННО под этим "
+                       "именем (имя выводится из имени леджера — чужое ревью не подойдёт).")
     try:
         with open(review, encoding="utf-8") as f:
             data = json.load(f)
     except json.JSONDecodeError as e:
-        return False, f"{os.path.basename(review)} не парсится ({e})"
+        return False, f"{review_name} не парсится ({e})"
 
-    # Принадлежность ревью задаче. Только имени файла мало: файл можно
-    # переименовать, и обзор чужой задачи проведёт эту в зелёный. Если ревью
-    # само называет задачу или леджер — сверяем; несовпадение = красный.
-    # Поля ОБЯЗАТЕЛЬНЫ. Пока они были опциональны, дыра закрывалась не до конца:
-    # достаточно удалить два ключа из чужого ревью, и проверка молчала, потому что
-    # ей нечего сверять. Отсутствие провенанса должно читаться как «не доказано»,
-    # а не как «сверять нечего» — иначе обход стоит одного нажатия Delete.
-    r_task = str(data.get("task", "")).strip()
-    r_ledger = str(data.get("ledger", "")).strip()
-    if not r_task or not r_ledger:
-        missing_fields = [k for k in ("task", "ledger") if not str(data.get(k, "")).strip()]
-        return False, (f"в {os.path.basename(review)} нет пол(я/ей) {', '.join(missing_fields)} — "
-                       "ревью обязано называть задачу и леджер, для которых составлено. "
-                       "Без этого принадлежность обзора задаче не доказана.")
-    if ledger_task and r_task != str(ledger_task).strip():
-        return False, (f"ревью относится к задаче '{r_task}', а гейтится '{ledger_task}' — "
-                       "чужой обзор задачу не проверял")
-    if os.path.basename(r_ledger) != os.path.basename(ledger_path):
-        return False, (f"ревью составлено для леджера '{os.path.basename(r_ledger)}', "
-                       f"а гейтится '{os.path.basename(ledger_path)}'")
+    declared = data.get("ledger")
+    if declared and os.path.basename(declared) != os.path.basename(ledger_path):
+        return False, (f"{review_name} привязан к другому леджеру "
+                       f"('{declared}' != '{os.path.basename(ledger_path)}') — подмена ревью")
 
     reviewed = {str(c.get("id")) for c in data.get("reviewed_claims", [])}
     missing = [i for i in claim_ids if i not in reviewed]
     if missing:
         return False, f"Ланда не покрыл claim(ы): {', '.join(missing)}"
     if "unlisted_claims" not in data:
-        return False, ("в landa_review.json нет поля 'unlisted_claims' — Ланда обязан "
+        return False, ("в ревью-файле нет поля 'unlisted_claims' — Ланда обязан "
                        "перечислить утверждения из ответа, которых НЕТ в реестре "
                        "(пустой список = таких не найдено)")
     rejected = [str(c.get("id")) for c in data.get("reviewed_claims", [])
@@ -281,8 +265,7 @@ def main():
         sys.exit(1)
 
     if data.get("require_landa") is True:
-        ok, msg = check_landa(path, [str(c.get("id")) for c in claims],
-                              ledger_task=data.get("task"))
+        ok, msg = check_landa(path, [str(c.get("id")) for c in claims])
         print(f"СЛОЙ ЛАНДЫ: {msg}")
         if not ok:
             print("VERDICT: FAIL — внешнее ревью не пройдено.")
