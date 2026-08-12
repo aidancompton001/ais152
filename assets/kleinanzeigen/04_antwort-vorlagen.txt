@@ -1,0 +1,176 @@
+═══════════════════════════════════════════════════════════
+ANTWORT-VORLAGEN — was schreiben, wenn ein Kunde sich meldet
+═══════════════════════════════════════════════════════════
+
+REGEL: Erste Antwort ohne Preis, wenn die Anfrage unkonkret ist.
+       Ein Preis ohne Kenntnis der Aufgabe schreckt ab oder bindet
+       dich an eine schlechte Zahl.
+
+RHYTHMUS
+  innerhalb 1 Stunde       erste Antwort mit Rückfragen
+  innerhalb 1 Werktag      Angebot mit Festpreis
+  nach 3 Tagen Stille      eine kurze Nachfrage
+  nach 7 Tagen Stille      schließen, nicht mehr schreiben
+  Ein drittes Schreiben bringt keine Aufträge und kostet Eindruck.
+
+
+───────────────────────────────────────────────────────────
+1. ERSTE ANTWORT — allgemein
+───────────────────────────────────────────────────────────
+
+Guten Tag,
+
+danke für Ihre Nachricht.
+
+Damit ich Ihnen einen verbindlichen Festpreis nennen kann und keine
+Hausnummer, brauche ich drei Angaben:
+
+1. Um welche Website geht es? (Adresse genügt — falls es noch keine
+   gibt, sagen Sie mir kurz, was Sie anbieten)
+2. Was soll sich ändern? Ein Satz reicht.
+3. Bis wann brauchen Sie das?
+
+Danach bekommen Sie von mir innerhalb eines Werktages einen Festpreis
+und einen Terminvorschlag — schriftlich, ohne Beratungstermin.
+
+Meine bisherigen Arbeiten können Sie sich jederzeit ansehen:
+ais152.com
+
+Viele Grüße
+Eduard Morocho Baias
+AIS.152 — Softwareentwicklung
+München · +49 155 636 75 772
+
+
+───────────────────────────────────────────────────────────
+2. ERSTE ANTWORT — Praxis / Kanzlei
+───────────────────────────────────────────────────────────
+
+Guten Tag,
+
+danke für Ihre Anfrage.
+
+Vier Fragen, dann kann ich Ihnen einen Festpreis nennen:
+
+1. Was für eine Praxis führen Sie, und wie viele Behandelnde sind Sie?
+2. Gibt es schon eine Website? Wenn ja: welche Adresse?
+3. Sollen Patienten online Termine buchen können, oder reicht
+   Telefon und Kontaktformular?
+4. Wer betreut die Seite bisher — und kommen Sie an die Zugänge?
+
+Zum Datenschutz: sobald ich Zugriff auf eine Seite bekomme, über die
+Patientenanfragen laufen, verarbeite ich personenbezogene Daten in Ihrem
+Auftrag. Dafür schließen wir vor Projektbeginn einen Auftragsverarbeitungs-
+vertrag nach Art. 28 DSGVO. Mein Muster können Sie vorab lesen:
+ais152.com/avv.html
+
+Sie bekommen von mir innerhalb eines Werktages einen Festpreis, schriftlich.
+
+Viele Grüße
+Eduard Morocho Baias
+AIS.152 — Softwareentwicklung
+München · +49 155 636 75 772
+
+
+───────────────────────────────────────────────────────────
+3. ANGEBOT — Konvertierung zum Auftrag
+───────────────────────────────────────────────────────────
+
+Guten Tag [Name],
+
+wie besprochen, hier mein Angebot.
+
+LEISTUNG
+[konkret, 3–5 Zeilen — was genau gemacht wird]
+
+NICHT ENTHALTEN
+[was nicht dazugehört — ehrlich, das erspart 90 % der späteren Streitigkeiten]
+
+PREIS
+[Summe] € — Festpreis
+Kein Ausweis von Umsatzsteuer gemäß § 19 UStG (Kleinunternehmerregelung).
+
+ZAHLUNG
+50 % bei Auftragsbestätigung, 50 % nach Abnahme.
+
+TERMIN
+Start: [Datum] · Übergabe: [Datum]
+
+DANACH
+30 Tage kostenlose Nachbesserung, zusätzlich zur gesetzlichen
+Gewährleistung. Laufende Betreuung optional ab 39 €/Monat,
+monatlich kündbar — kein Muss.
+
+────────────────────────
+Zum Ablauf: Als Verbraucher haben Sie ein Widerrufsrecht von 14 Tagen
+ab Vertragsschluss. Wenn Sie möchten, dass ich sofort anfange und nicht
+erst in zwei Wochen, brauche ich dafür Ihre ausdrückliche Bestätigung.
+Antworten Sie in diesem Fall bitte mit diesem Satz:
+
+„Ich verlange ausdrücklich, dass Sie mit der Erbringung der Dienstleistung
+vor Ablauf der Widerrufsfrist beginnen. Mir ist bekannt, dass mein
+Widerrufsrecht mit vollständiger Vertragserfüllung erlischt."
+
+Die vollständige Widerrufsbelehrung mit Muster-Widerrufsformular finden
+Sie unter ais152.com/widerruf.html
+────────────────────────
+
+Wenn das so passt, antworten Sie einfach mit „Einverstanden" — dann
+schicke ich die Auftragsbestätigung und lege los.
+
+Viele Grüße
+Eduard Morocho Baias
+AIS.152 — Softwareentwicklung
+Oefelestraße 19, 81543 München
++49 155 636 75 772 · ais152.com
+
+  >> WICHTIG: Ohne diesen Bestätigungssatz bekommst du bei einem Widerruf
+     nach 13 Tagen Arbeit KEIN Geld (§ 357a Abs. 2 BGB). Nie weglassen.
+
+
+───────────────────────────────────────────────────────────
+4. ABSAGE bei zu kleinem Budget
+───────────────────────────────────────────────────────────
+
+Regel: Weicht das Budget um mehr als das Doppelte ab — sofort und
+höflich absagen, nicht handeln. Das spart Wochen.
+
+Guten Tag,
+
+danke für die Offenheit. In diesem Rahmen kann ich die Arbeit nicht
+seriös anbieten — dafür müsste ich an der Substanz sparen, und das
+würde Ihnen nichts bringen.
+
+Was in Ihrem Budget realistisch ist: [Wartung 39 €/Monat / Umzug 149 € /
+eine einzelne Seite statt einer vollständigen Website].
+
+Falls sich der Rahmen später ändert, melden Sie sich gerne.
+
+Viele Grüße
+Eduard Morocho Baias
+
+
+───────────────────────────────────────────────────────────
+5. NACHFASSEN nach 3 Tagen Stille
+───────────────────────────────────────────────────────────
+
+Guten Tag [Name],
+
+kurze Nachfrage zu meinem Angebot von [Datum] — ist es noch aktuell?
+
+Falls Sie sich anders entschieden haben, ist das völlig in Ordnung,
+sagen Sie einfach kurz Bescheid. Dann halte ich den Termin nicht frei.
+
+Viele Grüße
+Eduard
+
+
+───────────────────────────────────────────────────────────
+KUNDEN QUALIFIZIEREN — 5 Fragen vor jedem Angebot
+───────────────────────────────────────────────────────────
+
+Wer entscheidet?            Warnsignal: "muss noch mit Partner sprechen" im 3. Brief
+Zugänge zu Domain/Hosting?  Warnsignal: "das hatte mein Neffe gemacht" -> Suchzeit einplanen
+Welches Budget gedacht?     Warnsignal: mehr als Faktor 2 daneben -> absagen
+Welcher Termin?             Warnsignal: "bis übermorgen" -> Aufschlag oder Nein
+Was stört heute konkret?    Warnsignal: "alles" -> Aufgabe unklar, Telefonat nötig

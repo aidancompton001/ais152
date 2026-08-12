@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   AiS1.52 — form.js
+   AIS.152 — form.js
    Contact form submission with FormSubmit.co primary +
    Web3Forms fallback. UI states: idle / loading / success / error.
    No external dependencies.

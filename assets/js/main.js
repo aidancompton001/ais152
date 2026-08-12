@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   AiS1.52 — main.js
+   AIS.152 — main.js
    Entry point. Initializes Lenis + GSAP + ScrollTrigger,
    wires up scroll progress, magnetic buttons, counters,
    header behavior, mobile menu, and reveal timelines.
@@ -423,7 +423,7 @@
 
   // ──────────────── DEV CONSOLE BANNER ────────────────
   if (typeof console !== 'undefined' && console.log) {
-    console.log('%cAiS 1.52','color:#FF6A3C;font:700 14px "JetBrains Mono", monospace');
+    console.log('%cAIS.152','color:#FF6A3C;font:700 14px "JetBrains Mono", monospace');
     console.log('%cBuilt with vanilla HTML + GSAP. No frameworks. No trackers.','color:#7DC4FF;font:11px monospace');
   }
 })();

@@ -1,0 +1,83 @@
+═══════════════════════════════════════════════════════════
+ANZEIGE 1 — WEBSITE-WARTUNG
+═══════════════════════════════════════════════════════════
+
+FELD: Gebot / Gesuch
+  Ich biete
+
+FELD: Titel  (61 Zeichen, Limit 65)
+Website-Wartung München — Updates, Backups, DSGVO ab 39 €/Monat
+
+FELD: Kategorie
+  Dienstleistungen > Weitere Dienstleistungen
+
+FELD: Preis
+  39        Preistyp: Festpreis
+
+FELD: PLZ / Ort
+  81543 / München
+  Straße: leer lassen, Haken "Vollständige Adresse anzeigen" NICHT setzen
+
+FELD: Ansprechpartner
+  Eduard Morocho Baias
+
+FELD: Telefonnummer
+  Haken "Telefonnummer anzeigen" NICHT setzen
+
+FELD: Bilder — Reihenfolge wichtig, das erste entscheidet
+  1. assets/kleinanzeigen/wartung-cover.png
+  2. assets/taxi-moennigmann-site.jpg
+  3. assets/elektrocheck-site.jpg
+  4. assets/rundumshaus-site.jpg
+  5. assets/silkekleinart-site.jpg
+  NICHT verwenden: hennerheede-site.jpg (fremde Markenlogos BOSS/MANGO)
+
+
+───────────────────────────────────────────────────────────
+FELD: Beschreibung  (2217 Zeichen, Limit 4000)
+───────────────────────────────────────────────────────────
+
+Ihre Website läuft. Aber wer kümmert sich darum, wenn sie es nicht mehr tut?
+
+Die meisten Websites werden einmal gebaut und dann sich selbst überlassen. Updates bleiben liegen, Backups gibt es nicht, das Kontaktformular schickt seit Monaten ins Leere — und niemand merkt es, bis ein Kunde anruft.
+
+Ich übernehme den laufenden Betrieb Ihrer Website. Monatlich kündbar, ohne Mindestlaufzeit.
+
+**BASIS — 39 €/Monat**
+· Updates für CMS, Plugins und Themes
+· Wöchentliches Backup, extern gespeichert
+· Monitoring der Erreichbarkeit
+· Wiederherstellung nach Ausfall
+· Kurzbericht per E-Mail, einmal im Monat
+
+**STANDARD — 59 €/Monat**
+· alles aus BASIS
+· Updates erst auf einer Testkopie, dann live — kein Blindflug
+· Bis zu 2 Stunden Inhaltsänderungen pro Monat (Texte, Bilder, Öffnungszeiten, Team)
+· Prüfung von Impressum, Datenschutzerklärung und Einwilligungsverwaltung
+· Antwort innerhalb eines Werktages
+
+**PRAXIS & KANZLEI — 79 €/Monat**
+· alles aus STANDARD
+· Auftragsverarbeitungsvertrag nach Art. 28 DSGVO, unterschrieben
+· Jährliche Prüfung der Datenschutz-Dokumente
+· Vertraulichkeit auch gegenüber Dritten schriftlich zugesichert
+
+Was ich betreue: WordPress, WooCommerce, statische Seiten, Next.js, Astro, Eleventy. Hosting bei Ihrem bisherigen Anbieter oder bei einem deutschen Hoster — Sie behalten die Zugänge, ich bekomme nur, was ich brauche.
+
+Kein Abo-Zwang. Wenn Sie aufhören wollen, hören Sie zum Monatsende auf, und ich übergebe alle Zugänge und ein vollständiges Backup.
+
+**WER ICH BIN**
+
+Eduard Morocho Baias, Softwareentwickler aus München, Einzelunternehmer. Sie sprechen mit mir — nicht mit einem Account Manager, der Ihr Anliegen weiterleitet.
+
+Sechzehn abgeschlossene Projekte seit 2025. Fünf davon können Sie direkt ansehen:
+· taxi-moennigmann.de — Taxiunternehmen, Ostfriesland
+· elektrocheckstuttgart.de — Elektro-Prüfservice, B2B
+· rundumshaus-littawe.de — Hausmeisterservice
+· silkekleinart.com — Künstlerin, WordPress
+· ais152.com — meine eigene Seite
+
+**SO LÄUFT ES AN**
+
+Schreiben Sie mir kurz, welche Website es ist. Ich schaue sie mir an und sage Ihnen ehrlich, was sie braucht — auch dann, wenn die Antwort „nichts, das läuft sauber" lautet. Diese erste Einschätzung kostet nichts.

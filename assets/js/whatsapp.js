@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   AiS1.52 — whatsapp.js
+   AIS.152 — whatsapp.js
    DSGVO-compliant 2-click WhatsApp opener.
    Modal explicitly informs user that data goes to Meta before
    the wa.me/ link is followed.

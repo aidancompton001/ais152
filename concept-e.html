@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept E — Pure Monochrome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #F9F9F7;
+  --white: #FFFFFF;
+  --text: #0C0C0A;
+  --mid: #444;
+  --muted: #888;
+  --light: #EFEFED;
+  --border: #DDDDD9;
+  --accent: #1A1A1A;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 56px;
+  background: rgba(249,249,247,0.92); backdrop-filter: blur(16px);
+}
+nav .logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; letter-spacing: -0.02em; font-style: italic;
+}
+nav .nav-right { display: flex; align-items: center; gap: 48px; }
+nav .links { display: flex; gap: 36px; }
+nav .links a {
+  font-size: 14px; color: var(--muted);
+  text-decoration: none; font-weight: 400; transition: color 0.2s;
+}
+nav .links a:hover { color: var(--text); }
+nav .cta {
+  font-size: 14px; font-weight: 500; color: var(--white);
+  background: var(--text); padding: 11px 26px;
+  text-decoration: none; border-radius: 2px; transition: opacity 0.2s;
+}
+nav .cta:hover { opacity: 0.8; }
+
+/* HERO — full screen, centered */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 120px 56px 80px;
+  position: relative;
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 12px; font-weight: 500; color: var(--muted);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 48px;
+}
+.hero-dot { width: 6px; height: 6px; background: var(--text); border-radius: 50%; }
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(56px, 10vw, 140px);
+  line-height: 0.92; letter-spacing: -0.03em;
+  margin-bottom: 48px; max-width: 1000px;
+}
+.hero h1 em { font-style: italic; color: var(--muted); }
+
+.hero-sub {
+  font-size: 18px; color: var(--muted); line-height: 1.65;
+  max-width: 500px; font-weight: 300; margin-bottom: 56px;
+}
+.hero-actions { display: flex; gap: 16px; align-items: center; }
+.btn-black {
+  background: var(--text); color: var(--white);
+  font-size: 15px; font-weight: 500; padding: 17px 44px;
+  text-decoration: none; border-radius: 2px;
+  transition: opacity 0.2s; letter-spacing: -0.01em;
+}
+.btn-black:hover { opacity: 0.8; }
+.btn-line {
+  font-size: 15px; font-weight: 500; color: var(--muted);
+  text-decoration: none; letter-spacing: -0.01em;
+  border-bottom: 1px solid var(--border); padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-line:hover { color: var(--text); border-color: var(--text); }
+
+/* SCROLL INDICATOR */
+.scroll-ind {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.scroll-line {
+  width: 1px; height: 48px; background: var(--border);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.scroll-text { font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+
+/* NUMBERS STRIP */
+.numbers { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.numbers-inner {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  max-width: 1400px; margin: 0 auto;
+}
+.num-item {
+  padding: 56px;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.num-item:last-child { border-right: none; }
+.num-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 64px; line-height: 1; letter-spacing: -0.04em;
+  color: var(--text);
+}
+.num-label { font-size: 13px; color: var(--muted); font-weight: 400; letter-spacing: 0.02em; }
+
+/* WORK */
+.work { max-width: 1400px; margin: 0 auto; padding: 100px 56px; }
+.work-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 64px;
+  border-bottom: 1px solid var(--border); padding-bottom: 32px;
+}
+.work-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(40px, 6vw, 64px); letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.work-header h2 em { font-style: italic; color: var(--muted); }
+.work-header a { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 400; }
+.work-header a:hover { color: var(--text); }
+
+/* PROJECT LIST */
+.proj {
+  display: grid; grid-template-columns: 72px 1fr auto;
+  align-items: center; gap: 40px;
+  padding: 40px 0; border-bottom: 1px solid var(--border);
+  cursor: pointer; transition: background 0.2s;
+  position: relative;
+}
+.proj:first-child { border-top: 1px solid var(--border); }
+.proj:hover { padding-left: 16px; padding-right: 16px; margin: 0 -16px; background: var(--white); }
+.proj:hover .proj-num { color: var(--text); }
+.proj:hover .proj-arrow { opacity: 1; transform: translateX(4px); }
+
+.proj-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: var(--muted); font-style: italic;
+  transition: color 0.2s;
+}
+.proj-main {}
+.proj-tags { display: flex; gap: 8px; margin-bottom: 10px; }
+.proj-tag {
+  font-size: 11px; font-weight: 500; color: var(--muted);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid var(--border); padding: 3px 10px;
+}
+.proj-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px; letter-spacing: -0.02em; margin-bottom: 6px;
+}
+.proj-desc { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+.proj-arrow {
+  font-size: 24px; color: var(--text); opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+/* SERVICES — minimal */
+.services-strip {
+  background: var(--text); color: var(--white);
+  padding: 80px 56px;
+}
+.services-strip h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 40px; margin-bottom: 48px; font-style: italic;
+  opacity: 0.5;
+}
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+.srv { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 24px; }
+.srv-num { font-size: 12px; opacity: 0.4; margin-bottom: 12px; font-weight: 500; }
+.srv-title { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+.srv-desc { font-size: 14px; opacity: 0.5; line-height: 1.65; font-weight: 300; }
+
+.badge {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  background: var(--text); color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; padding: 10px 20px;
+  letter-spacing: -0.01em; border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  nav .links { display: none; }
+  .hero { padding: 100px 24px 80px; }
+  .numbers-inner { grid-template-columns: repeat(2, 1fr); }
+  .num-item { padding: 40px 24px; }
+  .work { padding: 60px 24px; }
+  .proj { grid-template-columns: 40px 1fr; }
+  .proj-arrow { display: none; }
+  .services-strip { padding: 60px 24px; }
+  .services-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">AIS.152</span>
+  <div class="nav-right">
+    <div class="links">
+      <a href="#">Work</a>
+      <a href="#">Services</a>
+      <a href="#">About</a>
+    </div>
+    <a href="#" class="cta">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-dot"></span>
+    Senior Software Engineer · Munich, Germany
+    <span class="hero-dot"></span>
+  </div>
+  <h1>Building digital<br>products with <em>intent</em></h1>
+  <p class="hero-sub">AI-powered applications, mobile platforms, and full-stack systems. Precision engineering, from first line to final deploy.</p>
+  <div class="hero-actions">
+    <a href="#" class="btn-black">View work</a>
+    <a href="#" class="btn-line">Let's talk →</a>
+  </div>
+  <div class="scroll-ind">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<div class="numbers">
+  <div class="numbers-inner">
+    <div class="num-item">
+      <div class="num-val">12+</div>
+      <div class="num-label">Products shipped</div>
+    </div>
+    <div class="num-item">
+      <div class="num-val">4</div>
+      <div class="num-label">Platforms built</div>
+    </div>
+    <div class="num-item">
+      <div class="num-val">100%</div>
+      <div class="num-label">On-time delivery</div>
+    </div>
+    <div class="num-item">
+      <div class="num-val">5y+</div>
+      <div class="num-label">Engineering experience</div>
+    </div>
+  </div>
+</div>
+
+<div class="work">
+  <div class="work-header">
+    <h2>Selected <em>work</em></h2>
+    <a href="#">See all →</a>
+  </div>
+
+  <div class="proj">
+    <div class="proj-num">01</div>
+    <div class="proj-main">
+      <div class="proj-tags">
+        <span class="proj-tag">SaaS</span>
+        <span class="proj-tag">AI</span>
+        <span class="proj-tag">Germany</span>
+      </div>
+      <div class="proj-title">BauPreis AI</div>
+      <div class="proj-desc">Construction material price monitoring platform with Claude AI forecasts and Preisgleitklausel calculator.</div>
+    </div>
+    <div class="proj-arrow">↗</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-num">02</div>
+    <div class="proj-main">
+      <div class="proj-tags">
+        <span class="proj-tag">Mobile</span>
+        <span class="proj-tag">iOS</span>
+        <span class="proj-tag">Android</span>
+      </div>
+      <div class="proj-title">MONO Men Only</div>
+      <div class="proj-desc">Full-stack booking platform for Munich's premium men's grooming studio. React Native, NestJS, Altegio integration.</div>
+    </div>
+    <div class="proj-arrow">↗</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-num">03</div>
+    <div class="proj-main">
+      <div class="proj-tags">
+        <span class="proj-tag">Mobile</span>
+        <span class="proj-tag">AI</span>
+      </div>
+      <div class="proj-title">EDMI</div>
+      <div class="proj-desc">Dental microscope store app with AI configurator, Claude AI assistant, and WooCommerce integration.</div>
+    </div>
+    <div class="proj-arrow">↗</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-num">04</div>
+    <div class="proj-main">
+      <div class="proj-tags">
+        <span class="proj-tag">Automation</span>
+        <span class="proj-tag">n8n</span>
+      </div>
+      <div class="proj-title">Twitter 4.0</div>
+      <div class="proj-desc">Autonomous X.com automation with AI content generation. Anti-detect, RDP compatible, n8n orchestration.</div>
+    </div>
+    <div class="proj-arrow">↗</div>
+  </div>
+</div>
+
+<div class="services-strip">
+  <h3>What I build</h3>
+  <div class="services-grid">
+    <div class="srv">
+      <div class="srv-num">01</div>
+      <div class="srv-title">AI-Powered Apps</div>
+      <div class="srv-desc">Claude AI, Gemini, GPT integration. Smart classification, generation, and autonomous action systems.</div>
+    </div>
+    <div class="srv">
+      <div class="srv-num">02</div>
+      <div class="srv-title">Mobile Platforms</div>
+      <div class="srv-desc">React Native for iOS and Android. Push notifications, deep linking, App Store deployment.</div>
+    </div>
+    <div class="srv">
+      <div class="srv-num">03</div>
+      <div class="srv-title">Full-Stack Systems</div>
+      <div class="srv-desc">NestJS backends, PostgreSQL, Docker, CI/CD. From architecture to production deployment.</div>
+    </div>
+  </div>
+</div>
+
+<div class="badge">Concept E — Monochrome Luxury</div>
+
+</body>
+</html>

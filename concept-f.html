@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept F — Framer × Resend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #FAFAFA;
+  --white: #FFFFFF;
+  --text: #09090B;
+  --mid: #3F3F46;
+  --muted: #71717A;
+  --accent: #6366F1;
+  --accent-light: #EEF2FF;
+  --border: #E4E4E7;
+  --radius: 12px;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* GRAIN */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9990; pointer-events: none; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  animation: grn 1s steps(2) infinite;
+}
+@keyframes grn {
+  0%{background-position:0 0} 25%{background-position:-80px 40px} 50%{background-position:40px -80px} 75%{background-position:-40px -40px} 100%{background-position:80px 80px}
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 56px;
+  background: rgba(250,250,250,0.85); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+nav .logo {
+  font-size: 15px; font-weight: 700; letter-spacing: -0.03em;
+  display: flex; align-items: center; gap: 8px;
+}
+nav .logo-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+  background: var(--accent); color: #fff;
+  padding: 2px 7px; border-radius: 4px;
+  text-transform: uppercase;
+}
+nav .links { display: flex; gap: 4px; }
+nav .links a {
+  font-size: 13px; color: var(--muted); text-decoration: none;
+  font-weight: 500; padding: 6px 12px; border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+nav .links a:hover { background: var(--border); color: var(--text); }
+nav .nav-right { display: flex; align-items: center; gap: 8px; }
+nav .btn-ghost {
+  font-size: 13px; font-weight: 600; color: var(--mid);
+  text-decoration: none; padding: 7px 14px; border: 1px solid var(--border);
+  border-radius: var(--radius); transition: border-color 0.15s, color 0.15s;
+}
+nav .btn-ghost:hover { border-color: var(--text); color: var(--text); }
+nav .btn-filled {
+  font-size: 13px; font-weight: 600; color: #fff;
+  text-decoration: none; padding: 7px 16px;
+  background: var(--accent); border-radius: var(--radius);
+  transition: opacity 0.15s, transform 0.2s cubic-bezier(.34,1.56,.64,1);
+  box-shadow: 0 1px 3px rgba(99,102,241,0.3);
+}
+nav .btn-filled:hover { opacity: 0.9; transform: scale(1.02); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 88px 32px 80px;
+  position: relative;
+}
+
+/* HERO GLOW BLOB */
+.hero-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-60%);
+  width: 700px; height: 500px; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(99,102,241,0.12) 0%, transparent 70%);
+  filter: blur(40px);
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 100px; padding: 6px 14px;
+  font-size: 12px; font-weight: 600; color: var(--mid);
+  margin-bottom: 32px; position: relative; z-index: 1;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  animation: fadeDown 0.6s cubic-bezier(.34,1.56,.64,1) 0.1s both;
+}
+.hero-badge-dot { width: 7px; height: 7px; background: #22C55E; border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5)} 50%{box-shadow:0 0 0 6px rgba(34,197,94,0)} }
+
+@keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+.hero h1 {
+  font-size: clamp(48px,8vw,96px); font-weight: 800;
+  line-height: 1.05; letter-spacing: -0.04em;
+  max-width: 900px; margin-bottom: 24px;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.7s cubic-bezier(.34,1.56,.64,1) 0.2s both;
+}
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--accent), #818CF8);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 18px; color: var(--muted); line-height: 1.7;
+  max-width: 560px; margin: 0 auto 40px; font-weight: 400;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.7s cubic-bezier(.34,1.56,.64,1) 0.35s both;
+}
+
+.hero-actions {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.7s cubic-bezier(.34,1.56,.64,1) 0.45s both;
+}
+.btn-cta-primary {
+  background: var(--accent); color: #fff;
+  font-size: 15px; font-weight: 700; padding: 14px 32px;
+  border-radius: var(--radius); text-decoration: none;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.35);
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s;
+  letter-spacing: -0.02em;
+}
+.btn-cta-primary:hover { transform: scale(1.04) translateY(-2px); box-shadow: 0 8px 32px rgba(99,102,241,0.45); }
+.btn-cta-secondary {
+  background: var(--white); color: var(--text);
+  font-size: 15px; font-weight: 600; padding: 14px 28px;
+  border-radius: var(--radius); text-decoration: none;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, transform 0.2s;
+  letter-spacing: -0.02em;
+}
+.btn-cta-secondary:hover { border-color: var(--text); transform: scale(1.02); }
+
+/* STATS STRIPE */
+.stats-stripe {
+  display: flex; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.stat { flex: 1; padding: 32px 40px; border-right: 1px solid var(--border); text-align: center; }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 36px; font-weight: 800; letter-spacing: -0.04em; color: var(--text); margin-bottom: 4px; }
+.stat-num .acc { color: var(--accent); }
+.stat-label { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+/* BENTO SECTION */
+.bento-section { padding: 80px 32px; max-width: 1280px; margin: 0 auto; }
+.section-header { margin-bottom: 48px; }
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;
+  font-family: 'Courier New', monospace;
+}
+.section-header h2 { font-size: clamp(32px,5vw,52px); font-weight: 800; letter-spacing: -0.04em; }
+
+/* BENTO GRID */
+.bento { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: auto; gap: 12px; }
+.card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s, border-color 0.2s;
+  cursor: pointer;
+}
+.card:hover { transform: translateY(-4px) scale(1.005); box-shadow: 0 12px 40px rgba(0,0,0,0.08); border-color: rgba(99,102,241,0.3); }
+.c7 { grid-column: span 7; }
+.c5 { grid-column: span 5; }
+
+.card-img { width: 100%; height: 240px; object-fit: cover; }
+.card-img-placeholder {
+  width: 100%; height: 240px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; font-weight: 800; letter-spacing: -0.04em; opacity: 0.25;
+}
+.card-body { padding: 20px 24px 24px; }
+.card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.card-tag {
+  font-size: 11px; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  background: var(--accent-light); padding: 3px 8px; border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+.card-year { font-size: 12px; color: var(--muted); font-weight: 500; }
+.card-title { font-size: 20px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px; }
+.card-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* SERVICES ROW */
+.services { padding: 0 32px 80px; max-width: 1280px; margin: 0 auto; }
+.srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.srv-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px;
+  transition: border-color 0.2s, transform 0.3s cubic-bezier(.34,1.56,.64,1);
+  cursor: pointer;
+}
+.srv-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.srv-icon {
+  width: 40px; height: 40px; background: var(--accent-light);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.srv-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 2; }
+.srv-num { font-size: 11px; font-weight: 700; color: var(--muted); font-family: 'Courier New', monospace; margin-bottom: 8px; }
+.srv-title { font-size: 17px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
+.srv-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* CTA SECTION */
+.cta-section {
+  margin: 0 32px 80px; border-radius: 20px;
+  background: linear-gradient(135deg, var(--accent) 0%, #818CF8 100%);
+  padding: 80px 60px; text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E");
+  opacity: 0.06; background-size: 200px 200px;
+}
+.cta-section h2 { font-size: clamp(36px,6vw,64px); font-weight: 800; letter-spacing: -0.04em; color: #fff; margin-bottom: 16px; position: relative; }
+.cta-section p { font-size: 17px; color: rgba(255,255,255,0.75); margin-bottom: 36px; position: relative; }
+.btn-white { background: #fff; color: var(--accent); font-size: 15px; font-weight: 700; padding: 15px 36px; border-radius: var(--radius); text-decoration: none; position: relative; transition: transform 0.3s cubic-bezier(.34,1.56,.64,1); letter-spacing: -0.02em; }
+.btn-white:hover { transform: scale(1.04); }
+
+.badge { position: fixed; bottom: 20px; right: 20px; z-index: 9991; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 6px; letter-spacing: -0.01em; }
+
+@media(max-width:768px){
+  nav{padding:0 16px;} nav .links{display:none;} nav .btn-ghost{display:none;}
+  .hero{padding:72px 24px 64px;}
+  .hero-glow{width:300px;height:300px;}
+  .stats-stripe{flex-wrap:wrap;}
+  .stat{flex:1 1 50%;border-right:none;border-bottom:1px solid var(--border);}
+  .bento-section,.services{padding:60px 16px;}
+  .c7,.c5{grid-column:span 12;}
+  .srv-grid{grid-template-columns:1fr;}
+  .cta-section{margin:0 16px 60px;padding:60px 32px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    AIS.152
+    <span class="logo-badge">Munich</span>
+  </div>
+  <div class="links">
+    <a href="#">Work</a>
+    <a href="#">Services</a>
+    <a href="#">About</a>
+  </div>
+  <div class="nav-right">
+    <a href="#" class="btn-ghost">Sign in</a>
+    <a href="#" class="btn-filled">Get in touch</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Available for projects · Munich, Germany
+  </div>
+  <h1>Building software<br>people <span class="highlight">love to use</span></h1>
+  <p class="hero-sub">Senior software engineer specializing in AI-powered applications, mobile platforms, and full-stack systems that scale.</p>
+  <div class="hero-actions">
+    <a href="#" class="btn-cta-primary">View my work →</a>
+    <a href="#" class="btn-cta-secondary">Let's talk</a>
+  </div>
+</section>
+
+<div class="stats-stripe">
+  <div class="stat">
+    <div class="stat-num">12<span class="acc">+</span></div>
+    <div class="stat-label">Products shipped</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Platforms built</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100<span class="acc">%</span></div>
+    <div class="stat-label">On-time delivery</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">5<span class="acc">y+</span></div>
+    <div class="stat-label">Experience</div>
+  </div>
+</div>
+
+<div class="bento-section">
+  <div class="section-header">
+    <div class="section-eyebrow">// Selected work</div>
+    <h2>Products built with precision</h2>
+  </div>
+  <div class="bento">
+    <div class="card c7">
+      <div class="card-img-placeholder" style="background:linear-gradient(135deg,#EEF2FF,#C7D2FE);color:#4338CA">BauPreis AI</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">SaaS · AI</span>
+          <span class="card-year">2026</span>
+        </div>
+        <div class="card-title">BauPreis AI</div>
+        <div class="card-desc">AI-powered construction material price monitoring platform for the German market. Claude AI forecasts, Preisgleitklausel calculator.</div>
+      </div>
+    </div>
+    <div class="card c5">
+      <div class="card-img-placeholder" style="background:linear-gradient(135deg,#F9FAFB,#F3F4F6);color:#374151">MONO</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Mobile · iOS</span>
+          <span class="card-year">2026</span>
+        </div>
+        <div class="card-title">MONO Men Only</div>
+        <div class="card-desc">Full-stack booking platform for Munich's premium men's grooming studio. React Native + NestJS.</div>
+      </div>
+    </div>
+    <div class="card c5">
+      <div class="card-img-placeholder" style="background:linear-gradient(135deg,#FAF5FF,#E9D5FF);color:#7E22CE">EDMI</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Mobile · AI</span>
+          <span class="card-year">2026</span>
+        </div>
+        <div class="card-title">EDMI</div>
+        <div class="card-desc">Dental microscope store app with AI configurator and Claude AI assistant.</div>
+      </div>
+    </div>
+    <div class="card c7">
+      <div class="card-img-placeholder" style="background:linear-gradient(135deg,#F0FDF4,#BBF7D0);color:#15803D">Twitter 4.0</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Automation</span>
+          <span class="card-year">2026</span>
+        </div>
+        <div class="card-title">Twitter 4.0</div>
+        <div class="card-desc">Autonomous X.com automation system with AI content generation, n8n orchestration, anti-detect browser.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="services">
+  <div class="section-header">
+    <div class="section-eyebrow">// Services</div>
+    <h2>What I build</h2>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card">
+      <div class="srv-num">01</div>
+      <div class="srv-title">AI-Powered Applications</div>
+      <div class="srv-desc">Claude AI, Gemini, GPT integration. Smart classification, generation, autonomous action systems, AI assistants.</div>
+    </div>
+    <div class="srv-card">
+      <div class="srv-num">02</div>
+      <div class="srv-title">Mobile Platforms</div>
+      <div class="srv-desc">React Native for iOS and Android. Push notifications, deep linking, Expo, App Store and Play Store deployment.</div>
+    </div>
+    <div class="srv-card">
+      <div class="srv-num">03</div>
+      <div class="srv-title">Full-Stack Systems</div>
+      <div class="srv-desc">NestJS backends, PostgreSQL, Docker, CI/CD pipelines. From architecture to production deployment in Germany.</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2>Ready to build something?</h2>
+  <p>Let's discuss your project. Fast responses, senior execution.</p>
+  <a href="mailto:hanna@ais152.de" class="btn-white">Start a conversation →</a>
+</div>
+
+<div class="badge">Concept F — Framer × Resend</div>
+
+</body>
+</html>

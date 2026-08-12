@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept B — Editorial Luxury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #0A0A0A;
+    --muted: #6B6B6B;
+    --accent: #C4975A;
+    --border: #E8E8E4;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 60px; z-index: 100;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s;
+    background: rgba(250,250,248,0.9); backdrop-filter: blur(12px);
+  }
+  nav .logo { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 20px; letter-spacing: -0.02em; }
+  nav .links { display: flex; gap: 40px; }
+  nav .links a { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 400; letter-spacing: 0.02em; transition: color 0.2s; }
+  nav .links a:hover { color: var(--text); }
+  nav .cta { font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none; border-bottom: 1.5px solid var(--accent); padding-bottom: 2px; transition: color 0.2s; }
+  nav .cta:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: flex-end;
+    padding: 0 60px 80px; position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(to bottom, var(--bg) 0%, #F0EDE8 100%);
+  }
+  .hero-line {
+    position: absolute; top: 0; right: 120px; width: 1px; height: 100%;
+    background: var(--border); z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+  .hero-num { font-size: 12px; font-weight: 500; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 40px; display: flex; align-items: center; gap: 16px; }
+  .hero-num::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 9vw, 120px); font-weight: 600;
+    line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 40px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 60px; }
+  .hero p { font-size: 17px; color: var(--muted); line-height: 1.7; max-width: 400px; }
+  .hero-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+  .btn-main { background: var(--text); color: #fff; padding: 18px 40px; font-size: 15px; font-weight: 500; text-decoration: none; letter-spacing: 0.02em; transition: background 0.25s; display: inline-block; }
+  .btn-main:hover { background: var(--accent); }
+  .hero-scroll { font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0 60px; }
+
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--border); }
+  .stat { padding: 48px 60px; border-right: 1px solid var(--border); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 600; line-height: 1; margin-bottom: 8px; }
+  .stat-label { font-size: 13px; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* WORK */
+  .work { padding: 80px 60px; }
+  .work-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 60px; }
+  .work-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 500; line-height: 1.15; letter-spacing: -0.02em; }
+  .work-header a { font-size: 14px; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
+
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
+  .proj { background: var(--bg); padding: 48px; display: flex; flex-direction: column; gap: 24px; cursor: pointer; transition: background 0.25s; }
+  .proj:hover { background: var(--card); }
+  .proj-img { width: 100%; height: 240px; object-fit: cover; }
+  .proj-placeholder { width: 100%; height: 240px; display: flex; align-items: center; justify-content: center; }
+  .proj-meta { display: flex; justify-content: space-between; align-items: center; }
+  .proj-tag { font-size: 12px; color: var(--accent); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+  .proj-year { font-size: 12px; color: var(--muted); }
+  .proj h3 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 500; letter-spacing: -0.01em; }
+  .proj p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+  .proj-arrow { font-size: 24px; color: var(--accent); align-self: flex-end; }
+
+  .concept-badge { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #fff; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 600; padding: 10px 20px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .hero { padding: 0 24px 60px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { padding: 32px 24px; }
+    .work { padding: 60px 24px; }
+    .projects { grid-template-columns: 1fr; }
+    nav .links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">AIS.152</span>
+  <div class="links">
+    <a href="#">Work</a>
+    <a href="#">Services</a>
+    <a href="#">About</a>
+  </div>
+  <a href="#" class="cta">Contact</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-num">Software Engineering · Munich</div>
+    <h1>Digital products<br>built with <em>intent</em></h1>
+    <div class="hero-bottom">
+      <p>Senior engineer specializing in AI-powered applications, mobile platforms, and scalable product systems.</p>
+      <div class="hero-cta">
+        <a href="#" class="btn-main">View selected work</a>
+        <span class="hero-scroll">↓ Scroll to explore</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Products shipped</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Platforms</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Countries</div></div>
+  <div class="stat"><div class="stat-num">5y+</div><div class="stat-label">Experience</div></div>
+</div>
+
+<div class="work">
+  <div class="work-header">
+    <h2>Selected<br>work</h2>
+    <a href="#">All projects →</a>
+  </div>
+  <div class="projects">
+    <div class="proj">
+      <div class="proj-placeholder" style="background:linear-gradient(135deg,#f8f3ec,#ede4d3);">
+        <span style="font-family:'Playfair Display',serif;font-size:36px;font-weight:600;color:#C4975A;opacity:0.5">BauPreis</span>
+      </div>
+      <div class="proj-meta"><span class="proj-tag">SaaS · AI</span><span class="proj-year">2026</span></div>
+      <h3>BauPreis AI</h3>
+      <p>Construction material price monitoring platform for the German market with AI-powered forecasts.</p>
+      <span class="proj-arrow">→</span>
+    </div>
+    <div class="proj">
+      <div class="proj-placeholder" style="background:linear-gradient(135deg,#f0f0f0,#e4e4e4);">
+        <span style="font-family:'Playfair Display',serif;font-size:36px;font-weight:600;color:#0A0A0A;opacity:0.2">MONO</span>
+      </div>
+      <div class="proj-meta"><span class="proj-tag">Mobile · iOS · Android</span><span class="proj-year">2026</span></div>
+      <h3>MONO Men Only</h3>
+      <p>Full-stack booking platform for Munich's premium men's grooming studio.</p>
+      <span class="proj-arrow">→</span>
+    </div>
+    <div class="proj">
+      <div class="proj-placeholder" style="background:linear-gradient(135deg,#f5f0fc,#e8d8f8);">
+        <span style="font-family:'Playfair Display',serif;font-size:36px;font-weight:600;color:#6B21A8;opacity:0.25">EDMI</span>
+      </div>
+      <div class="proj-meta"><span class="proj-tag">Mobile · AI</span><span class="proj-year">2026</span></div>
+      <h3>EDMI</h3>
+      <p>Mobile app for dental microscope and equipment store with AI configurator.</p>
+      <span class="proj-arrow">→</span>
+    </div>
+    <div class="proj">
+      <div class="proj-placeholder" style="background:linear-gradient(135deg,#f0faf4,#d4f0df);">
+        <span style="font-family:'Playfair Display',serif;font-size:36px;font-weight:600;color:#065F46;opacity:0.2">X / Twitter</span>
+      </div>
+      <div class="proj-meta"><span class="proj-tag">Automation</span><span class="proj-year">2026</span></div>
+      <h3>Twitter 4.0</h3>
+      <p>Autonomous X.com automation system with AI content generation pipeline.</p>
+      <span class="proj-arrow">→</span>
+    </div>
+  </div>
+</div>
+
+<div class="concept-badge">Concept B — Editorial Luxury</div>
+
+</body>
+</html>

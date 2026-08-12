@@ -9,9 +9,22 @@ verify.py — прогоняет acceptance.json и математически �
 Exit code: 0 если 100% проверок прошли, иначе 1.
 """
 import json
+import re
+import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
+
+
+def resolve_python(cmd):
+    """Заменить ведущий 'python'/'python3'/'py' на текущий интерпретатор.
+
+    На Windows без Microsoft-Store-алиаса `python` возвращает exit 9009
+    ('Python was not found'), из-за чего КАЖДАЯ python-проверка падала не по
+    существу, а по среде. sys.executable всегда указывает на рабочий интерпретатор.
+    """
+    # lambda в repl — иначе бэкслеши Windows-пути трактуются как escape-последовательности
+    return re.sub(r'^\s*(python3?|py)(?=\s)', lambda m: f'"{sys.executable}"', cmd)
 
 manifest_path = sys.argv[1] if len(sys.argv) > 1 else 'verify/acceptance.json'
 manifest = json.load(open(manifest_path, encoding='utf-8'))
@@ -25,7 +38,14 @@ total = len(manifest['checks'])
 failed_ids = []
 
 for c in manifest['checks']:
-    r = subprocess.run(c['cmd'], shell=True, capture_output=True, text=True)
+    # POSIX-синтаксис проверок (пайпы, 2>/dev/null, одинарные кавычки) в cmd.exe
+    # не работает — исполняем через bash, если он есть (Git Bash / /bin/bash).
+    _cmd = resolve_python(c['cmd'])
+    _bash = shutil.which('bash')
+    if _bash:
+        r = subprocess.run([_bash, '-lc', _cmd], capture_output=True, text=True)
+    else:
+        r = subprocess.run(_cmd, shell=True, capture_output=True, text=True)
     out = (r.stdout + r.stderr).strip()
 
     ok = True

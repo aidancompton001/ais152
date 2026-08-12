@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   AiS1.52 — dotgrid.js
+   AIS.152 — dotgrid.js
    Animated canvas dot field for hero background.
    Mouse position creates a subtle gravitational pull.
    Auto-skips on reduced-motion or mobile.

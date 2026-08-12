@@ -100,7 +100,7 @@ CEO запускает: <https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fai
 
 ```
 HEADER (sticky, blur backdrop)
-├── Logo "AiS 1.52"
+├── Logo "AIS.152"
 ├── Nav: Work · Process · About · Contact
 └── CTA "Book a Call" + Lang toggle EN/DE
 

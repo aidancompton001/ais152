@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept D — Electric Minimal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #FFFFFF;
+  --text: #0A0A0A;
+  --muted: #999;
+  --accent: #C8FF00;
+  --border: #E8E8E8;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 12px; height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed; pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: normal;
+}
+.cursor-follow {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--text);
+  border-radius: 50%;
+  position: fixed; pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease-out, width 0.2s, height 0.2s;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  mix-blend-mode: normal;
+}
+nav .logo {
+  font-weight: 800; font-size: 16px; letter-spacing: -0.04em;
+  background: var(--text); color: var(--bg);
+  padding: 6px 14px;
+}
+nav .links { display: flex; gap: 40px; }
+nav .links a {
+  font-size: 13px; color: var(--muted);
+  text-decoration: none; font-weight: 500;
+  letter-spacing: 0.02em; transition: color 0.15s;
+}
+nav .links a:hover { color: var(--text); }
+nav .cta {
+  font-size: 13px; font-weight: 700;
+  color: var(--text); text-decoration: none;
+  border: 1.5px solid var(--text); padding: 8px 20px;
+  transition: background 0.2s, color 0.2s;
+  letter-spacing: -0.01em;
+}
+nav .cta:hover { background: var(--accent); border-color: var(--accent); color: var(--text); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  padding: 0 48px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding-bottom: 80px;
+  position: relative;
+}
+.hero-tag {
+  position: absolute; top: 100px; right: 48px;
+  font-size: 12px; font-weight: 600;
+  color: var(--muted); letter-spacing: 0.1em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+.hero-num {
+  font-size: 13px; font-weight: 700;
+  color: var(--muted); letter-spacing: 0.05em;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+.hero-num::after { content: ''; display: block; width: 48px; height: 1px; background: var(--border); }
+
+.hero h1 {
+  font-size: clamp(72px, 11vw, 160px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  margin-bottom: 60px;
+}
+.hero h1 .line2 {
+  display: block;
+  -webkit-text-stroke: 2px var(--text);
+  color: transparent;
+}
+.hero h1 .line3 {
+  display: block;
+  color: var(--accent);
+  background: var(--text);
+  display: inline-block;
+  padding: 0 16px;
+}
+
+.hero-bottom {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  border-top: 1px solid var(--border); padding-top: 32px;
+}
+.hero-desc { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 380px; font-weight: 400; }
+.hero-cta-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.btn-electric {
+  background: var(--accent); color: var(--text);
+  font-size: 14px; font-weight: 800; padding: 16px 40px;
+  text-decoration: none; letter-spacing: -0.02em;
+  transition: transform 0.15s;
+  display: inline-block;
+}
+.btn-electric:hover { transform: scale(0.97); }
+.hero-scroll { font-size: 11px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* TICKER */
+.ticker-wrap {
+  overflow: hidden;
+  border-top: 1px solid var(--text);
+  border-bottom: 1px solid var(--text);
+}
+.ticker {
+  display: flex; gap: 0; white-space: nowrap;
+  animation: ticker 18s linear infinite;
+}
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.tick-item {
+  padding: 18px 48px; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 24px;
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.tick-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+/* STATS */
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+.stat {
+  padding: 60px 48px;
+  border-right: 1px solid var(--border);
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  font-size: 72px; font-weight: 900; line-height: 1;
+  letter-spacing: -0.05em; margin-bottom: 8px;
+}
+.stat-num span { color: var(--accent); }
+.stat-label { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* WORK — full width rows */
+.work { padding: 80px 0; }
+.work-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 0 48px; margin-bottom: 48px;
+}
+.work-head h2 {
+  font-size: clamp(40px, 6vw, 72px); font-weight: 900;
+  letter-spacing: -0.05em; line-height: 0.95;
+}
+.work-head a { font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 600; }
+
+.proj-row {
+  display: flex; align-items: stretch;
+  border-top: 1px solid var(--border);
+  transition: background 0.2s; cursor: pointer;
+  padding: 0 48px;
+}
+.proj-row:last-child { border-bottom: 1px solid var(--border); }
+.proj-row:hover { background: #F8F8F8; }
+.proj-row:hover .proj-arrow { transform: translateX(8px); }
+
+.proj-num { font-size: 13px; font-weight: 700; color: var(--muted); width: 48px; padding: 40px 0; flex-shrink: 0; }
+.proj-visual {
+  width: 180px; flex-shrink: 0;
+  margin: 24px 40px 24px 0;
+  overflow: hidden;
+}
+.proj-visual-inner {
+  width: 100%; height: 120px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; font-weight: 900; letter-spacing: -0.04em; opacity: 0.25;
+}
+.proj-info { flex: 1; padding: 40px 0; display: flex; flex-direction: column; justify-content: center; }
+.proj-tag { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.proj-title { font-size: 28px; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 6px; }
+.proj-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.proj-arrow {
+  font-size: 32px; padding: 40px 0; align-self: center;
+  transition: transform 0.2s; color: var(--muted);
+  flex-shrink: 0; margin-left: 24px;
+}
+
+/* CONCEPT BADGE */
+.badge {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  background: var(--accent); color: var(--text);
+  font-size: 13px; font-weight: 800; padding: 10px 20px;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  nav .links { display: none; }
+  .hero { padding: 0 24px; padding-bottom: 60px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat { padding: 40px 24px; }
+  .proj-row { padding: 0 24px; }
+  .proj-visual { display: none; }
+  .work-head { padding: 0 24px; }
+  .cursor, .cursor-follow { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follow" id="cursorFollow"></div>
+
+<nav>
+  <span class="logo">AIS.152</span>
+  <div class="links">
+    <a href="#">Work</a>
+    <a href="#">Services</a>
+    <a href="#">About</a>
+  </div>
+  <a href="#" class="cta">Let's talk</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Munich · Germany · 2026</div>
+  <div class="hero-num">001</div>
+  <h1>
+    Software<br>
+    <span class="line2">Engineer</span><br>
+    <span class="line3">& Builder</span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">AI-powered apps, mobile platforms, and full-stack systems. Senior-level. Fast. Done right.</p>
+    <div class="hero-cta-wrap">
+      <a href="#" class="btn-electric">View selected work →</a>
+      <span class="hero-scroll">↓ Scroll to explore</span>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="tick-item">React Native<span class="tick-dot"></span></span>
+    <span class="tick-item">Python / AI<span class="tick-dot"></span></span>
+    <span class="tick-item">NestJS<span class="tick-dot"></span></span>
+    <span class="tick-item">Claude AI<span class="tick-dot"></span></span>
+    <span class="tick-item">Munich, Germany<span class="tick-dot"></span></span>
+    <span class="tick-item">Full-Stack<span class="tick-dot"></span></span>
+    <span class="tick-item">React Native<span class="tick-dot"></span></span>
+    <span class="tick-item">Python / AI<span class="tick-dot"></span></span>
+    <span class="tick-item">NestJS<span class="tick-dot"></span></span>
+    <span class="tick-item">Claude AI<span class="tick-dot"></span></span>
+    <span class="tick-item">Munich, Germany<span class="tick-dot"></span></span>
+    <span class="tick-item">Full-Stack<span class="tick-dot"></span></span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">12<span>+</span></div>
+    <div class="stat-label">Projects shipped</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Platforms</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100<span>%</span></div>
+    <div class="stat-label">On-time delivery</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">5<span>y</span></div>
+    <div class="stat-label">Experience</div>
+  </div>
+</div>
+
+<section class="work">
+  <div class="work-head">
+    <h2>Selected<br>work</h2>
+    <a href="#">All projects →</a>
+  </div>
+
+  <div class="proj-row">
+    <div class="proj-num">01</div>
+    <div class="proj-visual">
+      <div class="proj-visual-inner" style="background:#F0F7FF;color:#0066CC">BauPreis</div>
+    </div>
+    <div class="proj-info">
+      <div class="proj-tag">SaaS · AI · Germany</div>
+      <div class="proj-title">BauPreis AI</div>
+      <div class="proj-desc">Construction material price monitoring with Claude AI forecasts for the German market.</div>
+    </div>
+    <div class="proj-arrow">→</div>
+  </div>
+
+  <div class="proj-row">
+    <div class="proj-num">02</div>
+    <div class="proj-visual">
+      <div class="proj-visual-inner" style="background:#F5F5F5;color:#000">MONO</div>
+    </div>
+    <div class="proj-info">
+      <div class="proj-tag">Mobile · iOS · Android · Munich</div>
+      <div class="proj-title">MONO Men Only</div>
+      <div class="proj-desc">Full-stack booking platform for Munich's premium men's grooming studio.</div>
+    </div>
+    <div class="proj-arrow">→</div>
+  </div>
+
+  <div class="proj-row">
+    <div class="proj-num">03</div>
+    <div class="proj-visual">
+      <div class="proj-visual-inner" style="background:#F5F0FF;color:#7C3AED">EDMI</div>
+    </div>
+    <div class="proj-info">
+      <div class="proj-tag">Mobile · AI Configurator</div>
+      <div class="proj-title">EDMI</div>
+      <div class="proj-desc">Dental microscope store app with AI configurator and Claude AI assistant.</div>
+    </div>
+    <div class="proj-arrow">→</div>
+  </div>
+
+  <div class="proj-row">
+    <div class="proj-num">04</div>
+    <div class="proj-visual">
+      <div class="proj-visual-inner" style="background:#F0FFF5;color:#059669">Twitter</div>
+    </div>
+    <div class="proj-info">
+      <div class="proj-tag">Automation · n8n</div>
+      <div class="proj-title">Twitter 4.0</div>
+      <div class="proj-desc">Autonomous X.com automation system with AI content generation pipeline.</div>
+    </div>
+    <div class="proj-arrow">→</div>
+  </div>
+</section>
+
+<div class="badge">Concept D — Electric Minimal</div>
+
+<script>
+const cursor = document.getElementById('cursor');
+const cursorFollow = document.getElementById('cursorFollow');
+let mx = 0, my = 0, fx = 0, fy = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+function animFollow() {
+  fx += (mx - fx) * 0.12;
+  fy += (my - fy) * 0.12;
+  cursorFollow.style.left = fx + 'px';
+  cursorFollow.style.top = fy + 'px';
+  requestAnimationFrame(animFollow);
+}
+animFollow();
+</script>
+</body>
+</html>

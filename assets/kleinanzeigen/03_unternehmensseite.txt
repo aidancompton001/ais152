@@ -1,0 +1,55 @@
+═══════════════════════════════════════════════════════════
+UNTERNEHMENSSEITE (PRO-Profil)
+═══════════════════════════════════════════════════════════
+
+Unternehmensname*   AIS.152
+PRO URL*            ais152        -> kleinanzeigen.de/pro/ais152
+Logo                assets/kleinanzeigen/logo-512.png
+1. Telefonnummer    +49 155 636 75 772
+Straße / Nr.        Oefelestraße 19    (optional — Adresse steht ohnehin im Impressum)
+Postleitzahl*       81543
+Ort                 München
+Webseite            https://ais152.com
+Rechtliche Angaben* siehe 02_rechtliche-angaben.txt  (Limit hier 65500 Zeichen)
+
+Öffnungszeiten      Mo–Fr  09:00–19:00
+                    Sa, So geschlossen
+                    (identisch zur Angabe auf ais152.com — nicht rund um die Uhr
+                     angeben, ein nicht gehaltenes Versprechen kostet Vertrauen)
+
+Bilder              assets/taxi-moennigmann-site.jpg
+                    assets/elektrocheck-site.jpg
+                    assets/rundumshaus-site.jpg
+                    assets/silkekleinart-site.jpg
+
+
+───────────────────────────────────────────────────────────
+FELD: Beschreibung*  (1596 Zeichen, Limit 2000)
+───────────────────────────────────────────────────────────
+
+Mein Name ist Eduard Morocho Baias. Ich bin Softwareentwickler in München und arbeite als Einzelunternehmer — keine Agentur, kein Vertrieb, keine Zwischenschicht. Wer mir schreibt, schreibt dem Menschen, der die Arbeit auch macht.
+
+WAS ICH ANBIETE
+
+Websites für kleine Unternehmen, Praxen und Handwerksbetriebe.
+Laufende Wartung und Betreuung bestehender Websites, ab 39 € im Monat.
+Umzug auf einen neuen Hoster, ohne Ausfall im laufenden Betrieb.
+Automatisierung wiederkehrender Büroabläufe mit KI.
+
+WAS MICH UNTERSCHEIDET
+
+Feste Preise. Sie erfahren vor Beginn schriftlich, was es kostet — nicht hinterher.
+
+Keine Bindung. Wartungsverträge sind monatlich kündbar, ohne Mindestlaufzeit. Beim Abschied bekommen Sie alle Zugänge und ein vollständiges Backup.
+
+Nachweisbare Arbeit. Sechzehn abgeschlossene Projekte seit 2025. Ansehen können Sie unter anderem taxi-moennigmann.de, elektrocheckstuttgart.de, rundumshaus-littawe.de und silkekleinart.com.
+
+Datenschutz wird mitgeliefert, nicht nachgereicht. Auf Wunsch schließen wir vor Projektbeginn einen Auftragsverarbeitungsvertrag nach Art. 28 DSGVO. Das Muster steht offen einsehbar unter ais152.com/avv.html — Sie können es lesen, bevor Sie mich überhaupt anschreiben. Für Praxen und Kanzleien ist das kein Beiwerk, sondern Voraussetzung.
+
+Ehrliche Antworten. Wenn ein Auftrag bei mir nicht sinnvoll aufgehoben ist, sage ich das, statt Ihnen etwas zu verkaufen.
+
+SPRACHEN
+
+Deutsch, Englisch, Russisch.
+
+Alle rechtlichen Unterlagen — Impressum, AGB, Widerrufsbelehrung, Datenschutz, AVV und ein Rechnungsmuster — finden Sie offen unter ais152.com

@@ -1,4 +1,4 @@
-/* AiS1.52 Quiz Engine — pure functions for scoring and exit logic */
+/* AIS.152 Quiz Engine — pure functions for scoring and exit logic */
 
 const DEFAULT_PLATFORMS_ORDER = [
   'Instagram', 'Telegram', 'TikTok', 'YouTube', 'LinkedIn',

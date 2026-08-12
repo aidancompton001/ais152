@@ -1,4 +1,4 @@
-/* AiS1.52 Quiz — UI controller. Pure logic in quiz-engine.js (tested). */
+/* AIS.152 Quiz — UI controller. Pure logic in quiz-engine.js (tested). */
 
 import { calculateScore, determineExit } from './quiz-engine.js';
 

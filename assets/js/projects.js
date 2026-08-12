@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   AiS1.52 — projects.js (v2)
+   AIS.152 — projects.js (v2)
    Reads data/projects.json, renders cards into #work-track.
    Adds layout classes (feature/wide/square/tall/tile) and
    custom <use href="#mark-{slug}"/> SVG mark per project.

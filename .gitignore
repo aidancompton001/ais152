@@ -1,0 +1,5 @@
+
+# Echte Kundenrechnungen — NIEMALS ins Repo (DSGVO Art. 6, personenbezogene Daten Dritter)
+rechnungen/*
+!rechnungen/muster.html
+!rechnungen/.gitkeep

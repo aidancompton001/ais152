@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept A — Apple Bento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F5F7;
+    --card: #FFFFFF;
+    --text: #1D1D1F;
+    --muted: #6E6E73;
+    --accent: #0071E3;
+    --radius: 20px;
+    --shadow: 0 2px 20px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
+    border: 1px solid rgba(0,0,0,0.07); border-radius: 50px;
+    padding: 12px 28px; display: flex; align-items: center; gap: 40px;
+    z-index: 100; box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  }
+  nav .logo { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 17px; color: var(--text); letter-spacing: -0.3px; }
+  nav .links { display: flex; gap: 28px; }
+  nav .links a { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+  nav .links a:hover { color: var(--text); }
+  nav .cta { background: var(--text); color: #fff; font-size: 14px; font-weight: 600; padding: 9px 20px; border-radius: 50px; text-decoration: none; transition: opacity 0.2s; }
+  nav .cta:hover { opacity: 0.8; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center; padding: 120px 24px 80px;
+  }
+  .hero-tag { font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; }
+  .hero h1 {
+    font-family: 'Outfit', sans-serif; font-size: clamp(52px, 8vw, 96px); font-weight: 700;
+    line-height: 1.05; letter-spacing: -0.04em; color: var(--text); margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p { font-size: 20px; color: var(--muted); line-height: 1.65; max-width: 560px; margin: 0 auto 44px; font-weight: 400; }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--text); color: #fff; padding: 16px 36px; border-radius: 50px; font-size: 16px; font-weight: 600; text-decoration: none; transition: transform 0.2s, opacity 0.2s; }
+  .btn-primary:hover { transform: scale(1.02); opacity: 0.9; }
+  .btn-secondary { background: transparent; color: var(--text); padding: 16px 36px; border-radius: 50px; font-size: 16px; font-weight: 600; text-decoration: none; border: 1.5px solid rgba(0,0,0,0.15); transition: border-color 0.2s; }
+  .btn-secondary:hover { border-color: var(--text); }
+
+  /* STATS TICKER */
+  .ticker { background: var(--card); border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); padding: 28px 0; overflow: hidden; }
+  .ticker-inner { display: flex; gap: 80px; white-space: nowrap; }
+  .ticker-item { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+  .ticker-num { font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; color: var(--text); }
+  .ticker-label { font-size: 14px; color: var(--muted); font-weight: 500; }
+
+  /* BENTO */
+  .section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+  .section h2 { font-family: 'Outfit', sans-serif; font-size: clamp(36px, 5vw, 56px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 60px; }
+
+  .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+  .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: transform 0.3s cubic-bezier(.25,.46,.45,.94), box-shadow 0.3s; cursor: pointer; }
+  .card:hover { transform: scale(1.015); box-shadow: 0 8px 40px rgba(0,0,0,0.1); }
+  .c1 { grid-column: span 7; }
+  .c2 { grid-column: span 5; }
+  .c3 { grid-column: span 5; }
+  .c4 { grid-column: span 7; }
+  .card-img { width: 100%; height: 260px; object-fit: cover; }
+  .card-body { padding: 24px; }
+  .card-tag { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .card-title { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .card-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* CONCEPT LABEL */
+  .concept-badge { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #fff; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700; padding: 10px 20px; border-radius: 50px; box-shadow: 0 4px 20px rgba(0,113,227,0.4); }
+
+  @media (max-width: 768px) {
+    .c1, .c2, .c3, .c4 { grid-column: span 12; }
+    nav .links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">AIS.152</span>
+  <div class="links">
+    <a href="#">Work</a>
+    <a href="#">Services</a>
+    <a href="#">About</a>
+  </div>
+  <a href="#" class="cta">Get in touch</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Full-Stack AI Development</div>
+  <h1>Building digital<br>products that <em>matter</em></h1>
+  <p>Senior software engineer specializing in AI-powered apps, mobile experiences, and product systems. Based in Munich, Germany.</p>
+  <div class="hero-btns">
+    <a href="#" class="btn-primary">View work</a>
+    <a href="#" class="btn-secondary">Let's talk</a>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ticker-item"><span class="ticker-num">12+</span><span class="ticker-label">Projects shipped</span></div>
+    <div class="ticker-item"><span class="ticker-num">4</span><span class="ticker-label">Platforms built</span></div>
+    <div class="ticker-item"><span class="ticker-num">3</span><span class="ticker-label">Countries</span></div>
+    <div class="ticker-item"><span class="ticker-num">100%</span><span class="ticker-label">On time delivery</span></div>
+    <div class="ticker-item"><span class="ticker-num">AI-First</span><span class="ticker-label">Approach</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Selected Work</div>
+  <h2>Products built<br>with precision</h2>
+  <div class="bento">
+    <div class="card c1">
+      <div style="height:280px;background:linear-gradient(135deg,#e8f4fd,#c7e3f9);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'Outfit',sans-serif;font-size:48px;font-weight:800;color:#0071E3;opacity:0.4">BauPreis</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">SaaS · AI · Germany</div>
+        <div class="card-title">BauPreis AI</div>
+        <div class="card-desc">Construction material price monitoring with Claude AI forecasts.</div>
+      </div>
+    </div>
+    <div class="card c2">
+      <div style="height:280px;background:linear-gradient(135deg,#f0f0f5,#dddde8);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'Outfit',sans-serif;font-size:48px;font-weight:800;color:#1D1D1F;opacity:0.25">MONO</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Mobile · iOS · Android</div>
+        <div class="card-title">MONO Men Only</div>
+        <div class="card-desc">Booking platform for Munich's premium men's grooming studio.</div>
+      </div>
+    </div>
+    <div class="card c3">
+      <div style="height:240px;background:linear-gradient(135deg,#f5f0ff,#e5d5ff);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'Outfit',sans-serif;font-size:40px;font-weight:800;color:#6B21A8;opacity:0.3">EDMI</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Mobile · AI</div>
+        <div class="card-title">EDMI</div>
+        <div class="card-desc">Dental microscope store app with AI configurator.</div>
+      </div>
+    </div>
+    <div class="card c4">
+      <div style="height:240px;background:linear-gradient(135deg,#f0fdf4,#d1fae5);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'Outfit',sans-serif;font-size:40px;font-weight:800;color:#065F46;opacity:0.25">Twitter 4.0</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Automation · AI</div>
+        <div class="card-title">Twitter 4.0</div>
+        <div class="card-desc">Autonomous X.com automation with AI content generation.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="concept-badge">Concept A — Apple Bento</div>
+
+</body>
+</html>

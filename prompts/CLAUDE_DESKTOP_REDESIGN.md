@@ -44,7 +44,7 @@ CEO — создатель **9 production-проектов** (MONO booking app, 
 
 ## PROJECT FACTS (зафиксировано — не спорь, не меняй)
 
-- **Название:** AiS1.52 / AiS152
+- **Название:** AIS.152 / AiS152
 - **Production:** https://ais152.com
 - **Исходники:** `c:\Projects\AiS152`
 - **Стек:** Static HTML / CSS / vanilla JS — **менять НЕЛЬЗЯ** (GitHub Pages деплой сломается)

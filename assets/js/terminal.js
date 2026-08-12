@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   AiS1.52 — terminal.js
+   AIS.152 — terminal.js
    Animated terminal panel in the hero. Cycles through 3 "files"
    (TS, Markdown, log) typing each one out, then switches.
    Auto-pauses on reduced-motion (renders fully-typed last frame).

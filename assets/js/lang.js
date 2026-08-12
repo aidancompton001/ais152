@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   AiS1.52 — lang.js
+   AIS.152 — lang.js
    EN/DE language switcher. Updates <html lang> and data-lang.
    Persists choice in localStorage. Honors ?lang=de URL param.
    ───────────────────────────────────────────────────────────── */
