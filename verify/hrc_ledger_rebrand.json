@@ -181,7 +181,7 @@
       "id": "23",
       "text": "sitemap.xml покрывает все production-страницы",
       "asserted": false,
-      "note": "Ложь — sitemap содержит только / и /quiz. wartung.html (коммерческая услуга) и правовые страницы отсутствуют. Кандидат на отдельную задачу."
+      "note": "Частично закрыто bab0c51: sitemap теперь / + /wartung.html (коммерческая услуга внесена). Правовые страницы (impressum/datenschutz/agb/widerruf/avv) по-прежнему вне sitemap — 2 loc из 8 страниц. Кандидат на отдельную задачу."
     }
   ]
 }
