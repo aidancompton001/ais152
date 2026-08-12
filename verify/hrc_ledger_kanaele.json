@@ -1,0 +1,160 @@
+{
+  "task": "kanaele-ohne-budget",
+  "threshold": 1e-08,
+  "require_landa": true,
+  "claims": [
+    {
+      "id": "01",
+      "text": "§ 16c SGB II ограничивает Zuschüsse суммой 5 000 Euro — дословно в тексте закона",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/fetch_check.py https://www.gesetze-im-internet.de/sgb_2/__16c.html 'Zuschüsse dürfen einen Betrag von 5 000 Euro nicht übersteigen'",
+        "expect_exit": 0
+      }
+    },
+    {
+      "id": "02",
+      "text": "§ 16c SGB II адресован тем, кто ведёт или начинает selbständige, hauptberufliche Tätigkeit — то есть случай CEO с 12.08.2026",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/fetch_check.py https://www.gesetze-im-internet.de/sgb_2/__16c.html 'eine selbständige, hauptberufliche Tätigkeit aufnehmen oder ausüben' 'Beschaffung von Sachgütern'",
+        "expect_exit": 0
+      }
+    },
+    {
+      "id": "03",
+      "text": "§ 16c SGB II требует ожидания экономической tragfähig и предусматривает Stellungnahme einer fachkundigen Stelle",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/fetch_check.py https://www.gesetze-im-internet.de/sgb_2/__16c.html 'wirtschaftlich tragfähig ist' 'Stellungnahme einer fachkundigen Stelle'",
+        "expect_exit": 0
+      }
+    },
+    {
+      "id": "04",
+      "text": "§ 16b и § 16c — разные нормы SGB II с разным предметом: в тексте § 16b есть Einstiegsgeld и НЕТ Sachgüter, в § 16c наоборот",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/fetch_check.py https://www.gesetze-im-internet.de/sgb_2/__16c.html 'Beschaffung von Sachgütern' && ! py verify/fetch_check.py https://www.gesetze-im-internet.de/sgb_2/__16c.html 'Einstiegsgeld' && py verify/fetch_check.py https://www.gesetze-im-internet.de/sgb_2/__16b.html 'Einstiegsgeld' && ! py verify/fetch_check.py https://www.gesetze-im-internet.de/sgb_2/__16b.html 'Beschaffung von Sachgütern'",
+        "expect_exit": 0
+      }
+    },
+    {
+      "id": "05",
+      "text": "Отказ CEO от § 16b не лишает его права на § 16c — Jobcenter обязан рассмотреть заявление по существу",
+      "asserted": false,
+      "note": "ПРАВОПРИМЕНЕНИЕ, не текст закона. Нормы действительно разные (claim 04 доказан), но § 16c — Ermessensleistung, решение принимает Sachbearbeiter. Гарантировать исход нельзя. Судебной практики по связке 16b-Verzicht -> 16c я не проверял."
+    },
+    {
+      "id": "06",
+      "text": "Google Unternehmensprofil исключает предприятия, работающие ausschließlich online",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/fetch_check.py 'https://support.google.com/business/answer/13763036?hl=de' 'ausschließlich online'",
+        "expect_exit": 0
+      }
+    },
+    {
+      "id": "07",
+      "text": "Google Einzugsgebiet ограничен 20 зонами",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/fetch_check.py 'https://support.google.com/business/answer/9157481?hl=de' '20 Einzugsgebiete'",
+        "expect_exit": 0
+      }
+    },
+    {
+      "id": "08",
+      "text": "Gelbe Seiten: Grundeintrag бесплатен, а Starteintrag после 3 пробных месяцев переходит в платный Jahres-Abo 358,80 € zzgl. USt",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/fetch_check.py https://www.gelbeseiten.de/starteintrag 'Grundeintrag Kostenlos' 'Kostenpflichtiges Jahres-Abo ab dem 4. Monat' '358,80'",
+        "expect_exit": 0
+      }
+    },
+    {
+      "id": "09",
+      "text": "MyHammer AGB: Kontaktgebühr возникает независимо от того, получил ли исполнитель заказ",
+      "asserted": false,
+      "note": "НЕВОСПРОИЗВОДИМО. Фраза 'Zuschlag durch den Auftraggeber erhält' была найдена в живой странице AGB один раз (12.08.2026, HTTP 200), но при повторном прогоне my-hammer.de отдаёт HTTP 403 — сайт блокирует автоматические запросы. Однократное наблюдение фактом не считаю. Смысл утверждения совпадает с массовыми жалобами исполнителей, но независимо подтвердить сейчас не могу. CEO проверять глазами в браузере перед любым решением."
+    },
+    {
+      "id": "10",
+      "text": "AVGS покрывает до 60 часов индивидуального коучинга и доступен получателям Bürgergeld",
+      "asserted": false,
+      "note": "Только вторичные источники (deutschland-startet.de, pro-gruender.de). Первоисточник — §§ 45 SGB III / Fachliche Weisungen BA — не проверял. Цифру 60 часов в законе не подтверждал. Перед подачей уточнять у Sachbearbeiter."
+    },
+    {
+      "id": "11",
+      "text": "Digitalbonus Bayern исключает обычные сайты и онлайн-маркетинг, но покрывает проекты с KI-релевантностью",
+      "asserted": false,
+      "note": "Только вторичные коммерческие источники (smct-management.de, bb-applications.de, synclaro.de). Официальную Förderrichtlinie StMWi не читал. Как аргумент продажи клиенту использовать НЕЛЬЗЯ до проверки первоисточника — риск ввести клиента в заблуждение."
+    },
+    {
+      "id": "12",
+      "text": "GULP не имеет платного тарифа для фрилансера, Malt не берёт комиссию с фрилансера в Германии",
+      "asserted": false,
+      "note": "Собрано субагентом со страниц платформ, я лично первоисточник не перепроверял. Malt-URL при проверке отдал 301. Утверждение о ЧУЖОЙ бизнес-модели, которая может измениться без уведомления. Проверять при регистрации."
+    },
+    {
+      "id": "13",
+      "text": "Münchner Gründungsbüro консультирует бесплатно, телефон 089 233-721759, семинары 15.09 / 23.09 / 13.10",
+      "asserted": false,
+      "note": "Телефон и даты взяты из отчёта субагента. Правило анти-галлюцинации CLAUDE.md запрещает подавать телефоны как факт без личной проверки. Перед звонком сверить на stadt.muenchen.de."
+    },
+    {
+      "id": "14",
+      "text": "RESTART for newcomers — бесплатная программа Social Impact gGmbH с площадкой в München, требует немецкий от B2",
+      "asserted": false,
+      "note": "Данные субагента, лично не проверял. Даты раунда 2026 и длительность на странице не указаны — субагент это признал. Телефон контактного лица не верифицирован."
+    },
+    {
+      "id": "15",
+      "text": "На Kleinanzeigen у CEO активно одно объявление, лимит категории Dienstleistungen исчерпан",
+      "asserted": false,
+      "note": "Наблюдение по скриншотам CEO, машинной проверке из этой сессии не подлежит — данные за логином его аккаунта."
+    },
+    {
+      "id": "16",
+      "text": "Документ KANAELE_OHNE_BUDGET.md несёт предупреждения о недоказанном в САМОМ тексте (не только в реестре): минимум 3 маркера ⚠️ и раздел непроверенного",
+      "asserted": true,
+      "proof": {
+        "cmd": "test $(grep -c '⚠️' docs/KANAELE_OHNE_BUDGET.md) -ge 3 && grep -c 'Что не подтверждено' docs/KANAELE_OHNE_BUDGET.md",
+        "expect_min": 1
+      }
+    },
+    {
+      "id": "17",
+      "text": "§ 16c Abs. 3 SGB II требует ДВА условия одновременно: wirtschaftliche Tragfähigkeit И преодоление/уменьшение Hilfebedürftigkeit",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/fetch_check.py https://www.gesetze-im-internet.de/sgb_2/__16c.html 'wirtschaftlich tragfähig ist und die Hilfebedürftigkeit durch die selbständige Tätigkeit innerhalb eines angemessenen Zeitraums dauerhaft überwunden oder verringert wird'",
+        "expect_exit": 0
+      }
+    },
+    {
+      "id": "18",
+      "text": "В Gewerbeanmeldung AIS.152 от 12.08.2026 указан Haupterwerb (не Nebenerwerb) — запись в материалах дела",
+      "asserted": true,
+      "proof": {
+        "cmd": "grep -c 'Haupterwerb' 'c:/Projects/MainCore/vault/05_Cases/2026-08_gewerbeanmeldung-ais152/SUMMARY.md'",
+        "expect_min": 1
+      }
+    },
+    {
+      "id": "19",
+      "text": "Квалификация деятельности как hauptberuflich по § 16c и признание Kanzlei BFL как fachkundige Stelle — решение ведомства, не факт",
+      "asserted": false,
+      "note": "Запись 'Haupterwerb' в формуляре Gewerbeanmeldung (claim 18) НЕ равна правовой квалификации 'hauptberufliche Tätigkeit' в смысле § 16c — её выносит Agentur für Arbeit. Так же и статус fachkundige Stelle. В документе оговорено явно."
+    },
+    {
+      "id": "20",
+      "text": "Gelbe Seiten: расторжение годового договора с Frist 6 Wochen до конца срока",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/fetch_check.py https://www.gelbeseiten.de/starteintrag 'mit einer Frist von 6 Wochen vor Ende der Laufzeit'",
+        "expect_exit": 0
+      }
+    }
+  ]
+}
