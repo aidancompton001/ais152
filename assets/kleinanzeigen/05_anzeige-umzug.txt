@@ -1,0 +1,84 @@
+═══════════════════════════════════════════════════════════
+ANZEIGE 2 — WEBSITE-UMZUG & RETTUNG
+═══════════════════════════════════════════════════════════
+
+Warum diese als zweite: Suche "website umzug" in München = 0 Treffer.
+Niedriger Einstiegspreis, und wer umzieht, bleibt oft in der Wartung.
+
+FELD: Gebot / Gesuch
+  Ich biete
+
+FELD: Titel  (62 Zeichen, Limit 65)
+Website umziehen ohne Ausfall — Hosterwechsel München ab 149 €
+
+FELD: Kategorie
+  Dienstleistungen > Weitere Dienstleistungen
+
+FELD: Preis
+  149        Preistyp: Festpreis
+
+FELD: PLZ / Ort
+  81543 / München
+
+FELD: Ansprechpartner
+  Eduard Morocho Baias
+
+FELD: Telefonnummer
+  Haken "Telefonnummer anzeigen" NICHT setzen
+
+FELD: Rechtliche Angaben
+  Sollte automatisch stehen (Haken "für alle meine Anzeigen").
+  Falls leer: aus 02_rechtliche-angaben.txt kopieren.
+
+FELD: Bilder
+  1. assets/kleinanzeigen/umzug-cover.png
+  2. assets/taxi-moennigmann-site.jpg
+  3. assets/elektrocheck-site.jpg
+  4. assets/rundumshaus-site.jpg
+
+
+───────────────────────────────────────────────────────────
+FELD: Beschreibung
+───────────────────────────────────────────────────────────
+
+Ihr Hoster wird teurer, langsamer oder antwortet nicht mehr. Der Dienstleister, der die Seite gebaut hat, ist nicht mehr erreichbar. Oder Sie wissen schlicht nicht mehr, wo Ihre Website eigentlich liegt und wem die Domain gehört.
+
+Das lässt sich klären, und die Seite lässt sich umziehen — ohne dass sie dabei offline geht.
+
+**UMZUG — ab 149 €**
+· Bestandsaufnahme: wo liegt die Seite, wem gehört die Domain, was hängt daran
+· Vollständige Sicherung vor dem ersten Handgriff
+· Aufbau beim neuen Anbieter, Test auf einer Vorschau-Adresse
+· Umschaltung außerhalb Ihrer Geschäftszeiten
+· E-Mail-Postfächer wandern mit, ohne Verlust
+· SSL-Zertifikat, Weiterleitungen, Prüfung nach dem Umzug
+· Ausfallzeit üblicherweise unter 15 Minuten, außerhalb Ihrer Öffnungszeiten
+
+Umfangreiche Seiten, Onlineshops oder viele Postfächer: 290 bis 490 €. Der Preis steht vor Beginn fest.
+
+**RETTUNG — ab 90 €**
+
+Wenn es schon brennt: Zugang verloren, Seite offline, Hoster gekündigt, Domain droht auszulaufen, der frühere Dienstleister rückt nichts heraus. Ich schaue mir das an und sage Ihnen, was noch geht.
+
+Die Ersteinschätzung im Notfall kostet nichts. Sie erfahren vorher, ob Ihr Fall lösbar ist — und wenn ich ihn nicht lösen kann, sage ich das, bevor Sie zahlen.
+
+**ALT-WEBSITE ÜBERNEHMEN — ab 190 €**
+
+Ihr bisheriger Dienstleister ist weg, die Seite läuft aber noch. Ich übernehme sie: Zugänge sichern, Updates nachziehen, Sicherheitslücken schließen, Impressum und Datenschutzerklärung auf Stand bringen. Danach wissen Sie wieder, wem was gehört.
+
+Anschließende Betreuung auf Wunsch ab 39 €/Monat — nötig ist sie nicht.
+
+**WOMIT ICH UMGEHEN KANN**
+
+WordPress, WooCommerce, TYPO3, Joomla, statische Seiten, Next.js, Astro.
+Hoster: All-Inkl, Strato, IONOS, Hetzner, Netcup, Cloudflare, Vercel und die meisten anderen.
+
+**WER ICH BIN**
+
+Eduard Morocho Baias, Softwareentwickler aus München, Einzelunternehmer. Sechzehn abgeschlossene Projekte seit 2025, unter anderem taxi-moennigmann.de, elektrocheckstuttgart.de und rundumshaus-littawe.de.
+
+Wenn ich Zugriff auf personenbezogene Daten bekomme — bei einem Umzug ist das die Regel — schließen wir vorher einen Auftragsverarbeitungsvertrag nach Art. 28 DSGVO. Mein Muster liegt offen unter ais152.com/avv.html
+
+**NÄCHSTER SCHRITT**
+
+Schreiben Sie mir die Adresse Ihrer Website. Ich sehe mir von außen an, wo sie liegt und in welchem Zustand sie ist, und melde mich innerhalb eines Werktages mit einer Einschätzung und einem Festpreis. Die Einschätzung kostet nichts.
