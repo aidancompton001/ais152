@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate og-image.jpg + apple-touch-icon.png for AiS1.52.
+"""Generate og-image.jpg + apple-touch-icon.png for AIS.152.
 
 Output:
   assets/og-image.jpg          1200 x 630   (Open Graph share preview)

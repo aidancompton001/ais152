@@ -1,5 +1,5 @@
 /**
- * AiS1.52 Quiz Backend — minimal version (no HMAC verification for now).
+ * AIS.152 Quiz Backend — minimal version (no HMAC verification for now).
  * Trade-off: signed verification disabled to unblock the launch.
  * Can be re-enabled later if abuse becomes a problem.
  */
@@ -55,7 +55,7 @@ function doPost(e) {
 }
 
 function doGet() {
-  return ContentService.createTextOutput(JSON.stringify({ ok: true, service: 'AiS152 Quiz', version: QUIZ_VERSION })).setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify({ ok: true, service: 'AIS.152 Quiz', version: QUIZ_VERSION })).setMimeType(ContentService.MimeType.JSON);
 }
 
 function notifyCEO(tg, a, exit_type, top_platforms) {

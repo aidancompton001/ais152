@@ -63,7 +63,7 @@
       email: data.email,
       project_type: data.project_type,
       message: data.message,
-      _subject: `[AiS152] New project inquiry from ${data.name}`,
+      _subject: `[AIS.152] New project inquiry from ${data.name}`,
       _captcha: 'false',
       _template: 'table',
     };
@@ -90,8 +90,8 @@
       email: data.email,
       project_type: data.project_type,
       message: data.message,
-      from_name: 'AiS152 Contact Form',
-      subject: `[AiS152] New project inquiry from ${data.name}`,
+      from_name: 'AIS.152 Contact Form',
+      subject: `[AIS.152] New project inquiry from ${data.name}`,
     };
     const resp = await fetch(WEB3FORMS_URL, {
       method: 'POST',
