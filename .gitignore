@@ -3,3 +3,7 @@
 rechnungen/*
 !rechnungen/muster.html
 !rechnungen/.gitkeep
+
+# Python-Cache
+__pycache__/
+*.pyc
