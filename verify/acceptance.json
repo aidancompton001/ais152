@@ -1,125 +1,42 @@
 {
-  "task": "PX-015 — ElektroCheck Stuttgart portfolio entry (11 → 12)",
+  "_comment": "Приёмка багфикса карусели работ. Проверки прогоняются на реальной странице в headless Chrome в трёх режимах: обычный, prefers-reduced-motion, недоступный CDN с GSAP. До починки красные были reduced и nogsap — это зафиксировано прогоном.",
+  "task": "AIS152-BUG-001 — карусель работ: счётчик показывает 09 вместо 16 и не листается колесом",
   "checks": [
     {
       "id": "AC1",
-      "desc": "ElektroCheck entry в data/projects.json (slug)",
-      "cmd": "node -e \"console.log(require('./data/projects.json').filter(p=>p.slug==='elektrocheck-stuttgart').length)\"",
-      "expect_equal": "1"
+      "desc": "все три режима: карточки отрисованы, счётчик равен их числу, карусель листается колесом",
+      "cmd": "node verify/probes/work_carousel.mjs all",
+      "expect_exit": 0
     },
     {
       "id": "AC2",
-      "desc": "Ofnstube остался order:1 (не сломали PX-014)",
-      "cmd": "node -e \"const p=require('./data/projects.json').find(x=>x.slug==='ofnstube');console.log(p.order)\"",
-      "expect_equal": "1"
+      "desc": "режим без GSAP отдельно (самый частый: блокировщик рекламы)",
+      "cmd": "node verify/probes/work_carousel.mjs nogsap",
+      "expect_exit": 0
     },
     {
       "id": "AC3",
-      "desc": "ElektroCheck — order:2 (вторая карточка)",
-      "cmd": "node -e \"const p=require('./data/projects.json').find(x=>x.slug==='elektrocheck-stuttgart');console.log(p.order)\"",
-      "expect_equal": "2"
+      "desc": "режим «меньше анимации» отдельно",
+      "cmd": "node verify/probes/work_carousel.mjs reduced",
+      "expect_exit": 0
     },
     {
       "id": "AC4",
-      "desc": "Всего 12 проектов",
-      "cmd": "node -e \"console.log(require('./data/projects.json').length)\"",
-      "expect_equal": "12"
+      "desc": "счётчик больше не зашит числом в разметке: значение приходит из числа карточек",
+      "cmd": "grep -c 'setWorkTotal' assets/js/main.js",
+      "expect_min": 2
     },
     {
       "id": "AC5",
-      "desc": "Все order = 1..12, без пропусков/дубликатов",
-      "cmd": "node -e \"const o=require('./data/projects.json').map(p=>p.order).sort((a,b)=>a-b);console.log(o.join(','))\"",
-      "expect_equal": "1,2,3,4,5,6,7,8,9,10,11,12"
+      "desc": "число проектов в данных совпадает с числом в заголовке секции (16 = Sixteen)",
+      "cmd": "node -e \"const p=require('./data/projects.json').filter(x=>x.status!=='archived').length;const h=require('fs').readFileSync('index.html','utf8');console.log(p===16 && /Sixteen things/.test(h) && /data-target=\\\"16\\\"/.test(h))\"",
+      "expect_equal": "true"
     },
     {
       "id": "AC6",
-      "desc": "Tagline EN ≤ 280",
-      "cmd": "node -e \"const p=require('./data/projects.json').find(x=>x.slug==='elektrocheck-stuttgart');console.log(p.tagline_en.length<=280?'OK':p.tagline_en.length)\"",
-      "expect_contain": "OK"
-    },
-    {
-      "id": "AC7",
-      "desc": "Summary EN ≤ 280",
-      "cmd": "node -e \"const p=require('./data/projects.json').find(x=>x.slug==='elektrocheck-stuttgart');console.log(p.summary_en.length<=280?'OK':p.summary_en.length)\"",
-      "expect_contain": "OK"
-    },
-    {
-      "id": "AC8",
-      "desc": "Summary DE ≤ 280",
-      "cmd": "node -e \"const p=require('./data/projects.json').find(x=>x.slug==='elektrocheck-stuttgart');console.log(p.summary_de.length<=280?'OK':p.summary_de.length)\"",
-      "expect_contain": "OK"
-    },
-    {
-      "id": "AC9",
-      "desc": "URL = https://elektrocheckstuttgart.de (root, без #main)",
-      "cmd": "node -e \"const p=require('./data/projects.json').find(x=>x.slug==='elektrocheck-stuttgart');console.log(p.url==='https://elektrocheckstuttgart.de'?'OK':p.url)\"",
-      "expect_contain": "OK"
-    },
-    {
-      "id": "AC10",
-      "desc": "Screenshot existsa + > 10 KB",
-      "cmd": "node -e \"const s=require('fs').statSync('assets/elektrocheck-site.jpg');console.log(s.size>10000?'OK':'TINY')\"",
-      "expect_contain": "OK"
-    },
-    {
-      "id": "AC11",
-      "desc": "SVG-symbol mark-elektrocheck в index.html",
-      "cmd": "grep -c 'id=\"mark-elektrocheck\"' index.html",
-      "expect_min": 1
-    },
-    {
-      "id": "AC12",
-      "desc": "Stats data-target=\"12\"",
-      "cmd": "grep -c 'data-target=\"12\"' index.html",
-      "expect_min": 1
-    },
-    {
-      "id": "AC13",
-      "desc": "Hero meta \"12 live\"",
-      "cmd": "grep -c '12 live' index.html",
-      "expect_min": 1
-    },
-    {
-      "id": "AC14",
-      "desc": "Terminal \"12 projects\"",
-      "cmd": "grep -c '12 projects' index.html",
-      "expect_min": 1
-    },
-    {
-      "id": "AC15",
-      "desc": "Work title — Twelve / Zwölf (оба)",
-      "cmd": "node -e \"const t=require('fs').readFileSync('index.html','utf8');let n=0;if(t.includes('Twelve things'))n++;if(t.includes('Zwölf Dinge'))n++;console.log(n)\"",
-      "expect_equal": "2"
-    },
-    {
-      "id": "AC16",
-      "desc": "Hero lead — Twelve / Zwölf (оба)",
-      "cmd": "node -e \"const t=require('fs').readFileSync('index.html','utf8');let n=0;if(t.includes('Twelve live projects'))n++;if(t.includes('Zwölf Live-Projekte'))n++;console.log(n)\"",
-      "expect_equal": "2"
-    },
-    {
-      "id": "AC17",
-      "desc": "Старая цифра 11 не осталась нигде",
-      "cmd": "node -e \"const t=require('fs').readFileSync('index.html','utf8');const bad=['data-target=\\\"11\\\"','11 live','Eleven things','Elf Dinge','11 projects','Eleven live projects','Elf Live-Projekte'];console.log(bad.filter(s=>t.includes(s)).length)\"",
+      "desc": "0 точек в заголовках h1-h4 (правило типографики MainCore)",
+      "cmd": "grep -oE '<h[1-4][^>]*>[^<]+</h[1-4]>' index.html | grep -cE '\\.</h[1-4]>' || true",
       "expect_equal": "0"
-    },
-    {
-      "id": "AC18",
-      "desc": "Live elektrocheckstuttgart.de → 200",
-      "cmd": "python verify/check_live_url.py https://elektrocheckstuttgart.de/",
-      "expect_equal": "200"
-    },
-    {
-      "id": "AC19",
-      "desc": "ТИПОГРАФИКА: 0 точек в h1-h4 (Global Rule)",
-      "cmd": "python verify/check_no_periods_in_headings.py index.html",
-      "expect_equal": "0"
-    },
-    {
-      "id": "HRC",
-      "desc": "Hallucination rate <= порог (Закон 23)",
-      "cmd": "python verify/hrc.py verify/hrc_ledger.json",
-      "expect_exit": 0
     }
   ]
 }

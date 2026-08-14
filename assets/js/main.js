@@ -300,7 +300,79 @@
 
   // ──────────────── HORIZONTAL WORK SCROLL ────────────────
   // Initialized inside projects.js after cards are rendered (event-based)
-  document.addEventListener('ais:projects-rendered', initWorkHorizontal);
+  document.addEventListener('ais:projects-rendered', initWork);
+
+  // PX-014: раньше вся карусель жила внутри initWorkHorizontal() за проверкой
+  // «есть GSAP и не просили меньше анимации». Когда GSAP не загружался
+  // (блокировщик, сбой CDN, офлайн), выход происходил ДО всего: карточки
+  // оставались обрезанным рядом, который нечем прокрутить, а «/ NN» держал
+  // заглушку 09, зашитую в index.html ещё при девяти проектах.
+  // Воспроизведено в headless Chrome блокировкой cdnjs: gsap undefined,
+  // total "09", ноль ScrollTrigger'ов. Теперь два правила: общее число
+  // проставляется всегда, и любой путь без закрепления всё равно листается.
+  function initWork() {
+    setWorkTotal();
+    if (IS_TOUCH_SMALL) return initWorkMobileSnap();
+    if (!hasGSAP || !hasST || REDUCED_MOTION) return initWorkNativeScroll();
+    return initWorkHorizontal();
+  }
+
+  function setWorkTotal() {
+    const track = document.getElementById('work-track');
+    const tot = document.getElementById('work-progress-total');
+    if (!track || !tot) return;
+    const n = track.querySelectorAll('.card').length;
+    if (n) tot.textContent = String(n).padStart(2, '0');
+  }
+
+  // Нативная горизонтальная прокрутка: без GSAP, без анимации.
+  // Прокрутку делает пользователь, это не анимация, поэтому режиму
+  // «меньше анимации» она не противоречит. Противоречил как раз отказ
+  // прокручиваться вообще.
+  function initWorkNativeScroll() {
+    const pin = document.getElementById('work-pin');
+    const track = document.getElementById('work-track');
+    if (!pin || !track) return;
+    const cards = Array.from(track.querySelectorAll('.card'));
+    if (!cards.length) return;
+
+    pin.classList.add('is-native');
+    track.classList.add('is-native');
+    track.tabIndex = 0;
+    track.setAttribute('aria-label', 'Selected work');
+
+    // Колесо над лентой листает её вбок. Фаза перехвата и остановка всплытия,
+    // иначе Lenis прокрутит страницу под ней.
+    track.addEventListener('wheel', (e) => {
+      const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      if (!delta) return;
+      const max = track.scrollWidth - track.clientWidth;
+      if ((track.scrollLeft <= 0 && delta < 0) || (track.scrollLeft >= max - 1 && delta > 0)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      track.scrollLeft += delta;
+    }, { passive: false, capture: true });
+
+    trackCounterByVisibility(track, cards);
+  }
+
+  // Общий для нативной прокрутки и мобильного пути: счётчик следует за той
+  // карточкой, которой видно больше всего.
+  function trackCounterByVisibility(track, cards) {
+    const cur = document.getElementById('work-progress-current');
+    if (!cur || !('IntersectionObserver' in window)) return;
+    const obs = new IntersectionObserver((entries) => {
+      let best = null;
+      entries.forEach((e) => {
+        if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) best = e;
+      });
+      if (best) {
+        const idx = cards.indexOf(best.target) + 1;
+        if (idx > 0) cur.textContent = String(idx).padStart(2, '0');
+      }
+    }, { root: track, threshold: [0.5, 0.75, 1.0] });
+    cards.forEach((c) => obs.observe(c));
+  }
 
   function initWorkHorizontal() {
     if (!hasGSAP || !hasST || REDUCED_MOTION) return;
@@ -360,27 +432,10 @@
   // The total "/ NN" already comes from projects.js render (no change needed).
   function initWorkMobileSnap() {
     const track = document.getElementById('work-track');
-    const cur = document.getElementById('work-progress-current');
-    const tot = document.getElementById('work-progress-total');
     if (!track) return;
     const cards = Array.from(track.querySelectorAll('.card'));
     if (!cards.length) return;
-    if (tot) tot.textContent = String(cards.length).padStart(2, '0');
-    if (!cur || !('IntersectionObserver' in window)) return;
-    const obs = new IntersectionObserver((entries) => {
-      // Pick the most-visible card; update counter to its index.
-      let best = null;
-      entries.forEach((e) => {
-        if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) {
-          best = e;
-        }
-      });
-      if (best) {
-        const idx = cards.indexOf(best.target) + 1;
-        if (idx > 0) cur.textContent = String(idx).padStart(2, '0');
-      }
-    }, { root: track, threshold: [0.5, 0.75, 1.0] });
-    cards.forEach((c) => obs.observe(c));
+    trackCounterByVisibility(track, cards);
   }
 
   // ──────────────── VARIABLE FONT — HERO H1 SCROLL AXIS ────────────────

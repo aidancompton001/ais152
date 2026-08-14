@@ -64,14 +64,11 @@
     height: auto !important;
     overflow: visible !important;
   }
+  /* PX-014: раньше здесь лента разворачивалась в вертикальный столбец.
+     Вместе с этим пропадала и лента, и счётчик переставал что-либо значить.
+     Теперь main.js включает нативную горизонтальную прокрутку: пользователь
+     листает сам, анимации нет, требование режима выполнено. */
   .work-track {
-    flex-wrap: wrap !important;
     transform: none !important;
-    padding-right: var(--container-px) !important;
-    gap: var(--sp-6) !important;
-  }
-  .card {
-    flex: 1 1 100% !important;
-    max-width: 720px !important;
   }
 }

@@ -7,3 +7,7 @@ rechnungen/*
 # Python-Cache
 __pycache__/
 *.pyc
+
+# Сгенерированные референсы студийной сцены (60 МБ, не для Pages)
+docs/reference/
+.claude/

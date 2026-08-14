@@ -674,3 +674,34 @@
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
   .header-actions .lang-toggle { padding: var(--sp-1) var(--sp-2); }
 }
+
+/* PX-014: нативная горизонтальная прокрутка ленты работ.
+   Включается из main.js, когда закрепление недоступно: GSAP не загрузился
+   (блокировщик, сбой CDN) или система просит меньше анимации. Без этого
+   карточки оставались обрезанным рядом, который нечем прокрутить. */
+.work-pin.is-native {
+  height: auto;
+  overflow: visible;
+}
+.work-track.is-native {
+  /* .work-pin — это flex-контейнер, поэтому лента как flex-элемент растягивалась
+     под суммарную ширину карточек: clientWidth равнялся scrollWidth и прокручивать
+     было нечего. Ограничиваем ленту шириной окна, тогда она становится
+     контейнером прокрутки, а не просто длинным рядом. */
+  flex: 0 1 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* Без scroll-snap: он возвращал ленту к текущей точке привязки после каждого
+     шага колеса, из-за чего scrollLeft оставался на месте, а страница уезжала
+     вниз. Замерено: 5 шагов по 200px -> scrollLeft 40 -> 40, window.scrollY 1929. */
+  scroll-behavior: auto;              /* без плавности: режим «меньше анимации» */
+  padding-right: var(--container-px);
+  will-change: auto;
+  scrollbar-width: thin;
+}
+.work-track.is-native:focus-visible {
+  outline: 2px solid var(--ac);
+  outline-offset: 4px;
+}
