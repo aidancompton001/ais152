@@ -37,6 +37,12 @@
       "desc": "0 точек в заголовках h1-h4 (правило типографики MainCore)",
       "cmd": "grep -oE '<h[1-4][^>]*>[^<]+</h[1-4]>' index.html | grep -cE '\\.</h[1-4]>' || true",
       "expect_equal": "0"
+    },
+    {
+      "id": "AC7",
+      "desc": "версия ресурсов поднята, иначе браузер отдаст старый JS из кеша",
+      "cmd": "grep -c 'v=2026-04-28-px010' index.html || true",
+      "expect_equal": "0"
     }
   ]
 }
