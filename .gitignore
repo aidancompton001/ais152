@@ -4,6 +4,11 @@ rechnungen/*
 !rechnungen/muster.html
 !rechnungen/.gitkeep
 
+# Доступы — репозиторий ПУБЛИЧНЫЙ (GitHub Pages), токен здесь = токен у всех
+.env
+.env.*
+!.env.example
+
 # Python-Cache
 __pycache__/
 *.pyc

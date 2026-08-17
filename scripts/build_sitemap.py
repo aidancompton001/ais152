@@ -24,8 +24,8 @@ BASE = "https://ais152.com"
 PAGES = [
     ("index.html",       "/",                1.0, "weekly"),
     ("wartung.html",     "/wartung.html",    0.8, "monthly"),
-    ("impressum.html",   "/impressum.html",  0.3, "yearly"),
-    ("datenschutz.html", "/datenschutz.html", 0.3, "yearly"),
+    ("impressum.html",   "/impressum.html",  0.4, "yearly"),
+    ("datenschutz.html", "/datenschutz.html", 0.4, "yearly"),
     ("agb.html",         "/agb.html",        0.3, "yearly"),
     ("widerruf.html",    "/widerruf.html",   0.3, "yearly"),
     ("avv.html",         "/avv.html",        0.3, "yearly"),
