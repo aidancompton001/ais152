@@ -11,6 +11,7 @@
     py scripts/build_sitemap.py           # показать
     py scripts/build_sitemap.py --write   # записать sitemap.xml
 """
+import datetime
 import io
 import re
 import subprocess
@@ -21,8 +22,17 @@ ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://ais152.com"
 
 # страница -> (адрес в карте, приоритет, частота)
+# Языковые пары: адрес → его альтернатива на другом языке. Взаимные hreflang
+# обязаны перечислять КАЖДУЮ версию, включая себя — иначе Google связку
+# не строит.
+LANG_PAIRS = {
+    "/": {"de": "/", "en": "/en/"},
+    "/en/": {"de": "/", "en": "/en/"},
+}
+
 PAGES = [
     ("index.html",       "/",                1.0, "weekly"),
+    ("en/index.html",    "/en/",             0.9, "weekly"),
     ("wartung.html",     "/wartung.html",    0.8, "monthly"),
     ("impressum.html",   "/impressum.html",  0.4, "yearly"),
     ("datenschutz.html", "/datenschutz.html", 0.4, "yearly"),
@@ -34,10 +44,20 @@ PAGES = [
 HEAD = ('<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
         '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n')
-ALT = ('    <xhtml:link rel="alternate" hreflang="en" href="%s/" />\n'
-       '    <xhtml:link rel="alternate" hreflang="de" href="%s/" />\n'
-       '    <xhtml:link rel="alternate" hreflang="x-default" href="%s/" />\n'
-       % (BASE, BASE, BASE))
+def alternates(loc):
+    """Взаимные hreflang для языковой пары.
+
+    Требование Google: каждая версия обязана перечислять себя и все остальные.
+    До 18.08.2026 здесь стояли три альтернативы, ведущие на ОДИН адрес, —
+    языкового таргетинга это не создавало вовсе.
+    """
+    pair = LANG_PAIRS.get(loc)
+    if not pair:
+        return ""
+    tpl = '    <xhtml:link rel="alternate" hreflang="%s" href="%s%s" />'
+    rows = [tpl % (code, BASE, path) for code, path in sorted(pair.items())]
+    rows.append(tpl % ("x-default", BASE, pair["de"]))
+    return chr(10).join(rows) + chr(10)
 
 
 def git_date(name):
@@ -71,15 +91,17 @@ def main():
             continue
         date = git_date(name)
         if not date:
-            problems.append("нет даты в журнале git: %s" % name)
-            continue
+            # Страница есть на диске, но ещё не в журнале git — значит создана
+            # сегодня. Дата берётся из источника, из которого она собрана,
+            # либо считается сегодняшней: врать «не менялась» нельзя, а падать
+            # из-за новой страницы — значит запрещать себе добавлять страницы.
+            date = git_date("index.src.html") or datetime.date.today().isoformat()
         chunk = ("  <url>\n"
                  "    <loc>%s%s</loc>\n"
                  "    <lastmod>%s</lastmod>\n"
                  "    <changefreq>%s</changefreq>\n"
                  "    <priority>%.1f</priority>\n" % (BASE, loc, date, freq, prio))
-        if loc == "/":
-            chunk += ALT
+        chunk += alternates(loc)
         chunk += "  </url>\n"
         body.append(chunk)
 

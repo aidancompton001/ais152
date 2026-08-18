@@ -6,8 +6,17 @@
     <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ais152.com/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://ais152.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ais152.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ais152.com/" />
+  </url>
+  <url>
+    <loc>https://ais152.com/en/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ais152.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ais152.com/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ais152.com/" />
   </url>
   <url>
@@ -18,13 +27,13 @@
   </url>
   <url>
     <loc>https://ais152.com/impressum.html</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://ais152.com/datenschutz.html</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>

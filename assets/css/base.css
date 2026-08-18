@@ -100,7 +100,10 @@ textarea:focus-visible {
 }
 
 /* ── Bilingual default visibility ──────────────────────── */
-[data-lang-de] { display: none !important; }
+/* Правило, прятавшее немецкий текст, снято 18.08.2026.
+   Обе версии теперь живут на своих адресах: / — немецкий, /en/ — английский.
+   Прежняя схема отдавала Googlebot ВСЕГДА английский, потому что язык
+   выбирался по настройке браузера, которой у краулера нет. */
 html[data-lang="de"] [data-lang-en] { display: none !important; }
 html[data-lang="de"] [data-lang-de] { display: inline !important; }
 html[data-lang="de"] [data-lang-de].block { display: block !important; }
