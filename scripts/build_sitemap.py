@@ -42,6 +42,10 @@ PAGES = [
     ("leistungen/prozessautomatisierung.html",         "/leistungen/prozessautomatisierung.html",    0.8, "monthly"),
     ("leistungen/ki-integration-bestandssysteme.html", "/leistungen/ki-integration-bestandssysteme.html", 0.8, "monthly"),
     ("leistungen/n8n-hosting-wartung.html",            "/leistungen/n8n-hosting-wartung.html",       0.7, "monthly"),
+    ("leistungen/website-erstellen-lassen-muenchen.html", "/leistungen/website-erstellen-lassen-muenchen.html", 0.9, "monthly"),
+    ("leistungen/website-handwerk.html",               "/leistungen/website-handwerk.html",          0.9, "monthly"),
+    ("leistungen/website-arztpraxis.html",             "/leistungen/website-arztpraxis.html",        0.9, "monthly"),
+    ("leistungen/onlineshop-erstellen.html",           "/leistungen/onlineshop-erstellen.html",      0.8, "monthly"),
 ]
 
 # Страницы проектов подставляются из данных, а не вписываются руками: проектов

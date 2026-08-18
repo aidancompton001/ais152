@@ -1,0 +1,44 @@
+{
+  "slug": "website-handwerk",
+  "phrase": "Website für Handwerker",
+  "title": "Website für Handwerker erstellen lassen — München | AIS.152",
+  "description": "Website für Handwerksbetriebe: Leistungen, Einzugsgebiet, Anfrageformular, das ankommt. Handgeschrieben, schnell, DSGVO-konform — kein Baukasten.",
+  "h1": "Website für Handwerker, die Anfragen bringt statt Komplimente",
+  "lead": "Ein Handwerksbetrieb braucht keine Award-Website. Er braucht eine Seite, auf der ein Anrufer in zehn Sekunden sieht, dass Sie sein Problem lösen, sein Ort im Einzugsgebiet liegt und wie er Sie erreicht.",
+  "sections": [
+    {
+      "h2": "Was auf eine Website für Handwerker gehört",
+      "body": [
+        "Nach der Arbeit an Websites für Elektro, Hausmeisterservice, Garten und Prüfservice ist die Liste jedes Mal dieselbe:",
+        "<ul><li>Die Leistungen einzeln, nicht als Wortwolke — jede mit eigener Überschrift, weil danach gesucht wird</li><li>Das Einzugsgebiet ausgeschrieben, mit Ortsnamen. «Und Umgebung» findet niemand</li><li>Telefonnummer als Link, der auf dem Handy wählt</li><li>Anfrageformular, das wirklich ankommt und beantwortet wird</li><li>Fotos eigener Arbeiten, keine Stockbilder von fremden Baustellen</li><li>Impressum und Datenschutz vollständig — bei Abmahnungen ist das die erste Stelle, die geprüft wird</li></ul>"
+      ]
+    },
+    {
+      "h2": "Baukasten oder Website für Handwerker bauen lassen",
+      "body": [
+        "Ein Baukasten kostet ab etwa dreißig Euro im Monat und ist an einem Wochenende fertig. Das ist ein ehrliches Angebot, und für manche Betriebe reicht es.",
+        "<ul><li><strong>Baukasten</strong>: wenn die Seite eine Visitenkarte ist und Aufträge über Empfehlung kommen</li><li><strong>Bauen lassen</strong>: wenn die Seite Anfragen bringen soll — dann entscheidet Ladezeit, Struktur der Leistungen und ob Google die Seite überhaupt versteht</li></ul>",
+        "Der Unterschied wird sichtbar, wenn jemand in Ihrer Stadt Ihre Leistung sucht und nicht Ihren Firmennamen."
+      ]
+    },
+    {
+      "h2": "Ladezeit und Handy",
+      "body": [
+        "Handwerkskunden kommen fast alle vom Telefon, oft mit schlechtem Empfang. Deshalb baue ich statisch: kein System, das bei jedem Aufruf eine Datenbank fragt, keine zehn Skripte von fremden Servern.",
+        "Das ist kein Selbstzweck. Eine Seite, die drei Sekunden lädt, verliert Anrufer, bevor sie erscheint."
+      ]
+    },
+    {
+      "h2": "DSGVO ohne Panik",
+      "body": [
+        "Schriften vom eigenen Server statt von Google, Karte erst nach Zustimmung, Formular ohne Weitergabe an Dritte, Datenschutzerklärung, die zur tatsächlichen Seite passt.",
+        "Das meiste davon ist keine Arbeit, sondern eine Entscheidung beim Bauen. Nachträglich einbauen kostet mehr."
+      ]
+    }
+  ],
+  "cta": "Sagen Sie mir, welche Leistungen Sie anbieten und wo",
+  "related": [
+    ["website-arztpraxis", "Website für Arztpraxen"],
+    ["prozessautomatisierung", "Prozessautomatisierung"]
+  ]
+}

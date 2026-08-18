@@ -1,0 +1,43 @@
+{
+  "slug": "website-arztpraxis",
+  "phrase": "Website für Arztpraxis",
+  "title": "Website für Arztpraxis erstellen lassen — München | AIS.152",
+  "description": "Praxiswebsite mit Sprechzeiten, Leistungen und Terminanfrage. Barrierearm, schnell, DSGVO-konform — mit Blick auf ärztliche Schweigepflicht.",
+  "h1": "Website für Arztpraxis, die Anrufe am Empfang reduziert",
+  "lead": "Ein großer Teil aller Anrufe in einer Praxis betrifft dieselben drei Dinge: Sprechzeiten, Terminwunsch und die Frage, ob Sie eine bestimmte Leistung anbieten. Eine Praxiswebsite, die das sauber beantwortet, entlastet den Empfang messbar.",
+  "sections": [
+    {
+      "h2": "Was eine Website für Arztpraxis leisten muss",
+      "body": [
+        "<ul><li>Sprechzeiten an erster Stelle, auch abweichende — das ist der häufigste Grund für einen Anruf</li><li>Leistungen einzeln benannt, in der Sprache der Patienten und in der Fachsprache</li><li>Terminanfrage: entweder Anbindung an Ihr Buchungssystem oder ein Formular, das der Empfang wirklich sieht</li><li>Anfahrt, Barrierefreiheit, Parken, Haltestelle</li><li>Team und Qualifikation — bei Ärzten schaut man, wem man sich anvertraut</li></ul>"
+      ]
+    },
+    {
+      "h2": "Website für Arztpraxis und ärztliche Schweigepflicht",
+      "body": [
+        "Hier unterscheidet sich eine Praxiswebsite von jeder anderen: über das Formular können Gesundheitsdaten hereinkommen, auch wenn niemand danach gefragt hat. Ein Patient schreibt einfach, was ihm fehlt.",
+        "Das heißt: Formular verschlüsselt, Empfang beim Praxispostfach und nicht bei einem Drittanbieter, Aufbewahrungsfristen geklärt, Auftragsverarbeitungsvertrag mit jedem, der die Daten anfasst.",
+        "Wer eine Praxiswebsite anbietet, ohne dieses Thema anzusprechen, hat es entweder nicht bedacht oder hofft, dass Sie es auch nicht tun."
+      ]
+    },
+    {
+      "h2": "Praxissoftware anbinden oder nicht",
+      "body": [
+        "Die ehrliche Antwort: meistens nicht. Praxisverwaltungssysteme sind selten offen, und eine Anbindung lohnt sich erst, wenn viele Termine über die Website kommen.",
+        "Der sinnvolle erste Schritt ist eine strukturierte Terminanfrage, die am Empfang genauso ankommt wie ein Anruf — nur ohne Anruf. Anbinden kann man später, wenn sich zeigt, dass es sich lohnt."
+      ]
+    },
+    {
+      "h2": "Barrierearm bauen",
+      "body": [
+        "Patienten sind älter als der Durchschnitt im Netz. Große Schrift, echter Kontrast, bedienbar mit Tastatur, keine Bewegung, die Schwindel auslöst.",
+        "Das kostet beim Bauen fast nichts und entscheidet, ob eine Achtzigjährige Ihre Sprechzeiten findet."
+      ]
+    }
+  ],
+  "cta": "Erzählen Sie mir, wofür Ihr Empfang die meiste Zeit am Telefon verliert",
+  "related": [
+    ["website-handwerk", "Website für Handwerker"],
+    ["ki-automatisierung", "KI-Automatisierung"]
+  ]
+}
