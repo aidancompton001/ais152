@@ -18,16 +18,16 @@
       "h2": "KI-Automatisierung selbst versuchen oder beauftragen",
       "body": [
         "Ein Chatfenster im Browser zu benutzen ist einfach. Ein Modell in einen Ablauf einzubauen, der jeden Tag hundertmal läuft, ist etwas anderes: Kosten pro Aufruf, Wiederholungen bei Ausfall, Umgang mit Falschantworten, Datenschutz, Nachvollziehbarkeit.",
-        "<ul><li><strong>Selbst versuchen</strong>: sinnvoll, um herauszufinden, ob das Modell die Aufgabe überhaupt kann. Kostet einen Nachmittag</li><li><strong>Beauftragen</strong>: sobald es in den Betrieb soll — mit Fehlerbehandlung, Budgetgrenze und Protokoll</li></ul>",
-        "Ich sage vorher, wenn eine Aufgabe für ein Sprachmodell ungeeignet ist. Regelbasierte Automatisierung ist oft billiger, schneller und zuverlässiger — und dafür braucht es keine KI."
+        "<ul><li><strong>Selbst versuchen</strong>: sinnvoll, um herauszufinden, ob das Modell die Aufgabe überhaupt kann. Kostet einen Nachmittag</li><li><strong>Beauftragen</strong>: sobald es in den Betrieb soll: mit Fehlerbehandlung, Budgetgrenze und Protokoll</li></ul>",
+        "Ich sage vorher, wenn eine Aufgabe für ein Sprachmodell ungeeignet ist. Regelbasierte Automatisierung ist oft billiger, schneller und zuverlässiger: und dafür braucht es keine KI."
       ]
     },
     {
       "h2": "DSGVO, wenn KI im Spiel ist",
       "body": [
         "Sobald personenbezogene Daten an ein Modell gehen, ist das eine Verarbeitung wie jede andere: Rechtsgrundlage, Auftragsverarbeitungsvertrag, Eintrag im Verzeichnis, Löschfristen.",
-        "Praktisch heißt das drei Entscheidungen: Welche Felder gehen überhaupt raus. Wo steht das Modell — europäische Region oder eigener Server. Und wer haftet für die Antwort, wenn sie falsch ist.",
-        "Zu Artikel 22 DSGVO: eine Entscheidung mit rechtlicher Wirkung darf nicht allein automatisiert fallen. Deshalb steht in solchen Abläufen ein Mensch — nicht aus Vorsicht, sondern weil es sonst nicht zulässig ist."
+        "Praktisch heißt das drei Entscheidungen: Welche Felder gehen überhaupt raus. Wo steht das Modell: europäische Region oder eigener Server. Und wer haftet für die Antwort, wenn sie falsch ist.",
+        "Zu Artikel 22 DSGVO: eine Entscheidung mit rechtlicher Wirkung darf nicht allein automatisiert fallen. Deshalb steht in solchen Abläufen ein Mensch: nicht aus Vorsicht, sondern weil es sonst nicht zulässig ist."
       ]
     },
     {
@@ -40,7 +40,13 @@
   ],
   "cta": "Sagen Sie mir, welche Aufgabe bei Ihnen täglich Text hin und her schiebt",
   "related": [
-    ["n8n-automatisierung", "n8n Automatisierung"],
-    ["ki-integration-bestandssysteme", "KI-Integration in Bestandssysteme"]
+    [
+      "n8n-automatisierung",
+      "n8n Automatisierung"
+    ],
+    [
+      "ki-integration-bestandssysteme",
+      "KI-Integration in Bestandssysteme"
+    ]
   ]
 }

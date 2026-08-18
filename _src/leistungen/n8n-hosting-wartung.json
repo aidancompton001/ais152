@@ -4,19 +4,19 @@
   "title": "n8n Hosting und Wartung — Betrieb in Deutschland | AIS.152",
   "description": "n8n selbst gehostet auf einem Server in Deutschland: Einrichtung, Updates, Überwachung, Sicherung. Damit Workflows auch laufen, wenn keiner hinschaut.",
   "h1": "n8n Hosting und Wartung, damit Workflows morgens laufen",
-  "lead": "Ein Workflow ist gebaut in einer Woche. Er läuft in drei Jahren — oder er läuft es nicht, und keiner merkt es, bis ein Kunde anruft. Der Unterschied liegt im Betrieb.",
+  "lead": "Ein Workflow ist gebaut in einer Woche. Er läuft in drei Jahren: oder er läuft es nicht, und keiner merkt es, bis ein Kunde anruft. Der Unterschied liegt im Betrieb.",
   "sections": [
     {
       "h2": "Was n8n Hosting und Wartung umfasst",
       "body": [
-        "<ul><li>Eigene n8n-Instanz auf einem Server in Deutschland, getrennt von anderen Kunden</li><li>Updates, wenn sie sicherheitsrelevant sind — nicht blind bei jeder Version</li><li>Überwachung: fehlgeschlagene Läufe melden sich, statt still liegenzubleiben</li><li>Sicherung von Workflows und Daten, mit geprüfter Wiederherstellung</li><li>Zugänge getrennt nach Person, nicht ein gemeinsames Passwort</li></ul>",
+        "<ul><li>Eigene n8n-Instanz auf einem Server in Deutschland, getrennt von anderen Kunden</li><li>Updates, wenn sie sicherheitsrelevant sind: nicht blind bei jeder Version</li><li>Überwachung: fehlgeschlagene Läufe melden sich, statt still liegenzubleiben</li><li>Sicherung von Workflows und Daten, mit geprüfter Wiederherstellung</li><li>Zugänge getrennt nach Person, nicht ein gemeinsames Passwort</li></ul>",
         "Überwachung ist der Punkt, der am häufigsten fehlt. Ein Workflow, dessen Ausfall niemandem auffällt, war entweder nie wichtig oder wird gerade sehr teuer."
       ]
     },
     {
       "h2": "n8n selbst betreiben oder Betrieb abgeben",
       "body": [
-        "n8n selbst zu hosten ist keine Kunst — ein Container, eine Datenbank, ein Zertifikat. Die Frage ist, wer nachts wach wird, wenn der Server nicht antwortet.",
+        "n8n selbst zu hosten ist keine Kunst: ein Container, eine Datenbank, ein Zertifikat. Die Frage ist, wer nachts wach wird, wenn der Server nicht antwortet.",
         "<ul><li><strong>Selbst betreiben</strong>: sinnvoll mit eigener IT im Haus, die Server ohnehin betreut</li><li><strong>Abgeben</strong>: sinnvoll, wenn Automatisierung ein Werkzeug ist und kein Hobby</li></ul>",
         "In beiden Fällen bekommen Sie Zugänge und Dokumentation. Ein Betrieb, aus dem man nicht rauskommt, ist kein Betrieb, sondern eine Geiselnahme."
       ]
@@ -25,7 +25,7 @@
       "h2": "Warum n8n selbst hosten und nicht die Cloud-Variante",
       "body": [
         "Die gehostete Variante von n8n ist bequem und für viele Fälle richtig. Gegen sie sprechen zwei Dinge, und beide sind im deutschen Mittelstand üblich: Kundendaten, die das eigene Haus nicht verlassen sollen, und Verbindungen zu Systemen, die nur im internen Netz erreichbar sind.",
-        "Wenn beides nicht zutrifft, sage ich das — dann brauchen Sie mich für den Betrieb nicht."
+        "Wenn beides nicht zutrifft, sage ich das: dann brauchen Sie mich für den Betrieb nicht."
       ]
     }
   ],

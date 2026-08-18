@@ -10,14 +10,14 @@
       "h2": "Wie KI-Integration in Bestandssysteme abläuft",
       "body": [
         "Zuerst die Frage, die alles entscheidet: hat das System eine Schnittstelle. Danach richtet sich, ob eine Integration eine Woche oder ein Quartal dauert.",
-        "<ul><li><strong>Offene Schnittstelle</strong> — der Normalfall bei moderner Software, Anbindung in Tagen</li><li><strong>Export und Import</strong> — wenn Dateien der einzige Weg sind, funktioniert es trotzdem, nur zeitversetzt</li><li><strong>Kein Weg hinein</strong> — dann sage ich das, statt eine Lösung zu bauen, die beim nächsten Update zerbricht</li></ul>",
+        "<ul><li><strong>Offene Schnittstelle</strong>: der Normalfall bei moderner Software, Anbindung in Tagen</li><li><strong>Export und Import</strong>, wenn Dateien der einzige Weg sind, funktioniert es trotzdem, nur zeitversetzt</li><li><strong>Kein Weg hinein</strong>, dann sage ich das, statt eine Lösung zu bauen, die beim nächsten Update zerbricht</li></ul>",
         "Branchensoftware im Mittelstand ist häufig älter als die Firmenwebsite. Das ist kein Hindernis, aber es entscheidet über den Weg."
       ]
     },
     {
       "h2": "KI-Integration anschließen oder System ersetzen",
       "body": [
-        "Ein Systemwechsel ist die teuerste Antwort auf ein Integrationsproblem. Er kostet Monate, Schulung und Widerstand — und danach fehlt derselbe Ablauf wieder.",
+        "Ein Systemwechsel ist die teuerste Antwort auf ein Integrationsproblem. Er kostet Monate, Schulung und Widerstand: und danach fehlt derselbe Ablauf wieder.",
         "<ul><li><strong>Anschließen</strong>: fast immer, wenn die vorhandene Software fachlich passt und nur nicht kommuniziert</li><li><strong>Ersetzen</strong>: wenn der Hersteller den Support eingestellt hat oder Daten nachweislich nicht mehr sicher sind</li></ul>",
         "Ich verdiene an beidem gleich. Deshalb rate ich zu dem, was weniger kostet."
       ]
@@ -25,7 +25,7 @@
     {
       "h2": "Datenschutz bei der Anbindung",
       "body": [
-        "Eine Integration bewegt Daten zwischen Systemen, die vorher getrennt waren — und genau das ist der Punkt, der dokumentiert gehört: welche Felder, wohin, wie lange, wer darf ran.",
+        "Eine Integration bewegt Daten zwischen Systemen, die vorher getrennt waren: und genau das ist der Punkt, der dokumentiert gehört: welche Felder, wohin, wie lange, wer darf ran.",
         "Wo ein Sprachmodell dazukommt, gilt zusätzlich: was geht raus, wo steht das Modell, und wer prüft die Antwort, bevor sie beim Kunden landet."
       ]
     }

@@ -242,7 +242,10 @@
   width: 0.55em;
   background: var(--ac);
   color: transparent;
-  animation: caret-blink 1s steps(2) infinite;
+  /* Мигание снято: курсор в первом экране имитирует ввод там, где вводить
+     некуда — заимствованная эстетика редактора как украшение. Настоящее поле
+     рисует свой курсор само. Аудит Impeccable, 19.08.2026 */
+  opacity: 0.7;
 }
 @keyframes caret-blink {
   0%, 50% { opacity: 1; }

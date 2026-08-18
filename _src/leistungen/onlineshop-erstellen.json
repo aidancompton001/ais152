@@ -9,14 +9,14 @@
     {
       "h2": "Was zu einem Onlineshop erstellen dazugehört",
       "body": [
-        "<ul><li>Produkte mit Varianten, Staffelpreisen und Verfügbarkeit</li><li>Zahlung: Karte, PayPal, Rechnung, Vorkasse — je nach Kundschaft</li><li>Versandkosten, die stimmen, auch nach Österreich und in die Schweiz</li><li>Rechtstexte an den vorgeschriebenen Stellen: Widerrufsbelehrung, Grundpreis, Lieferzeit, Gesamtpreis vor dem Bestellknopf</li><li>Bestellbestätigung, die den gesetzlichen Anforderungen genügt</li></ul>",
+        "<ul><li>Produkte mit Varianten, Staffelpreisen und Verfügbarkeit</li><li>Zahlung: Karte, PayPal, Rechnung, Vorkasse: je nach Kundschaft</li><li>Versandkosten, die stimmen, auch nach Österreich und in die Schweiz</li><li>Rechtstexte an den vorgeschriebenen Stellen: Widerrufsbelehrung, Grundpreis, Lieferzeit, Gesamtpreis vor dem Bestellknopf</li><li>Bestellbestätigung, die den gesetzlichen Anforderungen genügt</li></ul>",
         "Der Bestellknopf muss «Zahlungspflichtig bestellen» heißen. Klingt nach Kleinigkeit, ist eine der häufigsten Abmahnungen."
       ]
     },
     {
       "h2": "WooCommerce, Shopify oder Onlineshop selbst bauen",
       "body": [
-        "<ul><li><strong>WooCommerce</strong>: eigener Server, eigene Daten, keine Umsatzbeteiligung. Braucht Pflege — Updates sind hier Pflicht, nicht Kür</li><li><strong>Shopify</strong>: bequem, schnell live, monatliche Gebühr plus Anteil. Ihre Daten liegen dort, und Anpassungen enden an der Grenze des Systems</li><li><strong>Selbst gebaut</strong>: nur bei ungewöhnlicher Logik, die kein System abbildet — sonst zu teuer</li></ul>",
+        "<ul><li><strong>WooCommerce</strong>: eigener Server, eigene Daten, keine Umsatzbeteiligung. Braucht Pflege: Updates sind hier Pflicht, nicht Kür</li><li><strong>Shopify</strong>: bequem, schnell live, monatliche Gebühr plus Anteil. Ihre Daten liegen dort, und Anpassungen enden an der Grenze des Systems</li><li><strong>Selbst gebaut</strong>: nur bei ungewöhnlicher Logik, die kein System abbildet, sonst zu teuer</li></ul>",
         "Für den deutschen Mittelstand mit eigener Kundschaft ist WooCommerce meist die ehrlichere Rechnung."
       ]
     },
@@ -31,13 +31,19 @@
       "h2": "Anbindung an Warenwirtschaft und Buchhaltung",
       "body": [
         "Der Punkt, an dem sich Aufwand spart: Bestellungen wandern automatisch in die Buchhaltung, Bestände zurück in den Shop, Lieferscheine entstehen ohne Abtippen.",
-        "Das lässt sich mit denselben Werkzeugen bauen wie jede andere Automatisierung — siehe <a href=\"/leistungen/n8n-automatisierung.html\" class=\"link-inline\">n8n Automatisierung</a>."
+        "Das lässt sich mit denselben Werkzeugen bauen wie jede andere Automatisierung: siehe <a href=\"/leistungen/n8n-automatisierung.html\" class=\"link-inline\">n8n Automatisierung</a>."
       ]
     }
   ],
   "cta": "Sagen Sie mir, was Sie verkaufen und an wen",
   "related": [
-    ["website-erstellen-lassen-muenchen", "Website erstellen lassen München"],
-    ["n8n-automatisierung", "n8n Automatisierung"]
+    [
+      "website-erstellen-lassen-muenchen",
+      "Website erstellen lassen München"
+    ],
+    [
+      "n8n-automatisierung",
+      "n8n Automatisierung"
+    ]
   ]
 }

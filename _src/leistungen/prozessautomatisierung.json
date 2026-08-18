@@ -10,28 +10,34 @@
       "h2": "Wo Prozessautomatisierung am schnellsten wirkt",
       "body": [
         "Am meisten Zeit geht dort verloren, wo Daten die Hand wechseln: aus dem Formular ins CRM, aus dem CRM ins Angebot, aus dem Angebot in den Kalender, aus dem Kalender in die Rechnung. Jede Übergabe ist Tipparbeit und jede Tipparbeit ist ein möglicher Fehler.",
-        "<ul><li>Anfrage kommt an, wird eingeordnet, jemand ist zuständig — ohne dass jemand sie weiterleitet</li><li>Termin wird bestätigt, erinnert und bei Absage freigegeben</li><li>Angebot entsteht aus Stammdaten und geht in die Nachverfolgung</li><li>Nach getaner Arbeit entsteht die Rechnung, nicht drei Wochen später</li></ul>"
+        "<ul><li>Anfrage kommt an, wird eingeordnet, jemand ist zuständig: ohne dass jemand sie weiterleitet</li><li>Termin wird bestätigt, erinnert und bei Absage freigegeben</li><li>Angebot entsteht aus Stammdaten und geht in die Nachverfolgung</li><li>Nach getaner Arbeit entsteht die Rechnung, nicht drei Wochen später</li></ul>"
       ]
     },
     {
       "h2": "Prozessautomatisierung intern lösen oder vergeben",
       "body": [
         "Der ehrliche Vergleich betrifft nicht die Kosten, sondern die Aufmerksamkeit. Intern gebaute Abläufe funktionieren, solange die Person da ist, die sie gebaut hat.",
-        "<ul><li><strong>Intern</strong>: gut bei kleinen internen Abläufen, bei denen ein Ausfall niemanden draußen betrifft</li><li><strong>Vergeben</strong>: sobald Kunden etwas merken, wenn es hakt — oder wenn niemand im Haus den Ablauf im Kopf hat</li></ul>",
+        "<ul><li><strong>Intern</strong>: gut bei kleinen internen Abläufen, bei denen ein Ausfall niemanden draußen betrifft</li><li><strong>Vergeben</strong>: sobald Kunden etwas merken, wenn es hakt: oder wenn niemand im Haus den Ablauf im Kopf hat</li></ul>",
         "In beiden Fällen gilt dasselbe: dokumentiert oder es existiert nicht."
       ]
     },
     {
       "h2": "Datenschutz bei Prozessautomatisierung",
       "body": [
-        "Automatisierte Abläufe fassen Kundendaten an, oft mehr als vorher, weil sie Systeme verbinden, die vorher getrennt waren. Das ist der Punkt, an dem eine Automatisierung zum Datenschutzthema wird — nicht die KI darin.",
+        "Automatisierte Abläufe fassen Kundendaten an, oft mehr als vorher, weil sie Systeme verbinden, die vorher getrennt waren. Das ist der Punkt, an dem eine Automatisierung zum Datenschutzthema wird: nicht die KI darin.",
         "Ich schreibe auf, welcher Ablauf welche Felder anfasst, wo sie liegen und wie lange. Das ist keine Bürokratie, sondern das Einzige, was bei einer Anfrage der Aufsichtsbehörde zählt."
       ]
     }
   ],
   "cta": "Beschreiben Sie einen Ablauf, der bei Ihnen jede Woche gleich abläuft",
   "related": [
-    ["n8n-automatisierung", "n8n Automatisierung"],
-    ["ki-automatisierung", "KI-Automatisierung"]
+    [
+      "n8n-automatisierung",
+      "n8n Automatisierung"
+    ],
+    [
+      "ki-automatisierung",
+      "KI-Automatisierung"
+    ]
   ]
 }

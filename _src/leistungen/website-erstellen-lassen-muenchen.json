@@ -3,13 +3,13 @@
   "phrase": "Website erstellen lassen München",
   "title": "Website erstellen lassen — München, handgeschrieben | AIS.152",
   "description": "Website erstellen lassen in München: handgeschrieben statt Baukasten, schnell, DSGVO-konform. Ein Ingenieur, direkte Arbeit, keine Agenturschicht.",
-  "h1": "Website erstellen lassen in München — von dem, der sie auch baut",
+  "h1": "Website erstellen lassen in München: von dem, der sie auch baut",
   "lead": "Sie reden mit der Person, die den Code schreibt. Kein Projektleiter dazwischen, kein Junior, der das Briefing zum dritten Mal missversteht.",
   "sections": [
     {
       "h2": "Was Website erstellen lassen bei mir bedeutet",
       "body": [
-        "<ul><li>Handgeschriebener Code statt Baukasten oder gekauftes Theme — die Seite kann genau das, was sie können soll, und nichts weiter</li><li>Statisch, wo es geht: keine Datenbank, die bei jedem Aufruf antworten muss, kein System, das monatlich Updates verlangt</li><li>Zweisprachig, wenn nötig — jede Sprache auf eigener Adresse, damit Google beide findet</li><li>Redaktion: wenn Sie selbst Texte ändern wollen, kommt WordPress mit ACF dazu. Wenn nicht, entfällt es und mit ihm die Wartung</li></ul>",
+        "<ul><li>Handgeschriebener Code statt Baukasten oder gekauftes Theme: die Seite kann genau das, was sie können soll, und nichts weiter</li><li>Statisch, wo es geht: keine Datenbank, die bei jedem Aufruf antworten muss, kein System, das monatlich Updates verlangt</li><li>Zweisprachig, wenn nötig, jede Sprache auf eigener Adresse, damit Google beide findet</li><li>Redaktion: wenn Sie selbst Texte ändern wollen, kommt WordPress mit ACF dazu. Wenn nicht, entfällt es und mit ihm die Wartung</li></ul>",
         "Was ich nicht mache: monatliche Pakete für Leistungen, die nicht stattfinden."
       ]
     },
@@ -23,7 +23,7 @@
     {
       "h2": "Wie ein Projekt in München abläuft",
       "body": [
-        "<ol><li><strong>Gespräch</strong> — wofür ist die Seite da, wer soll darauf etwas tun</li><li><strong>Entwurf</strong> — Struktur und Aussehen, bevor eine Zeile Code entsteht</li><li><strong>Bauen</strong> — mit Zwischenständen zum Anschauen, nicht als Überraschung am Ende</li><li><strong>Live</strong> — Domain, Zertifikat, Suchkonsole, Übergabe</li></ol>",
+        "<ol><li><strong>Gespräch</strong>: wofür ist die Seite da, wer soll darauf etwas tun</li><li><strong>Entwurf</strong>, Struktur und Aussehen, bevor eine Zeile Code entsteht</li><li><strong>Bauen</strong>, mit Zwischenständen zum Anschauen, nicht als Überraschung am Ende</li><li><strong>Live</strong>, Domain, Zertifikat, Suchkonsole, Übergabe</li></ol>",
         "Persönlich in München oder per Video, je nachdem was passt."
       ]
     },
@@ -31,13 +31,19 @@
       "h2": "Was das kostet",
       "body": [
         "Keine Preisliste, weil eine Landing-Seite und ein Shop nichts miteinander zu tun haben. Aber auch keine Angebote ins Blaue: nach dem ersten Gespräch bekommen Sie eine Summe und einen Umfang, an die ich mich halte.",
-        "Wenn Sie im Gespräch feststellen, dass es doch ein Baukasten tut — auch gut. Das Gespräch kostet nichts."
+        "Wenn Sie im Gespräch feststellen, dass es doch ein Baukasten tut: auch gut. Das Gespräch kostet nichts."
       ]
     }
   ],
   "cta": "Erzählen Sie mir, was die Seite können soll",
   "related": [
-    ["website-handwerk", "Website für Handwerker"],
-    ["onlineshop-erstellen", "Onlineshop erstellen"]
+    [
+      "website-handwerk",
+      "Website für Handwerker"
+    ],
+    [
+      "onlineshop-erstellen",
+      "Onlineshop erstellen"
+    ]
   ]
 }

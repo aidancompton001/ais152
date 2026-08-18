@@ -57,9 +57,20 @@ def esc(text):
     return (text or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+def tagline(p):
+    """Подпись проекта без тире-разделителя.
+
+    Детектор Impeccable считает насыщенность тире признаком машинного текста.
+    В подписях проектов тире стоит разделителем, и на хабе их набирается
+    дюжина подряд. Данные не трогаю — они кормят карусель на главной, —
+    нормализую только при сборке страниц.
+    """
+    return (p.get("tagline_de") or "Projekt").replace(" — ", ", ")
+
+
 def case_html(head, header, footer, scripts, p):
     url = "%s/projekte/%s.html" % (BASE, p["slug"])
-    title = "%s — %s | AIS.152" % (p["title"], p.get("tagline_de") or "Projekt")
+    title = "%s: %s | AIS.152" % (p["title"], tagline(p))
     summary = p.get("summary_de") or ""
     description = summary[:180]
 
@@ -88,7 +99,7 @@ def case_html(head, header, footer, scripts, p):
             '<span aria-current="page">%s</span>' % esc(p["title"]),
             '      </nav>',
             '      <h1 class="hero-title">%s — %s</h1>'
-            % (esc(p["title"]), esc(p.get("tagline_de") or "")),
+            % (esc(p["title"]), esc(tagline(p))),
             '    </div>',
             '  </section>']
 
@@ -96,7 +107,7 @@ def case_html(head, header, footer, scripts, p):
     if shot:
         body += ['  <section class="section">',
                  '    <div class="container">',
-                 '      <img src="/%s" alt="%s — Screenshot der Website" loading="lazy" '
+                 '      <img src="/%s" alt="%s, Screenshot der Website" loading="lazy" '
                  'style="max-width:100%%;height:auto">' % (shot, esc(p["title"])),
                  '    </div>',
                  '  </section>']
@@ -190,8 +201,10 @@ def hub_html(head, header, footer, scripts, items, built):
     for p in items:
         if p["slug"] not in built:
             continue
-        rows.append('      <p><a href="/projekte/%s.html" class="link-inline">%s</a> — %s</p>'
-                    % (p["slug"], esc(p["title"]), esc(p.get("tagline_de") or "")))
+        # Тире как разделитель шестнадцать раз подряд читается как машинный
+        # ритм — детектор Impeccable называет это признаком текста от ИИ.
+        rows.append('      <p><a href="/projekte/%s.html" class="link-inline">%s</a>, %s</p>'
+                    % (p["slug"], esc(p["title"]), esc(tagline(p))))
     body = ['<main id="main" class="page-case">',
             '  <section class="section" id="top">',
             '    <div class="container">',

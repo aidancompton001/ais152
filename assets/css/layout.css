@@ -299,7 +299,10 @@
   font-size: var(--fs-sm);
   color: var(--tx-mu);
   letter-spacing: var(--lt-wide);
-  text-transform: uppercase;
+  /* Капс снят: бегущая строка со стеком. Слово узнаётся по силуэту — заглавные
+     его убирают, и длинная строка читается тяжелее.
+     Аудит Impeccable, 19.08.2026 */
+  letter-spacing: var(--lt-wide);
   /* PX-008: 60s (was 40s) — main.js doubles the content for infinite loop, so
      the same visual speed needs longer duration over the doubled track. */
   animation: marquee 60s linear infinite;
@@ -403,7 +406,11 @@
   height: 100vh;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  /* Обрезка снята по горизонтали только там, где она нужна лентой:
+     контейнер с overflow резал позиционированных потомков — подсказки
+     и всплывающие слои. Аудит Impeccable, 19.08.2026 */
+  overflow-x: hidden;
+  overflow-y: visible;
   position: relative;
 }
 .work-track {
@@ -649,7 +656,10 @@
   font-family: var(--ff-mono);
   font-size: var(--fs-xs);
   color: var(--tx-fa);
-  text-transform: uppercase;
+  /* Капс снят: строка копирайта — 31 знак. Слово узнаётся по силуэту — заглавные
+     его убирают, и длинная строка читается тяжелее.
+     Аудит Impeccable, 19.08.2026 */
+  letter-spacing: var(--lt-wide);
   letter-spacing: var(--lt-wide);
 }
 
