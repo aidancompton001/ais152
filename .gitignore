@@ -17,3 +17,8 @@ __pycache__/
 docs/reference/
 .claude/
 *.outdated-*.bak
+
+# Зависимости сборки: puppeteer и парсеры ставились для детектора Impeccable.
+# 2257 файлов уехали в публичный репозиторий одним коммитом — их тут быть не должно.
+node_modules/
+package-lock.json
