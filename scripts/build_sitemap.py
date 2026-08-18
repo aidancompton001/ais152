@@ -95,7 +95,7 @@ def main():
             # сегодня. Дата берётся из источника, из которого она собрана,
             # либо считается сегодняшней: врать «не менялась» нельзя, а падать
             # из-за новой страницы — значит запрещать себе добавлять страницы.
-            date = git_date("index.src.html") or datetime.date.today().isoformat()
+            date = git_date("_src/index.src.html") or datetime.date.today().isoformat()
         chunk = ("  <url>\n"
                  "    <loc>%s%s</loc>\n"
                  "    <lastmod>%s</lastmod>\n"
