@@ -716,3 +716,35 @@
   outline: 2px solid var(--ac);
   outline-offset: 4px;
 }
+
+
+/* Страницы услуг и кейсов: сплошной текст, а не сетка карточек.
+   Аудит Impeccable, 19.08.2026: строки выходили на ~140 знаков при норме
+   до 80. Мера старая и физиологическая — на длинной строке глаз теряет
+   начало следующей. */
+.page-leistung .container p,
+.page-leistung .container ul,
+.page-leistung .container ol,
+.page-case .container p,
+.page-case .container ul,
+.page-case .container ol {
+  max-width: 68ch;
+}
+
+.page-leistung .container h1,
+.page-case .container h1 {
+  max-width: 22ch;
+}
+
+.page-leistung .container h2,
+.page-case .container h2 {
+  max-width: 28ch;
+}
+
+/* Списки внутри текста: маркеры и внятный отступ вместо голых строк. */
+.page-leistung .container ul li,
+.page-leistung .container ol li,
+.page-case .container ul li,
+.page-case .container ol li {
+  margin-block: 0.4em;
+}

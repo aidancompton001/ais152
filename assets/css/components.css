@@ -445,14 +445,16 @@ html[data-lang="de"] #contact-form.is-loading .form-submit-loading[data-lang-de]
   align-items: center;
   justify-content: center;
   z-index: var(--z-fab);
-  box-shadow: 0 8px 24px rgba(200, 255, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.4);
+  /* Цветной ореол снят: тень должна быть от света, а не от самого
+     предмета. Аудит Impeccable, 19.08.2026 */
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.45), 0 2px 6px rgb(0 0 0 / 0.35);
   transition: transform var(--dur-base) var(--ease-spring),
               box-shadow var(--dur-base) var(--ease-out);
   cursor: pointer;
 }
 .fab:hover {
   transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 12px 32px rgba(200, 255, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 14px 36px rgb(0 0 0 / 0.55), 0 3px 8px rgb(0 0 0 / 0.4);
 }
 .fab::before {
   content: '';
