@@ -1,0 +1,46 @@
+{
+  "slug": "ki-automatisierung",
+  "phrase": "KI-Automatisierung",
+  "title": "KI-Automatisierung für den Mittelstand — München | AIS.152",
+  "description": "KI dort einsetzen, wo sie Arbeit abnimmt: Anfragen sortieren, Dokumente auslesen, Texte vorbereiten. Mit klarer Grenze, wo der Mensch entscheidet.",
+  "h1": "KI-Automatisierung an den Stellen, wo sie wirklich Arbeit abnimmt",
+  "lead": "Die meisten KI-Projekte scheitern nicht an der Technik, sondern an der Stelle: Sie wird dort eingebaut, wo sie beeindruckt, statt dort, wo täglich Zeit verloren geht. Ich fange bei der Stelle an.",
+  "sections": [
+    {
+      "h2": "Wofür KI-Automatisierung im Mittelstand taugt",
+      "body": [
+        "Sprachmodelle sind gut in einer engen Sache: unstrukturierten Text in strukturierte Daten verwandeln und umgekehrt. Daraus ergibt sich, was funktioniert:",
+        "<ul><li>Eingehende Anfragen lesen, einordnen und an die richtige Person weiterleiten</li><li>Aus PDF-Rechnungen, Lieferscheinen und Formularen Felder auslesen, die sonst abgetippt werden</li><li>Antwortentwürfe vorbereiten, die ein Mensch prüft und abschickt</li><li>Protokolle, Berichte und Zusammenfassungen aus vorhandenen Daten erzeugen</li></ul>",
+        "Und was nicht funktioniert: eine KI, die eigenständig Zusagen macht, Preise verhandelt oder rechtsverbindliche Auskünfte gibt. Da baue ich einen Menschen in den Ablauf ein, keine Ausrede."
+      ]
+    },
+    {
+      "h2": "KI-Automatisierung selbst versuchen oder beauftragen",
+      "body": [
+        "Ein Chatfenster im Browser zu benutzen ist einfach. Ein Modell in einen Ablauf einzubauen, der jeden Tag hundertmal läuft, ist etwas anderes: Kosten pro Aufruf, Wiederholungen bei Ausfall, Umgang mit Falschantworten, Datenschutz, Nachvollziehbarkeit.",
+        "<ul><li><strong>Selbst versuchen</strong>: sinnvoll, um herauszufinden, ob das Modell die Aufgabe überhaupt kann. Kostet einen Nachmittag</li><li><strong>Beauftragen</strong>: sobald es in den Betrieb soll — mit Fehlerbehandlung, Budgetgrenze und Protokoll</li></ul>",
+        "Ich sage vorher, wenn eine Aufgabe für ein Sprachmodell ungeeignet ist. Regelbasierte Automatisierung ist oft billiger, schneller und zuverlässiger — und dafür braucht es keine KI."
+      ]
+    },
+    {
+      "h2": "DSGVO, wenn KI im Spiel ist",
+      "body": [
+        "Sobald personenbezogene Daten an ein Modell gehen, ist das eine Verarbeitung wie jede andere: Rechtsgrundlage, Auftragsverarbeitungsvertrag, Eintrag im Verzeichnis, Löschfristen.",
+        "Praktisch heißt das drei Entscheidungen: Welche Felder gehen überhaupt raus. Wo steht das Modell — europäische Region oder eigener Server. Und wer haftet für die Antwort, wenn sie falsch ist.",
+        "Zu Artikel 22 DSGVO: eine Entscheidung mit rechtlicher Wirkung darf nicht allein automatisiert fallen. Deshalb steht in solchen Abläufen ein Mensch — nicht aus Vorsicht, sondern weil es sonst nicht zulässig ist."
+      ]
+    },
+    {
+      "h2": "Womit ich baue",
+      "body": [
+        "n8n für die Abläufe, Claude oder ein vergleichbares Modell für den Sprachteil, PostgreSQL für Daten, ein Server in Deutschland für den Betrieb. Nichts davon ist Selbstzweck: es ist die Kombination, die sich selbst hosten und im Zweifel wieder auseinandernehmen lässt.",
+        "Kein Aufbau, der ohne einen einzelnen Anbieter zusammenbricht."
+      ]
+    }
+  ],
+  "cta": "Sagen Sie mir, welche Aufgabe bei Ihnen täglich Text hin und her schiebt",
+  "related": [
+    ["n8n-automatisierung", "n8n Automatisierung"],
+    ["ki-integration-bestandssysteme", "KI-Integration in Bestandssysteme"]
+  ]
+}

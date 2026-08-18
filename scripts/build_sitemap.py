@@ -33,6 +33,14 @@ LANG_PAIRS = {
 PAGES = [
     ("index.html",       "/",                1.0, "weekly"),
     ("en/index.html",    "/en/",             0.9, "weekly"),
+    # Страницы услуг: одна страница — один запрос. Одностраничник не может
+    # брать много запросов структурно, у него один заголовок на всё.
+    ("leistungen/index.html",                          "/leistungen/",                              0.8, "monthly"),
+    ("leistungen/n8n-automatisierung.html",            "/leistungen/n8n-automatisierung.html",       0.9, "monthly"),
+    ("leistungen/ki-automatisierung.html",             "/leistungen/ki-automatisierung.html",        0.9, "monthly"),
+    ("leistungen/prozessautomatisierung.html",         "/leistungen/prozessautomatisierung.html",    0.8, "monthly"),
+    ("leistungen/ki-integration-bestandssysteme.html", "/leistungen/ki-integration-bestandssysteme.html", 0.8, "monthly"),
+    ("leistungen/n8n-hosting-wartung.html",            "/leistungen/n8n-hosting-wartung.html",       0.7, "monthly"),
     ("wartung.html",     "/wartung.html",    0.8, "monthly"),
     ("impressum.html",   "/impressum.html",  0.4, "yearly"),
     ("datenschutz.html", "/datenschutz.html", 0.4, "yearly"),

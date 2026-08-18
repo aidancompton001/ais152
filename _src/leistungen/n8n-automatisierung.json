@@ -1,0 +1,46 @@
+{
+  "slug": "n8n-automatisierung",
+  "phrase": "n8n Automatisierung",
+  "title": "n8n Automatisierung für den Mittelstand — München | AIS.152",
+  "description": "n8n-Workflows planen, bauen und betreiben. Angebote, Termine, Rechnungen und Datenübergaben automatisch — mit Daten, die in Deutschland bleiben.",
+  "h1": "n8n Automatisierung, die im Betrieb läuft und nicht im Demo",
+  "lead": "Ich baue Workflows in n8n für Betriebe, die täglich dieselben Handgriffe machen: Anfrage aufnehmen, Angebot schreiben, Termin eintragen, Rechnung stellen, Daten von A nach B tragen. Nicht als Bastelei, sondern als Sache, die morgens läuft, wenn keiner hinschaut.",
+  "sections": [
+    {
+      "h2": "Was n8n Automatisierung konkret übernimmt",
+      "body": [
+        "Ein Workflow ist keine Zauberei — er nimmt eine Auslösung entgegen, holt Daten, prüft sie, schreibt sie weiter und meldet sich, wenn etwas nicht stimmt. Typische Stellen im Mittelstand:",
+        "<ul><li>Anfragen aus Formular, E-Mail oder WhatsApp landen strukturiert im CRM statt im Posteingang</li><li>Angebote entstehen aus Vorlage und Stammdaten, nicht aus Copy-Paste</li><li>Termine wandern automatisch in Kalender und Disposition, mit Bestätigung an den Kunden</li><li>Belege gehen an die Buchhaltung, ohne dass jemand sie exportiert</li><li>Systeme, die nicht miteinander reden, bekommen eine Brücke — DATEV, Shopware, Google Workspace, Telefonie</li></ul>",
+        "Was sich nicht automatisieren lässt, sage ich vorher. Ein Prozess, den niemand beschreiben kann, wird durch Automatisierung nicht besser, sondern schneller falsch."
+      ]
+    },
+    {
+      "h2": "Selbst bauen oder n8n Automatisierung beauftragen",
+      "body": [
+        "n8n ist bedienbar, und der erste Workflow entsteht an einem Nachmittag. Der Unterschied zeigt sich später: bei Fehlerbehandlung, bei Wiederholungen, bei Datenschutz, beim Betrieb.",
+        "<ul><li><strong>Selbst bauen</strong> lohnt sich, wenn der Prozess klein ist, nur intern läuft und ein Ausfall niemandem wehtut</li><li><strong>Beauftragen</strong> lohnt sich, wenn Kundendaten im Spiel sind, wenn der Workflow Geld bewegt oder wenn sein Ausfall am Montagmorgen auffällt</li></ul>",
+        "Ich übergebe alles dokumentiert. Wer danach selbst weiterbauen will, kann das — das ist kein Verlust für mich, sondern der Normalfall."
+      ]
+    },
+    {
+      "h2": "Datenhoheit und DSGVO bei n8n",
+      "body": [
+        "n8n lässt sich selbst hosten. Das ist der eigentliche Grund, warum es im deutschen Mittelstand ankommt: die Daten verlassen den eigenen Server nicht, solange man das nicht will.",
+        "Ich betreibe die Instanz auf einem Server in Deutschland, trenne Zugänge, protokolliere Läufe und schreibe auf, welcher Workflow welche Daten anfasst. Wo ein externer Dienst nötig ist — etwa ein Sprachmodell — steht das im Verzeichnis der Verarbeitungstätigkeiten, mit Auftragsverarbeitungsvertrag.",
+        "Wenn ein Anbieter Ihnen sagt, DSGVO sei bei Automatisierung kein Thema, ist das kein gutes Zeichen."
+      ]
+    },
+    {
+      "h2": "Wie ein Projekt abläuft",
+      "body": [
+        "<ol><li><strong>Gespräch</strong> — welcher Handgriff kostet die meiste Zeit, und was passiert heute, wenn er ausfällt</li><li><strong>Ein Workflow zuerst</strong> — der schmerzhafteste, produktiv, nicht als Prototyp</li><li><strong>Beobachten</strong> — läuft er zwei Wochen ohne Nacharbeit, kommt der nächste</li><li><strong>Übergabe</strong> — Dokumentation, Zugänge, Betrieb oder Wartung nach Absprache</li></ol>",
+        "Kein Monatspaket über Dinge, die noch nicht existieren. Bezahlt wird, was gebaut ist und läuft."
+      ]
+    }
+  ],
+  "cta": "Erzählen Sie mir, welcher Handgriff bei Ihnen jeden Tag Zeit frisst",
+  "related": [
+    ["ki-automatisierung", "KI-Automatisierung"],
+    ["prozessautomatisierung", "Prozessautomatisierung"]
+  ]
+}
