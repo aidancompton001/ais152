@@ -229,7 +229,8 @@
   width: 8px; height: 8px;
   background: var(--status-ok);
   border-radius: var(--r-pill);
-  box-shadow: 0 0 12px var(--status-ok);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.4);  /* было цветное свечение
+     с нулевым смещением — дежурный приём ИИ-интерфейсов. Аудит 19.08.2026 */
   animation: status-pulse 2.4s var(--ease-in-out) infinite;
 }
 @keyframes status-pulse {
@@ -435,7 +436,7 @@
   inset: 0 auto 0 0;
   width: 12.5%;
   background: var(--ac);
-  transition: width var(--dur-fast) var(--ease-out);
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 .work-progress-meta {
   font-family: var(--ff-mono);
@@ -579,7 +580,7 @@
   padding: var(--sp-5) 0;
   width: 100%;
   text-align: left;
-  transition: padding var(--dur-base) var(--ease-out),
+  transition: transform var(--dur-base) var(--ease-out),
               color var(--dur-fast) var(--ease-out);
 }
 .contact-channel:hover {

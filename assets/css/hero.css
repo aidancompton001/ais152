@@ -73,7 +73,8 @@
   width: 8px; height: 8px;
   background: var(--status-ok);
   border-radius: var(--r-pill);
-  box-shadow: 0 0 12px var(--status-ok);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.4);  /* было цветное свечение
+     с нулевым смещением — дежурный приём ИИ-интерфейсов. Аудит 19.08.2026 */
   animation: status-pulse 2.4s var(--ease-in-out) infinite;
 }
 @keyframes status-pulse {
@@ -85,11 +86,14 @@
   /* PX-007: capped at 6.5rem (≈ 104px) instead of var(--fs-display) (max 9rem/144px).
      At 144px 'Engineering' was ~770px wide, overflowing the 583px LEFT grid-cell into the
      terminal column. At 104px it's ~560px and fits cleanly. */
-  font-size: clamp(2.75rem, 1rem + 5.5vw, 6.5rem);
+  /* Аудит Impeccable, 19.08.2026: немецкий заголовок в 62 знака при 86px
+     занимал 76 % экрана — над сгибом не оставалось ничего. Крупный кегль
+     рассчитан на два-три слова; длинная фраза требует меньшего. */
+  font-size: clamp(2.25rem, 1rem + 3.2vw, 4rem);
   line-height: var(--lh-tight);
   letter-spacing: var(--lt-tighter);
   font-variation-settings: "wght" var(--wght-semibold), "wdth" var(--wdth-normal);
-  max-width: 12ch;
+  max-width: 20ch;
   text-wrap: balance;             /* graceful no-op on Safari < 17.4 */
   overflow-wrap: break-word;      /* defense-in-depth: rare super-long word can break */
   contain: layout style;          /* isolate variable-axis font changes from page reflow */
