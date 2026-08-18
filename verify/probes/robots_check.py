@@ -52,9 +52,22 @@ def closed(html, headers=None):
 #     noindex на всех страницах разом и проходила насквозь.
 
 def parse_disallow(text):
-    """Список правил Disallow из текста robots.txt."""
-    return [m.group(1).strip()
-            for m in re.finditer(r"(?im)^\s*Disallow:\s*(\S+)\s*$", text or "")]
+    """Список правил Disallow из текста robots.txt.
+
+    Находка #14, F-111: прежний разбор требовал, чтобы после пути не было
+    ничего, и строка `Disallow: / # рабочие документы` не распознавалась
+    вовсе. Краулер по RFC 9309 комментарий отбрасывает и правило исполняет —
+    то есть Google закрыл бы весь сайт, а проба напечатала бы «конфликтов
+    нет». Тот же провал в безопасную сторону, что и выброшенное `Disallow: /`,
+    только с решёткой. В нашем robots.txt комментариев больше, чем директив.
+    """
+    out = []
+    for line in (text or "").splitlines():
+        line = line.split("#", 1)[0].strip()
+        found = re.match(r"(?i)^Disallow:\s*(\S*)\s*$", line)
+        if found and found.group(1):
+            out.append(found.group(1))
+    return out
 
 
 def _rule_to_regex(rule):

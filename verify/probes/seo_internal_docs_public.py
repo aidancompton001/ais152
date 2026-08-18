@@ -89,12 +89,15 @@ def main():
     # Круг дельта, F-95: ожидание сверяло только blocked, поэтому документ,
     # который отдаётся, но НЕ закрыт, подстроку не ломал — проверка проходила
     # при живом дефекте. Инвариант — open=0, счётчики остаются для диагностики.
+    open_count = len(served) - len(closed)
     print("DOCS served=%d blocked=%d open=%d;"
-          % (len(served), len(closed), len(served) - len(closed)))
+          % (len(served), len(closed), open_count))
     print("  проверено документов из git: %d" % len(docs))
     if served:
         print("  доступны: %s" % ", ".join(served))
-    return 0
+    # F-114: проба всегда возвращала 0 — запущенная руками, врала зелёным
+    # при живом дефекте. Близнец F-108.
+    return 1 if open_count else 0
 
 
 if __name__ == "__main__":
