@@ -83,6 +83,7 @@ v2 сильнее v1, но всемогущим не стал. Остаются 
 Exit: 0 = PASS, 1 = FAIL (P>порога), 2 = реестр отсутствует/битый/незаполненный.
 """
 import json
+import re
 import os
 import shutil
 import subprocess
@@ -186,14 +187,93 @@ def check_landa(ledger_path, claim_ids):
         return False, ("в ревью-файле нет поля 'unlisted_claims' — Ланда обязан "
                        "перечислить утверждения из ответа, которых НЕТ в реестре "
                        "(пустой список = таких не найдено)")
-    rejected = [str(c.get("id")) for c in data.get("reviewed_claims", [])
-                if c.get("verdict") == "REJECTED"]
+    # Раньше отклонением считался только буквальный REJECTED у каждого claim,
+    # а всё остальное — включая статус «ещё не проверено» — молча засчитывалось
+    # как принятое: заготовка ревью с PENDING проходила гейт и давала PASS.
+    # Поймано ревьюером на собственной заготовке.
+    #
+    # Лечение — белые списки одобряющих статусов, а НЕ требование одного слова:
+    # ревью прошлых задач писались в разных редакциях формата, и жёсткое
+    # «только APPROVED» заблокировало бы 27 уже закрытых чужих задач. Единственный
+    # способ, которым такая блокировка «чинится» — массово переписать чужие
+    # одобрения, то есть ровно та подделка, от которой гейт и поставлен.
+    # Сверка по ПРЕФИКСУ нормализованного статуса, а не точным равенством:
+    # ревьюеры пишут «CONFIRMED-WITH-CAVEAT» через дефис, «APPROVED WITH CONDITIONS»,
+    # «APPROVED — дельта закрыта» с пояснением после тире. Точное равенство
+    # заблокировало бы такие одобрения, а «починить» это можно было бы только
+    # переписав чужие вердикты — ровно та подделка, от которой стоит гейт.
+    # Круг 6 ревью T051/SEO (F-85): WEAK и INFO означают «доказательство слабое»
+    # и «к сведению», а не «одобряю». Гейт засчитывал их как согласие — то есть
+    # ревьюер, честно пометивший утверждение слабым, открывал ему дорогу.
+    OK_PREFIX = ("APPROVED", "ACCEPTED", "CONFIRMED", "OK", "PASS", "MINOR")
+    NO_PREFIX = ("REJECT", "FAIL", "PENDING", "BLOCK", "TODO", "OPEN", "UNKNOWN")
+
+    def norm(v):
+        """Верхний регистр, разделители к подчёркиванию, хвост-пояснение отброшен."""
+        s = str(v).strip().upper()
+        for sep in (" — ", " - ", " – ", ":", ",", ";"):
+            if sep in s:
+                s = s.split(sep)[0]
+        s = re.sub(r"[\s\-]+", "_", s.strip())
+        return s
+
+    def verdict_kind(v):
+        s = norm(v)
+        if not s:
+            return "empty"
+        if s.startswith(NO_PREFIX):
+            return "no"
+        if s.startswith(OK_PREFIX):
+            return "ok"
+        return "unknown"
+
+    top_raw = data.get("verdict", None)
+    # Отсутствие поля — старый формат, он допустим: там вердикт нёс каждый claim.
+    if top_raw is not None and verdict_kind(top_raw) != "ok":
+        return False, (f"вердикт ревью — '{top_raw}', это не одобрение. "
+                       "Гейт проходит только одобренное ревью.")
+
+    rejected, unknown = [], []
+    for c in data.get("reviewed_claims", []):
+        kind = verdict_kind(c.get("verdict", ""))
+        if kind == "no":
+            rejected.append(str(c.get("id")))
+        elif kind != "ok":
+            unknown.append(f"{c.get('id')}={c.get('verdict')!r}")
     if rejected:
         return False, f"Ланда отклонил claim(ы): {', '.join(rejected)}"
+    if unknown:
+        # «не отклонено» больше не равно «принято»: незаполненный, PENDING
+        # или незнакомый статус — это непроверенное утверждение, а не согласие.
+        return False, (f"у claim(ов) статус не является ни одобрением, ни отклонением: "
+                       f"{', '.join(unknown[:5])}"
+                       f"{' и ещё ' + str(len(unknown) - 5) if len(unknown) > 5 else ''}")
+    # Незаявленное требует ОТВЕТА, а не молчания.
+    #
+    # До 2026-08-14 сам факт непустого списка считался отказом. Это работало
+    # против механизма, ради которого поле вводили: ревьюер обязан перечислять
+    # утверждения вне реестра, а гейт наказывал его за это — то есть поощрял
+    # оставить список пустым. Нашёл #14, круг 5.
+    #
+    # Теперь каждый элемент обязан нести решение в поле resolution:
+    #   "внесено: <id>"      — стало утверждением реестра
+    #   "снято: <id>"        — внесено со снятым статусом факта (asserted=false)
+    #   "отклонено: <причина>" — сознательно не вносится
+    # Содержательность причины гейт не проверяет — это работа следующего
+    # ревьюера. Механически это не закрывается, и делать вид, что закрывается,
+    # не нужно.
     unlisted = data.get("unlisted_claims") or []
-    if unlisted:
-        return False, (f"Ланда нашёл {len(unlisted)} утверждени(я/й) вне реестра — "
-                       f"внеси их и переприми: {'; '.join(str(u)[:60] for u in unlisted[:3])}")
+    unresolved = []
+    for item in unlisted:
+        resolution = item.get("resolution") if isinstance(item, dict) else None
+        if not (resolution and str(resolution).strip()):
+            unresolved.append(str(item)[:60])
+    if unresolved:
+        return False, (f"у {len(unresolved)} из {len(unlisted)} утверждений вне реестра "
+                       f"нет решения (поле 'resolution'): "
+                       f"{'; '.join(unresolved[:3])}. "
+                       "Каждое обязано быть внесено, снято со статуса факта "
+                       "или отклонено с причиной.")
     return True, "ревью Ланды пройдено"
 
 

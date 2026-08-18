@@ -1,0 +1,48 @@
+{
+  "_comment": "Приёмка багфикса карусели работ. Проверки прогоняются на реальной странице в headless Chrome в трёх режимах: обычный, prefers-reduced-motion, недоступный CDN с GSAP. До починки красные были reduced и nogsap — это зафиксировано прогоном.",
+  "task": "AIS152-BUG-001 — карусель работ: счётчик показывает 09 вместо 16 и не листается колесом",
+  "checks": [
+    {
+      "id": "AC1",
+      "desc": "все три режима: карточки отрисованы, счётчик равен их числу, карусель листается колесом",
+      "cmd": "node verify/probes/work_carousel.mjs all",
+      "expect_exit": 0
+    },
+    {
+      "id": "AC2",
+      "desc": "режим без GSAP отдельно (самый частый: блокировщик рекламы)",
+      "cmd": "node verify/probes/work_carousel.mjs nogsap",
+      "expect_exit": 0
+    },
+    {
+      "id": "AC3",
+      "desc": "режим «меньше анимации» отдельно",
+      "cmd": "node verify/probes/work_carousel.mjs reduced",
+      "expect_exit": 0
+    },
+    {
+      "id": "AC4",
+      "desc": "счётчик больше не зашит числом в разметке: значение приходит из числа карточек",
+      "cmd": "grep -c 'setWorkTotal' assets/js/main.js",
+      "expect_min": 2
+    },
+    {
+      "id": "AC5",
+      "desc": "число проектов в данных совпадает с числом в заголовке секции (16 = Sixteen)",
+      "cmd": "node -e \"const p=require('./data/projects.json').filter(x=>x.status!=='archived').length;const h=require('fs').readFileSync('index.html','utf8');console.log(p===16 && /Sixteen things/.test(h) && /data-target=\\\"16\\\"/.test(h))\"",
+      "expect_equal": "true"
+    },
+    {
+      "id": "AC6",
+      "desc": "0 точек в заголовках h1-h4 (правило типографики MainCore)",
+      "cmd": "grep -oE '<h[1-4][^>]*>[^<]+</h[1-4]>' index.html | grep -cE '\\.</h[1-4]>' || true",
+      "expect_equal": "0"
+    },
+    {
+      "id": "AC7",
+      "desc": "версия ресурсов поднята, иначе браузер отдаст старый JS из кеша",
+      "cmd": "grep -c 'v=2026-04-28-px010' index.html || true",
+      "expect_equal": "0"
+    }
+  ]
+}

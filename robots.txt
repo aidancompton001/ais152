@@ -1,5 +1,18 @@
 User-agent: *
 Allow: /
+
+# Рабочие документы проекта, а не содержание сайта: журнал разработки,
+# управляющие документы, планы, задачи, реестры доказательств. Обход их
+# тратит лимит Google и размывает тему домена.
+Disallow: /verify/
+Disallow: /docs/
+Disallow: /prompts/
+Disallow: /openspec/
+Disallow: /*.md$
+
+# Черновики и заготовки
+Disallow: /concept-
+Disallow: /quiz
 Disallow: /assets/projects/yy-dguv-placeholder.svg
 
 Sitemap: https://ais152.com/sitemap.xml

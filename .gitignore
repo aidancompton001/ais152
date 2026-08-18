@@ -16,3 +16,4 @@ __pycache__/
 # Сгенерированные референсы студийной сцены (60 МБ, не для Pages)
 docs/reference/
 .claude/
+*.outdated-*.bak
