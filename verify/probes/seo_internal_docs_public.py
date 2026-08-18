@@ -28,6 +28,7 @@ import subprocess
 import sys
 import urllib.error
 import urllib.request
+from urllib.parse import quote
 
 ROOT = r"c:\Projects\AiS152"
 PATTERNS = ["*.md", "docs/**", "prompts/**", "verify/*.json", "verify/*.md"]
@@ -85,8 +86,10 @@ def main():
     served, closed = [], []
     for path in docs:
         try:
+            # Пробелы в имени файла ломали запрос целиком, и проба падала
+            # вместо того чтобы измерить (находка при выгрузке Search Console).
             res = urllib.request.urlopen(
-                urllib.request.Request("https://ais152.com/" + path, headers=UA),
+                urllib.request.Request("https://ais152.com/" + quote(path), headers=UA),
                 timeout=25)
             if res.status != 200:
                 continue
