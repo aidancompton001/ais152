@@ -75,6 +75,31 @@ def sitemap_names():
             for u in re.findall(r"<loc>([^<]+)</loc>", xml)}
 
 
+def robots_txt_rules():
+    """Правила Disallow с живого сайта — нужны для проверки конфликта."""
+    try:
+        text = urllib.request.urlopen(
+            urllib.request.Request("https://ais152.com/robots.txt", headers=UA),
+            timeout=25).read().decode("utf-8", "replace")
+    except Exception:
+        return []
+    return [m.group(1).strip()
+            for m in re.finditer(r"(?im)^\s*Disallow:\s*(\S+)\s*$", text)]
+
+
+def crawl_blocked(name, rules):
+    """Закрыт ли обход этой страницы правилом robots.txt."""
+    target = "/" + name
+    for rule in rules:
+        if not rule or rule == "/":
+            continue
+        body = rule[:-1] if rule.endswith("$") else rule
+        body = body.rstrip("*")
+        if target.startswith(body):
+            return True
+    return False
+
+
 def main():
     files = tracked_html()
     if not files:
@@ -108,6 +133,7 @@ def main():
         print("СИРОТ НЕ НАЙДЕНО — либо их правда нет, либо проба ослепла")
         return 1
 
+    rules = robots_txt_rules()
     ok, open_pages = 0, []
     for name in orphans:
         url = "https://ais152.com/" + name
@@ -126,7 +152,15 @@ def main():
             continue
 
         if page_closed(html, res.headers):
-            ok += 1
+            # Круг дельта, F-94: запрет обхода ГЛУШИТ noindex. Краулер, которому
+            # запрещено читать страницу, не видит и тега — адрес остаётся
+            # в выдаче с пометкой «проиндексировано, несмотря на блокировку
+            # в robots.txt». Два механизма взаимно исключают друг друга.
+            if crawl_blocked(name, rules):
+                open_pages.append("%s: noindex ЗАГЛУШЁН запретом обхода "
+                                  "в robots.txt — Google не прочитает тег" % name)
+            else:
+                ok += 1
         else:
             open_pages.append("%s: ОТКРЫТА" % name)
 

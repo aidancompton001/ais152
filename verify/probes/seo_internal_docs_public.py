@@ -21,7 +21,7 @@ GitHub Pages публикует корень репозитория целико
 Теперь список берётся из git целиком: все .md, все .json из verify, всё из
 docs и prompts. Ни один новый документ не пройдёт мимо.
 
-Печатает 'DOCS served=<N> blocked=<M>;'.
+Печатает 'DOCS served=<N> blocked=<M> open=<K>;'. Инвариант — open=0.
 """
 import re
 import subprocess
@@ -99,7 +99,11 @@ def main():
         if blocked(path, rules):
             closed.append(path)
 
-    print("DOCS served=%d blocked=%d;" % (len(served), len(closed)))
+    # Круг дельта, F-95: ожидание сверяло только blocked, поэтому документ,
+    # который отдаётся, но НЕ закрыт, подстроку не ломал — проверка проходила
+    # при живом дефекте. Инвариант — open=0, счётчики остаются для диагностики.
+    print("DOCS served=%d blocked=%d open=%d;"
+          % (len(served), len(closed), len(served) - len(closed)))
     print("  проверено документов из git: %d" % len(docs))
     if served:
         print("  доступны: %s" % ", ".join(served))
