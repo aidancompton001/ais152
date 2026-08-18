@@ -17,20 +17,41 @@
 import csv
 import io
 import sys
+import zipfile
 from pathlib import Path
 from urllib.parse import urlsplit
 
-TABLE = Path(r"c:\Projects\AiS152\docs\verification"
-             r"\gsc-drilldown-2026-08-18\Table.csv")
+# Находка #14, F-109: проба читала CSV из репозитория — файл, который автор
+# утверждения может переписать. Рядом лежит нетронутый архив, скачанный из
+# Search Console. Читаем из архива: тогда это выгрузка Google, а не файл
+# в нашем репозитории.
+ARCHIVE = (Path(r"c:/Projects/AiS152/docs/verification")
+           / "gsc-drilldown-2026-08-18"
+           / "ais152.com-Coverage-Drilldown-2026-08-18.zip")
+EXPECTED_ISSUE = "Crawled - currently not indexed"
 OWN = ("ais152.com", "www.ais152.com")
 
 
+def read_from_archive(name):
+    with zipfile.ZipFile(ARCHIVE) as z:
+        return z.read(name).decode("utf-8-sig", "replace")
+
+
 def main():
-    if not TABLE.is_file():
-        print("НЕТ ВЫГРУЗКИ: %s" % TABLE)
+    if not ARCHIVE.is_file():
+        print("НЕТ АРХИВА ВЫГРУЗКИ: %s" % ARCHIVE)
         return 1
 
-    rows = list(csv.DictReader(io.open(TABLE, encoding="utf-8-sig")))
+    # Проверяем, что разбираем именно ту категорию, о которой утверждение:
+    # в архиве лежит Metadata.csv с названием отчёта.
+    meta = dict((r.get("Property"), r.get("Value"))
+                for r in csv.DictReader(io.StringIO(read_from_archive("Metadata.csv"))))
+    issue = (meta.get("Issue") or "").strip()
+    if issue != EXPECTED_ISSUE:
+        print("АРХИВ НЕ О ТОЙ КАТЕГОРИИ: '%s', ждали '%s'" % (issue, EXPECTED_ISSUE))
+        return 1
+
+    rows = list(csv.DictReader(io.StringIO(read_from_archive("Table.csv"))))
     if not rows:
         print("ВЫГРУЗКА ПУСТА — проба меряет пустоту")
         return 1
@@ -49,8 +70,11 @@ def main():
             own_https.append(url)
 
     if own_https:
+        # F-108: раньше проба печатала тревогу и возвращала 0 — запущенная
+        # руками, соврала бы зелёным.
         print("В СПИСКЕ ОТВЕРГНУТЫХ ЕСТЬ СТРАНИЦЫ САМОГО САЙТА: %s"
               % ", ".join(own_https))
+        return 1
 
     print("REJECTED total=%d own_https=%d http_dupes=%d subdomains=%d;"
           % (len(rows), len(own_https), len(http_dupes), len(subdomains)))

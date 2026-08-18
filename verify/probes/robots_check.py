@@ -37,3 +37,51 @@ def closed_by_header(headers):
 
 def closed(html, headers=None):
     return closed_by_meta(html) or closed_by_header(headers)
+
+
+# ─── Правила robots.txt ────────────────────────────────────────────────
+#
+# Находка #14, F-104: матчер robots.txt существовал в ТРЁХ несовместимых
+# копиях — и это ровно F-52/F-67 повторно: одна логика в нескольких местах
+# чинится не везде. Дыры в двух из трёх:
+#   * `Disallow: /` явно выбрасывалось из перебора как «пустое правило».
+#     То есть максимальный возможный конфликт — закрыт весь сайт, ни один
+#     noindex не читается — проба объявляла «конфликтов нет»;
+#   * `*` внутри правила и `$` на конце не понимались, хотя `Disallow: /*.md$`
+#     стоит в этом самом robots.txt. Мутация `Disallow: /*.html$` глушила
+#     noindex на всех страницах разом и проходила насквозь.
+
+def parse_disallow(text):
+    """Список правил Disallow из текста robots.txt."""
+    return [m.group(1).strip()
+            for m in re.finditer(r"(?im)^\s*Disallow:\s*(\S+)\s*$", text or "")]
+
+
+def _rule_to_regex(rule):
+    """Правило robots.txt в регулярное выражение по правилам Google.
+
+    `*` — любая последовательность, `$` на конце — конец адреса,
+    в остальном совпадение по префиксу.
+    """
+    anchored = rule.endswith("$")
+    body = rule[:-1] if anchored else rule
+    parts = [re.escape(p) for p in body.split("*")]
+    pattern = ".*".join(parts)
+    return re.compile("^" + pattern + ("$" if anchored else ""))
+
+
+def crawl_blocked(path, rules):
+    """Закрыт ли обход этого пути правилами robots.txt.
+
+    path — с ведущим слэшем или без, приводится к виду '/что-то'.
+    """
+    target = path if path.startswith("/") else "/" + path
+    for rule in rules or ():
+        if not rule:
+            continue
+        if rule == "/":
+            # Закрыт весь сайт. Раньше это правило пропускалось как пустое.
+            return True
+        if _rule_to_regex(rule).match(target):
+            return True
+    return False

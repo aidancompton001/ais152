@@ -18,6 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from robots_check import closed as page_closed  # noqa: E402
 from robots_check import closed_by_header  # noqa: E402
+from robots_check import crawl_blocked, parse_disallow  # noqa: E402
 import urllib.request
 
 HOME = "https://ais152.com/"
@@ -48,8 +49,9 @@ def main():
         print("НЕ ПРОЧИТАТЬ robots.txt: %s" % exc)
         return 1
 
-    # Правило, закрывающее корень целиком: Disallow: / без продолжения.
-    by_robots = bool(re.search(r"(?im)^\s*Disallow:\s*/\s*$", robots))
+    # Круг F-104: своя проверка видела только буквальное "Disallow: /"
+    # и не понимала ни "Disallow: /*" ни "Disallow: /index.html".
+    by_robots = crawl_blocked("/", parse_disallow(robots)) or         crawl_blocked("/index.html", parse_disallow(robots))
 
     if by_meta or by_header or by_robots:
         print("ГЛАВНАЯ ЗАКРЫТА ОТ ИНДЕКСАЦИИ: meta=%s header=%s robots_txt=%s"

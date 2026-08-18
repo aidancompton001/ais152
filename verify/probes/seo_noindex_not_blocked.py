@@ -28,6 +28,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from robots_check import closed as page_closed  # noqa: E402
+from robots_check import crawl_blocked, parse_disallow  # noqa: E402
 
 ROOT = r"c:\Projects\AiS152"
 UA = {"User-Agent": "Mozilla/5.0", "Cache-Control": "no-cache"}
@@ -48,20 +49,7 @@ def robots_rules():
     except Exception as exc:
         print("НЕ ПРОЧИТАТЬ robots.txt: %s" % exc)
         return None
-    return [m.group(1).strip()
-            for m in re.finditer(r"(?im)^\s*Disallow:\s*(\S+)\s*$", text)]
-
-
-def crawl_blocked(name, rules):
-    target = "/" + name
-    for rule in rules:
-        if not rule or rule == "/":
-            continue
-        body = rule[:-1] if rule.endswith("$") else rule
-        body = body.rstrip("*")
-        if body and target.startswith(body):
-            return True
-    return False
+    return parse_disallow(text)
 
 
 def main():

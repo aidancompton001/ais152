@@ -28,7 +28,11 @@ import subprocess
 import sys
 import urllib.error
 import urllib.request
+from pathlib import Path
 from urllib.parse import quote
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from robots_check import crawl_blocked, parse_disallow  # noqa: E402
 
 ROOT = r"c:\Projects\AiS152"
 PATTERNS = ["*.md", "docs/**", "prompts/**", "verify/*.json", "verify/*.md"]
@@ -53,27 +57,7 @@ def robots_rules():
             timeout=25).read().decode("utf-8", "replace")
     except Exception:
         return []
-    return [m.group(1).strip()
-            for m in re.finditer(r"(?im)^\s*Disallow:\s*(\S+)\s*$", text)]
-
-
-def blocked(path, rules):
-    target = "/" + path
-    for rule in rules:
-        if not rule:
-            continue
-        if rule == "/":
-            return True
-        if rule.endswith("$"):
-            body = rule[:-1]
-            if body.startswith("/*"):
-                if target.endswith(body[2:]):
-                    return True
-            elif target == body:
-                return True
-        elif target.startswith(rule.rstrip("*")):
-            return True
-    return False
+    return parse_disallow(text)
 
 
 def main():
@@ -99,7 +83,7 @@ def main():
             print("НЕ ПРОВЕРИТЬ %s: %s" % (path, exc))
             return 1
         served.append(path)
-        if blocked(path, rules):
+        if crawl_blocked(path, rules):
             closed.append(path)
 
     # Круг дельта, F-95: ожидание сверяло только blocked, поэтому документ,
