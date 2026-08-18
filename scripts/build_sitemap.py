@@ -13,6 +13,7 @@
 """
 import datetime
 import io
+import json
 import re
 import subprocess
 import sys
@@ -41,6 +42,24 @@ PAGES = [
     ("leistungen/prozessautomatisierung.html",         "/leistungen/prozessautomatisierung.html",    0.8, "monthly"),
     ("leistungen/ki-integration-bestandssysteme.html", "/leistungen/ki-integration-bestandssysteme.html", 0.8, "monthly"),
     ("leistungen/n8n-hosting-wartung.html",            "/leistungen/n8n-hosting-wartung.html",       0.7, "monthly"),
+]
+
+# Страницы проектов подставляются из данных, а не вписываются руками: проектов
+# шестнадцать, и рукописный список разъедется на первом же новом.
+def _cases():
+    data = json.load(io.open(ROOT / "data" / "projects.json", encoding="utf-8"))
+    items = data if isinstance(data, list) else data.get("projects", [])
+    out = [("projekte/index.html", "/projekte/", 0.8, "monthly")]
+    for it in items:
+        f = "projekte/%s.html" % it["slug"]
+        if (ROOT / f).is_file():
+            out.append((f, "/" + f, 0.6, "yearly"))
+    return out
+
+
+PAGES += _cases()
+
+PAGES += [
     ("wartung.html",     "/wartung.html",    0.8, "monthly"),
     ("impressum.html",   "/impressum.html",  0.4, "yearly"),
     ("datenschutz.html", "/datenschutz.html", 0.4, "yearly"),
