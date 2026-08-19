@@ -43,6 +43,7 @@
 <link rel="stylesheet" href="/assets/css/motion.css?v=16c189cf3b">
 <link rel="stylesheet" href="/assets/css/hero.css?v=89fb7ba37a">
 <link rel="stylesheet" href="/assets/css/marks.css?v=c22a87744b">
+<link rel="stylesheet" href="/assets/css/bars.css?v=12eb10d180">
 
 <!-- Hreflang (PX-010), bilingual same-URL; Google tolerates same-href across alternates -->
 <link rel="alternate" hreflang="de" href="https://ais152.com/" />
@@ -207,8 +208,26 @@
 
 <main id="main">
 
+<!-- Персонаж. Слой заперт на месте, кадр задаётся прокруткой (assets/js/bars.js).
+     aria-hidden: барс ничего не сообщает, он украшение; всё содержание живёт
+     в разметке секций и работает без него. -->
+<div class="bars-layer" id="bars-layer" aria-hidden="true">
+  <video class="bars-clip" muted playsinline preload="auto"
+         poster="/assets/video/bars/scene1-stand-to-treadmill.poster.jpg"
+         src="/assets/video/bars/scene1-stand-to-treadmill.mp4"></video>
+  <video class="bars-clip" muted playsinline preload="auto"
+         poster="/assets/video/bars/scene2-run-loop.poster.jpg"
+         src="/assets/video/bars/scene2-run-loop.mp4"></video>
+  <video class="bars-clip" muted playsinline preload="auto"
+         poster="/assets/video/bars/scene3-point.poster.jpg"
+         src="/assets/video/bars/scene3-point.mp4"></video>
+  <video class="bars-clip" muted playsinline preload="auto"
+         poster="/assets/video/bars/scene4-wave.poster.jpg"
+         src="/assets/video/bars/scene4-wave.mp4"></video>
+</div>
+
 <!-- ════════════════════════ HERO ════════════════════════ -->
-<section class="hero" id="top">
+<section class="scene-sand hero" id="top">
   <canvas class="hero-grid" id="hero-grid" aria-hidden="true"></canvas>
 
   <div class="container">
@@ -278,7 +297,7 @@
 </section>
 
 <!-- ════════════════════════ MARQUEE ════════════════════════ -->
-<section class="marquee" aria-hidden="true">
+<section class="scene-sand marquee" aria-hidden="true">
   <div class="marquee-track" id="marquee-track">
     <span>React Native</span><span>·</span>
     <span>Next.js</span><span>·</span>
@@ -297,7 +316,7 @@
 </section>
 
 <!-- ════════════════════════ STATS ════════════════════════ -->
-<section class="stats" id="stats">
+<section class="scene-sand stats" id="stats">
   <div class="container">
     <div class="stats-grid">
       <div class="stat">
@@ -327,7 +346,7 @@
 </section>
 
 <!-- ════════════════════════ WORK (pinned horizontal scroll) ════════════════════════ -->
-<section class="work" id="work">
+<section class="scene-sand work" id="work">
   <div class="container">
     <div class="section-head">
       <span class="overline">01 / <span>Selected Work</span></span>
@@ -594,7 +613,7 @@
 </template>
 
 <!-- ════════════════════════ SERVICES ════════════════════════ -->
-<section class="services" id="services">
+<section class="scene-sand services" id="services">
   <div class="container">
     <div class="section-head">
       <span class="overline">02 / <span>Services</span></span>
@@ -761,7 +780,7 @@
 </section>
 
 <!-- ════════════════════════ CONTACT ════════════════════════ -->
-<section class="contact" id="contact">
+<section class="scene-sand contact" id="contact">
   <div class="container">
     <div class="contact-grid">
       <div class="contact-intro">
@@ -986,6 +1005,7 @@
 <script src="/assets/js/form.js?v=5256dd0ad3"></script>
 <script src="/assets/js/whatsapp.js?v=5dce1ac384"></script>
 <script src="/assets/js/main.js?v=afa4fc55ab"></script>
+<script src="/assets/js/bars.js?v=3643f0d286"></script>
 
 </body>
 </html>
