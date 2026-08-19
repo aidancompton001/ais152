@@ -102,14 +102,52 @@
 .scene-sand .container,
 .scene-sand .section-head { position: relative; z-index: 3; }
 
-/* ── Где персонажа нет ───────────────────────────────────────
-   Узкий экран: перемотка прокруткой в Safari на iPhone не проверена,
-   и до проверки на живом телефоне слой туда не идёт. Разделы при этом
-   работают целиком — персонаж украшение, а не содержание.
+/* ── Телефон ─────────────────────────────────────────────────
+   Барс есть и здесь. Решение CEO: он часть бренда, а не украшение
+   широкого экрана.
 
-   «Уменьшить движение»: движение убирается совсем, а не замедляется. */
-@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
-  .bars-layer { display: none; }
+   Разница не в наличии, а в способе. На широком экране номер кадра
+   задаёт прокрутка. На телефоне ролик проигрывается сам, когда сцена
+   входит в вид: перемотка по прокрутке в Safari на iPhone до сих пор
+   не проверена на живом устройстве, а проигрывание без звука —
+   поведение, которое там работает годами.
+
+   Размер меньше: на узком экране барс во весь рост закрыл бы текст,
+   ради которого человек пришёл. */
+@media (max-width: 1023px) {
+  .bars-layer {
+    right: 0;
+    width: 42vw;
+    max-width: 260px;
+    height: 46vh;
+    z-index: 1;
+  }
+}
+
+/* «Уменьшить движение»: персонаж остаётся, движение снимается совсем.
+   Показывается неподвижный кадр — постер ролика, — а не замедленное
+   видео: просьба убрать движение означает убрать движение. */
+@media (prefers-reduced-motion: reduce) {
+  .bars-clip { display: none; }
+  .bars-layer[data-active] .bars-still { opacity: 1; }
+}
+
+.bars-still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  opacity: 0;
+  -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0, #000 16%, #000 96%, transparent 100%),
+      linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+      linear-gradient(to bottom, transparent 0, #000 16%, #000 96%, transparent 100%),
+      linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+  mask-composite: intersect;
 }
 
 /* ── Первый экран отдан персонажу ────────────────────────────
@@ -132,6 +170,9 @@
 @media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
   .scene-sand .hero-terminal { display: block; }
 }
+
+/* На телефоне панель с кодом и так убрана вёрсткой первого экрана,
+   а барс стоит меньшего размера в нижнем углу и текст не закрывает. */
 
 /* Точечная сетка первого экрана рисуется под тёмный фон: её точки
    на песочном дают контраст около единицы, то есть исчезают. Внутри

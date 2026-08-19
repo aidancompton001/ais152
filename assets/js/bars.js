@@ -15,15 +15,30 @@
   const layer = document.getElementById('bars-layer');
   if (!layer) return;
 
-  // Те же две границы, что и в bars.css. Если человек попросил убрать
-  // движение или пришёл с узкого экрана, слой не оживает вообще: на
-  // телефоне перемотка прокруткой не проверена ни на одном живом Safari.
+  // Барс есть везде — решение CEO. Различается способ.
+  //
+  //   широкий экран  — номер кадра задаёт прокрутка
+  //   телефон        — ролик проигрывается сам, когда сцена входит в вид
+  //   «без движения» — неподвижный кадр, ролики не грузятся вовсе
+  //
+  // Перемотка по прокрутке в Safari на iPhone до сих пор не проверена
+  // на живом устройстве, а проигрывание без звука там работает годами.
+  // Поэтому на телефоне не перемотка, а проигрывание: персонаж на месте,
+  // непроверенное поведение не используется.
   const wide = window.matchMedia('(min-width: 1024px)');
   const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (!wide.matches || calm.matches) return;
 
   const clips = Array.from(layer.querySelectorAll('.bars-clip'));
-  if (clips.length !== 4) return;
+  const stills = Array.from(layer.querySelectorAll('.bars-still'));
+  if (clips.length !== 4 || stills.length !== 4) return;
+
+  const mode = calm.matches ? 'still' : (wide.matches ? 'scrub' : 'play');
+
+  if (mode === 'still') {
+    // Ролики не нужны: ни один кадр не сменится. Снимаем источник, чтобы
+    // человек, попросивший убрать движение, не платил за него трафиком.
+    clips.forEach((v) => { v.removeAttribute('src'); v.load(); });
+  }
 
   // Отрезки прокрутки из раскадровки, приведённые к долям своего этапа.
   // Этап A — от начала первого экрана до конца услуг, этап B — контакт.
@@ -76,6 +91,25 @@
       if (i === index) v.setAttribute('data-on', '');
       else v.removeAttribute('data-on');
     });
+    stills.forEach((img, i) => {
+      if (i === index) img.setAttribute('data-on', '');
+      else img.removeAttribute('data-on');
+    });
+
+    if (mode === 'play') {
+      // Цикл бега зациклен, остальные проигрываются один раз и замирают
+      // на последнем кадре — он же стартовый кадр следующей сцены.
+      clips.forEach((v, i) => {
+        if (i !== index) { v.pause(); return; }
+        v.loop = (i === 1);
+        v.currentTime = 0;
+        const p = v.play();
+        // Отказ в проигрывании — не поломка: остаётся постер, то есть
+        // неподвижный барс. Ронять на этом сцену нельзя.
+        if (p && p.catch) p.catch(() => {});
+      });
+    }
+
     shown = index;
   }
 
@@ -83,6 +117,7 @@
   // присвоение currentTime молча игнорируется — и кадр не меняется,
   // хотя страница уже уехала.
   function seek(video, fraction) {
+    if (mode !== 'scrub') return;
     if (!video.duration || !isFinite(video.duration)) return;
     const t = clamp01(fraction) * (video.duration - 0.001);
     if (Math.abs(video.currentTime - t) > 0.008) video.currentTime = t;
