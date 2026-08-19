@@ -17,14 +17,14 @@
     {
       "id": "AC3",
       "desc": "шестнадцать карточек работ остаются в исходном коде обеих главных",
-      "cmd": "py -c \"import io,re;print(';'.join('%s=%d'%(f,len(re.findall(r'class=.card.',io.open(f,encoding='utf-8').read()))) for f in ['index.html','en/index.html']))\"",
+      "cmd": "py -c \"import io,re;print(';'.join('%s=%d'%(f,len(re.findall(r'class=\\\\\\\"card\\\\\\\"',io.open(f,encoding='utf-8').read()))) for f in ['index.html','en/index.html']))\"",
       "expect_contain": "index.html=17"
     },
     {
       "id": "AC4",
       "desc": "ни один адрес из карты сайта не потерял ссылку с главной",
       "cmd": "py verify/probes/seo_reachable_from_home.py",
-      "expect_contain": "unreachable=0;"
+      "expect_contain": "UNREACHABLE=0;"
     },
     {
       "id": "AC5",
