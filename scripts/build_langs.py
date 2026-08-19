@@ -156,6 +156,31 @@ def apply_head(html, lang):
     return html
 
 
+def stamp_assets(html):
+    """Проставить каждому стилю и скрипту метку по его содержимому.
+
+    В источнике стояла метка ?v=2026-08-14-px014 с припиской «заменить на
+    хеш при выкладке». Её никто не заменял, и всё, что менялось в стилях и
+    скриптах после четырнадцатого августа, до вернувшегося посетителя не
+    доходило: браузер держал старый файл под тем же адресом. Именно так
+    потеплевшая палитра не появилась на экране CEO.
+
+    Метка теперь считается из содержимого файла: изменился файл — изменился
+    адрес. Не изменился — адрес прежний, и кеш работает как задумано.
+    """
+    import hashlib
+
+    def repl(m):
+        rel = m.group(1)
+        f = ROOT / rel
+        if not f.is_file():
+            return m.group(0)
+        h = hashlib.md5(f.read_bytes()).hexdigest()[:10]
+        return '%s?v=%s' % (rel, h)
+
+    return re.sub(r"(assets/(?:css|js)/[A-Za-z0-9._-]+\.(?:css|js))\?v=[^\"']*", repl, html)
+
+
 def main():
     write = "--write" in sys.argv
     if not SOURCE.is_file():
@@ -166,7 +191,8 @@ def main():
     src = io.open(SOURCE, encoding="utf-8").read()
     problems = []
     for lang, target in TARGETS.items():
-        page = apply_head(apply_meta(absolutise(strip_other(src, lang)), lang), lang)
+        page = stamp_assets(
+            apply_head(apply_meta(absolutise(strip_other(src, lang)), lang), lang))
 
         other = "en" if lang == "de" else "de"
         left = page.count("data-lang-%s" % other)
