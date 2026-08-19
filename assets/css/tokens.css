@@ -169,8 +169,12 @@
 
 @font-face {
   font-family: 'Mona Sans';
-  src: url('../fonts/Mona-Sans.woff2') format('woff2-variations'),
-       url('../fonts/Mona-Sans.woff2') format('woff2');
+  /* Сабсет 19.08.2026: полный файл весил 530 КБ и составлял 86 % всей
+     страницы. В нём 566 символов, из которых на сайте встречается 171.
+     В сабсете 225 — реальные плюс запас на будущие немецкие и служебные.
+     Вариативные оси wght/wdth/opsz/ital сохранены, кернинг и лигатуры тоже. */
+  src: url('../fonts/Mona-Sans.subset.woff2') format('woff2-variations'),
+       url('../fonts/Mona-Sans.subset.woff2') format('woff2');
   font-weight: 200 900;
   font-stretch: 75% 125%;
   font-style: normal;

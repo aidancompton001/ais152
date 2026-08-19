@@ -56,6 +56,9 @@
     }
   }
 
+  let running = false;
+  let visible = true;
+
   function draw() {
     ctx.clearRect(0, 0, W, H);
     for (let i = 0; i < dots.length; i++) {
@@ -88,7 +91,7 @@
       ctx.arc(d.x, d.y, r, 0, Math.PI * 2);
       ctx.fill();
     }
-    raf = requestAnimationFrame(draw);
+    if (running) raf = requestAnimationFrame(draw);
   }
 
   let raf = 0;
@@ -101,6 +104,40 @@
   window.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
   window.addEventListener('resize', resize);
 
+  // Холст рисует, только пока он на экране и вкладка активна.
+  //
+  // До 19.08.2026 draw() безусловно ставил следующий кадр и крутился вечно:
+  // человек давно ниже первого экрана, холста не видит, а тот продолжает
+  // перебирать все точки и перерисовывать их шестьдесят раз в секунду.
+  // Заметить это было нельзя, пока страница ничего тяжёлого не делала.
+  // Со сценами персонажа он начнёт отбирать те же 16 миллисекунд у декода
+  // кадра — то есть у того единственного, что человек в этот момент видит.
+  // Нашёл агент при разборе конфликтов, 19.08.2026.
+
+  function start() {
+    if (running) return;
+    running = true;
+    draw();
+  }
+
+  function stop() {
+    running = false;
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+  }
+
+  // Вкладка ушла в фон — рисовать некому.
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop();
+    else if (visible) start();
+  });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      visible = entries[0].isIntersecting;
+      if (visible && !document.hidden) start(); else stop();
+    }, { rootMargin: '100px' }).observe(canvas);
+  }
+
   resize();
-  draw();
+  start();
 })();

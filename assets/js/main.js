@@ -33,16 +33,22 @@
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
     });
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
+    // Привод ОДИН. До 19.08.2026 lenis.raf() вызывался дважды за кадр:
+    // собственным requestAnimationFrame и тикером GSAP, с разными часами
+    // и разным шагом. Пока анимации были декоративными, это давало едва
+    // заметную неровность сглаживания. Для анимации, привязанной к прокрутке,
+    // это смертельно: положение прокрутки — вход анимации, и оно обновлялось
+    // дважды с расхождением. Нашёл агент при замере отзывчивости, 19.08.2026.
     if (hasST) {
+      // Тикер GSAP — единственный источник времени. ScrollTrigger и Lenis
+      // идут от одних часов, расхождения нет по построению.
       lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((t) => { lenis.raf(t * 1000); });
+      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
       gsap.ticker.lagSmoothing(0);
+    } else {
+      // GSAP не загрузился (блокировщик, сбой CDN) — Lenis крутится сам.
+      const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+      requestAnimationFrame(raf);
     }
   }
 
@@ -422,8 +428,25 @@
       },
     });
 
-    // Resize handle
-    window.addEventListener('resize', () => ScrollTrigger.refresh());
+    // Пересчёт закреплений — с задержкой и только при смене ШИРИНЫ.
+    //
+    // До 19.08.2026 здесь стоял голый ScrollTrigger.refresh() на каждое
+    // событие resize. На телефоне адресная строка при прокрутке меняет высоту
+    // окна и порождает поток таких событий — каждое запускало полный пересчёт
+    // всех закреплений. Пока закрепление было одно, это терпелось. Со сценами
+    // персонажа их станет семь, и страница начнёт заикаться именно там, где
+    // человек её листает. Нашёл агент при разборе конфликтов, 19.08.2026.
+    //
+    // Высота окна меняется от адресной строки и клавиатуры, ширина — только
+    // от настоящего изменения размера или поворота. Считаем по ширине.
+    let lastWidth = window.innerWidth;
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 200);
+    });
   }
 
   // PX-013: mobile path — native horizontal scroll-snap, no pin. Repurposes the
