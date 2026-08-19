@@ -60,7 +60,11 @@
     const s = box(services);
     const c = box(contact);
     const vh = window.innerHeight;
-    stageA = { start: h.top, end: Math.max(h.top + 1, s.bottom - vh) };
+    // Конец этапа A — не низ услуг минус целый экран: при таком запасе
+    // последняя треть третьего ролика не проигрывалась никогда, и поза
+    // удержания, на которой строится стык со сценой контакта, на экран
+    // не попадала. Проверено в браузере: ролик доходил до 3,10 из 4,04.
+    stageA = { start: h.top, end: Math.max(h.top + 1, s.bottom - vh * 0.15) };
     stageB = { start: c.top - vh * 0.8, end: Math.max(c.top, c.bottom - vh) };
   }
 
