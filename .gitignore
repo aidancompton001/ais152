@@ -15,6 +15,9 @@ __pycache__/
 
 # Сгенерированные референсы студийной сцены (60 МБ, не для Pages)
 docs/reference/
+# исключение: ролики барса — они идут в дело, а не в мусор
+!docs/reference/bars/
+!docs/reference/bars/*.mp4
 .claude/
 *.outdated-*.bak
 
