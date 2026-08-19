@@ -32,6 +32,7 @@
     const taglineEl = node.querySelector('.card-tagline');
     const tagsEl = node.querySelector('.card-tags');
     const bodyEl = node.querySelector('.card-body');
+    const caseEl = node.querySelector('.card-case');
 
     article.dataset.slug = project.slug;
     article.classList.add('layout-' + (project.layout || 'square'));
@@ -47,6 +48,8 @@
       linkEl.setAttribute('aria-disabled', 'true');
       linkEl.style.cursor = 'default';
     }
+
+    if (caseEl) caseEl.href = '/projekte/' + project.slug + '.html';
 
     imgEl.src = project.screenshot;
     if (project.screenshot_2x) {

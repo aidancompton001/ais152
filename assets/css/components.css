@@ -535,3 +535,17 @@ html[data-lang="de"] #contact-form.is-loading .form-submit-loading[data-lang-de]
   justify-content: flex-end;
   flex-wrap: wrap;
 }
+
+/* Ссылка на страницу проекта. Лежит рядом с внешней, а не внутри неё:
+   ссылка внутри ссылки браузером разрывается. */
+.card-case {
+  display: inline-block;
+  margin-top: .5rem;
+  font-size: .8125rem;
+  letter-spacing: .04em;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: .25em;
+}
+.card-case:hover,
+.card-case:focus-visible { color: var(--ac); }
