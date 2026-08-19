@@ -404,23 +404,11 @@
     const total = cards.length;
     if (tot) tot.textContent = String(total).padStart(2, '0');
 
-    // Направление ленты. В сцене с барсом карточки поднимаются снизу по
-    // две и живут в своей половине экрана: раньше они ехали во всю ширину
-    // и проходили ПОД персонажем — барс оказывался поверх чужого
-    // содержания, а карточка уезжала за него и терялась. Решение CEO
-    // 19.08.2026. Без сцены лента остаётся горизонтальной.
-    const scenes = document.getElementById('bars-layer') &&
-                   window.matchMedia('(min-width: 1024px)').matches;
-
-    // Расстояние прокрутки: по горизонтали — сколько лента шире окна,
-    // по вертикали — насколько сетка выше закреплённого экрана.
-    const calc = () => (scenes
-      ? Math.max(0, track.scrollHeight - pin.clientHeight + 96)
-      : track.scrollWidth - window.innerWidth + 64);
+    // distance to scroll horizontally
+    const calc = () => track.scrollWidth - window.innerWidth + 64;
 
     const tween = gsap.to(track, {
-      x: () => (scenes ? 0 : -calc()),
-      y: () => (scenes ? -calc() : 0),
+      x: () => -calc(),
       ease: 'none',
       scrollTrigger: {
         trigger: pin,

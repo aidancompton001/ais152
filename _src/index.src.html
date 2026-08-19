@@ -45,7 +45,6 @@
 <link rel="stylesheet" href="assets/css/motion.css?v=2026-08-14-px014">
 <link rel="stylesheet" href="assets/css/hero.css?v=2026-08-14-px014">
 <link rel="stylesheet" href="assets/css/marks.css?v=2026-08-14-px014">
-<link rel="stylesheet" href="assets/css/bars.css?v=2026-08-14-px014">
 
 <!-- Hreflang (PX-010), bilingual same-URL; Google tolerates same-href across alternates -->
 <link rel="alternate" hreflang="en" href="https://ais152.com/" />
@@ -217,34 +216,8 @@
 
 <main id="main">
 
-<!-- Персонаж. Слой заперт на месте, кадр задаётся прокруткой (assets/js/bars.js).
-     aria-hidden: барс ничего не сообщает, он украшение; всё содержание живёт
-     в разметке секций и работает без него. -->
-<div class="bars-layer" id="bars-layer" aria-hidden="true">
-  <video class="bars-clip" muted playsinline preload="auto"
-         poster="/assets/video/bars/scene1-stand-to-treadmill.poster.jpg"
-         src="/assets/video/bars/scene1-stand-to-treadmill.mp4"></video>
-  <img class="bars-still" alt="" aria-hidden="true" loading="lazy"
-       src="/assets/video/bars/scene1-stand-to-treadmill.poster.jpg">
-  <video class="bars-clip" muted playsinline preload="auto"
-         poster="/assets/video/bars/scene2-run-loop.poster.jpg"
-         src="/assets/video/bars/scene2-run-loop.mp4"></video>
-  <img class="bars-still" alt="" aria-hidden="true" loading="lazy"
-       src="/assets/video/bars/scene2-run-loop.poster.jpg">
-  <video class="bars-clip" muted playsinline preload="auto"
-         poster="/assets/video/bars/scene3-point.poster.jpg"
-         src="/assets/video/bars/scene3-point.mp4"></video>
-  <img class="bars-still" alt="" aria-hidden="true" loading="lazy"
-       src="/assets/video/bars/scene3-point.poster.jpg">
-  <video class="bars-clip" muted playsinline preload="auto"
-         poster="/assets/video/bars/scene4-wave.poster.jpg"
-         src="/assets/video/bars/scene4-wave.mp4"></video>
-  <img class="bars-still" alt="" aria-hidden="true" loading="lazy"
-       src="/assets/video/bars/scene4-wave.poster.jpg">
-</div>
-
 <!-- ════════════════════════ HERO ════════════════════════ -->
-<section class="scene-sand hero" id="top">
+<section class="hero" id="top">
   <canvas class="hero-grid" id="hero-grid" aria-hidden="true"></canvas>
 
   <div class="container">
@@ -314,7 +287,7 @@
 </section>
 
 <!-- ════════════════════════ MARQUEE ════════════════════════ -->
-<section class="scene-sand marquee" aria-hidden="true">
+<section class="marquee" aria-hidden="true">
   <div class="marquee-track" id="marquee-track">
     <span>React Native</span><span>·</span>
     <span>Next.js</span><span>·</span>
@@ -333,7 +306,7 @@
 </section>
 
 <!-- ════════════════════════ STATS ════════════════════════ -->
-<section class="scene-sand stats" id="stats">
+<section class="stats" id="stats">
   <div class="container">
     <div class="stats-grid">
       <div class="stat">
@@ -363,7 +336,7 @@
 </section>
 
 <!-- ════════════════════════ WORK (pinned horizontal scroll) ════════════════════════ -->
-<section class="scene-sand work" id="work">
+<section class="work" id="work">
   <div class="container">
     <div class="section-head">
       <span class="overline">01 / <span data-lang-en>Selected Work</span><span data-lang-de>Ausgewählte Arbeiten</span></span>
@@ -439,7 +412,7 @@
 </template>
 
 <!-- ════════════════════════ SERVICES ════════════════════════ -->
-<section class="scene-sand services" id="services">
+<section class="services" id="services">
   <div class="container">
     <div class="section-head">
       <span class="overline">02 / <span data-lang-en>Services</span><span data-lang-de>Leistungen</span></span>
@@ -622,7 +595,7 @@
 </section>
 
 <!-- ════════════════════════ CONTACT ════════════════════════ -->
-<section class="scene-sand contact" id="contact">
+<section class="contact" id="contact">
   <div class="container">
     <div class="contact-grid">
       <div class="contact-intro">
@@ -847,7 +820,6 @@
 <script src="assets/js/form.js?v=2026-08-14-px014"></script>
 <script src="assets/js/whatsapp.js?v=2026-08-14-px014"></script>
 <script src="assets/js/main.js?v=2026-08-14-px014"></script>
-<script src="assets/js/bars.js?v=2026-08-14-px014"></script>
 
 </body>
 </html>
