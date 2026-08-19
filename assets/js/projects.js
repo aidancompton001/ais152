@@ -116,6 +116,12 @@
 
       if (LOADING) LOADING.remove();
 
+      // Карточки уже лежат в исходном коде страницы — их кладёт сборщик
+      // scripts/render_work_static.py, чтобы шестнадцать работ существовали
+      // для поиска и для человека без скриптов. Здесь они ЗАМЕНЯЮТСЯ живыми,
+      // иначе на странице оказалось бы тридцать две карточки.
+      TRACK.querySelectorAll('.card').forEach((c) => c.remove());
+
       const frag = document.createDocumentFragment();
       visible.forEach((p, i) => frag.appendChild(renderCard(p, i, visible.length)));
       TRACK.appendChild(frag);

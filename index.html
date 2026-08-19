@@ -348,11 +348,205 @@
 
   <div class="work-pin" id="work-pin">
     <div class="work-track" id="work-track" role="list">
-      <!-- cards rendered by assets/js/projects.js from data/projects.json -->
-      <div class="work-loading" id="work-loading">
-        
-        <span>Projekte werden geladen…</span>
-      </div>
+<!-- work:static:start -->
+      <!-- Карточки в исходном коде: без них шестнадцать работ
+           не существуют для поиска. Скрипт projects.js заменяет
+           этот блок собой, если загрузился. Правится сборщиком
+           scripts/render_work_static.py из data/projects.json. -->
+      <article class="card" role="listitem">
+        <span class="card-num">01</span>
+        <a class="card-link" href="/projekte/hennerheede.html">
+          <div class="card-media"><img class="card-img" src="/assets/hennerheede-site.jpg" alt="Henner Heede" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">Henner Heede</h3>
+            <p class="card-tagline">Design-Director-Portfolio — BOSS, MANGO, Baldessarini, Mustang</p>
+            <ul class="card-tags"><li>Portfolio</li><li>Fashion</li><li>WordPress</li><li>ACF</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">02</span>
+        <a class="card-link" href="/projekte/taxi-moennigmann.html">
+          <div class="card-media"><img class="card-img" src="/assets/taxi-moennigmann-site.jpg" alt="Taxi Mönnigmann" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">Taxi Mönnigmann</h3>
+            <p class="card-tagline">Taxiunternehmen in Leer (Ostfriesland) — Tag und Nacht, seit über 20 Jahren</p>
+            <ul class="card-tags"><li>Corporate</li><li>Astro</li><li>3 Sprachen (DE/EN/Plattdeutsch)</li><li>Hero Video</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">03</span>
+        <a class="card-link" href="/projekte/sorrysara.html">
+          <div class="card-media"><img class="card-img" src="/assets/sorrysara-site.jpg" alt="Sorry Sara" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">Sorry Sara</h3>
+            <p class="card-tagline">Cocktail- &amp; Fry-Bar — Burgas · Selbstverwaltung per Telegram-Bot, Tickets über Stripe</p>
+            <ul class="card-tags"><li>Telegram-CMS</li><li>Stripe Ticketing</li><li>4 Sprachen</li><li>Anti-Overbooking</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">04</span>
+        <a class="card-link" href="/projekte/silkekleinart.html">
+          <div class="card-media"><img class="card-img" src="/assets/silkekleinart-site.jpg" alt="Silke Klein Art" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">Silke Klein Art</h3>
+            <p class="card-tagline">Künstlerin-Portfolio — Kiel · WordPress-Neubau</p>
+            <ul class="card-tags"><li>Portfolio</li><li>WordPress</li><li>Custom Theme</li><li>ACF</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">05</span>
+        <a class="card-link" href="/projekte/ofnstube.html">
+          <div class="card-media"><img class="card-img" src="/assets/ofnstube-site.jpg" alt="Ofnstube" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">Ofnstube</h3>
+            <p class="card-tagline">Münchner Craft-Burger-Restaurant — Landing mit Reservierung</p>
+            <ul class="card-tags"><li>Restaurant</li><li>Bilingual DE/EN</li><li>Vanilla JS</li><li>GSAP</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">06</span>
+        <a class="card-link" href="/projekte/elektrocheck-stuttgart.html">
+          <div class="card-media"><img class="card-img" src="/assets/elektrocheck-site.jpg" alt="ElektroCheck Stuttgart" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">ElektroCheck Stuttgart</h3>
+            <p class="card-tagline">DGUV V3 Elektroprüfungen — Region Stuttgart</p>
+            <ul class="card-tags"><li>Service</li><li>B2B</li><li>DSGVO</li><li>Vanilla JS</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">07</span>
+        <a class="card-link" href="/projekte/kontur.html">
+          <div class="card-media"><img class="card-img" src="/assets/kontur-site.jpg" alt="KONTUR" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">KONTUR</h3>
+            <p class="card-tagline">Specialty-Kaffeerösterei — individueller WooCommerce-Shop</p>
+            <ul class="card-tags"><li>E-commerce</li><li>WordPress</li><li>WooCommerce</li><li>Custom Theme</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">08</span>
+        <a class="card-link" href="/projekte/pomp.html">
+          <div class="card-media"><img class="card-img" src="/assets/projects/pomp-landing.jpg" alt="POMP" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">POMP</h3>
+            <p class="card-tagline">Markenidentität + Landing für ein farbenfrohes Sparkling-Water</p>
+            <ul class="card-tags"><li>Brand</li><li>Landing</li><li>Next.js 16</li><li>GSAP</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">09</span>
+        <a class="card-link" href="/projekte/baupreis.html">
+          <div class="card-media"><img class="card-img" src="/assets/baupreis-dashboard.png" alt="BauPreis AI SaaS" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2025</span></div>
+            <h3 class="card-title">BauPreis AI SaaS</h3>
+            <p class="card-tagline">KI-Prognosen für intelligentere Baubudgets</p>
+            <ul class="card-tags"><li>SaaS</li><li>AI</li><li>Next.js</li><li>Stripe</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">10</span>
+        <a class="card-link" href="/projekte/eko-oylis-ua.html">
+          <div class="card-media"><img class="card-img" src="/assets/eko-oylis-site.jpg?v=2026-04-28-clean" alt="EKO-OYLIS UA" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">EKO-OYLIS UA</h3>
+            <p class="card-tagline">Altspeisefett-Sammlung — Ukraine → EU</p>
+            <ul class="card-tags"><li>Corporate</li><li>Bilingual</li><li>Eleventy</li><li>GSAP</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">11</span>
+        <a class="card-link" href="/projekte/rundumshaus.html">
+          <div class="card-media"><img class="card-img" src="/assets/rundumshaus-site.jpg" alt="Rund ums Haus Littawe" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">Rund ums Haus Littawe</h3>
+            <p class="card-tagline">Komplettlösung für Hausmeisterservice und Garten</p>
+            <ul class="card-tags"><li>Website</li><li>SEO</li><li>Next.js</li><li>GSAP</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">12</span>
+        <a class="card-link" href="/projekte/stormguard-v2.html">
+          <div class="card-media"><img class="card-img" src="/assets/stormguard-site.jpg" alt="StormGuard Professional V2" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2025</span></div>
+            <h3 class="card-title">StormGuard Professional V2</h3>
+            <p class="card-tagline">Premium-Tierpflege-E-Commerce — kompletter Neubau</p>
+            <ul class="card-tags"><li>E-commerce</li><li>Multi-language</li><li>Eleventy</li><li>Supabase</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">13</span>
+        <a class="card-link" href="/projekte/edmi.html">
+          <div class="card-media"><img class="card-img" src="/assets/edmi-landing-site.jpg" alt="EDMI" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">EDMI</h3>
+            <p class="card-tagline">Dental-Mikroskop-Landing — Bento-Grid</p>
+            <ul class="card-tags"><li>Landing</li><li>Bento</li><li>AI Configurator</li><li>Catalog</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">14</span>
+        <a class="card-link" href="/projekte/provenly-homes.html">
+          <div class="card-media"><img class="card-img" src="/assets/provenly-homes-site.jpg" alt="Provenly Homes" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">Provenly Homes</h3>
+            <p class="card-tagline">Premium-Kurzzeitvermietung mit Motion-Design</p>
+            <ul class="card-tags"><li>Website</li><li>Real Estate</li><li>Next.js</li><li>GSAP</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">15</span>
+        <a class="card-link" href="/projekte/studioglamour.html">
+          <div class="card-media"><img class="card-img" src="/assets/studioglamour-site.jpg" alt="Studio of Glamour" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">Studio of Glamour</h3>
+            <p class="card-tagline">Wimpernstudio — München</p>
+            <ul class="card-tags"><li>Website</li><li>Beauty</li><li>Next.js</li><li>shadcn/ui</li></ul>
+          </div>
+        </a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="card-num">16</span>
+        <a class="card-link" href="/projekte/yy-dguv.html">
+          <div class="card-media"><img class="card-img" src="/assets/projects/yy-dguv-placeholder.svg" alt="YY-DGUV Prüfservice" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="card-year">2026</span></div>
+            <h3 class="card-title">YY-DGUV Prüfservice</h3>
+            <p class="card-tagline">Professionelle Elektroprüfungen</p>
+            <ul class="card-tags"><li>Landing</li><li>B2B</li><li>GSAP</li><li>Vanilla</li></ul>
+          </div>
+        </a>
+      </article>
+      <!-- work:static:end -->
+    </div>
     </div>
   </div>
 

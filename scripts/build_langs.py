@@ -183,6 +183,20 @@ def main():
             print("ОСТАТКИ ЧУЖОГО ЯЗЫКА: %s" % p)
         return 1
 
+    # Карточки работ вписываются в исходный код ПОСЛЕ сборки языковых версий:
+    # иначе эта же сборка их и затрёт. Порядок важен и потому зафиксирован
+    # здесь, а не в памяти того, кто запускает скрипты.
+    if write:
+        import subprocess
+        r = subprocess.run([sys.executable, str(ROOT / "scripts" / "render_work_static.py"),
+                            "--write"], cwd=str(ROOT), capture_output=True, text=True,
+                           encoding="utf-8", errors="replace")
+        for line in (r.stdout or "").strip().splitlines():
+            print("  %s" % line)
+        if r.returncode != 0:
+            print("КАРТОЧКИ РАБОТ НЕ ВПИСАНЫ")
+            return 1
+
     print("собрано" if write else "холостой прогон, запусти с --write")
     return 0
 
