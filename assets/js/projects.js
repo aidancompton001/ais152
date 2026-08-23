@@ -129,6 +129,10 @@
   }
 
   function announce(count, error) {
+    // Отметка переживает событие. Событие могло уйти раньше, чем на него
+    // подписались: карточки теперь готовы сразу, а не после загрузки данных.
+    window.AIS = window.AIS || {};
+    window.AIS.projectsReady = !error;
     document.dispatchEvent(new CustomEvent('ais:projects-rendered', {
       detail: error ? { count: 0, error: error } : { count: count },
     }));

@@ -308,6 +308,16 @@
   // Initialized inside projects.js after cards are rendered (event-based)
   document.addEventListener('ais:projects-rendered', initWork);
 
+  // Карточки собираются на этапе сборки и готовы ещё до того, как этот файл
+  // начал выполняться, — значит событие могло пройти без слушателя. Смотрим
+  // на отметку и на саму разметку и заводим карусель сами.
+  if (window.AIS && window.AIS.projectsReady) {
+    initWork();
+  } else {
+    const t0 = document.getElementById('work-track');
+    if (t0 && t0.querySelectorAll('.card').length) initWork();
+  }
+
   // PX-014: раньше вся карусель жила внутри initWorkHorizontal() за проверкой
   // «есть GSAP и не просили меньше анимации». Когда GSAP не загружался
   // (блокировщик, сбой CDN, офлайн), выход происходил ДО всего: карточки
