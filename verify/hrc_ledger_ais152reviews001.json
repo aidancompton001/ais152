@@ -1,0 +1,118 @@
+{
+  "task": "AIS152-REVIEWS-001 — блок отзывов из Google-Unternehmensprofil на ais152.com",
+  "threshold": 1e-08,
+  "require_landa": true,
+  "_note": "Пруфы запускаются из корня c:/Projects/AiS152. Задача сделана в тот же день, когда создан сам Google-профиль AIS.152 (21.08.2026) — профиль в статусе NICHT ÖFFENTLICH SICHTBAR, верификация до пяти дней. Поэтому блок собран пустым и намеренно скрыт: доказывать нечего, пока Google не отдал ни одного отзыва. Утверждение 03 существует именно для этого — оно доказывает, что блок оживёт, не дожидаясь живых данных.",
+  "claims": [
+    {
+      "id": "01",
+      "text": "Секция отзывов вписана в исходный код обеих главных страниц — немецкой и английской",
+      "asserted": true,
+      "proof": {
+        "cmd": "py -c \"import io;print(sum(1 for p in ('index.html','en/index.html') if 'id=\\\"reviews\\\"' in io.open(p,encoding='utf-8').read()))\"",
+        "expect_equal": "2"
+      },
+      "note": "Английская версия живёт отдельным документом в /en/ — забыть её проще всего, поэтому проверяются обе."
+    },
+    {
+      "id": "02",
+      "text": "Пока отзывов ноль, секция стоит скрытой на обеих страницах и ни одной карточки в разметке нет",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/probes/reviews_state.py",
+        "expect_contain": "STATE_CONSISTENT reviews=0 hidden=True"
+      },
+      "note": "Пустой блок «Kundenstimmen» хуже отсутствующего: он обещает то, чего нет."
+    },
+    {
+      "id": "03",
+      "text": "Проверки блока не только разрешают, но и запрещают: шесть подставных веток краснеют там, где должны",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/probes/reviews_selftest.py",
+        "expect_contain": "SELFTEST_OK"
+      },
+      "note": "Ключевое утверждение задачи. Все остальные проверки сейчас зелены на ПУСТЫХ данных — зелёный свет на пустоте не доказывает ничего. Самопроверка подставляет временные данные и проверяет: A блок оживает, B удаление пометки § 5b UWG ловится, C точка в кнопке ловится, D перебор карточек над числом отзывов в профиле ловится, E отсутствие ссылки на профиль ловится, F ложное сокрытие живого блока ловится. Рабочие файлы восстанавливаются в finally и сверяются побайтно."
+    },
+    {
+      "id": "04",
+      "text": "Обязательная пометка § 5b Abs. 3 UWG о происхождении отзывов лежит ВНУТРИ блока, а не на другой странице",
+      "asserted": true,
+      "proof": {
+        "cmd": "py -c \"import io,re;h=io.open('index.html',encoding='utf-8').read();s=re.search(r'<section class=\\\"reviews\\\".*?</section>',h,re.S).group(0);print('reviews-note' in s and 'nicht selbst' in s)\"",
+        "expect_equal": "True"
+      },
+      "note": "Закон требует зрительной связи пометки с самими отзывами. Проверяется вхождение в вырезанную секцию, а не наличие слова где-то на странице."
+    },
+    {
+      "id": "05",
+      "text": "Нигде в блоке не утверждается, что отзывы нами проверены — Anhang Nr. 23b zu § 3 UWG запрещает это без реальных мер проверки",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/probes/reviews_no_verified_claim.py",
+        "expect_contain": "NO_VERIFIED_CLAIM"
+      },
+      "note": "Отрицание «prüfen sie nicht selbst» вырезается перед поиском запрещённых слов — иначе проба запрещала бы ровно то, что закон обязывает написать."
+    },
+    {
+      "id": "06",
+      "text": "Нумерация разделов не задвоилась: отзывы стали пятыми, контакт перенумерован в шестые на обеих страницах",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/probes/reviews_overline_unique.py",
+        "expect_contain": "OVERLINE_UNIQUE"
+      },
+      "note": "Секция вставлена между «04 / Über» и контактом, который был «05». Без перенумерации на странице оказалось бы два раздела под одним номером — это видно читателю."
+    },
+    {
+      "id": "07",
+      "text": "Ничего из прежнего содержимого не потеряно: шестнадцать карточек работ и ссылки на юридические страницы на месте",
+      "asserted": true,
+      "proof": {
+        "cmd": "py -c \"import io;h=io.open('index.html',encoding='utf-8').read();print(h.count('class=\\\"card\\\"')>=16 and 'impressum' in h and 'datenschutz' in h)\"",
+        "expect_equal": "True"
+      },
+      "note": "Вставка секции переписывает файл целиком — проверка на то, что она ничего не срезала."
+    },
+    {
+      "id": "08",
+      "text": "Разметка обеих главных осталась сбалансированной по тегам после вставки",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/probes/reviews_html_balance.py",
+        "expect_contain": "BALANCED"
+      },
+      "note": "Грубая проверка намеренно: её задача — поймать оборванную вставку, а не подменить валидатор разметки."
+    },
+    {
+      "id": "09",
+      "text": "Тексты отзывов попадают в разметку экранированными: угловые скобки, амперсанд и кавычки не ломают страницу",
+      "asserted": true,
+      "proof": {
+        "cmd": "py -c \"import sys;sys.path.insert(0,'scripts');import importlib.util as u;s=u.spec_from_file_location('r','scripts/render_reviews_static.py');m=u.module_from_spec(s);s.loader.exec_module(m);print(m.esc('<b>&\\\"x\\\"'))\"",
+        "expect_equal": "&lt;b&gt;&amp;&quot;x&quot;"
+      },
+      "note": "Отзывы пишут посторонние люди, их текст попадает на сайт дословно. Без экранирования угловая скобка в отзыве ломает вёрстку, а кавычка — атрибут."
+    },
+    {
+      "id": "10",
+      "text": "Стили блока лежат в общем файле компонентов, а не инлайном в разметке",
+      "asserted": true,
+      "proof": {
+        "cmd": "py -c \"import io;c=io.open('assets/css/components.css',encoding='utf-8').read();print(all(k in c for k in ('.reviews-grid','.review-text','.reviews-note','.reviews-ask-cta')))\"",
+        "expect_equal": "True"
+      },
+      "note": "Сборщик генерирует только разметку. Инлайн-стили в сгенерированном HTML пришлось бы править в скрипте, а не в CSS."
+    },
+    {
+      "id": "11",
+      "text": "Приёмка задачи проходит целиком прямо сейчас, а не по памяти о прошлом прогоне",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/verify.py",
+        "expect_contain": "TASK VERIFIED"
+      },
+      "note": "Приёмка прошлой задачи (SEO-план) сохранена рядом как acceptance.seoplan.json — по находке #14 acceptance.json обязана описывать ТЕКУЩУЮ работу, иначе verify.py выдаёт зелёный свет за чужую."
+    }
+  ]
+}

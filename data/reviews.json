@@ -1,0 +1,16 @@
+{
+  "_readme": "Quelle der Wahrheit für den Bewertungsblock. Diese Datei landet im Browser-Bundle — nichts Internes, keine Kundendaten, keine E-Mail-Adressen hier hineinschreiben. Texte werden WÖRTLICH aus dem Google-Unternehmensprofil übernommen, nicht umformuliert und nicht gekürzt. Wer nicht bei Google steht, steht auch nicht hier.",
+  "_pflicht": "§ 5b Abs. 3 UWG verlangt die Angabe, ob und wie die Echtheit geprüft wird. Wir prüfen nicht — deshalb darf nirgends 'geprüft', 'verifiziert' oder Ähnliches behauptet werden (Anhang Nr. 23b zu § 3 UWG).",
+  "googleProfile": {
+    "placeId": null,
+    "profileUrl": null,
+    "reviewUrl": null,
+    "ratingValue": null,
+    "ratingCount": 0,
+    "bestRating": 5,
+    "worstRating": 1,
+    "asOfLabel": null,
+    "asOfShort": null
+  },
+  "reviews": []
+}

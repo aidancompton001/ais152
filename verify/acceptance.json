@@ -1,60 +1,84 @@
 {
-  "_comment": "Приёмка текущей задачи — SEO-план ais152.com. Находка #14, круг 4 (F-51): здесь лежала приёмка ПРОШЛОЙ задачи про карусель работ, и штатный verify.py отвечал 'TASK VERIFIED' про неё. Любой, кто по Закону 21 запускал проверку проекта в этой задаче, получал зелёный свет за чужую работу. Приёмка карусели сохранена рядом как acceptance.carousel-bug001.json и может быть прогнана отдельно.",
-  "task": "AIS152-SEO-001 — подготовка сайта к немецкой выдаче Google",
+  "_comment": "Приёмка текущей задачи — блок отзывов Google на ais152.com. Приёмка прошлой задачи (SEO-план) сохранена рядом как acceptance.seoplan.json и прогоняется отдельно: py verify/verify.py verify/acceptance.seoplan.json. Правило из находки #14 — acceptance.json всегда описывает ТЕКУЩУЮ работу, иначе verify.py выдаёт зелёный свет за чужую.",
+  "task": "AIS152-REVIEWS-001 — блок отзывов из Google-Unternehmensprofil на обеих главных",
   "checks": [
     {
       "id": "AC1",
-      "desc": "реестр доказательств задачи проходит целиком: каждое утверждение воспроизводится прямо сейчас",
-      "cmd": "py verify/hrc.py verify/hrc_ledger_seoplan.json",
-      "expect_exit": 0
+      "desc": "источник данных существует и разбирается как JSON с обязательными ключами",
+      "cmd": "py -c \"import io,json;d=json.load(io.open('data/reviews.json',encoding='utf-8'));assert 'googleProfile' in d and isinstance(d.get('reviews'),list);print('SCHEMA_OK')\"",
+      "expect_contain": "SCHEMA_OK"
     },
     {
       "id": "AC2",
-      "desc": "карта сайта: ни одного мёртвого адреса, ни редиректа, ни закрытого от индексации",
-      "cmd": "py verify/probes/seo_sitemap_live.py",
-      "expect_contain": "broken=0;"
+      "desc": "сборщик отрабатывает вхолостую без ошибок на текущих данных",
+      "cmd": "py scripts/render_reviews_static.py",
+      "expect_exit": 0
     },
     {
       "id": "AC3",
-      "desc": "каждый адрес из карты достижим ссылками с главной — иначе Google оставит страницу в 'обнаружено, но не проиндексировано'",
-      "cmd": "py verify/probes/seo_reachable_from_home.py",
-      "expect_contain": "UNREACHABLE=0;"
+      "desc": "секция вписана в ОБЕ главные — немецкую и английскую, иначе английская версия останется без блока",
+      "cmd": "py -c \"import io;n=sum(1 for p in ('index.html','en/index.html') if 'id=\\\"reviews\\\"' in io.open(p,encoding='utf-8').read());print('PAGES=%d'%n)\"",
+      "expect_contain": "PAGES=2"
     },
     {
       "id": "AC4",
-      "desc": "главную не закрывает от индексации ни тег, ни заголовок ответа, ни robots.txt",
-      "cmd": "py verify/probes/seo_home_indexable.py",
-      "expect_contain": "HOME_INDEXABLE"
+      "desc": "пока отзывов ноль — секция скрыта на обеих страницах: пустой блок Kundenstimmen хуже отсутствующего",
+      "cmd": "py verify/probes/reviews_state.py",
+      "expect_contain": "STATE_CONSISTENT"
     },
     {
       "id": "AC5",
-      "desc": "страницы-сироты закрыты от индексации; сироты определяются по свойству, а не по списку имён",
-      "cmd": "py verify/probes/seo_drafts_noindex.py",
-      "expect_contain": "ORPHANS_CLOSED"
+      "desc": "обязательная пометка о происхождении отзывов (§ 5b Abs. 3 UWG) стоит в блоке на обеих страницах, когда блок показан",
+      "cmd": "py verify/probes/reviews_uwg_note.py",
+      "expect_contain": "UWG_NOTE_OK"
     },
     {
       "id": "AC6",
-      "desc": "решение CEO по юридическим страницам исполнено на живом сайте и не расширено самовольно",
-      "cmd": "py verify/probes/seo_legal_pages_open.py",
-      "expect_contain": "LEGAL open=impressum,datenschutz closed=avv"
+      "desc": "нигде в блоке не утверждается, что отзывы нами проверены — Anhang Nr. 23b zu § 3 UWG запрещает это без реальных мер проверки",
+      "cmd": "py verify/probes/reviews_no_verified_claim.py",
+      "expect_contain": "NO_VERIFIED_CLAIM"
     },
     {
       "id": "AC7",
-      "desc": "название, адрес и телефон в разметке совпадают с Impressum — без этого связки с карточкой Google Business не будет",
-      "cmd": "py verify/probes/seo_nap_match.py",
-      "expect_contain": "NAP_MATCH"
+      "desc": "числа рейтинга и число карточек не противоречат друг другу и профилю",
+      "cmd": "py verify/probes/reviews_figures.py",
+      "expect_contain": "FIGURES_CONSISTENT"
     },
     {
       "id": "AC8",
-      "desc": "форма обращения есть на живой странице и её приёмник отвечает; доставка письма проверяется человеком, не этой проверкой",
-      "cmd": "py verify/probes/seo_contact_form.py",
-      "expect_contain": "FORM_OK"
+      "desc": "нумерация разделов не задваивается: с появлением отзывов контакт становится 06",
+      "cmd": "py verify/probes/reviews_overline_unique.py",
+      "expect_contain": "OVERLINE_UNIQUE"
     },
     {
       "id": "AC9",
-      "desc": "страница не ломается на телефоне и планшете: нет горизонтальной прокрутки на 375, 768 и 1440",
-      "cmd": "node verify/probes/seo_viewports.mjs",
-      "expect_contain": "VIEWPORTS_OK"
+      "desc": "правило типографики MainCore: ни одной точки в конце заголовков и кнопок блока",
+      "cmd": "py verify/probes/reviews_no_periods.py",
+      "expect_contain": "NO_PERIODS"
+    },
+    {
+      "id": "AC10",
+      "desc": "стили блока подключены: класс .reviews-grid существует в CSS, иначе карточки развалятся в столбик без оформления",
+      "cmd": "py -c \"import io;c=io.open('assets/css/components.css',encoding='utf-8').read();print('CSS_OK' if '.reviews-grid' in c and '.review-text' in c else 'CSS_MISSING')\"",
+      "expect_contain": "CSS_OK"
+    },
+    {
+      "id": "AC11",
+      "desc": "разметка обеих главных остаётся сбалансированной по тегам section после вставки",
+      "cmd": "py verify/probes/reviews_html_balance.py",
+      "expect_contain": "BALANCED"
+    },
+    {
+      "id": "AC13",
+      "desc": "гейт чувствителен: шесть веток на временных данных доказывают, что проверки не только разрешают, но и запрещают — иначе зелёный свет на пустых данных ничего не значит",
+      "cmd": "py verify/probes/reviews_selftest.py",
+      "expect_contain": "SELFTEST_OK"
+    },
+    {
+      "id": "AC12",
+      "desc": "ничего не потеряно: шестнадцать карточек работ и юридические страницы на месте",
+      "cmd": "py -c \"import io;h=io.open('index.html',encoding='utf-8').read();print('WORK_INTACT' if h.count('class=\\\"card\\\"')>=16 and 'impressum' in h else 'WORK_BROKEN')\"",
+      "expect_contain": "WORK_INTACT"
     }
   ]
 }

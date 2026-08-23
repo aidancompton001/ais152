@@ -181,6 +181,45 @@ def stamp_assets(html):
     return re.sub(r"(assets/(?:css|js)/[A-Za-z0-9._-]+\.(?:css|js))\?v=[^\"']*", repl, html)
 
 
+NUM_DE = {13: "Dreizehn", 14: "Vierzehn", 15: "Fünfzehn", 16: "Sechzehn",
+          17: "Siebzehn", 18: "Achtzehn", 19: "Neunzehn", 20: "Zwanzig"}
+NUM_EN = {13: "Thirteen", 14: "Fourteen", 15: "Fifteen", 16: "Sixteen",
+          17: "Seventeen", 18: "Eighteen", 19: "Nineteen", 20: "Twenty"}
+
+
+def fill_counts(html):
+    """Подставить число проектов и число коммитов из данных, а не из памяти.
+
+    Число проектов стояло в семи местах на двух языках. Убрали один проект —
+    и все семь стали враньём одновременно, причём молча: ни одна проверка
+    этого не ловила, потому что числа были просто текстом.
+
+    Число коммитов стояло как 2 418 и не сходилось ни с чем: в репозитории
+    их 127. Теперь берётся из git.
+    """
+    import json
+    import subprocess
+
+    data = json.load(io.open(ROOT / "data" / "projects.json", encoding="utf-8"))
+    items = data if isinstance(data, list) else data.get("projects", [])
+    n = len([p for p in items if (p.get("status") or "") == "live"])
+
+    try:
+        commits = subprocess.run(["git", "rev-list", "--count", "HEAD"], cwd=str(ROOT),
+                                 capture_output=True, text=True).stdout.strip()
+        commits = "{:,}".format(int(commits))
+    except Exception:
+        commits = ""
+
+    html = html.replace("{{N}}", str(n))
+    html = html.replace("{{COMMITS}}", commits or "—")
+    html = html.replace("{{WORD_DE}}", NUM_DE.get(n, str(n)))
+    html = html.replace("{{WORD_EN}}", NUM_EN.get(n, str(n)))
+    html = html.replace("{{WORD_DE_L}}", NUM_DE.get(n, str(n)).lower())
+    html = html.replace("{{WORD_EN_L}}", NUM_EN.get(n, str(n)).lower())
+    return html
+
+
 def main():
     write = "--write" in sys.argv
     if not SOURCE.is_file():
@@ -191,8 +230,8 @@ def main():
     src = io.open(SOURCE, encoding="utf-8").read()
     problems = []
     for lang, target in TARGETS.items():
-        page = stamp_assets(
-            apply_head(apply_meta(absolutise(strip_other(src, lang)), lang), lang))
+        page = stamp_assets(fill_counts(
+            apply_head(apply_meta(absolutise(strip_other(src, lang)), lang), lang)))
 
         other = "en" if lang == "de" else "de"
         left = page.count("data-lang-%s" % other)

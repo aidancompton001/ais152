@@ -118,12 +118,24 @@ def body_for(page):
     parts += ['      <p><a href="%s" class="btn btn-primary">%s</a></p>'
               % (cta_href, cta_label),
               '      <p>Verwandte Leistungen: %s</p>' % rel,
-              '      <p>Sechzehn ausgelieferte Projekte stehen unter '
-              '<a href="/#work" class="link-inline">Ausgewählte Arbeiten</a></p>',
+              '      <p>%s ausgelieferte Projekte stehen unter '
+              '<a href="/#work" class="link-inline">Ausgewählte Arbeiten</a></p>'
+              % _projects_word(),
               '    </div>',
               '  </section>',
               '</main>']
     return "\n".join(parts)
+
+
+def _projects_word():
+    """Сколько проектов — считаем, а не помним."""
+    import json
+    words = {13: "Dreizehn", 14: "Vierzehn", 15: "Fünfzehn", 16: "Sechzehn",
+             17: "Siebzehn", 18: "Achtzehn"}
+    data = json.load(io.open(ROOT / "data" / "projects.json", encoding="utf-8"))
+    items = data if isinstance(data, list) else data.get("projects", [])
+    n = len([p for p in items if (p.get("status") or "") == "live"])
+    return words.get(n, str(n))
 
 
 def main():

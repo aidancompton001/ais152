@@ -136,3 +136,24 @@ Or check old `index.html` version in git history — the previous single-file ve
 - **Lenis + GSAP via CDN, not self-hosted.** Reduces page weight (CDN caching across sites), simplifies updates. Trade-off: tiny GDPR exposure for IP being sent to Cloudflare. Documented in `datenschutz.html` § 2.6.
 - **System fonts as default.** DSGVO-safe out of the box. Optional upgrade to Inter+JetBrains Mono via `assets/fonts/README.md`.
 - **No analytics.** Zero cookies, no banner needed. If you add analytics later, `datenschutz.html` § 4 must be updated and a cookie-consent banner added.
+
+## Bewertungsblock (Google reviews)
+
+Данные: `data/reviews.json`. Разметку в обе главные вписывает сборщик, скрипта в браузере нет.
+
+```bash
+py scripts/render_reviews_static.py           # холостой прогон
+py scripts/render_reviews_static.py --write   # вписать в index.html и en/index.html
+py verify/verify.py                           # приёмка блока, 12 проверок
+```
+
+Пока `reviews` пуст, секция стоит с атрибутом `hidden` — пустой блок «Kundenstimmen» хуже отсутствующего. Как только Google-профиль пройдёт верификацию:
+
+1. Взять `placeId` в панели профиля или через Place ID Finder
+2. Заполнить `googleProfile`: `placeId`, `profileUrl`, `reviewUrl`, `ratingValue`, `ratingCount`, `asOfLabel`, `asOfShort`
+3. Скопировать тексты отзывов **дословно** из публичного профиля в `reviews[]` — не переписывать, не сокращать, не исправлять опечатки
+4. Прогнать сборщик с `--write`, затем `verify.py`
+
+Сборщик откажется работать, если отзывы есть, а `profileUrl` нет (цифры становятся непроверяемыми), или если карточек больше, чем отзывов числится в профиле.
+
+**Юридический слой не трогать.** § 5b Abs. 3 UWG требует сказать, проверяем ли мы подлинность отзывов — пометка `.reviews-note` стоит внутри блока и обязана там остаться. Anhang Nr. 23b zu § 3 UWG запрещает утверждать, что отзывы проверены: слова `geprüft`, `verifiziert`, `echtheitsgeprüft` в блоке запрещены, проба `verify/probes/reviews_no_verified_claim.py` за этим следит.

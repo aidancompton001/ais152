@@ -361,29 +361,5 @@
     "layout": "wide",
     "featured": false,
     "order": 15
-  },
-  {
-    "slug": "yy-dguv",
-    "title": "YY-DGUV Prüfservice",
-    "tagline_en": "Professional electrical safety audits",
-    "tagline_de": "Professionelle Elektroprüfungen",
-    "year": 2026,
-    "url": "https://aidancompton001.github.io/yy-dguv/",
-    "status": "live",
-    "tags": [
-      "Landing",
-      "B2B",
-      "GSAP",
-      "Vanilla",
-      "DSGVO"
-    ],
-    "summary_en": "B2B lead-generation website for DGUV V3 electrical safety inspections in Wernau, Baden-Württemberg. Industrial design system, fifteen-page skeleton, DSGVO-compliant lead forms.",
-    "summary_de": "B2B Lead-Gen-Website für DGUV-V3-Elektroprüfungen in Wernau, Baden-Württemberg. Industrial-Design-System, 15-seitiges Gerüst, DSGVO-konforme Lead-Formulare.",
-    "screenshot": "assets/projects/yy-dguv-placeholder.svg",
-    "screenshot_2x": "assets/projects/yy-dguv-placeholder.svg",
-    "mark": "yy-dguv",
-    "layout": "tile",
-    "featured": false,
-    "order": 16
   }
 ]

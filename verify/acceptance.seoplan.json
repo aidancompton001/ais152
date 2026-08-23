@@ -1,0 +1,60 @@
+{
+  "_comment": "Приёмка текущей задачи — SEO-план ais152.com. Находка #14, круг 4 (F-51): здесь лежала приёмка ПРОШЛОЙ задачи про карусель работ, и штатный verify.py отвечал 'TASK VERIFIED' про неё. Любой, кто по Закону 21 запускал проверку проекта в этой задаче, получал зелёный свет за чужую работу. Приёмка карусели сохранена рядом как acceptance.carousel-bug001.json и может быть прогнана отдельно.",
+  "task": "AIS152-SEO-001 — подготовка сайта к немецкой выдаче Google",
+  "checks": [
+    {
+      "id": "AC1",
+      "desc": "реестр доказательств задачи проходит целиком: каждое утверждение воспроизводится прямо сейчас",
+      "cmd": "py verify/hrc.py verify/hrc_ledger_seoplan.json",
+      "expect_exit": 0
+    },
+    {
+      "id": "AC2",
+      "desc": "карта сайта: ни одного мёртвого адреса, ни редиректа, ни закрытого от индексации",
+      "cmd": "py verify/probes/seo_sitemap_live.py",
+      "expect_contain": "broken=0;"
+    },
+    {
+      "id": "AC3",
+      "desc": "каждый адрес из карты достижим ссылками с главной — иначе Google оставит страницу в 'обнаружено, но не проиндексировано'",
+      "cmd": "py verify/probes/seo_reachable_from_home.py",
+      "expect_contain": "UNREACHABLE=0;"
+    },
+    {
+      "id": "AC4",
+      "desc": "главную не закрывает от индексации ни тег, ни заголовок ответа, ни robots.txt",
+      "cmd": "py verify/probes/seo_home_indexable.py",
+      "expect_contain": "HOME_INDEXABLE"
+    },
+    {
+      "id": "AC5",
+      "desc": "страницы-сироты закрыты от индексации; сироты определяются по свойству, а не по списку имён",
+      "cmd": "py verify/probes/seo_drafts_noindex.py",
+      "expect_contain": "ORPHANS_CLOSED"
+    },
+    {
+      "id": "AC6",
+      "desc": "решение CEO по юридическим страницам исполнено на живом сайте и не расширено самовольно",
+      "cmd": "py verify/probes/seo_legal_pages_open.py",
+      "expect_contain": "LEGAL open=impressum,datenschutz closed=avv"
+    },
+    {
+      "id": "AC7",
+      "desc": "название, адрес и телефон в разметке совпадают с Impressum — без этого связки с карточкой Google Business не будет",
+      "cmd": "py verify/probes/seo_nap_match.py",
+      "expect_contain": "NAP_MATCH"
+    },
+    {
+      "id": "AC8",
+      "desc": "форма обращения есть на живой странице и её приёмник отвечает; доставка письма проверяется человеком, не этой проверкой",
+      "cmd": "py verify/probes/seo_contact_form.py",
+      "expect_contain": "FORM_OK"
+    },
+    {
+      "id": "AC9",
+      "desc": "страница не ломается на телефоне и планшете: нет горизонтальной прокрутки на 375, 768 и 1440",
+      "cmd": "node verify/probes/seo_viewports.mjs",
+      "expect_contain": "VIEWPORTS_OK"
+    }
+  ]
+}

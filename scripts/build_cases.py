@@ -194,7 +194,11 @@ def main():
 
 def hub_html(head, header, footer, scripts, items, built):
     url = BASE + "/projekte/"
-    title = "Projekte — sechzehn ausgelieferte Websites und Systeme | AIS.152"
+    # Число берётся из данных: раньше стояло словом и переставало быть
+    # правдой в ту же секунду, когда проект добавляли или убирали.
+    words = {13: "dreizehn", 14: "vierzehn", 15: "fünfzehn", 16: "sechzehn", 17: "siebzehn", 18: "achtzehn"}
+    n = len(built)
+    title = "Projekte — %s ausgelieferte Websites und Systeme | AIS.152" % words.get(n, str(n))
     description = ("Ausgelieferte Projekte: Websites, Shops, Plattformen und "
                    "Automatisierung. Jedes einzeln beschrieben, alle live.")
     rows = []
