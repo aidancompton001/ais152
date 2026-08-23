@@ -782,3 +782,18 @@ html[data-lang="de"] #contact-form.is-loading .form-submit-loading[data-lang-de]
 @media (prefers-reduced-motion: reduce) {
   .navhelp { transform: none; transition: opacity var(--dur-fast) linear, visibility 0s linear var(--dur-fast); }
 }
+
+/* Подсказка в самом начале: первый экран заполнен целиком и не сообщает,
+   что ниже что-то есть. Стрелка качается — движение и есть сообщение. */
+.navhelp-start { bottom: calc(var(--sp-6) + 56px + var(--sp-3)); }
+.navhelp-start svg { animation: navhelp-bob 1.8s var(--ease-in-out) infinite; }
+
+@keyframes navhelp-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(3px); }
+}
+
+/* Просили меньше движения — качание снимается, подсказка остаётся. */
+@media (prefers-reduced-motion: reduce) {
+  .navhelp-start svg { animation: none; }
+}

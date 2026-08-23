@@ -26,9 +26,11 @@
 
   const de = (document.documentElement.lang || 'de').toLowerCase().startsWith('de');
   const T = de
-    ? { next: 'Weiter', nextFull: 'Weiter zu den Leistungen',
+    ? { start: 'Scrollen', startFull: 'Nach unten scrollen',
+        next: 'Weiter', nextFull: 'Weiter zu den Leistungen',
         top: 'Nach oben', topFull: 'Zum Seitenanfang' }
-    : { next: 'Skip', nextFull: 'Skip the projects',
+    : { start: 'Scroll', startFull: 'Scroll down',
+        next: 'Skip', nextFull: 'Skip the projects',
         top: 'Top', topFull: 'Back to top' };
 
   const SVG = 'http://www.w3.org/2000/svg';
@@ -66,6 +68,7 @@
     return b;
   }
 
+  const start = make('start', T.start, T.startFull, PATH_DOWN);
   const next = make('next', T.next, T.nextFull, PATH_DOWN);
   const top = make('top', T.top, T.topFull, PATH_UP);
 
@@ -94,6 +97,15 @@
 
   top.addEventListener('click', () => goTo(0));
 
+  // Подсказка в начале уводит к первому разделу под первым экраном, а не
+  // на фиксированное число пикселей: высота первого экрана зависит от окна.
+  start.addEventListener('click', () => {
+    const hero = document.getElementById('top');
+    let el = hero ? hero.nextElementSibling : null;
+    while (el && el.tagName !== 'SECTION') el = el.nextElementSibling;
+    goTo(el || window.innerHeight);
+  });
+
   let ticking = false;
 
   function update() {
@@ -107,8 +119,13 @@
     // Нижняя треть страницы: возвращаться к началу колесом слишком долго.
     const nearEnd = doc > 0 && y > doc * 0.66;
 
-    next.classList.toggle('is-on', inWork && !nearEnd);
-    top.classList.toggle('is-on', nearEnd);
+    // Самое начало: человек ещё не тронул страницу и не знает, что ниже
+    // что-то есть. Порог маленький — подсказка уходит от первого движения.
+    const atStart = y < vh * 0.25;
+
+    start.classList.toggle('is-on', atStart);
+    next.classList.toggle('is-on', !atStart && inWork && !nearEnd);
+    top.classList.toggle('is-on', !atStart && nearEnd);
   }
 
   window.addEventListener('scroll', () => {
