@@ -1,0 +1,3169 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Fritz Auto Ankauf — Kopie</title>
+<meta name="description" content="Autoankauf in Bochum und ganz Nordrhein-Westfalen. Kostenlose Bewertung, Abholung vor Ort, Bezahlung bei Übergabe. Auch Unfallwagen und Motorschaden.">
+<meta name="theme-color" content="#282525">
+
+<!--
+  DEMO. Schriften kommen über Google Fonts, damit die Datei sofort läuft.
+  IN PRODUKTION: self-hosted WOFF2, keine externen Requests.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap">
+
+<style>
+/* ---- part 01 ---- */
+/* ============================================================
+   FRITZ AUTO ANKAUF — ТОЧНАЯ КОПИЯ, ЧАСТЬ 1/3
+   Токены · база (reset, типографика, .container, .btn, .card,
+   .eyebrow, .reveal, утилиты) · верхняя панель · шапка с меню ·
+   первый экран · мобильная панель.
+
+   ИСТОЧНИКИ ЧИСЕЛ (ничего «на глаз»):
+     [CSS] — дословно из инлайн-CSS оригинала
+            assets/fritz/ORIGINAL_hrpulse_20250112.html
+     [изм.] — пиксельное измерение скриншотов клиента,
+            docs/design/LEKALO_FRITZ.md, часть 2
+
+   ПАЛИТРА [CSS]:
+     #FD5622 акцент (theme_accent_color / --wp--preset--color--text-link)
+     #F14813 hover  (--wp--preset--color--text-hover)
+     #F8A227 второй акцент, «янтарь» (--...--text-link-3)
+     #E52643 красный иконок преимуществ (части 2/3)
+     #282525 фон страницы (theme_bg_color)
+     #1F1C1C фон тёмной секции
+     #1C1C1C фон карточек-плашек
+     #161718 разделитель, 2px solid
+     #FFFEFE белый текста (не #FFFFFF)
+     #A5A6AA приглушённый текст (--...--text-light)
+
+   ГЕРОЙ [CSS] rev_slider слой -1/-0:
+     font-size 190 / 110 / 80 / 70 px по брейкпоинтам,
+     line-height 180 / 110 / 80 / 70, letter-spacing -1px (0 на моб.),
+     выравнивание по правому краю, цвет #FFFEFE,
+     «Wir» — градиент 45° #FD5622 → #F8A227 с анимацией 5s,
+     стрелка — SVG viewBox 0 0 32 78, stroke #FFFEFE, linecap round,
+     ширина 32px / 21px.
+
+   ШАПКА:
+     мобильная секция padding 10px 0 [CSS]
+     кнопка телефона: фон #FFFFFF, иконка+рамка #1C1C1C, радиус 6px,
+       border 2px, padding 8px, иконка 14px (12px на моб.) [CSS]
+     высота шапки 18,73 %W ≈ 74px @393 [изм.]
+     логотип 88,6 × 30,4 px @393, отступ слева 10,8 [изм.]
+     точка над «i» — круг #FD5622, ⌀ 7,5 px @393 [изм.]
+     бургер 21,6 × 15,0, отступ справа 10,8 [изм.]
+
+   Телефон-заглушка оригинала «089 000» заменён на реальный
+   формат клиента из Bochum: 0234 000 000.
+   ============================================================ */
+
+/* ---------- 1. Шрифт ---------- */
+/* Manrope 200..800 — как в оригинале [CSS] */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
+/* ---------- 2. Токены ---------- */
+:root{
+  /* цвет */
+  --accent:#FD5622;
+  --accent-hover:#F14813;
+  --amber:#F8A227;
+  --red-icon:#E52643;
+
+  --bg:#282525;            /* фон страницы */
+  --bg-section:#1F1C1C;    /* фон тёмной секции */
+  --bg-card:#1C1C1C;       /* плашки-карточки */
+  --bg-field:#1E1D1B;      /* поле ввода */
+  --line:#161718;          /* разделитель */
+
+  --text:#FFFEFE;
+  --text-muted:#A5A6AA;
+  --text-placeholder:#A8A6A7;
+  --on-accent:#FFFEFE;
+
+  /* геометрия */
+  --container:1290px;
+  --pad-x:clamp(20px,5vw,40px);   /* 5% на мобильном [CSS] padding:0% 5% */
+  --radius:10px;                   /* border-radius темы [CSS] */
+  --radius-sm:6px;                 /* кнопка телефона [CSS] */
+  --radius-card:11px;              /* карточка формы, 2,81 %W [изм.] */
+  --radius-field:9px;              /* поле ввода, 2,36 %W [изм.] */
+
+  --hd-h:74px;                     /* 18,73 %W @393 [изм.] */
+  --hd-h-lg:96px;
+  --topbar-h:44px;
+  --mobilebar-h:64px;
+
+  /* шрифт */
+  --font:"Manrope","Segoe UI",system-ui,-apple-system,sans-serif;
+
+  /* ритм секций */
+  --sec-y:clamp(56px,11vw,120px);
+
+  /* движение */
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-soft:cubic-bezier(.2,.6,.2,1);
+}
+
+/* ---------- 3. Reset ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body,h1,h2,h3,h4,h5,p,figure,ul,ol,dl,dd,fieldset,blockquote{margin:0}
+ul[class],ol[class]{list-style:none;padding:0}
+img,svg,video,canvas{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.56;                /* 25,0 / 16 — шаг тела 6,35 %W [изм.] */
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.is-locked{overflow:hidden}
+
+/* ---------- 4. Типографика (общая для частей 1–3) ---------- */
+h1,h2,h3,h4{font-weight:800;line-height:1.14;letter-spacing:-.01em;color:var(--text)}
+h2{font-size:clamp(28px,8.9vw,44px)}   /* 35px @393 [CSS] b3c1f4d */
+h3{font-size:clamp(19px,4.6vw,24px)}
+h4{font-size:clamp(17px,4.2vw,20px)}
+p{color:var(--text-muted)}
+b,strong{font-weight:700;color:var(--text)}
+u{text-decoration:underline;text-underline-offset:3px}
+
+.u-accent{color:var(--accent)}
+.u-white{color:var(--text)}
+.u-muted{color:var(--text-muted)}
+.u-center{text-align:center}
+.u-nowrap{white-space:nowrap}
+.u-hide{display:none !important}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+.eyebrow{
+  display:inline-block;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:14px;
+}
+
+.divider{border:0;border-top:2px solid var(--line);margin:0}
+
+/* ---------- 5. Контейнер ---------- */
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:var(--pad-x);
+}
+
+/* ---------- 6. Кнопки ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:52px;
+  padding:0 26px;
+  border-radius:var(--radius-sm);
+  font-size:16px;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:.01em;
+  text-align:center;
+  cursor:pointer;
+  transition:background-color .25s var(--ease),color .25s var(--ease),
+             border-color .25s var(--ease),transform .25s var(--ease);
+}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:18px;height:18px;flex:none}
+
+.btn--primary{
+  background:var(--accent);
+  color:var(--on-accent);
+  border:2px solid var(--accent);
+}
+.btn--primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+
+.btn--ghost{
+  background:transparent;
+  color:var(--text);
+  border:2px solid rgba(255,254,254,.28);
+}
+.btn--ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+.btn--block{display:flex;width:100%}
+.btn--sm{min-height:44px;padding:0 18px;font-size:15px}
+
+/* ---------- 7. Карточка ---------- */
+.card{
+  background:var(--bg-card);
+  border-radius:var(--radius);
+  padding:clamp(20px,4.7vw,32px);
+}
+
+/* ---------- 8. Reveal ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s var(--ease-soft),transform .7s var(--ease-soft);
+  will-change:opacity,transform;
+}
+.reveal.is-in{opacity:1;transform:none}
+.reveal[data-delay="1"]{transition-delay:.09s}
+.reveal[data-delay="2"]{transition-delay:.18s}
+.reveal[data-delay="3"]{transition-delay:.27s}
+.reveal[data-delay="4"]{transition-delay:.36s}
+
+/* ---------- 9. Вордмарк «Fritz» ---------- */
+/* Точка над «i» заменена оранжевым кругом [изм. §3.2] */
+.wordmark{
+  display:inline-flex;
+  align-items:baseline;
+  font-weight:800;
+  font-size:30px;                /* высота логотипа 30,4 px @393 [изм.] */
+  line-height:1;
+  letter-spacing:-.035em;
+  color:var(--text);
+  position:relative;
+}
+.wordmark__i{position:relative;display:inline-block}
+.wordmark__dot{
+  position:absolute;
+  left:50%;
+  top:-.34em;
+  width:.25em;                   /* ⌀ 7,5 px при 30px — 1,90 %W [изм.] */
+  height:.25em;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:var(--accent);
+}
+
+/* ---------- 10. Верхняя панель ---------- */
+.topbar{
+  display:none;
+  background:var(--bg-section);
+  border-bottom:2px solid var(--line);
+  font-size:14px;
+}
+.topbar__inner{
+  min-height:var(--topbar-h);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.topbar__claim{color:var(--text-muted)}
+.topbar__right{display:flex;align-items:center;gap:22px}
+.topbar__link{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--text);font-weight:700;
+  transition:color .25s var(--ease);
+}
+.topbar__link:hover{color:var(--accent)}
+.topbar__link svg{width:15px;height:15px;fill:var(--accent)}
+
+/* ---------- 11. Шапка ---------- */
+.hd{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:#121212;            /* полоса ведёт себя как сплошная [изм. §2.8] */
+  transition:background-color .3s var(--ease),box-shadow .3s var(--ease);
+}
+.hd.is-stuck{box-shadow:0 10px 30px rgba(0,0,0,.45)}
+
+.hd__inner{
+  min-height:var(--hd-h);
+  padding-block:10px;            /* [CSS] e88fe27 padding:10px 0 */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+/* левый отступ логотипа = правому отступу бургера, 2,75 %W [изм.] */
+.hd .container{padding-inline:clamp(11px,2.75vw,40px)}
+
+.hd__logo{display:inline-flex;align-items:center}
+
+.hd__right{display:flex;align-items:center;gap:18px}
+.hd__cta{display:none}          /* появляется вместе с десктопным меню */
+
+/* кнопка телефона [CSS] 981202d */
+.hd__phone{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:27px;                    /* 6,77 %W @393 [изм.] */
+  height:27px;
+  padding:6px;
+  background:#FFFFFF;
+  border:2px solid var(--bg-card);
+  border-radius:var(--radius-sm);
+  transition:background-color .25s var(--ease),border-color .25s var(--ease);
+}
+.hd__phone svg{width:12px;height:12px;fill:var(--bg-card)}
+.hd__phone:hover{background:var(--accent);border-color:var(--accent)}
+.hd__phone:hover svg{fill:#FFFFFF}
+
+/* бургер 21,6 × 15,0 [изм.] */
+.burger{
+  width:22px;
+  height:15px;
+  position:relative;
+  flex:none;
+}
+.burger span{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:2px;
+  background:var(--text);
+  border-radius:2px;
+  transition:transform .3s var(--ease),opacity .2s linear,top .3s var(--ease);
+}
+.burger span:nth-child(1){top:0}
+.burger span:nth-child(2){top:6.5px}
+.burger span:nth-child(3){top:13px}
+.burger[aria-expanded="true"] span:nth-child(1){top:6.5px;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){top:6.5px;transform:rotate(-45deg)}
+
+/* десктопное меню */
+.nav{display:none}
+.nav__list{display:flex;align-items:center;gap:clamp(18px,2vw,30px)}
+.nav__item{position:relative}
+.nav__link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:10px 0;
+  font-size:16px;
+  font-weight:700;
+  color:var(--text);
+  position:relative;
+  transition:color .25s var(--ease);
+}
+.nav__link::after{
+  content:"";
+  position:absolute;
+  left:0;right:100%;bottom:4px;
+  height:2px;
+  background:var(--accent);
+  transition:right .3s var(--ease);
+}
+.nav__link:hover{color:var(--accent)}
+.nav__link:hover::after{right:0}
+.nav__item--has > .nav__link > .nav__caret{
+  width:9px;height:9px;fill:currentColor;transition:transform .25s var(--ease);
+}
+.nav__item--has:hover > .nav__link > .nav__caret{transform:rotate(180deg)}
+
+.nav__sub{
+  position:absolute;
+  top:100%;
+  left:-18px;
+  min-width:250px;
+  padding:10px 0;
+  background:var(--bg-card);
+  border:2px solid var(--line);
+  border-radius:var(--radius);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(10px);
+  transition:opacity .25s var(--ease),transform .25s var(--ease),visibility .25s;
+}
+.nav__item--has:hover .nav__sub,
+.nav__item--has:focus-within .nav__sub{opacity:1;visibility:visible;transform:none}
+.nav__sub a{
+  display:block;
+  padding:9px 18px;
+  font-size:15px;
+  color:var(--text-muted);
+  transition:color .2s var(--ease),background-color .2s var(--ease);
+}
+.nav__sub a:hover{color:var(--text);background:rgba(253,86,34,.12)}
+
+/* ---------- 12. Выдвижное меню (мобильное) ---------- */
+.mnav{
+  position:fixed;
+  inset:0;
+  z-index:90;
+  background:var(--bg-section);
+  padding:0 var(--pad-x) 40px;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-12px);
+  transition:opacity .32s var(--ease),transform .32s var(--ease),visibility .32s;
+}
+.mnav.is-open{opacity:1;visibility:visible;transform:none}
+.mnav__head{
+  min-height:var(--hd-h);
+  padding-block:10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.mnav__close{
+  width:34px;height:34px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:2px solid var(--line);
+  border-radius:var(--radius-sm);
+}
+.mnav__close svg{width:14px;height:14px;stroke:var(--text);stroke-width:2;stroke-linecap:round}
+.mnav__list{margin-top:14px;border-top:2px solid var(--line)}
+.mnav__item{border-bottom:2px solid var(--line)}
+.mnav__row{display:flex;align-items:center;justify-content:space-between}
+.mnav__link{
+  flex:1;
+  display:block;
+  padding:16px 0;
+  font-size:19px;
+  font-weight:700;
+  color:var(--text);
+}
+.mnav__toggle{
+  width:44px;height:44px;
+  display:inline-flex;align-items:center;justify-content:center;
+  color:var(--accent);
+}
+.mnav__toggle svg{width:12px;height:12px;fill:currentColor;transition:transform .28s var(--ease)}
+.mnav__toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+.mnav__sub{
+  overflow:hidden;
+  max-height:0;
+  transition:max-height .32s var(--ease);
+}
+.mnav__sub ul{padding:0 0 12px}
+.mnav__sub a{
+  display:block;
+  padding:9px 0 9px 16px;
+  font-size:16px;
+  color:var(--text-muted);
+  border-left:2px solid var(--line);
+}
+.mnav__sub a:hover{color:var(--accent);border-left-color:var(--accent)}
+.mnav__cta{margin-top:26px;display:grid;gap:12px}
+.mnav__contact{
+  margin-top:24px;
+  font-size:15px;
+  color:var(--text-muted);
+}
+.mnav__contact a{color:var(--text);font-weight:700}
+
+/* ---------- 13. Первый экран ---------- */
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--hd-h));
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  background:#0B0B0B;
+  isolation:isolate;
+}
+@supports not (height:100svh){
+  .hero{min-height:calc(100vh - var(--hd-h))}
+}
+
+/* IMAGE SLOT: сюда встанет фото тёмного автомобиля */
+.hero__media{position:absolute;inset:0;z-index:-3}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:32% 60%}
+
+/* подложка вместо фото: тёмный градиент */
+.hero__bg{
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  background:
+    radial-gradient(120% 78% at 22% 92%,#1A1A1C 0%,#0E0E0F 46%,#070708 100%),
+    linear-gradient(180deg,#2A2B2E 0%,#141416 34%,#070708 100%);
+}
+/* горизонт трассы, как в кадре оригинала */
+.hero__bg::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;
+  height:34%;
+  background:linear-gradient(180deg,rgba(150,152,156,.30) 0%,rgba(58,59,62,.14) 62%,transparent 100%);
+}
+/* силуэт автомобиля — смещён влево, как в оригинале */
+.hero__car{
+  position:absolute;
+  z-index:-2;
+  left:-16%;
+  bottom:6%;
+  width:min(126%,1180px);
+  height:auto;
+  filter:drop-shadow(0 40px 60px rgba(0,0,0,.75));
+  pointer-events:none;
+}
+/* виньетка */
+.hero__vignette{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(88% 68% at 44% 46%,transparent 0%,rgba(6,6,7,.42) 66%,rgba(4,4,5,.88) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.42) 0%,transparent 22%,transparent 52%,rgba(0,0,0,.72) 100%);
+}
+
+.hero__inner{
+  position:relative;
+  width:100%;
+  padding-block:clamp(40px,9vw,90px) clamp(30px,7vw,60px);
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;      /* заголовок по правому краю [CSS] a:right */
+}
+/* правый отступ заголовка 3,4 %W [изм.] */
+.hero .container{padding-inline:clamp(14px,3.4vw,70px)}
+
+.hero__pretitle{
+  display:none;              /* [CSS] data-vbility="t,t,f,f" — скрыт на моб. */
+  max-width:318px;           /* [CSS] data-dim w:318px */
+  margin-right:auto;
+  font-size:19px;            /* [CSS] s:19 */
+  line-height:32px;          /* [CSS] l:32 */
+  color:var(--text);
+}
+
+.hero__title{
+  width:100%;
+  text-align:right;
+  font-weight:400;                       /* [CSS] data-text w:normal */
+  font-size:clamp(52px,14.5vw,190px);    /* [CSS] 190/110/80/70 по брейкпоинтам */
+  line-height:1.05;                      /* шаг 15,66 %W [изм.]; [CSS] l≈s */
+  letter-spacing:0;
+  color:var(--text);
+  margin:0;
+}
+@media (min-width:768px){
+  .hero__title{letter-spacing:-1px}      /* [CSS] ls:-1px на ≥ tablet */
+}
+.hero__title span{display:block}
+
+/* «Wir» — градиент 45° #FD5622 → #F8A227 с анимацией [CSS] .sldr-gradient_animation */
+.hero__title .grad{
+  color:var(--accent);
+  background:linear-gradient(45deg,var(--accent),var(--amber));
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:gradient_anim 5s ease infinite reverse;
+}
+@keyframes gradient_anim{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* стрелка вниз [CSS] viewBox 0 0 32 78, w:32px/21px */
+.hero__arrow{
+  margin-top:clamp(24px,6vw,44px);
+  width:21px;
+  height:auto;
+  display:block;
+  animation:hero_arrow 6s var(--ease-soft) infinite;
+}
+.hero__arrow svg{width:100%;height:auto}
+.hero__arrow path{stroke:var(--text);stroke-linecap:round}
+@keyframes hero_arrow{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+/* ---------- 14. Мобильная панель ---------- */
+.mobilebar{
+  position:fixed;
+  left:0;right:0;bottom:0;
+  z-index:70;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:10px;
+  align-items:center;
+  padding:9px var(--pad-x) calc(9px + env(safe-area-inset-bottom));
+  background:rgba(28,28,28,.96);
+  border-top:2px solid var(--line);
+  backdrop-filter:blur(10px);
+  transform:translateY(105%);
+  transition:transform .34s var(--ease);
+}
+.mobilebar.is-in{transform:none}
+.mobilebar__call{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:46px;
+  padding:0 16px;
+  border:2px solid rgba(255,254,254,.24);
+  border-radius:var(--radius-sm);
+  font-weight:700;
+  font-size:15px;
+  color:var(--text);
+}
+.mobilebar__call svg{width:15px;height:15px;fill:var(--accent)}
+.mobilebar .btn{min-height:46px;font-size:15px}
+
+/* ---------- 15. Брейкпоинты ---------- */
+@media (min-width:768px){
+  .hero__pretitle{display:block}
+  .hero__inner{padding-block:clamp(60px,9vw,120px) clamp(40px,7vw,70px)}
+  .hero__arrow{width:32px}
+  .hero__car{left:-8%;width:min(96%,1180px)}
+  .wordmark{font-size:34px}
+  .hd__phone{width:34px;height:34px;padding:8px}
+  .hd__phone svg{width:14px;height:14px}
+}
+
+@media (min-width:1025px){
+  .topbar{display:block}
+  .nav{display:block}
+  .mobilebar{display:none}
+  .hd__inner{min-height:var(--hd-h-lg);padding-block:16px}
+  .hd .container{padding-inline:clamp(24px,3vw,70px)}
+  .hd__burger{display:none}
+  .hd__phone{display:none}
+  .hd__cta{display:inline-flex}
+  .hero{min-height:calc(100svh - var(--hd-h-lg))}
+  .wordmark{font-size:40px}
+}
+
+/* ---------- 16. Доступность движения ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal{opacity:1;transform:none}
+  .mobilebar{transform:none}
+}
+
+/* ---- part 02 ---- */
+/* ============================================================
+   FRITZ AUTO ANKAUF — ЧАСТЬ 2 из 3
+   Средние секции: about- / usp- / steps- / buy-
+   Токены и базовые классы (container, btn, card, eyebrow,
+   reveal) приходят из ЧАСТИ 1 — здесь НЕ переопределяются.
+   Все обращения к токенам идут с запасным значением.
+   ============================================================ */
+
+/* ---- локальные величины части 2 ---------------------------- */
+.about-section,
+.usp-section,
+.steps-section,
+.buy-section {
+  --p2-bg-section: var(--bg-section, #1F1C1C);
+  --p2-bg-card: var(--bg-card, #1C1C1C);
+  --p2-divider: var(--divider, #161718);
+  --p2-accent: var(--accent, #FD5622);
+  --p2-accent-hover: var(--accent-hover, #F14813);
+  --p2-amber: var(--accent-2, #F8A227);
+  --p2-red: var(--icon-red, #E52643);
+  --p2-white: var(--text-white, #FFFEFE);
+  --p2-muted: var(--text-muted, #A5A6AA);
+  --p2-font: var(--font-base, "Manrope", "Helvetica Neue", Arial, sans-serif);
+}
+
+/* ============================================================
+   1. СЕКЦИЯ «Dein Autoverkauf ganz ohne Stress»
+   Два фото встык + заголовок в две строки + два абзаца
+   ============================================================ */
+
+.about-section {
+  background: var(--p2-bg-section);
+  color: var(--p2-white);
+  font-family: var(--p2-font);
+  padding: 0 0 64px;
+  overflow: hidden;
+}
+
+/* фотоблок: два кадра подряд, без промежутка, 97,9 %W */
+.about-photos {
+  width: 97.9%;
+  max-width: 980px;
+  margin: 0 auto 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;                 /* встык — по лекалу зазора нет */
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.about-photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: 0;
+  overflow: hidden;
+}
+
+/* верхний кадр — макро колеса, нижний — люди у автомобиля */
+.about-photo--wheel { aspect-ratio: 16 / 7; }
+.about-photo--deal  { aspect-ratio: 16 / 11; }
+
+/* градиентная плашка-заглушка вместо фотографии */
+.about-photo__slot,
+.buy-card__slot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-photo--wheel .about-photo__slot {
+  background:
+    radial-gradient(120% 140% at 78% 22%, #3A3736 0%, #211F1E 55%, #171514 100%);
+}
+
+.about-photo--deal .about-photo__slot {
+  background:
+    radial-gradient(110% 130% at 25% 20%, #45413F 0%, #262322 58%, #1A1817 100%);
+}
+
+.about-photo__art {
+  width: 46%;
+  max-width: 220px;
+  height: auto;
+  opacity: 0.5;
+  color: var(--p2-muted);
+}
+
+.about-photo__note {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(165, 166, 170, 0.55);
+}
+
+.about-body {
+  width: 90%;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.about-title {
+  margin: 0 0 14px;
+  font-weight: 800;
+  font-size: clamp(28px, 8.1vw, 40px);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: var(--p2-white);
+}
+
+.about-title__line { display: block; }
+
+.about-text {
+  margin: 0 0 25px;
+  font-weight: 400;
+  font-size: clamp(15px, 4.1vw, 17px);
+  line-height: 1.56;
+  color: var(--p2-muted);
+}
+
+.about-text:last-child { margin-bottom: 0; }
+
+.about-text strong {
+  font-weight: 700;
+  color: var(--p2-white);
+}
+
+@media (min-width: 900px) {
+  .about-section { padding-bottom: 96px; }
+  .about-photos {
+    flex-direction: row;
+    max-width: 1180px;
+    margin-bottom: 48px;
+  }
+  .about-photo--wheel { flex: 1 1 42%; aspect-ratio: auto; min-height: 380px; }
+  .about-photo--deal  { flex: 1 1 58%; aspect-ratio: auto; min-height: 380px; }
+  .about-body { max-width: 860px; }
+}
+
+/* ============================================================
+   2. ЧЕТЫРЕ ПРЕИМУЩЕСТВА
+   Иконка #E52643 → заголовок → одна строка пояснения
+   ============================================================ */
+
+.usp-section {
+  background: var(--p2-bg-section);
+  color: var(--p2-white);
+  font-family: var(--p2-font);
+  padding: 8px 0 40px;
+}
+
+.usp-list {
+  width: 90%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 46px;             /* шаг иконка → иконка ≈ 32,6 %W */
+}
+
+.usp-item { text-align: center; }
+
+.usp-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: 0 0 16px;
+  color: var(--p2-red);
+}
+
+.usp-item__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: var(--p2-red);
+}
+
+.usp-item__title {
+  margin: 0 0 15px;
+  font-weight: 700;
+  font-size: clamp(16px, 4.4vw, 19px);
+  line-height: 1.25;
+  color: var(--p2-white);
+}
+
+.usp-item__text {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(15px, 4.1vw, 16px);
+  line-height: 1.45;
+  color: var(--p2-muted);
+}
+
+@media (min-width: 900px) {
+  .usp-section { padding: 24px 0 88px; }
+  .usp-list {
+    max-width: 1180px;
+    flex-direction: row;
+    gap: 40px;
+  }
+  .usp-item { flex: 1 1 0; }
+}
+
+/* ============================================================
+   3. «Auto verkaufen in drei einfachen Schritten:»
+   Часть заголовка — оранжевая
+   ============================================================ */
+
+.steps-section {
+  background: var(--p2-bg-section);
+  color: var(--p2-white);
+  font-family: var(--p2-font);
+  padding: 72px 0 64px;
+}
+
+.steps-inner {
+  width: 90%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.steps-title {
+  margin: 0 0 16px;
+  font-weight: 800;
+  font-size: clamp(26px, 7.4vw, 38px);
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+  color: var(--p2-white);
+  text-align: left;
+  hyphens: auto;          /* перенос со скобкой, как в оригинале */
+  -webkit-hyphens: auto;
+}
+
+.steps-title__accent { color: var(--p2-accent); }
+
+.steps-extra {
+  margin: 0 0 40px;
+  font-weight: 400;
+  font-size: clamp(15px, 4.1vw, 17px);
+  line-height: 1.5;
+  color: var(--p2-muted);
+}
+
+.steps-extra strong {
+  font-weight: 700;
+  color: var(--p2-white);
+}
+
+.steps-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: steps;
+}
+
+.steps-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 0 0 34px;
+}
+
+/* вертикальная нить между шагами */
+.steps-item::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 44px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--p2-divider);
+}
+
+.steps-item:last-child { padding-bottom: 0; }
+.steps-item:last-child::before { display: none; }
+
+.steps-item__mark {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--p2-bg-card);
+  border: 2px solid var(--p2-bg-card);
+  color: var(--p2-white);
+  position: relative;
+  z-index: 1;
+}
+
+.steps-item__mark svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.steps-item__body { padding-top: 3px; }
+
+.steps-item__title {
+  margin: 0 0 8px;
+  font-weight: 700;
+  font-size: clamp(18px, 5.2vw, 22px);
+  line-height: 1.2;
+  color: var(--p2-white);
+}
+
+.steps-item__title::before {
+  counter-increment: steps;
+  content: "0" counter(steps);
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--p2-accent);
+}
+
+.steps-item__text {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(15px, 4.1vw, 16px);
+  line-height: 1.55;
+  color: var(--p2-muted);
+}
+
+.steps-item__phone {
+  color: var(--p2-white);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(253, 86, 34, 0.6);
+}
+
+.steps-item__phone:hover,
+.steps-item__phone:focus-visible {
+  color: var(--p2-accent-hover);
+  border-bottom-color: var(--p2-accent-hover);
+}
+
+@media (min-width: 900px) {
+  .steps-section { padding: 110px 0 96px; }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .steps-extra { margin-bottom: 0; }
+  .steps-title { font-size: clamp(34px, 3.2vw, 46px); }
+}
+
+/* ============================================================
+   4. «Was wir kaufen» — Unfallwagen / Gebrauchtwagen /
+      Lackschaden und Kratzer
+   ============================================================ */
+
+.buy-section {
+  background: var(--p2-bg-section);
+  color: var(--p2-white);
+  font-family: var(--p2-font);
+  padding: 0 0 76px;
+}
+
+.buy-inner {
+  width: 90%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.buy-head { margin: 0 0 30px; }
+
+.buy-title {
+  margin: 0 0 12px;
+  font-weight: 800;
+  font-size: clamp(26px, 7.4vw, 38px);
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+  color: var(--p2-white);
+}
+
+.buy-title__accent { color: var(--p2-accent); }
+
+.buy-lead {
+  margin: 0;
+  font-size: clamp(15px, 4.1vw, 17px);
+  line-height: 1.55;
+  color: var(--p2-muted);
+}
+
+.buy-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.buy-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--p2-bg-card);
+  border: 1px solid var(--p2-divider);
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.buy-card:hover,
+.buy-card:focus-visible {
+  border-color: var(--p2-accent);
+  transform: translateY(-2px);
+}
+
+.buy-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.buy-card:nth-child(1) .buy-card__slot {
+  background: linear-gradient(158deg, #3B2A24 0%, #241D1B 62%, #1A1615 100%);
+}
+.buy-card:nth-child(2) .buy-card__slot {
+  background: linear-gradient(158deg, #2C3130 0%, #221F1E 62%, #191717 100%);
+}
+.buy-card:nth-child(3) .buy-card__slot {
+  background: linear-gradient(158deg, #3A3226 0%, #26211C 62%, #1A1715 100%);
+}
+
+.buy-card__art {
+  width: 52%;
+  max-width: 180px;
+  height: auto;
+  opacity: 0.55;
+  color: var(--p2-muted);
+}
+
+.buy-card__note {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(165, 166, 170, 0.5);
+}
+
+.buy-card__body { padding: 20px 20px 22px; }
+
+.buy-card__title {
+  margin: 0 0 8px;
+  font-weight: 700;
+  font-size: clamp(18px, 5vw, 21px);
+  line-height: 1.2;
+  color: var(--p2-white);
+}
+
+.buy-card__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--p2-muted);
+}
+
+.buy-card__more {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--p2-accent);
+}
+
+.buy-card:hover .buy-card__more { color: var(--p2-accent-hover); }
+
+.buy-card__more svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s ease;
+}
+
+.buy-card:hover .buy-card__more svg { transform: translateX(3px); }
+
+@media (min-width: 760px) {
+  .buy-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .buy-head { margin-bottom: 40px; }
+}
+
+/* ============================================================
+   Появление при прокрутке — только для секций части 2.
+   Базовый .reveal задаёт ЧАСТЬ 1; здесь лишь запасной
+   вариант на случай, если он ещё не подключён.
+   ============================================================ */
+
+.p2-anim .about-body,
+.p2-anim .about-photos,
+.p2-anim .usp-item,
+.p2-anim .steps-title,
+.p2-anim .steps-extra,
+.p2-anim .steps-item,
+.p2-anim .buy-head,
+.p2-anim .buy-card {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.p2-anim .is-p2-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p2-anim .about-body,
+  .p2-anim .about-photos,
+  .p2-anim .usp-item,
+  .p2-anim .steps-title,
+  .p2-anim .steps-extra,
+  .p2-anim .steps-item,
+  .p2-anim .buy-head,
+  .p2-anim .buy-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .buy-card,
+  .buy-card__more svg { transition: none; }
+}
+
+/* ---- part 03 ---- */
+/* ============================================================
+   FRITZ AUTOANKAUF — ЧАСТЬ 3/3
+   Секция «Partner» · форма в оранжевой карточке · Standorte ·
+   FAQs · подвал.
+
+   Токены задаёт ЧАСТЬ 1. Здесь они только читаются, всегда
+   с запасным значением: var(--accent,#FD5622). Ничего из
+   Части 1 не переопределяется.
+
+   Источники чисел:
+     [CSS]  — дословно из ORIGINAL_hrpulse_20250112.html
+     [изм.] — пиксельные измерения LEKALO_FRITZ.md, ЧАСТЬ 2.7
+     [лог.] — достроено по логике: лекало помечает «не проверено»
+              (высота карточки формы ниже поля «Name», кнопка
+              отправки — во всех кадрах перекрыты плёнкой галереи)
+
+   Пересчёт %W → px сделан под мобильный вьюпорт 393 px, как
+   в лекале. На широких экранах те же пропорции удерживает
+   clamp(), поэтому мобильное измерение остаётся нижней точкой.
+   ============================================================ */
+
+/* ---------- 0. Локальные величины части 3 ---------- */
+.partner-sec,
+.form-sec,
+.loc-sec,
+.faq-sec,
+.ft{
+  /* карточка формы: 90,10 %W ширина, 5,02 %W поля — [изм.] */
+  --f-card-pad: clamp(18px, 4.73vw, 34px);   /* 4,73 %W = 18,6 px [изм.] */
+  --f-card-radius: clamp(11px, 2.81vw, 18px);/* 2,81 %W = 11,0 px [изм.], согласуется с border-radius:10px [CSS] */
+  --f-field-radius: clamp(9px, 2.36vw, 14px);/* 2,36 %W = 9,3 px  [изм.] */
+  --f-field-h: clamp(48px, 12.11vw, 58px);   /* 12,11 %W = 47,6 px [изм.] */
+  --f-gap: clamp(12px, 3.2vw, 18px);         /* [лог.] шаг между полями */
+  --p3-pad-x: clamp(18px, 5vw, 40px);        /* padding:0% 5% [CSS] = 4,9–5,0 %W [изм.] */
+  --p3-max: 1180px;
+  --p3-line: 1.45;
+}
+
+/* ---------- 1. Секция «Fritz — dein Partner» ---------- */
+.partner-sec{
+  background: var(--bg, #282525);
+  color: var(--text, #FFFEFE);
+  padding: clamp(48px, 12vw, 110px) var(--p3-pad-x) clamp(24px, 6vw, 48px);
+}
+.partner-inner{
+  max-width: var(--p3-max);
+  margin-inline: auto;
+  text-align: left;                 /* §3.2: секция выровнена по левому краю */
+}
+.partner-title{
+  font-family: var(--font-body, "Manrope", "Segoe UI", sans-serif);
+  font-weight: 800;
+  /* межстрочный шаг 8,12 %W = 31,9 px @393 [изм.] → кегль ≈ 28 px */
+  font-size: clamp(28px, 7.2vw, 52px);
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  color: var(--text, #FFFEFE);
+  margin: 0 0 clamp(14px, 3.6vw, 24px);
+  max-width: 18ch;
+}
+.partner-accent{ color: var(--accent, #FD5622) }  /* §3.3: оранжевым красится ЧАСТЬ заголовка */
+
+.partner-lead{
+  font-weight: 700;
+  color: var(--text, #FFFEFE);
+  /* шаг строк лида 5,19 %W = 20,4 px [изм.] → кегль ≈ 18 px */
+  font-size: clamp(17px, 4.6vw, 22px);
+  line-height: 1.28;
+  margin: 0 0 clamp(16px, 4.2vw, 26px);
+  max-width: 30ch;
+}
+.partner-text{
+  color: var(--text-muted, #A5A6AA);
+  /* шаг строк тела 6,35 %W = 25,0 px [изм.]; в исходнике кегль 17 px [CSS] */
+  font-size: clamp(16px, 4.3vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 62ch;
+}
+.partner-em{                       /* три выделения полужирным белым — §3.2 */
+  font-weight: 700;
+  color: var(--text, #FFFEFE);
+}
+.partner-underline{                /* одно подчёркивание — §3.2 */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.partner-figure{
+  /* отступ текст → изображение ≈ 23,3 %W [изм.] */
+  margin: clamp(56px, 23.3vw, 150px) 0 0;
+  padding: 0;
+}
+.partner-figure svg{
+  width: min(100%, 720px);
+  height: auto;
+  margin-inline: auto;
+  /* §3.2 и чек-лист 58: рендер на прозрачном фоне, без подложки и тени */
+  background: none;
+  filter: none;
+}
+
+/* ---------- 2. Форма в оранжевой карточке ---------- */
+.form-sec{
+  background: var(--bg, #282525);
+  /* чек-лист 62: между изображением и карточкой видимый отступ */
+  padding: clamp(28px, 8vw, 64px) var(--p3-pad-x) clamp(56px, 14vw, 110px);
+}
+.form-card{
+  position: relative;
+  max-width: 760px;
+  margin-inline: auto;
+  border-radius: var(--f-card-radius);
+  padding: var(--f-card-pad);
+  /* заливка — дословно из инлайн-CSS оригинала [CSS] */
+  background: linear-gradient(169deg, #FD5622 45%, #F8A227 100%);
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Текстурный оверлей rentic-section-back-3.png, opacity .6 [CSS].
+   Файл текстуры в архив не попал — воспроизводим равнозначным
+   процедурным зерном той же роли: смягчает переход к янтарю. */
+.form-card::before{
+  content:"";
+  position:absolute; inset:0;
+  z-index:-1;
+  opacity:.6;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,.16), transparent 42%),
+    radial-gradient(circle at 88% 82%, rgba(0,0,0,.14), transparent 46%);
+  pointer-events:none;
+}
+.form-head{
+  margin: 0 0 clamp(14px, 3.6vw, 22px);
+  color: #FFFEFE;
+  font-weight: 800;
+  font-size: clamp(20px, 5.2vw, 28px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.form-sub{
+  margin: 0 0 clamp(18px, 4.6vw, 26px);
+  color: rgba(255,254,254,.88);
+  font-size: clamp(14px, 3.8vw, 16px);
+  line-height: 1.45;
+  max-width: 46ch;
+}
+
+.form-grid{
+  display: grid;
+  gap: var(--f-gap);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px){
+  .form-grid{ grid-template-columns: 1fr 1fr }   /* columns_wrap / column-1_2 [CSS] */
+  .form-field--wide{ grid-column: 1 / -1 }
+}
+.form-field{ min-width: 0 }
+
+/* label есть у каждого поля по-настоящему; визуально скрыт,
+   потому что в оригинале роль подписи играет плейсхолдер с иконкой */
+.form-label{
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.form-wrap{ position: relative; display: block }
+.form-icon{
+  position: absolute;
+  left: clamp(14px, 3.6vw, 18px);
+  top: calc(var(--f-field-h) / 2);
+  transform: translateY(-50%);
+  width: 20px; height: 20px;
+  color: #FFFEFE;                 /* §3.2: тонкая белая контурная иконка */
+  opacity: .9;
+  pointer-events: none;
+}
+.form-field--wide .form-icon{ top: clamp(24px, 6vw, 30px); transform: none }
+
+.form-input,
+.form-textarea{
+  width: 100%;                    /* 80,21 %W = во всю внутреннюю ширину карточки [изм.] */
+  height: var(--f-field-h);
+  padding: 0 clamp(14px, 3.6vw, 18px) 0 clamp(44px, 11vw, 52px);
+  background: #1E1D1B;            /* [изм.] фон поля, почти равен фону страницы */
+  color: var(--text, #FFFEFE);
+  border: 1px solid rgba(0,0,0,.18);
+  border-radius: var(--f-field-radius);
+  font-family: inherit;
+  font-size: clamp(15px, 4vw, 16px);
+  line-height: 1.2;
+  appearance: none;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.form-textarea{
+  height: auto;
+  min-height: calc(var(--f-field-h) * 2.4);
+  padding-top: clamp(14px, 3.6vw, 18px);
+  padding-bottom: clamp(14px, 3.6vw, 18px);
+  line-height: 1.45;
+  resize: vertical;
+}
+.form-input::placeholder,
+.form-textarea::placeholder{
+  color: #A8A6A7;                 /* [изм.] цвет плейсхолдера */
+  opacity: 1;
+}
+.form-input:focus-visible,
+.form-textarea:focus-visible{
+  outline: none;
+  border-color: #FFFEFE;
+  box-shadow: 0 0 0 2px rgba(255,254,254,.55);
+}
+.form-input[aria-invalid="true"],
+.form-textarea[aria-invalid="true"]{
+  border-color: var(--danger, #E52643);
+  box-shadow: 0 0 0 2px rgba(229,38,67,.35);
+}
+.form-error{
+  display: block;
+  min-height: 0;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.3;
+  color: #2A1206;
+  font-weight: 700;
+}
+.form-error:empty{ margin-top: 0 }
+
+/* honeypot: вне экрана, вне табуляции, без автозаполнения */
+.form-hp{
+  position: absolute;
+  left: -9999px;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+
+.form-consent{
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: clamp(16px, 4.2vw, 24px) 0 0;
+  color: #2A1206;
+  font-size: clamp(13px, 3.4vw, 14px);
+  line-height: 1.4;
+}
+.form-consent input[type="checkbox"]{
+  flex: 0 0 auto;
+  width: 20px; height: 20px;
+  margin-top: 1px;
+  accent-color: #1E1D1B;
+  cursor: pointer;
+}
+.form-consent a{
+  color: #1E1D1B;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.form-consent a:hover{ color: #000 }
+
+/* Кнопка отправки — [лог.]: во всех кадрах перекрыта плёнкой
+   галереи, лекало помечает «не проверено» (§2.8). Взято тёмное
+   поле формы как заливка — оно единственное тёмное пятно внутри
+   карточки, и оно же используется темой для submit (#00000069 [CSS]). */
+.form-submit{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: var(--f-field-h);
+  margin-top: clamp(18px, 4.6vw, 26px);
+  padding: 0 24px;
+  background: #1E1D1B;
+  color: var(--text, #FFFEFE);
+  border: 0;
+  border-radius: var(--f-field-radius);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: clamp(15px, 4vw, 17px);
+  letter-spacing: .01em;
+  cursor: pointer;
+  transition: background .18s ease, transform .18s ease;
+}
+.form-submit:hover{ background: #131211 }
+.form-submit:active{ transform: translateY(1px) }
+@media (min-width: 720px){ .form-submit{ width: auto; min-width: 260px } }
+
+.form-note{
+  margin: clamp(12px, 3vw, 16px) 0 0;
+  color: #2A1206;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Экран подтверждения — [лог.], в оригинале был ответ Contact Form 7 */
+.form-done{
+  display: none;
+  color: #FFFEFE;
+}
+.form-card[data-state="done"] .form-body{ display: none }
+.form-card[data-state="done"] .form-done{ display: block }
+.form-done-title{
+  margin: 0 0 12px;
+  font-weight: 800;
+  font-size: clamp(20px, 5.2vw, 28px);
+  line-height: 1.2;
+}
+.form-done-text{
+  margin: 0 0 clamp(18px, 4.6vw, 26px);
+  font-size: clamp(15px, 4vw, 17px);
+  line-height: 1.5;
+  max-width: 48ch;
+}
+.form-reset{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--f-field-h);
+  padding: 0 26px;
+  background: #1E1D1B;
+  color: #FFFEFE;
+  border: 0;
+  border-radius: var(--f-field-radius);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: clamp(15px, 4vw, 16px);
+  cursor: pointer;
+  transition: background .18s ease;
+}
+.form-reset:hover{ background: #131211 }
+
+/* ---------- 3. Standorte ---------- */
+.loc-sec{
+  background: var(--bg-section, #1F1C1C);
+  color: var(--text, #FFFEFE);
+  padding: clamp(56px, 14vw, 110px) var(--p3-pad-x);
+}
+.loc-inner{ max-width: var(--p3-max); margin-inline: auto }
+.loc-title{
+  margin: 0 0 clamp(12px, 3vw, 18px);
+  font-weight: 800;
+  font-size: clamp(26px, 6.6vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+.loc-title .partner-accent{ color: var(--accent, #FD5622) }
+.loc-lead{
+  margin: 0 0 clamp(24px, 6vw, 40px);
+  color: var(--text-muted, #A5A6AA);
+  font-size: clamp(16px, 4.3vw, 18px);
+  line-height: 1.5;
+  max-width: 58ch;
+}
+.loc-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: clamp(10px, 2.6vw, 14px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.loc-link{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 16px;
+  background: var(--bg-card, #1C1C1C);
+  border: 1px solid #161718;     /* разделитель #161718 [CSS] */
+  border-radius: 10px;           /* border-radius:10px [CSS] */
+  color: var(--text, #FFFEFE);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color .18s ease, color .18s ease, transform .18s ease;
+}
+.loc-link svg{ width: 16px; height: 16px; color: var(--accent, #FD5622); flex: 0 0 auto }
+.loc-link:hover{
+  border-color: var(--accent, #FD5622);
+  color: var(--accent-hover, #F14813);
+  transform: translateY(-1px);
+}
+.loc-note{
+  margin: clamp(20px, 5vw, 30px) 0 0;
+  color: var(--text-muted, #A5A6AA);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ---------- 4. FAQs ---------- */
+.faq-sec{
+  background: var(--bg, #282525);
+  color: var(--text, #FFFEFE);
+  padding: clamp(56px, 14vw, 110px) var(--p3-pad-x);
+}
+.faq-inner{ max-width: 900px; margin-inline: auto }
+.faq-title{
+  margin: 0 0 clamp(22px, 6vw, 40px);
+  font-weight: 800;
+  font-size: clamp(26px, 6.6vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+.faq-list{ display: grid; gap: 10px }
+.faq-item{
+  background: var(--bg-card, #1C1C1C);
+  border: 1px solid #161718;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.faq-item[open]{ border-color: rgba(253,86,34,.45) }
+.faq-q{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: clamp(16px, 4.2vw, 22px);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: clamp(16px, 4.2vw, 18px);
+  line-height: 1.35;
+  list-style: none;
+}
+.faq-q::-webkit-details-marker{ display: none }
+.faq-q:hover{ color: var(--accent-hover, #F14813) }
+.faq-sign{
+  position: relative;
+  flex: 0 0 auto;
+  width: 22px; height: 22px;
+}
+.faq-sign::before,
+.faq-sign::after{
+  content:"";
+  position:absolute; left:50%; top:50%;
+  background: var(--accent, #FD5622);
+  border-radius: 2px;
+  transform: translate(-50%,-50%);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.faq-sign::before{ width: 16px; height: 2px }
+.faq-sign::after{ width: 2px; height: 16px }
+.faq-item[open] .faq-sign::after{ opacity: 0; transform: translate(-50%,-50%) rotate(90deg) }
+.faq-a{
+  margin: 0;
+  padding: 0 clamp(16px, 4.2vw, 22px) clamp(18px, 4.6vw, 24px);
+  color: var(--text-muted, #A5A6AA);
+  font-size: clamp(15px, 4vw, 17px);
+  line-height: var(--p3-line);
+  max-width: 66ch;
+}
+
+/* ---------- 5. Подвал ---------- */
+.ft{
+  background: var(--bg-section, #1F1C1C);
+  color: var(--text, #FFFEFE);
+  border-top: 2px solid #161718;       /* разделитель 2 px solid #161718 [CSS] */
+  padding: clamp(48px, 12vw, 90px) var(--p3-pad-x) clamp(24px, 6vw, 36px);
+}
+.ft-inner{ max-width: var(--p3-max); margin-inline: auto }
+.ft-top{
+  display: grid;
+  gap: clamp(28px, 7vw, 48px);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 780px){
+  .ft-top{ grid-template-columns: 1.3fr 1fr 1fr }
+}
+.ft-logo{
+  display: inline-flex;
+  align-items: baseline;
+  font-weight: 800;
+  font-size: clamp(26px, 6.4vw, 34px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+/* точка над «i» — оранжевый круг, единственный цветной элемент знака (§3.2) */
+.ft-dot{
+  position: relative;
+  display: inline-block;
+}
+.ft-dot::after{
+  content:"";
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, 2px);
+  width: .21em; height: .21em;
+  border-radius: 50%;
+  background: var(--accent, #FD5622);
+}
+.ft-tag{
+  margin: 12px 0 0;
+  color: var(--text-muted, #A5A6AA);
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 34ch;
+}
+.ft-col-title{
+  margin: 0 0 14px;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text, #FFFEFE);
+}
+.ft-nav{ display: grid; gap: 10px; list-style: none; margin: 0; padding: 0 }
+.ft-nav a,
+.ft-contact a{
+  color: var(--text-muted, #A5A6AA);
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.5;
+  transition: color .18s ease;
+}
+.ft-nav a:hover,
+.ft-contact a:hover{ color: var(--accent-hover, #F14813) }
+.ft-contact{ display: grid; gap: 10px; list-style: none; margin: 0; padding: 0 }
+.ft-contact li{
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--text-muted, #A5A6AA);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.ft-contact svg{ width: 18px; height: 18px; flex: 0 0 auto; color: var(--accent, #FD5622); margin-top: 2px }
+
+.ft-bottom{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: clamp(32px, 8vw, 56px);
+  padding-top: clamp(18px, 4.6vw, 24px);
+  border-top: 2px solid #161718;
+}
+.ft-legal{ display: flex; flex-wrap: wrap; gap: 18px }
+.ft-legal a{
+  color: var(--text-muted, #A5A6AA);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color .18s ease;
+}
+.ft-legal a:hover{ color: var(--accent-hover, #F14813) }
+.ft-copy{
+  margin: 0;
+  color: var(--text-muted, #A5A6AA);
+  font-size: 14px;
+}
+.ft-draft{
+  flex: 1 0 100%;
+  margin: 6px 0 0;
+  color: var(--text-muted, #A5A6AA);
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: .85;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .loc-link,
+  .form-submit,
+  .form-input,
+  .form-textarea{ transition: none }
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+
+<!-- ==== part 01 ==== -->
+<!-- ==========================================================
+     FRITZ AUTO ANKAUF — ТОЧНАЯ КОПИЯ, ЧАСТЬ 1/3
+     Верхняя панель · шапка с меню · выдвижное меню ·
+     первый экран · мобильная панель.
+
+     Меню — дословно из оригинала (ORIGINAL_hrpulse_20250112.html,
+     ul#menu_main): Startseite · Autoankauf (Kostenlose Angebote,
+     Garantie und Gewährleistung) · Was wir kaufen (Unfallwagen,
+     Gebrauchtwagen, Lackschaden und Kratzer) · Standorte · FAQs ·
+     Kontakt. Кнопка «Jetzt verkaufen».
+
+     Заголовок первого экрана — дословно оригинал: Wir / kaufen /
+     Ihr Auto, «Wir» градиентом #FD5622 → #F8A227 [CSS].
+     Надзаголовок переписан своими словами (в оригинале — чужой
+     рекламный текст), длина и роль сохранены.
+
+     Телефон-заглушка оригинала «089 000» заменён на 0234 000 000.
+     Фотографий нет — стоит SVG-силуэт и слот под фото.
+     lang="de" ставит сборщик на .
+     ========================================================== -->
+
+<!-- ==================== ВЕРХНЯЯ ПАНЕЛЬ ==================== -->
+<div class="topbar">
+  <div class="container topbar__inner">
+    <p class="topbar__claim">Autoankauf in Bochum und im gesamten Ruhrgebiet — Abholung und Abmeldung inklusive</p>
+    <div class="topbar__right">
+      <a class="topbar__link" href="tel:+49234000000">
+        <svg viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+          <path d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"/>
+        </svg>
+        0234 000 000
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ШАПКА ==================== -->
+<header class="hd" id="top">
+  <div class="container hd__inner">
+
+    <!-- вордмарк: точка над «i» — оранжевый круг #FD5622 -->
+    <a class="hd__logo" href="#top" aria-label="Fritz Auto Ankauf — Startseite">
+      <span class="wordmark" aria-hidden="true">Fr<span class="wordmark__i">&#305;<span class="wordmark__dot"></span></span>tz</span>
+      <span class="sr-only">Fritz Auto Ankauf</span>
+    </a>
+
+    <!-- десктопное меню -->
+    <nav class="nav" aria-label="Hauptmenü">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="#top">Startseite</a></li>
+
+        <li class="nav__item nav__item--has">
+          <a class="nav__link" href="#autoankauf">Autoankauf
+            <svg class="nav__caret" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z"/></svg>
+          </a>
+          <ul class="nav__sub">
+            <li><a href="#kostenlose-angebote">Kostenlose Angebote</a></li>
+            <li><a href="#garantie">Garantie und Gewährleistung</a></li>
+          </ul>
+        </li>
+
+        <li class="nav__item nav__item--has">
+          <a class="nav__link" href="#was-wir-kaufen">Was wir kaufen
+            <svg class="nav__caret" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z"/></svg>
+          </a>
+          <ul class="nav__sub">
+            <li><a href="#unfallwagen">Unfallwagen</a></li>
+            <li><a href="#gebrauchtwagen">Gebrauchtwagen</a></li>
+            <li><a href="#lackschaden">Lackschaden und Kratzer</a></li>
+          </ul>
+        </li>
+
+        <li class="nav__item"><a class="nav__link" href="#standorte">Standorte</a></li>
+        <li class="nav__item"><a class="nav__link" href="#faqs">FAQs</a></li>
+        <li class="nav__item"><a class="nav__link" href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="hd__right">
+      <!-- белая скруглённая кнопка телефона [CSS] 981202d -->
+      <a class="hd__phone" href="tel:+49234000000" aria-label="Anrufen: 0234 000 000">
+        <svg viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+          <path d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"/>
+        </svg>
+      </a>
+
+      <a class="btn btn--primary btn--sm hd__cta" href="#kontakt">Jetzt verkaufen</a>
+
+      <button class="burger hd__burger" type="button" id="burger"
+              aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== ВЫДВИЖНОЕ МЕНЮ ==================== -->
+<div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Menü" hidden>
+  <div class="container mnav__head" style="padding-inline:0">
+    <span class="wordmark" aria-hidden="true">Fr<span class="wordmark__i">&#305;<span class="wordmark__dot"></span></span>tz</span>
+    <button class="mnav__close" type="button" id="mnavClose" aria-label="Menü schließen">
+      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Mobiles Menü">
+    <ul class="mnav__list">
+      <li class="mnav__item"><div class="mnav__row"><a class="mnav__link" href="#top">Startseite</a></div></li>
+
+      <li class="mnav__item">
+        <div class="mnav__row">
+          <a class="mnav__link" href="#autoankauf">Autoankauf</a>
+          <button class="mnav__toggle" type="button" aria-expanded="false" aria-label="Untermenü Autoankauf">
+            <svg viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z"/></svg>
+          </button>
+        </div>
+        <div class="mnav__sub">
+          <ul>
+            <li><a href="#kostenlose-angebote">Kostenlose Angebote</a></li>
+            <li><a href="#garantie">Garantie und Gewährleistung</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="mnav__item">
+        <div class="mnav__row">
+          <a class="mnav__link" href="#was-wir-kaufen">Was wir kaufen</a>
+          <button class="mnav__toggle" type="button" aria-expanded="false" aria-label="Untermenü Was wir kaufen">
+            <svg viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z"/></svg>
+          </button>
+        </div>
+        <div class="mnav__sub">
+          <ul>
+            <li><a href="#unfallwagen">Unfallwagen</a></li>
+            <li><a href="#gebrauchtwagen">Gebrauchtwagen</a></li>
+            <li><a href="#lackschaden">Lackschaden und Kratzer</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="mnav__item"><div class="mnav__row"><a class="mnav__link" href="#standorte">Standorte</a></div></li>
+      <li class="mnav__item"><div class="mnav__row"><a class="mnav__link" href="#faqs">FAQs</a></div></li>
+      <li class="mnav__item"><div class="mnav__row"><a class="mnav__link" href="#kontakt">Kontakt</a></div></li>
+    </ul>
+  </nav>
+
+  <div class="mnav__cta">
+    <a class="btn btn--primary btn--block" href="#kontakt">Jetzt verkaufen</a>
+    <a class="btn btn--ghost btn--block" href="tel:+49234000000">0234 000 000</a>
+  </div>
+
+  <p class="mnav__contact">Bochum und Umgebung · Bewertung, Abholung und Abmeldung übernehmen wir</p>
+</div>
+
+<!-- ==================== ПЕРВЫЙ ЭКРАН ==================== -->
+<section class="hero" id="hero" aria-label="Wir kaufen Ihr Auto">
+
+  <!-- IMAGE SLOT: Hero-Foto dunkles Auto -->
+  <!-- <div class="hero__media"><img src="images/hero-auto.jpg" alt=""></div> -->
+
+  <div class="hero__bg" aria-hidden="true"></div>
+
+  <!-- силуэт вместо фото: тёмный автомобиль анфас, смещён влево -->
+  <svg class="hero__car" viewBox="0 0 900 520" fill="none" aria-hidden="true" focusable="false">
+    <!-- тень на асфальте -->
+    <ellipse cx="450" cy="474" rx="392" ry="34" fill="#000" opacity=".82"/>
+    <!-- колёса -->
+    <path d="M118 336h122v122c0 14-10 22-28 22h-64c-18 0-30-8-30-22z" fill="#050506"/>
+    <path d="M782 336H660v122c0 14 10 22 28 22h64c18 0 30-8 30-22z" fill="#050506"/>
+    <!-- зеркала -->
+    <path d="M176 196c-28-12-56-8-64 8l4 24 60 4z" fill="#141416"/>
+    <path d="M724 196c28-12 56-8 64 8l-4 24-60 4z" fill="#141416"/>
+    <!-- кузов -->
+    <path d="M120 366c-12-72-4-136 24-180l40-64c22-42 60-66 116-74 40-6 168-6 208 0 56 8 94 32 116 74l40 64c28 44 36 108 24 180l-8 60c-2 18-18 28-40 28H168c-22 0-38-10-40-28z" fill="#0E0E10"/>
+    <!-- плечевая линия / отблеск капота -->
+    <path d="M184 186c22-42 60-66 116-74 40-6 168-6 208 0 56 8 94 32 116 74l20 32c-80-32-176-46-240-46s-160 14-240 46z" fill="#1B1B1E" opacity=".75"/>
+    <path d="M146 282c80-28 172-42 260-42s180 14 260 42l12 34c-84-28-180-42-272-42s-188 14-272 42z" fill="#232326" opacity=".45"/>
+    <!-- лобовое стекло -->
+    <path d="M254 236c16-32 44-48 80-53 36-5 100-5 136 0 36 5 64 21 80 53l16 28c-68-19-116-26-164-26s-96 7-164 26z" fill="#101013"/>
+    <path d="M272 234c14-26 38-40 70-45 22-4 48-4 70-4-64 7-108 21-140 49z" fill="#FFFFFF" opacity=".07"/>
+    <!-- фары, узкие, с бликом -->
+    <path d="M130 322c52-20 108-30 160-32l2 44c-50 2-108 10-158 24z" fill="#E9F2FF" opacity=".9"/>
+    <path d="M770 322c-52-20-108-30-160-32l-2 44c50 2 108 10 158 24z" fill="#E9F2FF" opacity=".9"/>
+    <path d="M146 328c38-13 82-20 124-22v12c-42 2-88 9-124 20z" fill="#FFFFFF" opacity=".55"/>
+    <path d="M754 328c-38-13-82-20-124-22v12c42 2 88 9 124 20z" fill="#FFFFFF" opacity=".55"/>
+    <!-- решётка: две крупные вертикальные секции с белым контуром -->
+    <path d="M330 292h108c14 0 22 9 22 22v76c0 13-8 22-22 22H330c-14 0-22-9-22-22v-76c0-13 8-22 22-22z" fill="#070708" stroke="#C9CACC" stroke-opacity=".55" stroke-width="3"/>
+    <path d="M462 292h108c14 0 22 9 22 22v76c0 13-8 22-22 22H462c-14 0-22-9-22-22v-76c0-13 8-22 22-22z" fill="#070708" stroke="#C9CACC" stroke-opacity=".55" stroke-width="3"/>
+    <!-- бампер -->
+    <path d="M124 402h652l-8 52c-2 18-18 28-40 28H172c-22 0-38-10-40-28z" fill="#0A0A0C"/>
+    <path d="M286 424h328c14 0 22 8 22 20v22c0 12-8 20-22 20H286c-14 0-22-8-22-20v-22c0-12 8-20 22-20z" fill="#050506"/>
+  </svg>
+
+  <div class="hero__vignette" aria-hidden="true"></div>
+
+  <div class="container hero__inner">
+    <!-- надзаголовок: переписан своими словами, на мобильном скрыт (как в оригинале) -->
+    <p class="hero__pretitle">Lassen Sie Ihren Wagen unverbindlich bewerten — Ihr Angebot von Fritz Autoankauf steht noch am selben Tag</p>
+
+    <h1 class="hero__title">
+      <span class="grad">Wir</span>
+      <span>kaufen</span>
+      <span>Ihr Auto</span>
+    </h1>
+
+    <a class="hero__arrow" href="#autoankauf" aria-label="Weiter nach unten">
+      <svg width="100%" height="100%" viewBox="0 0 32 78" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M15.9062 1V76" stroke="#FFFEFE" stroke-linecap="round"/>
+        <path d="M1 60.25L15.9307 76.4404L31.2031 60.25" stroke="#FFFEFE" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ==================== МОБИЛЬНАЯ ПАНЕЛЬ ==================== -->
+<div class="mobilebar" id="mobilebar">
+  <a class="mobilebar__call" href="tel:+49234000000">
+    <svg viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+      <path d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"/>
+    </svg>
+    Anrufen
+  </a>
+  <a class="btn btn--primary" href="#kontakt">Jetzt verkaufen</a>
+</div>
+
+<!-- ==== part 02 ==== -->
+<!-- ============================================================
+     FRITZ AUTO ANKAUF — ЧАСТЬ 2 из 3
+     Порядок секций как на скриншотах клиента:
+       1. about- : два фото + текстовый блок
+       2. usp-   : четыре преимущества
+       3. steps- : Auto verkaufen in drei einfachen Schritten:
+       4. buy-   : Was wir kaufen
+     Тексты переписаны своими словами — оригинальные абзацы
+     были копипастом с Autohero / wirkaufendeinauto.de.
+     ============================================================ -->
+
+<!-- ============ 1. Autoverkauf ohne Stress ============ -->
+<section class="about-section reveal" id="ablauf">
+
+  <div class="about-photos">
+
+    <!-- IMAGE SLOT: макро колеса и колёсной арки автомобиля, кадр обрезан
+         так, что видны только шина и литой диск; тёмный, приглушённый.
+         Оригинал: верхнее фото секции «Der Autoverkauf muss nicht stressig sein». -->
+    <figure class="about-photo about-photo--wheel">
+      <div class="about-photo__slot">
+        <svg class="about-photo__art" viewBox="0 0 200 120" fill="none" aria-hidden="true">
+          <path d="M6 96h188" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="100" cy="60" r="42" stroke="currentColor" stroke-width="2.5"/>
+          <circle cx="100" cy="60" r="22" stroke="currentColor" stroke-width="2"/>
+          <circle cx="100" cy="60" r="6" stroke="currentColor" stroke-width="2"/>
+          <path d="M100 38v-6M100 88v6M78 60h-6M128 60h6M84 44l-4-4M116 76l4 4M116 44l4-4M84 76l-4 4"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M40 96a60 60 0 0 1 120 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <figcaption class="about-photo__note">Bild folgt</figcaption>
+    </figure>
+
+    <!-- IMAGE SLOT: женщина и мужчина в костюме у серебристого автомобиля
+         в салоне дилера, он держит красную папку, оба в кадре по пояс,
+         за ними панорамное остекление. Оригинал: pexels-shkrabaanthony-7144243. -->
+    <figure class="about-photo about-photo--deal">
+      <div class="about-photo__slot">
+        <svg class="about-photo__art" viewBox="0 0 200 130" fill="none" aria-hidden="true">
+          <path d="M22 96h156" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M34 96V70l14-20h44l14 20v26" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M48 70h48" stroke="currentColor" stroke-width="2"/>
+          <circle cx="50" cy="96" r="8" stroke="currentColor" stroke-width="2.5"/>
+          <circle cx="92" cy="96" r="8" stroke="currentColor" stroke-width="2.5"/>
+          <circle cx="132" cy="40" r="11" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M114 96V72a18 18 0 0 1 36 0v24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="168" cy="46" r="9" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M154 96V76a14 14 0 0 1 28 0v20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="120" y="74" width="24" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+      <figcaption class="about-photo__note">Bild folgt</figcaption>
+    </figure>
+
+  </div>
+
+  <div class="about-body">
+    <h2 class="about-title">
+      <span class="about-title__line">Dein Autoverkauf</span>
+      <span class="about-title__line">ganz ohne Stress</span>
+    </h2>
+
+    <p class="about-text">
+      Hol das Maximum aus deinem Gebrauchten heraus – mit einer ehrlichen
+      Einschätzung und einem Angebot, das dich keinen Cent kostet.
+    </p>
+
+    <p class="about-text">
+      Wir schauen uns dein Fahrzeug bei einem Termin vor Ort in Ruhe an und
+      nennen dir gleich danach einen festen Preis. Sagt er dir zu, übernehmen
+      wir <strong>Papierkram, Abmeldung und Abholung</strong>. Auf Wunsch
+      rechnen wir den Betrag auch auf deinen nächsten Wagen an – du
+      entscheidest, <strong>den Rest machen wir</strong>.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ============ 2. Vier Vorteile ============ -->
+<section class="usp-section reveal" aria-label="Deine Vorteile">
+  <ul class="usp-list">
+
+    <li class="usp-item">
+      <span class="usp-item__icon" aria-hidden="true">
+        <!-- Dokument mit Häkchen -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><g clip-path="url(#p2ic1)"><path d="M24 18.0234C24 15.1908 22.0193 12.8122 19.3702 12.1998V6.26156C19.37 6.07692 19.295 5.895 19.1642 5.76441L13.6063 0.205969C13.4757 0.0751875 13.2937 0.000234375 13.1091 0H0.703125C0.314812 0 0 0.314812 0 0.703125V23.2969C0 23.6852 0.314812 24 0.703125 24H18.0234C21.3189 24 24 21.3189 24 18.0234ZM13.8122 2.4007L16.9696 5.55844H13.8122V2.4007ZM1.40625 22.5938V1.40625H12.4059V6.26156C12.4059 6.64988 12.7207 6.96469 13.1091 6.96469H17.9639V12.0475C14.6957 12.0796 12.0468 14.7477 12.0468 18.0234C12.0468 19.855 12.8752 21.4965 14.1769 22.5938H1.40625ZM18.0234 22.5938C15.5033 22.5938 13.453 20.5435 13.453 18.0234C13.453 15.5033 15.5033 13.453 18.0234 13.453C20.5435 13.453 22.5938 15.5033 22.5938 18.0234C22.5938 20.5435 20.5435 22.5938 18.0234 22.5938Z" fill="currentColor"/><path d="M19.6038 16.2618L17.2349 18.6307L16.1363 17.5322C15.8618 17.2575 15.4166 17.2576 15.142 17.5322C14.8674 17.8068 14.8674 18.2519 15.142 18.5265L16.7377 20.1222C17.0123 20.3968 17.4575 20.3968 17.7321 20.1222L20.5981 17.2561C20.8727 16.9816 20.8727 16.5364 20.5981 16.2618C20.3235 15.9873 19.8783 15.9873 19.6038 16.2618Z" fill="currentColor"/><path d="M7.48186 14.625H3.51562C3.12731 14.625 2.8125 14.9398 2.8125 15.3281C2.8125 15.7164 3.12731 16.0312 3.51562 16.0312H7.48186C7.87017 16.0312 8.18498 15.7164 8.18498 15.3281C8.18498 14.9398 7.87017 14.625 7.48186 14.625Z" fill="currentColor"/><path d="M10.7859 11.3438H3.51562C3.12731 11.3438 2.8125 11.6586 2.8125 12.0469C2.8125 12.4352 3.12731 12.75 3.51562 12.75H10.7859C11.1742 12.75 11.489 12.4352 11.489 12.0469C11.489 11.6586 11.1742 11.3438 10.7859 11.3438Z" fill="currentColor"/><path d="M10.7859 8.0625H3.51562C3.12731 8.0625 2.8125 8.37731 2.8125 8.76562C2.8125 9.15394 3.12731 9.46875 3.51562 9.46875H10.7859C11.1742 9.46875 11.489 9.15394 11.489 8.76562C11.489 8.37731 11.1742 8.0625 10.7859 8.0625Z" fill="currentColor"/></g><defs><clipPath id="p2ic1"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+      </span>
+      <h3 class="usp-item__title">Faire und professionelle Bewertung</h3>
+      <p class="usp-item__text">Du bekommst einen nachvollziehbaren Preis, auch ohne Fachwissen</p>
+    </li>
+
+    <li class="usp-item">
+      <span class="usp-item__icon" aria-hidden="true">
+        <!-- Kartenstapel -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><g clip-path="url(#p2ic2)"><path d="M9.54112 19.7812H6.43115C6.04284 19.7812 5.72803 20.0961 5.72803 20.4844C5.72803 20.8727 6.04284 21.1875 6.43115 21.1875H9.54112C9.92943 21.1875 10.2442 20.8727 10.2442 20.4844C10.2442 20.0961 9.92943 19.7812 9.54112 19.7812Z" fill="currentColor"/><path d="M22.1377 2.81536H15.9727V2.26359C15.9727 1.01545 14.9572 0 13.7091 0H2.26359C1.01545 0 0 1.01545 0 2.26359V21.7364C0 22.9845 1.01545 24 2.26359 24H13.7091C14.9572 24 15.9727 22.9845 15.9727 21.7364V15.5625H22.1377C23.1646 15.5625 24 14.727 24 13.7002V4.6777C24 3.65081 23.1645 2.81536 22.1377 2.81536ZM9.18169 7.03411H22.5938V8.44036H9.18169V7.03411ZM22.5938 4.6777V5.62786H9.18169V4.6777C9.18169 4.42622 9.3863 4.22161 9.63783 4.22161H22.1377C22.3891 4.22161 22.5938 4.42622 22.5938 4.6777ZM13.7091 22.5938H2.26359C1.79086 22.5938 1.40625 22.2091 1.40625 21.7364V18.375H14.5664V21.7364C14.5664 22.2091 14.1818 22.5938 13.7091 22.5938ZM14.5664 16.9688H1.40625V2.26359C1.40625 1.79086 1.79086 1.40625 2.26359 1.40625H13.7091C14.1818 1.40625 14.5664 1.79086 14.5664 2.26359V2.81536H9.63783C8.61089 2.81536 7.77544 3.65081 7.77544 4.6777V13.7002C7.77544 14.727 8.61089 15.5625 9.63783 15.5625H14.5664V16.9688ZM22.1377 14.1562H9.63783C9.3863 14.1562 9.18169 13.9516 9.18169 13.7002V9.84661H22.5938V13.7002C22.5938 13.9516 22.3891 14.1562 22.1377 14.1562Z" fill="currentColor"/><path d="M20.4844 11.2529H17.8096C17.4213 11.2529 17.1064 11.5677 17.1064 11.9561C17.1064 12.3444 17.4213 12.6592 17.8096 12.6592H20.4844C20.8727 12.6592 21.1875 12.3444 21.1875 11.9561C21.1875 11.5677 20.8727 11.2529 20.4844 11.2529Z" fill="currentColor"/></g><defs><clipPath id="p2ic2"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+      </span>
+      <h3 class="usp-item__title">Autoverkauf innerhalb von 24 Stunden</h3>
+      <p class="usp-item__text">Von deiner Anfrage bis zum Geld vergeht bei uns meist nur ein Tag</p>
+    </li>
+
+    <li class="usp-item">
+      <span class="usp-item__icon" aria-hidden="true">
+        <!-- Hand mit Karte -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><g clip-path="url(#p2ic3)"><path d="M22.5581 13.3409C22.1683 12.9847 21.6625 12.7886 21.1337 12.7886C20.5005 12.7834 19.9142 13.0808 19.499 13.5493C19.1725 12.8601 18.4413 12.3753 17.6721 12.3569C17.0861 12.3352 16.5151 12.5599 16.1012 12.9735L13.0658 15.7857H11.1643C8.62377 13.6885 6.02521 13.8179 4.27283 14.3087C2.36277 14.8437 1.06461 15.9017 1.01029 15.9465C0.848238 16.0801 0.754395 16.279 0.754395 16.4888V21.4205C0.754395 21.8088 1.06954 22.1236 1.45832 22.1236H3.3635C4.24513 22.1229 5.12493 22.3367 5.90647 22.7416C7.23983 23.4303 8.67463 23.8411 10.171 23.9625C11.6599 24.084 13.1496 23.9107 14.5765 23.4457C15.2988 23.211 15.9893 22.8832 16.6282 22.4715C17.2651 22.062 17.8491 21.5693 18.362 21.0094L22.6924 16.3204C23.4773 15.4619 23.417 14.1252 22.5581 13.3409ZM17.0694 13.9945C17.3257 13.7013 17.8142 13.6826 18.0879 13.9631C18.3427 14.2133 18.3698 14.6063 18.1559 14.8873L16.0506 16.985C15.9484 16.772 15.8096 16.5756 15.6374 16.4036C15.44 16.2063 15.2102 16.0531 14.9602 15.9485L17.0694 13.9945ZM21.6553 15.3694L17.3253 20.058C16.8921 20.5309 16.4013 20.9451 15.8656 21.2894C15.3282 21.6358 14.748 21.9112 14.1408 22.1085C12.8917 22.515 11.5942 22.6673 10.285 22.5609C8.97552 22.4546 7.71993 22.0951 6.55354 21.4927C5.57272 20.9847 4.4698 20.7166 3.36346 20.7173H2.16214V16.843C2.58904 16.5466 3.51519 15.9735 4.69761 15.6503C6.81097 15.0727 8.74354 15.5328 10.4419 17.0179C10.5702 17.1301 10.7349 17.192 10.9055 17.192H14.1444C14.5223 17.1841 14.8562 17.5177 14.8483 17.8951C14.856 18.2725 14.5226 18.6061 14.1444 18.5982H9.36688C8.97814 18.5982 8.66296 18.913 8.66296 19.3013C8.66296 19.6897 8.9781 20.0045 9.36688 20.0045H14.1444C14.7292 20.0072 15.3099 19.7516 15.7009 19.3196L20.5914 14.4471C20.8377 14.1444 21.3242 14.1089 21.6081 14.3787C21.8945 14.6401 21.9146 15.0858 21.6553 15.3694Z" fill="currentColor"/><path d="M1.54134 9.74396C2.07338 10.2421 2.80083 10.4999 3.52692 10.4509L9.91969 10.0064C10.2885 9.98077 10.5747 9.67435 10.5747 9.30497V7.80938H12.8144C12.9974 7.80938 13.1731 7.73822 13.3045 7.611L14.1209 6.82013L14.9372 7.611C15.2103 7.87552 15.6443 7.87552 15.9174 7.611L16.7338 6.82013L17.5501 7.611C17.6815 7.73822 17.8573 7.80938 18.0402 7.80938H20.0327C20.2748 7.80938 20.4999 7.68511 20.6288 7.48036L23.1881 3.41171C23.4879 2.96691 23.1286 2.31764 22.5921 2.33452H10.5748V1.15186C10.5748 0.782488 10.2886 0.476113 9.91973 0.450426L3.52486 0.00581611C2.79628 -0.0427933 2.07398 0.215066 1.54134 0.712879C1.00866 1.21069 0.703125 1.9141 0.703125 2.64277V7.81407C0.703125 8.54274 1.00866 9.24614 1.54134 9.74396ZM21.3184 3.74068L19.6437 6.40313H18.3255L17.2238 5.33593C16.9507 5.07141 16.5168 5.07141 16.2437 5.33593L15.4273 6.1268L14.6109 5.33593C14.3379 5.07141 13.9038 5.07141 13.6308 5.33593L12.5292 6.40313H10.5747V3.74068H21.3184ZM2.11092 2.64277C2.09348 1.9485 2.73961 1.34607 3.42919 1.40878L9.16688 1.80769V8.64914L3.4312 9.04791C2.73703 9.11002 2.09503 8.50983 2.11092 7.81407V2.64277Z" fill="currentColor"/><path d="M4.69171 7.31945C5.08045 7.31945 5.39564 7.00464 5.39564 6.61633V3.84058C5.39564 3.45226 5.0805 3.13745 4.69171 3.13745C4.30293 3.13745 3.98779 3.45226 3.98779 3.84058V6.61637C3.98779 7.00469 4.30293 7.31945 4.69171 7.31945Z" fill="currentColor"/></g><defs><clipPath id="p2ic3"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+      </span>
+      <h3 class="usp-item__title">Erhalte einen Mega Preis</h3>
+      <p class="usp-item__text">Wir zahlen, was dein Wagen wirklich wert ist – transparent gerechnet</p>
+    </li>
+
+    <li class="usp-item">
+      <span class="usp-item__icon" aria-hidden="true">
+        <!-- Schild mit Fahrzeug -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><g clip-path="url(#p2ic4)"><path d="M7.92052 5.77943L7.21388 8.44685C6.12371 8.67265 5.30176 9.64029 5.30176 10.7964V14.7251C5.30176 15.1134 5.61657 15.4282 6.00488 15.4282H6.70716V16.4467C6.70716 16.835 7.02198 17.1498 7.41029 17.1498C7.7986 17.1498 8.11341 16.835 8.11341 16.4467V15.4282H15.8733V16.4467C15.8733 16.835 16.1881 17.1498 16.5765 17.1498C16.9648 17.1498 17.2796 16.835 17.2796 16.4467V15.4282H17.9819C18.3702 15.4282 18.685 15.1134 18.685 14.7251V10.7964C18.685 9.64029 17.863 8.67265 16.7729 8.44685L16.0662 5.77943C15.9845 5.47108 15.7055 5.25635 15.3865 5.25635H8.60021C8.28123 5.25639 8.00223 5.47108 7.92052 5.77943ZM17.2788 10.7964V14.0219H6.70801V10.7964C6.70801 10.2488 7.15351 9.80322 7.70115 9.80322H16.2856C16.8333 9.80327 17.2788 10.2488 17.2788 10.7964ZM14.8455 6.6626L15.305 8.39702H8.68187L9.14134 6.6626H14.8455Z" fill="currentColor"/><path d="M23.3993 4.45112C19.5111 3.87849 16.7509 2.75007 15.1201 1.90426C13.3544 0.988416 12.4955 0.197494 12.4884 0.190931C12.3436 0.0547125 12.1542 -0.00908441 11.9678 0.00104059C11.8034 0.00718122 11.641 0.0706031 11.513 0.189666C11.5045 0.197541 10.6457 0.988462 8.87991 1.90431C7.24908 2.75007 4.48894 3.87854 0.600657 4.45112C0.255892 4.50188 0.000329086 4.79762 9.61349e-07 5.14613C-0.000139664 5.30227 0.0130791 9.01829 1.44422 13.2032C2.29153 15.681 3.46308 17.8049 4.92633 19.5159C6.77297 21.6752 9.08395 23.1742 11.7952 23.971C11.9285 24.0097 12.0715 24.0097 12.2048 23.971C14.916 23.1741 17.2271 21.6752 19.0737 19.5159C20.5369 17.8049 21.7085 15.681 22.5558 13.2032C23.9869 9.01829 24.0001 5.30227 24 5.14613C23.9997 4.79762 23.7441 4.50188 23.3993 4.45112ZM21.2127 12.7847C20.4215 15.0857 19.3376 17.0484 17.9911 18.6181C16.3708 20.507 14.356 21.8338 12 22.564C9.64397 21.8338 7.62919 20.507 6.00886 18.6181C4.66242 17.0484 3.57853 15.0857 2.78728 12.7847C1.74909 9.76534 1.49124 6.9392 1.42725 5.74501C7.4317 4.74802 10.8206 2.52165 12 1.61073C13.1794 2.52165 16.5683 4.74802 22.5727 5.74496C22.5088 6.93938 22.2509 9.76534 21.2127 12.7847Z" fill="currentColor"/><path d="M8.8125 12.6094C9.20083 12.6094 9.51562 12.2946 9.51562 11.9062C9.51562 11.5179 9.20083 11.2031 8.8125 11.2031C8.42417 11.2031 8.10938 11.5179 8.10938 11.9062C8.10938 12.2946 8.42417 12.6094 8.8125 12.6094Z" fill="currentColor"/><path d="M15.1875 12.6094C15.5758 12.6094 15.8906 12.2946 15.8906 11.9062C15.8906 11.5179 15.5758 11.2031 15.1875 11.2031C14.7992 11.2031 14.4844 11.5179 14.4844 11.9062C14.4844 12.2946 14.7992 12.6094 15.1875 12.6094Z" fill="currentColor"/></g><defs><clipPath id="p2ic4"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+      </span>
+      <h3 class="usp-item__title">Kostenlose Abmeldung deines Autos</h3>
+      <p class="usp-item__text">Den kompletten Papierkram erledigen wir für dich</p>
+    </li>
+
+  </ul>
+</section>
+
+
+<!-- ============ 3. Drei einfache Schritte ============ -->
+<section class="steps-section reveal" id="ablauf-schritte">
+  <div class="steps-inner">
+    <div class="steps-grid">
+
+      <div>
+        <h2 class="steps-title">
+          Auto verkaufen in <span class="steps-title__accent">drei einfachen Schritten:</span>
+        </h2>
+        <p class="steps-extra">
+          <strong>Unser Extra:</strong> Die Abmeldung deines Fahrzeugs übernehmen wir gleich mit – ohne Aufpreis
+        </p>
+      </div>
+
+      <ol class="steps-list">
+
+        <li class="steps-item">
+          <span class="steps-item__mark" aria-hidden="true">
+            <!-- Sprechblase -->
+            <svg viewBox="0 0 24 24"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h9A2.5 2.5 0 0 1 17 6.5v5A2.5 2.5 0 0 1 14.5 14H8l-5 4v-4"/><path d="M17 9h1.5A2.5 2.5 0 0 1 21 11.5v5A2.5 2.5 0 0 1 18.5 19H18v3l-3.5-3"/></svg>
+          </span>
+          <div class="steps-item__body">
+            <h3 class="steps-item__title">Ankaufsformular ausfüllen</h3>
+            <p class="steps-item__text">
+              Ein paar Angaben zu deinem Wagen genügen. Lieber persönlich? Ruf uns an unter
+              <a class="steps-item__phone" href="tel:+492340000000">0234 000 000</a>
+            </p>
+          </div>
+        </li>
+
+        <li class="steps-item">
+          <span class="steps-item__mark" aria-hidden="true">
+            <!-- Termin / Kalender -->
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="m9 15 2 2 4-4"/></svg>
+          </span>
+          <div class="steps-item__body">
+            <h3 class="steps-item__title">Termin, Check und Preis</h3>
+            <p class="steps-item__text">
+              Wir sehen uns dein Auto vor Ort genau an und nennen dir direkt danach einen festen Preis
+            </p>
+          </div>
+        </li>
+
+        <li class="steps-item">
+          <span class="steps-item__mark" aria-hidden="true">
+            <!-- Banknote -->
+            <svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v.01M18 14.5v.01"/></svg>
+          </span>
+          <div class="steps-item__body">
+            <h3 class="steps-item__title">Geld und Abholung am selben Tag</h3>
+            <p class="steps-item__text">
+              Passt der Preis, zahlen wir sofort aus, holen dein Auto ab und melden es für dich ab
+            </p>
+          </div>
+        </li>
+
+      </ol>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 4. Was wir kaufen ============ -->
+<section class="buy-section reveal" id="was-wir-kaufen">
+  <div class="buy-inner">
+
+    <div class="buy-head">
+      <h2 class="buy-title">Was wir <span class="buy-title__accent">kaufen</span></h2>
+      <p class="buy-lead">
+        Zustand, Alter und Laufleistung sind zweitrangig – wir machen dir für fast jedes Fahrzeug ein Angebot
+      </p>
+    </div>
+
+    <div class="buy-grid">
+
+      <!-- IMAGE SLOT: Unfallwagen — Fahrzeug mit deutlichem Frontschaden,
+           Werkstatthof, kühles Tageslicht. Оригинал: страница /unfallwagen/. -->
+      <article class="buy-card">
+        <div class="buy-card__media">
+          <div class="buy-card__slot">
+            <svg class="buy-card__art" viewBox="0 0 160 90" fill="none" aria-hidden="true">
+              <path d="M18 66h124" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M26 66V50l12-16h44l14 16h20a8 8 0 0 1 8 8v8" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M40 50h40" stroke="currentColor" stroke-width="2"/>
+              <circle cx="46" cy="66" r="8" stroke="currentColor" stroke-width="2.5"/>
+              <circle cx="108" cy="66" r="8" stroke="currentColor" stroke-width="2.5"/>
+              <path d="m112 28 6 8-9 4 7 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="buy-card__note">Bild folgt</span>
+        </div>
+        <div class="buy-card__body">
+          <h3 class="buy-card__title">Unfallwagen</h3>
+          <p class="buy-card__text">
+            Blechschaden, Totalschaden oder ohne TÜV – wir bewerten dein Fahrzeug so, wie es dasteht, und holen es ab
+          </p>
+          <span class="buy-card__more">
+            Mehr erfahren
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </article>
+
+      <!-- IMAGE SLOT: Gebrauchtwagen — gepflegter Kombi in Seitenansicht
+           auf einem Händlerhof. Оригинал: страница /gebrauchtwagen/. -->
+      <article class="buy-card">
+        <div class="buy-card__media">
+          <div class="buy-card__slot">
+            <svg class="buy-card__art" viewBox="0 0 160 90" fill="none" aria-hidden="true">
+              <path d="M14 66h132" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M24 66V48l14-16h52l16 16h20a8 8 0 0 1 8 8v10" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M40 48h48M64 32v16" stroke="currentColor" stroke-width="2"/>
+              <circle cx="48" cy="66" r="9" stroke="currentColor" stroke-width="2.5"/>
+              <circle cx="112" cy="66" r="9" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <span class="buy-card__note">Bild folgt</span>
+        </div>
+        <div class="buy-card__body">
+          <h3 class="buy-card__title">Gebrauchtwagen</h3>
+          <p class="buy-card__text">
+            Vom jungen Leasingrückläufer bis zum Vielfahrer mit hoher Laufleistung – du bekommst einen fairen Tagespreis
+          </p>
+          <span class="buy-card__more">
+            Mehr erfahren
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </article>
+
+      <!-- IMAGE SLOT: Lackschaden und Kratzer — Nahaufnahme einer zerkratzten
+           Fahrzeugtür mit Lackabrieb. Оригинал: /lackschaden-kratzern-farbabrieben/. -->
+      <article class="buy-card">
+        <div class="buy-card__media">
+          <div class="buy-card__slot">
+            <svg class="buy-card__art" viewBox="0 0 160 90" fill="none" aria-hidden="true">
+              <rect x="24" y="20" width="112" height="52" rx="8" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M24 40h112" stroke="currentColor" stroke-width="2"/>
+              <circle cx="46" cy="56" r="5" stroke="currentColor" stroke-width="2"/>
+              <path d="m66 62 22-26M76 64l20-24M88 66l18-22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="buy-card__note">Bild folgt</span>
+        </div>
+        <div class="buy-card__body">
+          <h3 class="buy-card__title">Lackschaden und Kratzer</h3>
+          <p class="buy-card__text">
+            Kratzer, Dellen oder Farbabrieb musst du vorher nicht beheben lassen – das rechnen wir offen mit ein
+          </p>
+          <span class="buy-card__more">
+            Mehr erfahren
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==== part 03 ==== -->
+<!-- ==========================================================
+     FRITZ AUTOANKAUF — ЧАСТЬ 3/3
+     «Fritz — dein Partner für Autoankauf» · форма в оранжевой
+     карточке · Standorte · FAQs · подвал.
+
+     Тексты переписаны: дословный копипаст оригинала
+     (hrpulse.io / Autohero / wirkaufendeinauto) не переносится
+     — LEKALO_FRITZ.md §3.4, чек-лист 127.
+     Не перенесены: демо-ссылки axiomthemes, вымышленные отзывы,
+     заглушки info@email.com и +49 123 1234 5678 — чек-лист 128-130.
+     ========================================================== -->
+
+<!-- ---------- Секция «Fritz — dein Partner für Autoankauf» ---------- -->
+<section class="partner-sec" id="partner" aria-labelledby="partner-title">
+  <div class="partner-inner">
+
+    <h2 class="partner-title" id="partner-title">
+      Fritz - dein Partner für <span class="partner-accent">Autoankauf</span>
+    </h2>
+
+    <p class="partner-lead">
+      Du willst dein Auto abgeben, ohne wochenlang zu verhandeln und Papierkram zu sortieren?
+    </p>
+
+    <p class="partner-text">
+      Bei uns bekommst du ein Angebot auf Basis einer <strong class="partner-em">fairen
+      Fahrzeugbewertung</strong>, dein Geld am Tag der Übergabe dank <strong class="partner-em">sofortiger
+      Auszahlung</strong> und dazu einen <strong class="partner-em">kostenlosen Abholservice</strong> bis vor
+      deine Tür. Von dir brauchen wir nur ein paar Eckdaten zum Wagen –
+      <span class="partner-underline">den Rest übernehmen wir</span>. Kein Inserat, kein Feilschen,
+      keine Probefahrten mit Fremden. Abmeldung und Ummeldung erledigen wir gleich mit.
+    </p>
+
+    <!-- Рендер автомобиля: в оригинале — PNG на прозрачном фоне (красная BMW E46,
+         три четверти, передом вправо, тёмные литые диски, без тени и подложки).
+         Файл рендера в архив Wayback не попал, поэтому здесь равнозначный
+         инлайновый SVG той же композиции — слот под фото клиента. -->
+    <figure class="partner-figure">
+      <svg viewBox="0 0 900 400" role="img" aria-label="Roter Sportlimousine in Dreiviertelansicht" focusable="false">
+        <defs>
+          <linearGradient id="fzBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F0364F"/>
+            <stop offset=".48" stop-color="#C3122A"/>
+            <stop offset="1" stop-color="#6E0716"/>
+          </linearGradient>
+          <linearGradient id="fzGlass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#2B3038"/>
+            <stop offset="1" stop-color="#0D1014"/>
+          </linearGradient>
+          <linearGradient id="fzShine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+            <stop offset=".45" stop-color="#FFFFFF" stop-opacity=".38"/>
+            <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <!-- кузов -->
+        <path d="M96 288c-14-6-22-18-22-36l4-42c2-20 14-34 34-40l104-30c34-32 78-48 132-52 62-5 118 2 168 22l86 34c46 8 88 22 122 42 18 11 26 24 26 40 0 20-12 32-36 34l-52 4H140z"
+              fill="url(#fzBody)"/>
+        <!-- плечевая линия -->
+        <path d="M118 232c96-26 200-40 312-40 106 0 196 12 268 36l-2 12c-74-22-162-32-266-32-110 0-212 14-306 38z"
+              fill="#8B0F20" opacity=".55"/>
+        <!-- блик по борту -->
+        <path d="M140 248c108-24 214-36 318-36 96 0 178 10 246 28l-4 14c-68-18-148-28-242-28-104 0-208 12-314 34z"
+              fill="url(#fzShine)" opacity=".5"/>
+        <!-- крыша и стёкла -->
+        <path d="M232 148c32-28 72-42 122-46 58-4 110 3 156 21l64 26c-52-10-108-15-166-15-64 0-124 5-176 14z"
+              fill="#7C0C1B" opacity=".7"/>
+        <path d="M258 156c30-24 66-36 110-39 50-3 96 3 138 19l44 18c-46-8-96-12-150-12-52 0-100 5-142 14z"
+              fill="url(#fzGlass)"/>
+        <path d="M300 152c26-14 56-21 90-22-42 6-74 16-98 30z" fill="#FFFFFF" opacity=".14"/>
+        <!-- стойка -->
+        <path d="M402 133v22" stroke="#5E0713" stroke-width="7" stroke-linecap="round"/>
+        <!-- решётка BMW-типа: две «ноздри» -->
+        <path d="M742 232h48c8 0 13 6 13 14v26c0 8-5 14-13 14h-48c-8 0-13-6-13-14v-26c0-8 5-14 13-14z" fill="#0E1013"/>
+        <path d="M806 236h40c8 0 12 6 12 13v24c0 7-4 13-12 13h-40c-8 0-12-6-12-13v-24c0-7 4-13 12-13z" fill="#0E1013"/>
+        <!-- фары -->
+        <path d="M636 216c34 2 66 7 96 15l-4 26c-30-8-60-13-94-15z" fill="#E9F1FF" opacity=".92"/>
+        <path d="M652 224c22 2 44 6 64 11l-2 10c-20-5-42-9-63-10z" fill="#FFFFFF" opacity=".6"/>
+        <!-- воздухозаборник переднего бампера -->
+        <path d="M700 300h150c10 0 16 6 16 14v10c0 8-6 14-16 14H700c-10 0-16-6-16-14v-10c0-8 6-14 16-14z" fill="#131518"/>
+        <!-- жаберная прорезь на крыле -->
+        <path d="M330 236h44l-6 12h-44z" fill="#1A1C1F"/>
+        <!-- зеркало -->
+        <path d="M418 168c16-8 32-6 38 4l-4 12-34 2z" fill="#B3101F"/>
+        <!-- колёсные арки -->
+        <path d="M186 300c0-46 34-80 80-80s80 34 80 80z" fill="#3C0510"/>
+        <path d="M578 300c0-46 34-80 80-80s80 34 80 80z" fill="#3C0510"/>
+        <!-- колёса -->
+        <g fill="#0A0B0D">
+          <circle cx="266" cy="298" r="76"/>
+          <circle cx="658" cy="298" r="76"/>
+        </g>
+        <g fill="#1D2024">
+          <circle cx="266" cy="298" r="46"/>
+          <circle cx="658" cy="298" r="46"/>
+        </g>
+        <g fill="#2E3238">
+          <circle cx="266" cy="298" r="14"/>
+          <circle cx="658" cy="298" r="14"/>
+        </g>
+        <!-- спицы тёмных литых дисков -->
+        <g stroke="#0E1013" stroke-width="6" stroke-linecap="round">
+          <path d="M266 258v-6M266 344v-6M226 298h-6M312 298h-6M238 270l-4-4M298 326l-4-4M294 270l4-4M234 326l4-4"/>
+          <path d="M658 258v-6M658 344v-6M618 298h-6M704 298h-6M630 270l-4-4M690 326l-4-4M686 270l4-4M626 326l4-4"/>
+        </g>
+      </svg>
+    </figure>
+
+  </div>
+</section>
+
+<!-- ---------- Форма в оранжевой карточке ---------- -->
+<section class="form-sec" id="formular" aria-labelledby="form-title">
+  <div class="form-card" data-state="edit">
+
+    <div class="form-body">
+      <h2 class="form-head" id="form-title">Fahrzeug bewerten lassen</h2>
+      <p class="form-sub">
+        Trag deine Eckdaten ein – wir melden uns mit einem Preis zurück, meist noch am selben Werktag
+      </p>
+
+      <form class="form-form" id="fritz-form" novalidate>
+
+        <div class="form-grid">
+
+          <div class="form-field">
+            <label class="form-label" for="f-name">Name</label>
+            <span class="form-wrap">
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <circle cx="12" cy="8.5" r="3.5"/><path d="M5 19.5c1.2-3.4 3.9-5 7-5s5.8 1.6 7 5"/>
+              </svg>
+              <input class="form-input" id="f-name" name="name" type="text" placeholder="Name"
+                     autocomplete="name" required maxlength="80">
+            </span>
+            <span class="form-error" id="e-name" aria-live="polite"></span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="f-tel">Telefon</label>
+            <span class="form-wrap">
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/>
+              </svg>
+              <input class="form-input" id="f-tel" name="telefon" type="tel" placeholder="Telefon"
+                     autocomplete="tel" inputmode="tel" required maxlength="40">
+            </span>
+            <span class="form-error" id="e-tel" aria-live="polite"></span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="f-mail">E-Mail</label>
+            <span class="form-wrap">
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m3.8 7 8.2 6 8.2-6"/>
+              </svg>
+              <input class="form-input" id="f-mail" name="email" type="email" placeholder="E-Mail"
+                     autocomplete="email" required maxlength="120">
+            </span>
+            <span class="form-error" id="e-mail" aria-live="polite"></span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="f-marke">Marke</label>
+            <span class="form-wrap">
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M4 15.5h16v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1H8v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/>
+                <path d="M5.5 15.5 7 8.2A2 2 0 0 1 9 6.5h6a2 2 0 0 1 2 1.7l1.5 7.3"/>
+              </svg>
+              <input class="form-input" id="f-marke" name="marke" type="text" placeholder="Marke (z. B. VW, BMW)"
+                     required maxlength="40">
+            </span>
+            <span class="form-error" id="e-marke" aria-live="polite"></span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="f-modell">Modell</label>
+            <span class="form-wrap">
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <rect x="4" y="4.5" width="16" height="15" rx="2.5"/><path d="M8 9h8M8 12.5h8M8 16h5"/>
+              </svg>
+              <input class="form-input" id="f-modell" name="modell" type="text" placeholder="Modell (z. B. Golf, 3er)"
+                     required maxlength="60">
+            </span>
+            <span class="form-error" id="e-modell" aria-live="polite"></span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="f-ez">Erstzulassung</label>
+            <span class="form-wrap">
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/>
+              </svg>
+              <input class="form-input" id="f-ez" name="erstzulassung" type="text" placeholder="Erstzulassung (z. B. 2015)"
+                     inputmode="numeric" pattern="(19|20)[0-9]{2}" required maxlength="4">
+            </span>
+            <span class="form-error" id="e-ez" aria-live="polite"></span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="f-km">Kilometerstand</label>
+            <span class="form-wrap">
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M4.5 17a8 8 0 1 1 15 0"/><path d="M12 17l4-5"/><circle cx="12" cy="17" r="1.4"/>
+              </svg>
+              <input class="form-input" id="f-km" name="kilometerstand" type="text" placeholder="Kilometerstand"
+                     inputmode="numeric" pattern="[0-9 .]{1,9}" required maxlength="9">
+            </span>
+            <span class="form-error" id="e-km" aria-live="polite"></span>
+          </div>
+
+          <div class="form-field form-field--wide">
+            <label class="form-label" for="f-msg">Nachricht</label>
+            <span class="form-wrap">
+              <svg class="form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M4.5 5.5h15v10h-9l-4 3.5v-3.5h-2z"/>
+              </svg>
+              <textarea class="form-textarea" id="f-msg" name="nachricht" rows="4" maxlength="1200"
+                        placeholder="Nachricht: Zustand, Schäden, Ausstattung (optional)"></textarea>
+            </span>
+            <span class="form-error" id="e-msg" aria-live="polite"></span>
+          </div>
+
+        </div>
+
+        <!-- honeypot: невидимая приманка для ботов, вне табуляции и автозаполнения -->
+        <div class="form-hp" aria-hidden="true">
+          <label for="f-website">Website</label>
+          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"
+                 style="position:absolute;left:-9999px">
+        </div>
+
+        <!-- служебные поля: город и страница-источник заявки -->
+        <input type="hidden" name="stadt" id="f-stadt" value="Bochum">
+        <input type="hidden" name="seite" id="f-seite" value="/">
+
+        <p class="form-consent">
+          <input type="checkbox" id="f-consent" name="datenschutz" value="1" required>
+          <label for="f-consent">
+            Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden –
+            <a href="/datenschutz">Datenschutz</a>
+          </label>
+        </p>
+        <span class="form-error" id="e-consent" aria-live="polite"></span>
+
+        <button class="form-submit" type="submit">Preisangebot anfordern</button>
+
+        <p class="form-note">
+          Anruf lieber direkt? <a href="tel:+49234000000" style="color:#1E1D1B;font-weight:700">0234 000 000</a>
+        </p>
+      </form>
+    </div>
+
+    <div class="form-done" role="status" aria-live="polite">
+      <h3 class="form-done-title" id="form-done-title">Danke, deine Anfrage ist da</h3>
+      <p class="form-done-text" id="form-done-text"></p>
+      <button class="form-reset" type="button" id="form-reset">Neue Anfrage</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ---------- Standorte ---------- -->
+<section class="loc-sec" id="standorte" aria-labelledby="loc-title">
+  <div class="loc-inner">
+
+    <h2 class="loc-title" id="loc-title">
+      <span class="partner-accent">Standorte</span> in NRW
+    </h2>
+    <p class="loc-lead">
+      Wir kaufen im gesamten Ruhrgebiet und am Rhein an. Sag uns, wo dein Auto steht – wir kommen hin,
+      begutachten vor Ort und nehmen den Wagen direkt mit
+    </p>
+
+    <ul class="loc-grid">
+      <li><a class="loc-link" href="/autoankauf-bochum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Bochum</a></li>
+      <li><a class="loc-link" href="/autoankauf-essen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Essen</a></li>
+      <li><a class="loc-link" href="/autoankauf-dortmund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Dortmund</a></li>
+      <li><a class="loc-link" href="/autoankauf-duisburg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Duisburg</a></li>
+      <li><a class="loc-link" href="/autoankauf-duesseldorf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Düsseldorf</a></li>
+      <li><a class="loc-link" href="/autoankauf-koeln"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Köln</a></li>
+      <li><a class="loc-link" href="/autoankauf-wuppertal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Wuppertal</a></li>
+      <li><a class="loc-link" href="/autoankauf-gelsenkirchen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Gelsenkirchen</a></li>
+      <li><a class="loc-link" href="/autoankauf-herne"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Herne</a></li>
+      <li><a class="loc-link" href="/autoankauf-witten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Witten</a></li>
+      <li><a class="loc-link" href="/autoankauf-hagen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Hagen</a></li>
+      <li><a class="loc-link" href="/autoankauf-recklinghausen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Recklinghausen</a></li>
+      <li><a class="loc-link" href="/autoankauf-oberhausen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Oberhausen</a></li>
+      <li><a class="loc-link" href="/autoankauf-bottrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Bottrop</a></li>
+      <li><a class="loc-link" href="/autoankauf-muelheim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Mülheim an der Ruhr</a></li>
+      <li><a class="loc-link" href="/autoankauf-muenster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Münster</a></li>
+    </ul>
+
+    <p class="loc-note">
+      Deine Stadt steht nicht dabei? Ruf trotzdem an – im Umkreis von rund 100 km holen wir ab
+    </p>
+  </div>
+</section>
+
+<!-- ---------- FAQs ---------- -->
+<section class="faq-sec" id="faq" aria-labelledby="faq-title">
+  <div class="faq-inner">
+    <h2 class="faq-title" id="faq-title"><span class="partner-accent">FAQs</span></h2>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-q">Was kostet mich die Bewertung?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-a">
+          Nichts. Du schickst die Eckdaten, wir nennen dir eine Spanne. Erst wenn wir das Auto vor Ort
+          gesehen haben, wird daraus ein verbindlicher Preis – und auch dann bist du zu nichts verpflichtet.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Wie schnell bekomme ich mein Geld?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-a">
+          Bei der Übergabe. Du entscheidest, ob bar auf die Hand oder per Sofortüberweisung – wir warten,
+          bis das Geld auf deinem Konto sichtbar ist, bevor der Wagen fährt.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Kauft ihr auch Autos mit Mängeln oder Unfallschaden?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-a">
+          Ja. Motorschaden, TÜV abgelaufen, Getriebe defekt, Blechschaden, hohe Laufleistung – all das
+          drückt den Preis, ist aber kein Ausschluss. Wichtig ist nur, dass du die Mängel gleich in der
+          Anfrage nennst, dann bleibt unser Angebot stehen.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Welche Unterlagen brauche ich für die Übergabe?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-a">
+          Zulassungsbescheinigung Teil I und Teil II, alle Schlüssel, deinen Ausweis und – falls vorhanden –
+          Serviceheft, HU-Bericht und Rechnungen der letzten Reparaturen. Wer nicht selbst Halter ist,
+          bringt zusätzlich eine Vollmacht mit.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Wer meldet das Fahrzeug ab?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-a">
+          Das machen wir, kostenlos. Du bekommst die Abmeldebescheinigung anschließend zugeschickt und
+          kannst damit deine Versicherung und die Kfz-Steuer beenden.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Muss ich das Auto zu euch bringen?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-a">
+          Nein. Wir kommen zu dir – nach Hause, in die Werkstatt oder zur Arbeit. Abholung und Transport
+          sind im Preis drin, auch wenn der Wagen nicht mehr fahrbereit ist.
+        </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ---------- Подвал ---------- -->
+<footer class="ft" id="kontakt">
+  <div class="ft-inner">
+
+    <div class="ft-top">
+
+      <div class="ft-brand">
+        <span class="ft-logo">Fr<span class="ft-dot">i</span>tz</span>
+        <p class="ft-tag">
+          Autoankauf im Ruhrgebiet. Bewertung, Abholung und Abmeldung aus einer Hand
+        </p>
+      </div>
+
+      <nav aria-labelledby="ft-menu-title">
+        <h2 class="ft-col-title" id="ft-menu-title">Menü</h2>
+        <ul class="ft-nav">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/autoankauf">Autoankauf</a></li>
+          <li><a href="/was-wir-kaufen">Was wir kaufen</a></li>
+          <li><a href="#standorte">Standorte</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="ft-col-title">Kontakt</h2>
+        <ul class="ft-contact">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/></svg>
+            <a href="tel:+49234000000">0234 000 000</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5Z"/><path d="M8.9 8.6c.3-.7.6-.7.9-.7h.7l1 2.2-.9.9a7 7 0 0 0 3.4 3.4l.9-.9 2.2 1v.7c0 .3 0 .6-.7.9-1.4.6-3.9-.4-5.8-2.3s-2.9-4.4-2.3-5.8Z"/></svg>
+            <a href="https://wa.me/49234000000">Per WhatsApp schreiben</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+            Mo – Sa, 8 – 20 Uhr
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Bochum und Umgebung
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="ft-bottom">
+      <div class="ft-legal">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+      </div>
+      <p class="ft-copy">Fritz Autoankauf</p>
+      <p class="ft-draft">
+        Entwurf — unverbindliche Vorschau. Texte, Zahlen und Kontaktdaten sind Platzhalter
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+/* ---- part 01 ---- */
+/* ============================================================
+   FRITZ AUTO ANKAUF — ТОЧНАЯ КОПИЯ, ЧАСТЬ 1/3
+   Поведение базы и верхней зоны:
+     1) .reveal — общий наблюдатель появления (им пользуются части 2 и 3;
+        новые узлы можно подключить через window.fritzObserveReveal)
+     2) шапка: класс .is-stuck при прокрутке
+     3) выдвижное меню: открытие/закрытие, Esc, блокировка прокрутки,
+        ловушка фокуса, аккордеон подпунктов
+     4) мобильная панель: показывается после ухода первого экрана
+     5) плавная прокрутка по якорям с поправкой на высоту шапки
+   Всё уважает prefers-reduced-motion.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 1. Reveal ---------- */
+  var revealObserver = null;
+
+  if ('IntersectionObserver' in window && !reduced) {
+    revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+  }
+
+  function observeReveal(root) {
+    var scope = root || document;
+    var nodes = scope.querySelectorAll('.reveal:not(.is-in)');
+    for (var i = 0; i < nodes.length; i++) {
+      if (revealObserver) revealObserver.observe(nodes[i]);
+      else nodes[i].classList.add('is-in');
+    }
+  }
+
+  /* публичная точка входа для частей 2 и 3 */
+  window.fritzObserveReveal = observeReveal;
+  observeReveal();
+
+  /* ---------- 2. Шапка ---------- */
+  var hd = document.querySelector('.hd');
+  var ticking = false;
+
+  function onScroll() {
+    if (hd) hd.classList.toggle('is-stuck', window.pageYOffset > 8);
+    toggleMobilebar();
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  /* ---------- 3. Выдвижное меню ---------- */
+  var burger = document.getElementById('burger');
+  var mnav = document.getElementById('mnav');
+  var mnavClose = document.getElementById('mnavClose');
+  var lastFocused = null;
+
+  function focusables() {
+    if (!mnav) return [];
+    return Array.prototype.filter.call(
+      mnav.querySelectorAll('a[href], button:not([disabled])'),
+      function (el) { return el.offsetParent !== null; }
+    );
+  }
+
+  function openMenu() {
+    if (!mnav || !burger) return;
+    lastFocused = document.activeElement;
+    mnav.hidden = false;
+    /* даём браузеру кадр, чтобы сработал переход */
+    window.requestAnimationFrame(function () { mnav.classList.add('is-open'); });
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Menü schließen');
+    document.body.classList.add('is-locked');
+    var f = focusables();
+    if (f.length) f[0].focus();
+  }
+
+  function closeMenu() {
+    if (!mnav || !burger) return;
+    mnav.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Menü öffnen');
+    document.body.classList.remove('is-locked');
+    window.setTimeout(function () {
+      if (!mnav.classList.contains('is-open')) mnav.hidden = true;
+    }, reduced ? 0 : 340);
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  if (burger) {
+    burger.addEventListener('click', function () {
+      if (burger.getAttribute('aria-expanded') === 'true') closeMenu();
+      else openMenu();
+    });
+  }
+  if (mnavClose) mnavClose.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', function (e) {
+    if (!mnav || !mnav.classList.contains('is-open')) return;
+
+    if (e.key === 'Escape') { closeMenu(); return; }
+
+    if (e.key === 'Tab') {
+      var f = focusables();
+      if (!f.length) return;
+      var first = f[0];
+      var last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* аккордеон подпунктов */
+  if (mnav) {
+    var toggles = mnav.querySelectorAll('.mnav__toggle');
+    Array.prototype.forEach.call(toggles, function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.mnav__item');
+        var sub = item ? item.querySelector('.mnav__sub') : null;
+        if (!sub) return;
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+        sub.style.maxHeight = open ? '0px' : sub.scrollHeight + 'px';
+      });
+    });
+
+    /* клик по пункту меню закрывает панель */
+    Array.prototype.forEach.call(mnav.querySelectorAll('a[href^="#"]'), function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+  }
+
+  /* при переходе на десктоп меню закрывается принудительно */
+  var wide = window.matchMedia('(min-width: 1025px)');
+  var onWide = function (e) { if (e.matches) closeMenu(); };
+  if (wide.addEventListener) wide.addEventListener('change', onWide);
+  else if (wide.addListener) wide.addListener(onWide);
+
+  /* ---------- 4. Мобильная панель ---------- */
+  var mobilebar = document.getElementById('mobilebar');
+  var hero = document.getElementById('hero');
+
+  function toggleMobilebar() {
+    if (!mobilebar) return;
+    var trigger = hero ? hero.offsetHeight * 0.6 : 400;
+    mobilebar.classList.toggle('is-in', window.pageYOffset > trigger);
+  }
+  toggleMobilebar();
+
+  /* ---------- 5. Плавная прокрутка по якорям ---------- */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!link) return;
+    var id = link.getAttribute('href');
+    if (!id || id === '#' || id.length < 2) return;
+    var target = document.querySelector(id);
+    if (!target) return;
+
+    e.preventDefault();
+    var offset = hd ? hd.offsetHeight : 0;
+    var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: y < 0 ? 0 : y, behavior: reduced ? 'auto' : 'smooth' });
+  });
+})();
+
+/* ---- part 02 ---- */
+/* ============================================================
+   FRITZ AUTO ANKAUF — ЧАСТЬ 2 из 3
+   Появление элементов средних секций при прокрутке.
+
+   Скрипт намеренно не трогает класс .reveal — его владелец
+   ЧАСТЬ 1. Если общий наблюдатель уже подключён (флаг
+   window.__fritzRevealBound или атрибут data-reveal-ready на
+   <html>), часть 2 не делает ничего и отдаёт анимацию ему.
+   Иначе включает собственный слой .p2-anim / .is-p2-in,
+   который живёт только внутри секций about/usp/steps/buy.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  if (window.__fritzPart2Init) { return; }
+  window.__fritzPart2Init = true;
+
+  var SELECTOR = [
+    '.about-photos',
+    '.about-body',
+    '.usp-item',
+    '.steps-title',
+    '.steps-extra',
+    '.steps-item',
+    '.buy-head',
+    '.buy-card'
+  ].join(',');
+
+  function start() {
+    // Часть 1 уже управляет появлением — не дублируем
+    if (window.__fritzRevealBound ||
+        document.documentElement.hasAttribute('data-reveal-ready')) {
+      return;
+    }
+
+    var nodes = document.querySelectorAll(SELECTOR);
+    if (!nodes.length) { return; }
+
+    var reduced = window.matchMedia &&
+                  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      // без анимации — просто показать
+      return;
+    }
+
+    document.documentElement.classList.add('p2-anim');
+
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var e = entries[i];
+        if (e.isIntersecting) {
+          e.target.classList.add('is-p2-in');
+          io.unobserve(e.target);
+        }
+      }
+    }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+    for (var i = 0; i < nodes.length; i++) {
+      // лёгкая лесенка внутри одной группы
+      var group = nodes[i].parentNode;
+      var idx = group ? Array.prototype.indexOf.call(group.children, nodes[i]) : 0;
+      nodes[i].style.transitionDelay = Math.min(idx, 4) * 70 + 'ms';
+      io.observe(nodes[i]);
+    }
+
+    // страховка: если через 3 с что-то не показалось — показать принудительно
+    window.setTimeout(function () {
+      var still = document.querySelectorAll(SELECTOR);
+      for (var k = 0; k < still.length; k++) {
+        var r = still[k].getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          still[k].classList.add('is-p2-in');
+        }
+      }
+    }, 3000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+})();
+
+/* ---- part 03 ---- */
+/* ============================================================
+   FRITZ AUTOANKAUF — ЧАСТЬ 3/3, поведение формы
+
+   Что делает:
+   1. HTML5-валидация через Constraint Validation API. На форме
+      стоит novalidate, чтобы браузерные пузыри не спорили с
+      оформлением карточки — но проверяют её именно нативные
+      правила (required / type=email / pattern), не самописный regex.
+   2. preventDefault на submit: бэкенда у превью нет, отправлять
+      некуда. Данные собираются и показываются в подтверждении.
+   3. Подтверждение на немецком с повтором марки и модели.
+      Пользовательский ввод попадает в DOM только через
+      textContent — разметка из поля не исполняется никогда.
+   4. Кнопка «Neue Anfrage» возвращает форму в исходное состояние.
+   5. Honeypot `website`: заполнен — значит бот. Блокировка тихая:
+      человек ничего не замечает, бот получает обычный экран
+      «спасибо» и не понимает, что заявка не ушла.
+
+   Своих зависимостей нет, глобальных имён не создаёт.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var form = document.getElementById('fritz-form');
+  if (!form) return;
+
+  var card     = form.closest('.form-card');
+  var doneText = document.getElementById('form-done-text');
+  var resetBtn = document.getElementById('form-reset');
+  var hpField  = form.elements.website;
+  var seite    = document.getElementById('f-seite');
+
+  /* страница-источник заявки — чтобы в письме было видно,
+     с какого городского лендинга пришёл человек */
+  if (seite && !seite.value.replace(/^\/$/, '')) {
+    seite.value = window.location.pathname || '/';
+  }
+
+  /* ---------- Сообщения об ошибках, по-немецки и по делу ---------- */
+  var MESSAGES = {
+    valueMissing: 'Bitte ausfüllen',
+    typeMismatch: 'Bitte eine gültige E-Mail-Adresse eingeben',
+    patternMismatch: 'Bitte im angegebenen Format eingeben',
+    tooShort: 'Eingabe ist zu kurz',
+    tooLong: 'Eingabe ist zu lang',
+    fallback: 'Bitte Eingabe prüfen'
+  };
+
+  function messageFor(field) {
+    var v = field.validity;
+    if (v.valueMissing) {
+      return field.type === 'checkbox'
+        ? 'Ohne dein Einverständnis können wir die Anfrage nicht bearbeiten'
+        : MESSAGES.valueMissing;
+    }
+    if (v.typeMismatch) return MESSAGES.typeMismatch;
+    if (v.patternMismatch) {
+      if (field.id === 'f-ez') return 'Vierstelliges Jahr, z. B. 2015';
+      if (field.id === 'f-km') return 'Nur Ziffern, z. B. 145000';
+      return MESSAGES.patternMismatch;
+    }
+    if (v.tooShort) return MESSAGES.tooShort;
+    if (v.tooLong)  return MESSAGES.tooLong;
+    return MESSAGES.fallback;
+  }
+
+  function errorSlot(field) {
+    if (field.id === 'f-consent') return document.getElementById('e-consent');
+    var wrap = field.closest('.form-field');
+    return wrap ? wrap.querySelector('.form-error') : null;
+  }
+
+  function clearError(field) {
+    var slot = errorSlot(field);
+    if (slot) slot.textContent = '';
+    field.removeAttribute('aria-invalid');
+    field.removeAttribute('aria-describedby');
+  }
+
+  function showError(field) {
+    var slot = errorSlot(field);
+    if (slot) {
+      slot.textContent = messageFor(field);
+      if (slot.id) field.setAttribute('aria-describedby', slot.id);
+    }
+    field.setAttribute('aria-invalid', 'true');
+  }
+
+  /* ошибка снимается сразу, как только поле стало валидным —
+     не заставляем человека повторно жать «отправить», чтобы это увидеть */
+  Array.prototype.forEach.call(form.elements, function (field) {
+    if (!field.name || field.name === 'website') return;
+    var ev = field.type === 'checkbox' ? 'change' : 'input';
+    field.addEventListener(ev, function () {
+      if (field.checkValidity()) clearError(field);
+    });
+    field.addEventListener('blur', function () {
+      if (field.value !== '' && !field.checkValidity()) showError(field);
+    });
+  });
+
+  /* ---------- Подтверждение ---------- */
+  function showConfirmation(marke, modell) {
+    if (doneText) {
+      /* textContent, не innerHTML: марка и модель приходят от пользователя */
+      doneText.textContent =
+        'Wir haben deine Anfrage zu ' + marke + ' ' + modell +
+        ' erhalten und melden uns telefonisch zurück – in der Regel noch am selben Werktag. ' +
+        'Halte bitte Fahrzeugschein und Kilometerstand bereit.';
+    }
+    if (card) card.setAttribute('data-state', 'done');
+    var title = document.getElementById('form-done-title');
+    if (title) {
+      title.setAttribute('tabindex', '-1');
+      title.focus({ preventScroll: false });
+    }
+  }
+
+  /* ---------- Отправка ---------- */
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    var marke  = (form.elements.marke  && form.elements.marke.value  || '').trim();
+    var modell = (form.elements.modell && form.elements.modell.value || '').trim();
+
+    /* Honeypot заполнен → бот. Ничего не проверяем, ничего не отправляем,
+       показываем тот же экран благодарности. Тишина — часть защиты. */
+    if (hpField && hpField.value.trim() !== '') {
+      showConfirmation(marke || 'deinem Fahrzeug', modell || '');
+      return;
+    }
+
+    /* нативная HTML5-валидация всех полей */
+    var firstInvalid = null;
+    Array.prototype.forEach.call(form.elements, function (field) {
+      if (!field.name || field.name === 'website' || field.disabled) return;
+      if (field.checkValidity()) {
+        clearError(field);
+      } else {
+        showError(field);
+        if (!firstInvalid) firstInvalid = field;
+      }
+    });
+
+    if (firstInvalid) {
+      firstInvalid.focus({ preventScroll: true });
+      firstInvalid.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      return;
+    }
+
+    /* Бэкенда в превью нет: здесь встанет fetch() на настоящий эндпоинт.
+       До тех пор заявка никуда не уходит, и подтверждение это не скрывает. */
+    showConfirmation(marke, modell);
+  });
+
+  /* ---------- «Neue Anfrage» ---------- */
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function () {
+      form.reset();
+      Array.prototype.forEach.call(form.elements, function (field) {
+        if (field.name && field.name !== 'website') clearError(field);
+      });
+      if (card) card.setAttribute('data-state', 'edit');
+      if (doneText) doneText.textContent = '';
+      var first = document.getElementById('f-name');
+      if (first) first.focus();
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
