@@ -231,6 +231,20 @@ def main():
         return 1
 
     src = io.open(SOURCE, encoding="utf-8").read()
+    # Склейка стилей и скриптов идёт ПЕРЕД тем, как страницы получат метки
+    # версий: метка считается по содержимому собранного файла, и порядок
+    # здесь не вопрос вкуса. Запускается один раз, до записи страниц.
+    if write:
+        import subprocess
+        r = subprocess.run([sys.executable, str(ROOT / "scripts" / "bundle_assets.py"),
+                            "--write"], cwd=str(ROOT), capture_output=True, text=True,
+                           encoding="utf-8", errors="replace")
+        for line in (r.stdout or "").strip().splitlines():
+            print("  %s" % line)
+        if r.returncode != 0:
+            print("СКЛЕЙКА НЕ СОБРАЛАСЬ")
+            return 1
+
     problems = []
     for lang, target in TARGETS.items():
         page = bundle_tags.apply(
@@ -253,19 +267,6 @@ def main():
             print("ОСТАТКИ ЧУЖОГО ЯЗЫКА: %s" % p)
         return 1
 
-    # Склейка стилей и скриптов идёт ПЕРЕД тем, как страницы получат метки
-    # версий: метка считается по содержимому собранного файла, и порядок
-    # здесь не вопрос вкуса. Запускается один раз, до записи страниц.
-    if write:
-        import subprocess
-        r = subprocess.run([sys.executable, str(ROOT / "scripts" / "bundle_assets.py"),
-                            "--write"], cwd=str(ROOT), capture_output=True, text=True,
-                           encoding="utf-8", errors="replace")
-        for line in (r.stdout or "").strip().splitlines():
-            print("  %s" % line)
-        if r.returncode != 0:
-            print("СКЛЕЙКА НЕ СОБРАЛАСЬ")
-            return 1
 
     # Карточки работ вписываются в исходный код ПОСЛЕ сборки языковых версий:
     # иначе эта же сборка их и затрёт. Порядок важен и потому зафиксирован
