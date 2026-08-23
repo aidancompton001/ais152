@@ -757,3 +757,18 @@
 .page-case > .section:first-child {
   padding-top: calc(var(--header-h) + var(--sp-12));
 }
+
+/* Иерархия заголовков на страницах услуг и кейсов.
+   Замер на живой странице: главный заголовок выходил 62 px, подзаголовок —
+   72 px, то есть подзаголовок был крупнее главного. На узком экране то же
+   самое: 36 против 42,6. Размеры заданы явно, чтобы порядок читался глазом,
+   а не выводился из наследования. */
+.page-leistung .container h1,
+.page-case .container h1 {
+  font-size: var(--fs-4xl);
+}
+
+.page-leistung .container h2,
+.page-case .container h2 {
+  font-size: var(--fs-3xl);
+}
