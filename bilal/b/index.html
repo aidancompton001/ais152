@@ -1,0 +1,1287 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Autoankauf Bochum und NRW | Fahrzeug kostenlos bewerten lassen — Variante B</title>
+<meta name="description" content="Autoankauf in Bochum und ganz Nordrhein-Westfalen. Kostenlose Bewertung, Abholung vor Ort, Bezahlung bei Übergabe. Auch Unfallwagen und Motorschaden.">
+
+<!-- DEMO-ONLY: Google Fonts per <link>. In Produktion self-hosted WOFF2 (2 Dateien, latin-Subset)
+     via @font-face + font-display:swap + <link rel="preload">, damit null externe Requests entstehen. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   VARIANTE B — "Moderner Service, Vertrauen zuerst"
+   Dunkle Basis, hellere Flaechen, viel Luft. Das Formular ist der Held.
+   Farbwerte gerechnet, nicht geschaetzt (WCAG-Kontraste als Kommentar).
+   ========================================================================== */
+
+:root{
+  /* Flaechen: dunkel, aber gestuft und kuehl. Kein Monolith. */
+  --bg:            #101216;
+  --surface-1:     #171A20;
+  --surface-2:     #1E222A;
+  --surface-3:     #262B34;
+
+  /* Linien */
+  --line:          #2E3441;   /* dekorativ */
+  --line-strong:   #3C4453;   /* Kartenrand */
+  --line-input:    #6E7686;   /* 3.49:1 auf surface-2, 3.11:1 auf surface-3 — WCAG 1.4.11 ok */
+
+  /* Text */
+  --text:          #F2F4F7;   /* 17.01:1 auf bg */
+  --text-muted:    #A9B1BF;   /* 8.68:1 auf bg, 6.58:1 auf surface-3 */
+  --text-faint:    #909AAA;   /* 6.60:1 auf bg, 5.00:1 auf surface-3 — Placeholder & Legal */
+
+  /* Akzent: sparsam, als Licht und Kante, nicht als Flaeche */
+  --accent:        #FF6A00;
+  --accent-hover:  #FF823A;
+  --accent-active: #E85E00;
+  --accent-text:   #FF9142;   /* 8.37:1 auf bg — oranger TEXT nur in dieser Nuance */
+  --accent-ink:    #0B0B0C;   /* Schrift auf Orange: 6.85:1. Weiss waere 2.87:1 und ist verboten */
+  --accent-weak:   rgba(255,106,0,.09);
+  --accent-line:   rgba(255,106,0,.32);
+  --focus:         #FF9142;
+  --ok:            #4ADE9E;   /* 9.29:1 auf surface-2 */
+  --err:           #FF7B7B;   /* 6.35:1 auf surface-2 */
+
+  /* Form: EIN dokumentiertes Radiensystem.
+     Flaechen 12px, Bedienelemente 8px, Chips als Pille. Nichts ausserhalb davon. */
+  --r-surface: 12px;
+  --r-control: 8px;
+  --r-pill:    999px;
+
+  --ease-out:  cubic-bezier(.2,0,0,1);
+  --ease-soft: cubic-bezier(.32,.72,0,1);
+
+  --container: 1180px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-y: clamp(4rem, 2.2rem + 7.5vw, 8rem);
+
+  --font-display: "Manrope", system-ui, sans-serif;
+  --font-text: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-text);
+  font-size:clamp(1.0625rem,1.04rem + .1vw,1.125rem);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+img,svg{max-width:100%}
+
+/* Browser-Oberflaechen aus der Palette, nicht aus dem Browser-Default */
+::selection{background:var(--accent);color:var(--accent-ink)}
+:root{scrollbar-color:var(--line-strong) var(--bg);scrollbar-width:thin;accent-color:var(--accent);caret-color:var(--accent)}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--line-strong);border:3px solid var(--bg);border-radius:var(--r-pill)}
+::-webkit-scrollbar-thumb:hover{background:#4B5464}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:4px}
+
+/* --- Typografie: Sentence case, moderater Kegel, grosszuegige Abstaende ---- */
+h1,h2,h3,h4{
+  font-family:var(--font-display);
+  margin:0;
+  color:var(--text);
+  text-wrap:balance;
+  overflow-wrap:break-word;
+  letter-spacing:-.022em;
+}
+h1{
+  font-size:clamp(2.25rem,1.77rem + 2.05vw,3.6rem);
+  font-weight:800;line-height:1.06;letter-spacing:-.032em;
+}
+h2{
+  font-size:clamp(1.75rem,1.36rem + 1.66vw,2.85rem);
+  font-weight:800;line-height:1.12;letter-spacing:-.028em;
+}
+h3{font-size:clamp(1.125rem,1.07rem + .23vw,1.3125rem);font-weight:700;line-height:1.3}
+h4{font-size:1.0625rem;font-weight:700;line-height:1.35}
+/* Deutsche Schutzregel: lange Komposita duerfen im Fliesstext mit Trennstrich
+   brechen. Ohne lang="de" auf <html> greift hyphens:auto nicht. */
+/* Getrennt wird nur, was wirklich lang ist. Sonst zerfranst der Satz und die
+   Seite sieht billig aus. Kurze Woerter bleiben ganz. */
+p,li,dd{text-wrap:pretty;hyphens:auto;hyphenate-limit-chars:12 5 4}
+p{margin:0;max-width:66ch}
+.lead{
+  font-size:clamp(1.1875rem,1.14rem + .2vw,1.3125rem);
+  line-height:1.55;color:var(--text-muted);max-width:52ch;
+}
+.small{font-size:clamp(.875rem,.85rem + .09vw,.9375rem);line-height:1.55}
+.num{font-variant-numeric:tabular-nums;letter-spacing:.01em}
+a{color:inherit}
+
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter)}
+section{padding-block:var(--section-y)}
+.sec-head{max-width:46ch;margin-bottom:clamp(2rem,1.4rem + 2.4vw,3.25rem)}
+.sec-head p{margin-top:1rem;color:var(--text-muted)}
+
+/* --------------------------------- Buttons -------------------------------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  min-height:54px;padding:0 1.6rem;border-radius:var(--r-control);
+  font-family:var(--font-display);font-weight:700;font-size:1rem;letter-spacing:-.01em;
+  border:1px solid transparent;cursor:pointer;text-decoration:none;white-space:nowrap;
+  transition:background-color 160ms var(--ease-out),border-color 160ms var(--ease-out),
+             color 160ms var(--ease-out),transform 110ms var(--ease-out),box-shadow 160ms var(--ease-out);
+}
+/* Neutrale Elevation, kein farbiger Schein. Orange ist Flaeche, nicht Leuchtreklame. */
+.btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 8px 20px -12px rgba(0,0,0,.9)}
+.btn-primary:hover{background:var(--accent-hover)}
+.btn-primary:active{background:var(--accent-active);transform:scale(.985)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line-strong)}
+.btn-ghost:hover{border-color:var(--line-input);background:var(--surface-2)}
+.btn-ghost:active{transform:scale(.985)}
+.btn-quiet{background:var(--surface-2);color:var(--text);border-color:var(--line)}
+.btn-quiet:hover{background:var(--surface-3);border-color:var(--line-strong)}
+.btn-quiet:active{transform:scale(.985)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
+.btn-full{width:100%}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+}
+.skip:focus{left:1rem;top:1rem}
+
+/* -------------------------------- Header ---------------------------------- */
+.header{
+  position:sticky;top:0;z-index:60;
+  background:rgba(16,18,22,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color 200ms var(--ease-out),background-color 200ms var(--ease-out);
+}
+.header.is-scrolled{border-bottom-color:var(--line);background:rgba(16,18,22,.93)}
+.header-in{display:flex;align-items:center;gap:1.5rem;min-height:72px}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;font-family:var(--font-display);font-weight:800;letter-spacing:-.03em;font-size:1.0625rem}
+.brand-mark{
+  width:30px;height:30px;border-radius:var(--r-control);
+  background:var(--accent);color:var(--accent-ink);
+  display:grid;place-items:center;font-size:.9375rem;font-weight:800;flex:none;
+}
+.nav{display:none;margin-left:auto;gap:1.75rem;align-items:center}
+.nav a{font-size:.9375rem;color:var(--text-muted);text-decoration:none;transition:color 160ms var(--ease-out)}
+.nav a:hover{color:var(--text)}
+.header-cta{display:none;align-items:center;gap:.75rem}
+.header-tel{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-family:var(--font-display);font-weight:700;font-size:1rem;transition:color 160ms var(--ease-out)}
+.header-tel svg{color:var(--accent-text)}
+.header-tel:hover{color:var(--accent-text)}
+.burger{
+  margin-left:auto;width:46px;height:46px;display:grid;place-items:center;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-control);color:var(--text);cursor:pointer;
+}
+.mobile-menu{
+  display:none;border-top:1px solid var(--line);background:var(--surface-1);
+  padding:.5rem var(--gutter) 1.25rem;
+}
+.mobile-menu.is-open{display:block}
+.mobile-menu a{
+  display:block;padding:.85rem 0;border-bottom:1px solid var(--line);
+  text-decoration:none;font-family:var(--font-display);font-weight:600;
+  opacity:0;transform:translateY(-6px);
+  animation:menuIn 320ms var(--ease-out) forwards;
+}
+.mobile-menu a:last-child{border-bottom:0}
+@keyframes menuIn{to{opacity:1;transform:none}}
+
+/* --------------------------------- Hero ----------------------------------- */
+.hero{position:relative;padding-block:clamp(2.5rem,1.6rem + 3.6vw,4rem) clamp(3rem,2rem + 4vw,5.5rem);overflow:clip}
+/* Der Hero-Bildplatz ist im Markup als HERO IMAGE SLOT markiert. Dorthin kommt
+   spaeter das eine dunkle Fahrzeugfoto (AVIF + WebP, drei Breiten,
+   object-position 62% 42% mobil und 72% 50% Desktop, fetchpriority high).
+   Bis dahin traegt die Flaeche reine CSS-Geometrie: Raster, Verlauf, Leuchten. */
+.hero-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.hero-bg::before{
+  content:"";position:absolute;inset:0;
+  /* genau EIN oranges Leuchten auf der ganzen Seite */
+  background:radial-gradient(58% 46% at 78% 6%,rgba(255,106,0,.15),transparent 68%);
+}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.035),transparent 42%),
+    linear-gradient(180deg,transparent 62%,var(--bg));
+}
+.hero-grid-lines{
+  position:absolute;inset:0;opacity:.55;
+  background-image:linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:min(25vw,236px) 100%;
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.6),transparent 76%);
+          mask-image:linear-gradient(180deg,rgba(0,0,0,.6),transparent 76%);
+}
+.grain{
+  position:fixed;inset:0;z-index:70;pointer-events:none;opacity:.038;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='128' height='128' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-in{display:grid;gap:clamp(2.25rem,1.6rem + 2.8vw,3.5rem)}
+.hero-copy h1 span{color:var(--accent-text)}
+.hero-copy .lead{margin-top:1.35rem}
+.hero-actions{margin-top:1.85rem}
+.hero-tel{
+  display:inline-flex;align-items:center;gap:.85rem;text-decoration:none;
+  font-family:var(--font-display);font-weight:700;font-size:1.0625rem;
+}
+.hero-tel small{display:block;font-family:var(--font-text);font-weight:400;font-size:.8125rem;color:var(--text-faint);letter-spacing:0;margin-top:.1rem}
+.hero-tel .tel-ico{
+  width:48px;height:48px;flex:none;border-radius:var(--r-control);
+  background:var(--surface-2);border:1px solid var(--line-strong);
+  display:grid;place-items:center;color:var(--accent-text);
+  transition:border-color 160ms var(--ease-out),background-color 160ms var(--ease-out);
+}
+.hero-tel:hover .tel-ico{border-color:var(--accent-line);background:var(--accent-weak)}
+
+/* ------------------------- Formular: der Held ------------------------------ */
+.form-card{
+  position:relative;
+  background:linear-gradient(180deg,var(--surface-2),var(--surface-1));
+  border:1px solid var(--line-strong);
+  border-radius:var(--r-surface);
+  padding:clamp(1.25rem,.9rem + 1.6vw,2rem);
+  box-shadow:0 34px 66px -34px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.04);
+}
+.form-card::before{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+  padding:1px;background:linear-gradient(180deg,var(--accent-line),transparent 55%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+}
+.form-head{margin-bottom:1.4rem}
+.form-head h2{font-size:clamp(1.375rem,1.25rem + .5vw,1.625rem);letter-spacing:-.025em}
+.form-head p{margin-top:.5rem;font-size:.9375rem;color:var(--text-muted)}
+
+.steps{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.step-tab{flex:1;min-width:0;padding-top:.55rem;border-top:2px solid var(--line-strong);transition:border-color 260ms var(--ease-out)}
+.step-tab span{display:block;font-size:.75rem;color:var(--text-faint);font-weight:500;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color 260ms var(--ease-out)}
+.step-tab.is-active{border-top-color:var(--accent)}
+.step-tab.is-active span{color:var(--accent-text)}
+.step-tab.is-done{border-top-color:var(--accent-line)}
+.step-tab.is-done span{color:var(--text-muted)}
+
+.fieldset{border:0;padding:0;margin:0;display:grid;gap:1rem}
+.fieldset[hidden]{display:none}
+@media (prefers-reduced-motion:no-preference){
+  .fieldset:not([hidden]){animation:stepIn 340ms var(--ease-soft) both}
+}
+@keyframes stepIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.row-2{display:grid;gap:1rem}
+.field{display:grid;gap:.45rem;min-width:0}
+.field label{font-size:.875rem;font-weight:600;color:var(--text);font-family:var(--font-display)}
+.field label .opt{font-weight:400;color:var(--text-faint)}
+.field .hint{font-size:.8125rem;color:var(--text-faint)}
+.control{
+  width:100%;min-height:54px;padding:0 .95rem;
+  background:var(--surface-3);color:var(--text);
+  border:1px solid var(--line-input);border-radius:var(--r-control);
+  font-family:var(--font-text);font-size:1.0625rem;
+  transition:border-color 160ms var(--ease-out),box-shadow 160ms var(--ease-out);
+  appearance:none;-webkit-appearance:none;
+}
+.control::placeholder{color:var(--text-faint)}
+.control:hover{border-color:#828A99}
+.control:focus{
+  outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-weak),inset 0 0 0 1px var(--accent);
+}
+.control:user-invalid{border-color:var(--err)}
+select.control{
+  padding-right:2.6rem;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23A9B1BF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;
+}
+select.control:invalid{color:var(--text-faint)}
+select.control option{background:var(--surface-3);color:var(--text)}
+textarea.control{min-height:96px;padding:.8rem .95rem;line-height:1.5;resize:vertical}
+.check{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:start;cursor:pointer}
+.check input{width:22px;height:22px;margin:0;flex:none;accent-color:var(--accent);cursor:pointer}
+.check span{font-size:.8125rem;line-height:1.5;color:var(--text-faint)}
+.check a{color:var(--accent-text);text-underline-offset:3px}
+.form-nav{display:flex;gap:.75rem;margin-top:.35rem}
+.form-nav .btn-primary{flex:1}
+.form-foot{margin-top:1.1rem;display:flex;align-items:flex-start;gap:.5rem;font-size:.8125rem;color:var(--text-faint);line-height:1.5}
+.form-foot svg{flex:none;color:var(--text-muted);margin-top:.15rem}
+
+.form-done{display:none}
+.form-done.is-visible{display:block;animation:fadeUp 420ms var(--ease-soft) both}
+.form-done .tick{
+  width:52px;height:52px;border-radius:var(--r-pill);display:grid;place-items:center;
+  background:rgba(74,222,158,.12);color:var(--ok);border:1px solid rgba(74,222,158,.35);margin-bottom:1.1rem;
+}
+.form-done h3{margin-bottom:.6rem}
+.form-done p{color:var(--text-muted);font-size:.9375rem}
+.form-done .recap{
+  margin-top:1.1rem;padding:.9rem 1rem;background:var(--surface-3);
+  border:1px solid var(--line);border-radius:var(--r-control);font-size:.9375rem;line-height:1.6;
+}
+.form-done .recap strong{font-family:var(--font-display)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ------------------------------ Vorteile ----------------------------------- */
+.usp{border-block:1px solid var(--line);padding-block:0;background:var(--surface-1)}
+.usp-grid{display:grid}
+.usp-item{padding:1.75rem 0;border-bottom:1px solid var(--line)}
+.usp-item:last-child{border-bottom:0}
+.usp-item svg{color:var(--accent-text);margin-bottom:.85rem}
+.usp-item h3{margin-bottom:.35rem;text-wrap:balance}
+.usp-item p{font-size:.9375rem;color:var(--text-muted);max-width:34ch;hyphens:manual}
+
+/* ------------------------------- Ablauf ------------------------------------ */
+.flow-wrap{display:grid;gap:clamp(2.25rem,1.4rem + 3vw,3rem)}
+.flow{display:grid}
+.flow-item{position:relative;display:grid;grid-template-columns:34px 1fr;gap:1.25rem;padding-bottom:2.5rem}
+.flow-item:last-child{padding-bottom:0}
+.flow-rail{position:relative;display:flex;justify-content:center}
+.flow-dot{
+  position:relative;z-index:1;width:34px;height:34px;flex:none;border-radius:var(--r-pill);
+  background:var(--surface-2);border:1px solid var(--line-strong);
+  display:grid;place-items:center;color:var(--accent-text);
+}
+.flow-item:last-child .flow-dot{background:var(--accent-weak);border-color:var(--accent-line)}
+.flow-line{position:absolute;top:34px;bottom:-10px;width:1px;background:var(--line);left:50%}
+.flow-item:last-child .flow-line{display:none}
+.flow-body h3{margin-bottom:.4rem}
+.flow-body p{color:var(--text-muted);font-size:.9375rem}
+.flow-aside{
+  background:var(--surface-1);border:1px solid var(--line);border-radius:var(--r-surface);
+  padding:clamp(1.25rem,1rem + 1vw,1.75rem);align-self:start;
+}
+.flow-aside h3{margin-bottom:1.1rem}
+.flow-aside dl{margin:0;display:grid;gap:.9rem}
+.flow-aside .kv{display:grid;gap:.2rem;padding-bottom:.9rem;border-bottom:1px solid var(--line)}
+.flow-aside .kv:last-child{padding-bottom:0;border-bottom:0}
+.flow-aside dt{font-family:var(--font-display);font-weight:700;font-size:.9375rem}
+.flow-aside dd{margin:0;font-size:.875rem;color:var(--text-muted)}
+
+/* ------------------------------- Papiere ----------------------------------- */
+.papers{background:var(--surface-1);border-block:1px solid var(--line)}
+.papers-in{display:grid;gap:clamp(2rem,1.4rem + 2.4vw,3.5rem)}
+.papers-list{display:grid}
+.paper-row{display:grid;grid-template-columns:auto 1fr;gap:1.1rem;padding:1.4rem 0;border-top:1px solid var(--line)}
+.paper-row:last-child{border-bottom:1px solid var(--line)}
+.paper-row svg{color:var(--accent-text);margin-top:.2rem}
+.paper-row h3{margin-bottom:.3rem}
+.paper-row p{font-size:.9375rem;color:var(--text-muted)}
+
+/* -------------------------- Wer zu Ihnen kommt ----------------------------- */
+.visit{display:grid;gap:clamp(1rem,.7rem + 1.4vw,1.5rem)}
+.visit-card{
+  background:var(--surface-1);border:1px solid var(--line);border-radius:var(--r-surface);
+  padding:clamp(1.35rem,1.1rem + 1.1vw,2rem);
+  transition:border-color 200ms var(--ease-out),background-color 200ms var(--ease-out);
+}
+.visit-card:hover{border-color:var(--line-strong);background:var(--surface-2)}
+.visit-card h3{margin-bottom:.5rem}
+.visit-card p{font-size:.9375rem;color:var(--text-muted)}
+.visit-card.is-wide{
+  background:radial-gradient(70% 130% at 100% 0%,var(--accent-weak),transparent 62%),var(--surface-1);
+  border-color:var(--accent-line);
+}
+.visit-card.is-wide h3{font-size:clamp(1.25rem,1.1rem + .6vw,1.5rem)}
+.visit-card.is-wide p{max-width:56ch}
+.visit-ico{
+  width:40px;height:40px;border-radius:var(--r-control);display:grid;place-items:center;
+  background:var(--surface-3);border:1px solid var(--line-strong);color:var(--accent-text);margin-bottom:1rem;
+}
+
+/* ------------------------------ Fahrzeuge ---------------------------------- */
+.cars{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-surface);overflow:hidden}
+.car{background:var(--surface-1);padding:clamp(1.35rem,1.1rem + 1vw,1.85rem);transition:background-color 200ms var(--ease-out)}
+.car:hover{background:var(--surface-2)}
+.car:nth-child(2){background:linear-gradient(160deg,var(--surface-2),var(--surface-1))}
+.car:nth-child(2):hover{background:linear-gradient(160deg,var(--surface-3),var(--surface-2))}
+.car:nth-child(5){background:radial-gradient(95% 130% at 0% 100%,var(--accent-weak),transparent 62%),var(--surface-1)}
+.car:nth-child(5):hover{background:radial-gradient(95% 130% at 0% 100%,var(--accent-weak),transparent 62%),var(--surface-2)}
+.car h3{margin-bottom:.4rem}
+.car p{font-size:.9375rem;color:var(--text-muted)}
+.car svg{color:var(--accent-text);margin-bottom:.9rem}
+
+/* -------------------------------- Region ----------------------------------- */
+.region{display:grid;gap:clamp(2rem,1.4rem + 2.4vw,3.5rem)}
+.region-text p + p{margin-top:1rem}
+.region-text p{color:var(--text-muted)}
+.cities{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-surface);overflow:hidden}
+.cities a{
+  display:block;padding:.95rem 1.1rem;background:var(--surface-1);text-decoration:none;
+  font-family:var(--font-display);font-weight:600;font-size:.9375rem;
+  transition:background-color 160ms var(--ease-out),color 160ms var(--ease-out);
+}
+.cities a:hover{background:var(--surface-3);color:var(--accent-text)}
+
+/* --------------------------------- FAQ ------------------------------------- */
+.faq{max-width:820px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-of-type{border-top:1px solid var(--line)}
+.faq summary{
+  list-style:none;cursor:pointer;min-height:68px;display:flex;align-items:center;gap:1rem;
+  padding:1.1rem 0;font-family:var(--font-display);font-weight:700;
+  font-size:clamp(1.0625rem,1.02rem + .2vw,1.1875rem);letter-spacing:-.018em;
+  transition:color 160ms var(--ease-out);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--accent-text)}
+.faq summary .plus{
+  margin-left:auto;flex:none;width:26px;height:26px;position:relative;
+  transition:transform 220ms var(--ease-out);color:var(--accent-text);
+}
+.faq summary .plus::before,.faq summary .plus::after{
+  content:"";position:absolute;left:3px;right:3px;top:calc(50% - .75px);height:1.5px;background:currentColor;border-radius:2px;
+}
+.faq summary .plus::after{transform:rotate(90deg)}
+.faq details[open] summary .plus{transform:rotate(135deg)}
+.faq .answer{padding:0 0 1.4rem;color:var(--text-muted);font-size:.9375rem;max-width:62ch}
+.faq .answer p + p{margin-top:.75rem}
+@media (prefers-reduced-motion:no-preference){
+  .faq details[open] .answer{animation:fadeUp 220ms var(--ease-out) both}
+}
+
+/* ------------------------------- Final CTA --------------------------------- */
+.final-in{
+  position:relative;overflow:hidden;
+  border:1px solid var(--accent-line);border-radius:var(--r-surface);
+  background:
+    radial-gradient(80% 150% at 92% 0%,rgba(255,106,0,.13),transparent 62%),
+    linear-gradient(180deg,var(--surface-2),var(--surface-1));
+  padding:clamp(1.85rem,1.3rem + 2.4vw,3.5rem);
+  display:grid;gap:clamp(1.5rem,1.1rem + 1.6vw,2.5rem);align-items:center;
+}
+.final-in h2{max-width:18ch}
+.final-in p{margin-top:.9rem;color:var(--text-muted)}
+.final-actions{display:grid;gap:.85rem}
+.final-actions .small{color:var(--text-faint);text-align:center}
+
+/* --------------------------------- Footer ---------------------------------- */
+.footer{background:var(--surface-1);border-top:1px solid var(--line);padding-top:clamp(3rem,2.2rem + 3vw,4.5rem)}
+.footer-top{display:grid;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line)}
+.footer h4{margin-bottom:.9rem}
+.footer-contact .tel{
+  display:inline-block;margin:.9rem 0 .5rem;font-family:var(--font-display);font-weight:800;
+  font-size:clamp(1.5rem,1.3rem + .8vw,1.875rem);letter-spacing:-.03em;text-decoration:none;
+  transition:color 160ms var(--ease-out);
+}
+.footer-contact .tel:hover{color:var(--accent-text)}
+.footer-contact address{font-style:normal;color:var(--text-muted);font-size:.9375rem;line-height:1.7}
+.footer-links{display:grid;gap:.6rem}
+.footer-links a{font-size:.9375rem;color:var(--text-muted);text-decoration:none;transition:color 160ms var(--ease-out)}
+.footer-links a:hover{color:var(--text)}
+.footer-cities{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.55rem 1rem}
+.footer-cities a{font-size:.875rem;color:var(--text-muted);text-decoration:none;transition:color 160ms var(--ease-out)}
+.footer-cities a:hover{color:var(--accent-text)}
+.footer-bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;padding-block:1.5rem 2rem;font-size:.8125rem;color:var(--text-faint)}
+.footer-bottom nav{display:flex;flex-wrap:wrap;gap:1.25rem}
+.footer-bottom a{text-decoration:none;transition:color 160ms var(--ease-out)}
+.footer-bottom a:hover{color:var(--text-muted)}
+
+/* ----------------------------- Sticky mobile ------------------------------- */
+.sticky-bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:65;
+  display:grid;grid-template-columns:1fr 1fr;gap:.6rem;
+  padding:.6rem var(--gutter) calc(.6rem + env(safe-area-inset-bottom));
+  background:rgba(16,18,22,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--line);
+  transform:translateY(115%);transition:transform 260ms var(--ease-out);
+}
+.sticky-bar.is-visible{transform:none}
+.sticky-bar .btn{min-height:48px;font-size:.9375rem;padding:0 .9rem}
+@media (min-width:768px){.sticky-bar{display:none}}
+
+/* ------------------------------- Reveal ------------------------------------ */
+/* Startzustand nur bei aktivem JS, sonst waere die Seite ohne JS leer */
+.js .reveal{opacity:0;transform:translateY(20px)}
+.js .reveal.is-in{opacity:1;transform:none;transition:opacity 520ms var(--ease-soft),transform 520ms var(--ease-soft)}
+.js .reveal.d1{transition-delay:60ms}
+.js .reveal.d2{transition-delay:120ms}
+.js .reveal.d3{transition-delay:180ms}
+
+/* ============================== Breakpoints ================================ */
+@media (min-width:600px){
+  .row-2{grid-template-columns:1fr 1fr}
+  .usp-grid{grid-template-columns:1fr 1fr;column-gap:2.5rem}
+  .usp-item:nth-last-child(2){border-bottom:0}
+  .visit{grid-template-columns:1fr 1fr}
+  .visit-card.is-wide{grid-column:1/-1}
+  .cars{grid-template-columns:1fr 1fr}
+  .final-actions{grid-template-columns:1fr 1fr}
+  .final-actions .small{grid-column:1/-1;text-align:left}
+}
+@media (min-width:768px){
+  .footer-top{grid-template-columns:1.1fr 1fr}
+}
+@media (min-width:900px){
+  .nav{display:flex}
+  .burger{display:none}
+  .header-cta{display:flex;margin-left:.5rem}
+  .hero-in{grid-template-columns:1.02fr .98fr;align-items:start;gap:clamp(2.5rem,1rem + 4vw,4.5rem)}
+  .hero-copy{padding-top:clamp(.5rem,.1rem + 2vw,2.5rem)}
+  .usp-grid{grid-template-columns:repeat(4,1fr);column-gap:2rem}
+  .usp-item{border-bottom:0;padding:2.25rem 1.5rem 2.25rem 0;border-right:1px solid var(--line)}
+  .usp-item:last-child{border-right:0;padding-right:0}
+  /* Zwei der vier Überschriften brechen zweizeilig. Feste Höhe, damit die
+     Absätze darunter auf einer Linie starten. */
+  .usp-item h3{min-height:2.6em}
+  .flow-wrap{grid-template-columns:1.15fr .85fr;gap:clamp(2rem,1rem + 3vw,4rem);align-items:start}
+  .papers-in{grid-template-columns:.85fr 1.15fr;align-items:start}
+  .papers-in .sec-head{margin-bottom:0;position:sticky;top:104px}
+  .cars{grid-template-columns:repeat(3,1fr)}
+  .region{grid-template-columns:.9fr 1.1fr;align-items:start}
+  .final-in{grid-template-columns:1.2fr .8fr}
+  .final-actions{grid-template-columns:1fr}
+  .final-actions .small{text-align:center}
+  .footer-top{grid-template-columns:1.2fr .8fr 1.4fr}
+}
+@media (max-width:767px){
+  body{padding-bottom:76px}
+}
+
+/* --------------------------- Reduced motion -------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  /* Alles ist sofort und vollstaendig sichtbar, nichts wartet auf eine Animation */
+  .js .reveal,.js .reveal.is-in{opacity:1!important;transform:none!important;transition:none!important}
+  .sticky-bar{transition:none}
+  .mobile-menu a{animation:none;opacity:1;transform:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* Entwurfs-Hinweis, in den Token-Satz der Seite gebracht */
+.entwurf-note{
+  border-top:1px solid var(--line);margin-top:0;padding:1.25rem 0 2rem;
+  font-size:.8125rem;line-height:1.5;color:var(--text-faint);
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<div class="grain" aria-hidden="true"></div>
+<a class="btn btn-quiet skip" href="#fahrzeug-bewerten">Zum Formular springen</a>
+
+<header class="header" id="header">
+  <div class="container header-in">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">A</span>
+      Autoankauf NRW
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#ablauf">Ablauf</a>
+      <a href="#papiere">Papiere</a>
+      <a href="#fahrzeuge">Fahrzeuge</a>
+      <a href="#region">Region</a>
+      <a href="#faq">Fragen</a>
+    </nav>
+    <div class="header-cta">
+      <a class="header-tel" href="tel:+492340000000">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4.5-2 1.5a12 12 0 006 6l1.5-2L21 14.5v3a2 2 0 01-2.2 2A17 17 0 014 5.2 2 2 0 016 3z"/></svg>
+        <span class="num">0234 000 000</span>
+      </a>
+    </div>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menü öffnen">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#ablauf">Ablauf</a>
+    <a href="#papiere">Papiere</a>
+    <a href="#fahrzeuge">Fahrzeuge</a>
+    <a href="#region">Region</a>
+    <a href="#faq">Fragen</a>
+    <a href="tel:+492340000000" class="num">0234 000 000</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="hero" id="hero">
+    <!-- HERO IMAGE SLOT -->
+    <div class="hero-bg" aria-hidden="true"><div class="hero-grid-lines"></div></div>
+    <div class="container hero-in">
+
+      <div class="hero-copy">
+        <h1>Wir kaufen Ihr Auto in Bochum und <span>ganz NRW</span></h1>
+        <p class="lead">Kostenlose Bewertung, Abholung bei Ihnen vor Ort und Bezahlung bei Übergabe, auch bei Unfall- oder Motorschaden</p>
+        <div class="hero-actions">
+          <a class="hero-tel" href="tel:+492340000000">
+            <span class="tel-ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4.5-2 1.5a12 12 0 006 6l1.5-2L21 14.5v3a2 2 0 01-2.2 2A17 17 0 014 5.2 2 2 0 016 3z"/></svg>
+            </span>
+            <span>
+              <span class="num">0234 000 000</span>
+              <small>Lieber direkt sprechen? Rufen Sie an</small>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Das Formular steht im ersten Bildschirm: rechts am Desktop, direkt unter
+           der Überschrift am Telefon. Der Besucher sieht sofort das Feld "Marke". -->
+      <div class="form-card" id="fahrzeug-bewerten">
+        <div class="form-head">
+          <h2>Was ist Ihr Fahrzeug wert?</h2>
+          <p>Drei kurze Schritte, danach melden wir uns mit einem konkreten Preis</p>
+        </div>
+
+        <div class="steps" id="steps">
+          <div class="step-tab is-active" data-step="1"><span>Fahrzeug</span></div>
+          <div class="step-tab" data-step="2"><span>Zustand</span></div>
+          <div class="step-tab" data-step="3"><span>Kontakt</span></div>
+        </div>
+
+        <form id="valuation" novalidate>
+
+          <!-- Schritt 1 -->
+          <fieldset class="fieldset" data-panel="1">
+            <div class="field">
+              <label for="marke">Marke</label>
+              <select class="control" id="marke" name="marke" required>
+                <option value="" disabled selected>Bitte wählen</option>
+                <option>Audi</option><option>BMW</option><option>Citroën</option>
+                <option>Fiat</option><option>Ford</option><option>Hyundai</option>
+                <option>Kia</option><option>Mazda</option><option>Mercedes-Benz</option>
+                <option>Nissan</option><option>Opel</option><option>Peugeot</option>
+                <option>Renault</option><option>Škoda</option><option>Seat</option>
+                <option>Toyota</option><option>Volkswagen</option><option>Volvo</option>
+                <option>Andere Marke</option>
+              </select>
+            </div>
+            <div class="row-2">
+              <div class="field">
+                <label for="modell">Modell</label>
+                <input class="control" id="modell" name="modell" type="text" placeholder="z. B. Golf 7" required autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="baujahr">Erstzulassung</label>
+                <input class="control num" id="baujahr" name="baujahr" type="text" inputmode="numeric" pattern="(19|20)[0-9]{2}" maxlength="4" placeholder="2015" required>
+              </div>
+            </div>
+            <div class="form-nav">
+              <button class="btn btn-primary btn-full" type="button" data-next="2">
+                Weiter
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </fieldset>
+
+          <!-- Schritt 2 -->
+          <fieldset class="fieldset" data-panel="2" hidden>
+            <div class="row-2">
+              <div class="field">
+                <label for="km">Kilometerstand</label>
+                <input class="control num" id="km" name="km" type="text" inputmode="numeric" pattern="[0-9. ]{2,9}" placeholder="145000" required>
+              </div>
+              <div class="field">
+                <label for="getriebe">Getriebe</label>
+                <select class="control" id="getriebe" name="getriebe" required>
+                  <option value="" disabled selected>Bitte wählen</option>
+                  <option>Schaltgetriebe</option>
+                  <option>Automatik</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="zustand">Zustand</label>
+              <select class="control" id="zustand" name="zustand" required>
+                <option value="" disabled selected>Bitte wählen</option>
+                <option>Fahrbereit, keine größeren Schäden</option>
+                <option>Fahrbereit, kleinere Mängel</option>
+                <option>Unfallschaden</option>
+                <option>Motor- oder Getriebeschaden</option>
+                <option>Nicht fahrbereit</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="anmerkung">Anmerkung <span class="opt">(optional)</span></label>
+              <textarea class="control" id="anmerkung" name="anmerkung" placeholder="Was sollten wir vorher wissen?"></textarea>
+            </div>
+            <div class="form-nav">
+              <button class="btn btn-quiet" type="button" data-back="1">Zurück</button>
+              <button class="btn btn-primary" type="button" data-next="3">
+                Weiter
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </fieldset>
+
+          <!-- Schritt 3 -->
+          <fieldset class="fieldset" data-panel="3" hidden>
+            <div class="row-2">
+              <div class="field">
+                <label for="name">Name</label>
+                <input class="control" id="name" name="name" type="text" placeholder="Vor- und Nachname" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="plz">PLZ</label>
+                <input class="control num" id="plz" name="plz" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="44787" required autocomplete="postal-code">
+              </div>
+            </div>
+            <div class="field">
+              <label for="telefon">Telefon</label>
+              <input class="control num" id="telefon" name="telefon" type="tel" placeholder="0170 0000000" required autocomplete="tel">
+              <span class="hint">Wir rufen zurück, sobald die Bewertung fertig ist</span>
+            </div>
+            <div class="field">
+              <label for="email">E-Mail <span class="opt">(optional)</span></label>
+              <input class="control" id="email" name="email" type="email" placeholder="name@beispiel.de" autocomplete="email">
+            </div>
+            <label class="check" for="dsgvo">
+              <input type="checkbox" id="dsgvo" name="dsgvo" required>
+              <span>Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage gespeichert werden. Details in der <a href="#datenschutz">Datenschutzerklärung</a>.</span>
+            </label>
+            <div class="form-nav">
+              <button class="btn btn-quiet" type="button" data-back="2">Zurück</button>
+              <button class="btn btn-primary" type="submit">Bewertung anfordern</button>
+            </div>
+          </fieldset>
+
+          <p class="form-foot">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4-3 7.5-7 9-4-1.5-7-5-7-9V6z"/></svg>
+            Unverbindlich und kostenlos, keine Weitergabe an Dritte
+          </p>
+        </form>
+
+        <div class="form-done" id="form-done" role="status" aria-live="polite">
+          <div class="tick" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3>Anfrage ist angekommen</h3>
+          <p>Wir sehen uns die Angaben an und melden uns telefonisch mit einem konkreten Preis. Wenn es schneller gehen soll, rufen Sie einfach an.</p>
+          <div class="recap" id="recap"></div>
+          <div class="form-nav" style="margin-top:1.1rem">
+            <a class="btn btn-quiet" href="tel:+492340000000">Jetzt anrufen</a>
+            <button class="btn btn-quiet" type="button" id="restart">Neue Anfrage</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================ VORTEILE ============================ -->
+  <section class="usp" aria-label="Leistungen">
+    <div class="container">
+      <div class="usp-grid">
+        <div class="usp-item reveal">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5V5h7.5l8 8-7.5 7.5zM8 8.5v0"/></svg>
+          <h3>Kostenlose Bewertung</h3>
+          <p>Für die Einschätzung Ihres Fahrzeugs zahlen Sie nichts, auch wenn Sie am Ende nicht verkaufen.</p>
+        </div>
+        <div class="usp-item reveal d1">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16V8h11v8M14 11h3.5l2.5 3v2h-2M6.5 19a1.8 1.8 0 100-3.6 1.8 1.8 0 000 3.6zM17.5 19a1.8 1.8 0 100-3.6 1.8 1.8 0 000 3.6z"/></svg>
+          <h3>Abholung in ganz NRW</h3>
+          <p>Wir kommen zu Ihnen, ob Einfahrt, Werkstatt oder Stellplatz. Ohne Kosten für Sie.</p>
+        </div>
+        <div class="usp-item reveal d2">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v10H3zM12 14.2a2.2 2.2 0 100-4.4 2.2 2.2 0 000 4.4"/></svg>
+          <h3>Bezahlung bei Übergabe</h3>
+          <p>Das Geld gibt es bei der Abholung, bar oder als Sofortüberweisung. Nicht später.</p>
+        </div>
+        <div class="usp-item reveal d3">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h9l4 4v12H6zM14 4v5h5M9 14h6M9 17h4"/></svg>
+          <h3>Abmeldung übernehmen wir</h3>
+          <p>Auf Wunsch melden wir das Fahrzeug ab und schicken Ihnen die Bestätigung zu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== ABLAUF ============================= -->
+  <section id="ablauf">
+    <div class="container">
+      <div class="sec-head reveal">
+        <h2>So läuft der Verkauf ab</h2>
+        <p>Vier Stationen, keine Überraschungen dazwischen. Sie wissen vorher, was als Nächstes passiert.</p>
+      </div>
+
+      <div class="flow-wrap">
+        <div class="flow">
+          <div class="flow-item reveal">
+            <div class="flow-rail"><span class="flow-line" aria-hidden="true"></span>
+              <span class="flow-dot" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14M5 12h14M5 18h9"/></svg></span>
+            </div>
+            <div class="flow-body">
+              <h3>Sie senden die Fahrzeugdaten</h3>
+              <p>Über das Formular oder am Telefon. Marke, Modell, Baujahr, Kilometerstand und der ehrliche Zustand reichen für den Anfang.</p>
+            </div>
+          </div>
+          <div class="flow-item reveal">
+            <div class="flow-rail"><span class="flow-line" aria-hidden="true"></span>
+              <span class="flow-dot" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 18a7 7 0 100-14 7 7 0 000 14zM20 20l-4-4"/></svg></span>
+            </div>
+            <div class="flow-body">
+              <h3>Wir prüfen und rufen zurück</h3>
+              <p>Wir gleichen die Angaben mit dem aktuellen Markt ab und nennen Ihnen einen konkreten Preis. Keine Spanne, an die sich hinterher niemand hält.</p>
+            </div>
+          </div>
+          <div class="flow-item reveal">
+            <div class="flow-rail"><span class="flow-line" aria-hidden="true"></span>
+              <span class="flow-dot" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5h8M6 9h12v10H6zM10 14h4"/></svg></span>
+            </div>
+            <div class="flow-body">
+              <h3>Termin und Besichtigung vor Ort</h3>
+              <p>Wir kommen zur vereinbarten Zeit, sehen uns das Fahrzeug an und bestätigen den Preis. Weicht der Zustand ab, sagen wir das offen, bevor irgendetwas unterschrieben wird.</p>
+            </div>
+          </div>
+          <div class="flow-item reveal">
+            <div class="flow-rail">
+              <span class="flow-dot" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v9H4zM12 15a2.5 2.5 0 100-5 2.5 2.5 0 000 5"/></svg></span>
+            </div>
+            <div class="flow-body">
+              <h3>Kaufvertrag, Geld, Abtransport</h3>
+              <p>Der Vertrag wird vor Ort ausgefüllt, Sie bekommen Ihr Exemplar und das Geld. Danach nehmen wir das Fahrzeug mit.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="flow-aside reveal d1">
+          <h3>Was Sie zum Termin brauchen</h3>
+          <dl>
+            <div class="kv">
+              <dt>Zulassungsbescheinigung Teil I und II</dt>
+              <dd>Fahrzeugschein und Fahrzeugbrief. Fehlt der Brief, sagen Sie bitte vorher Bescheid.</dd>
+            </div>
+            <div class="kv">
+              <dt>Alle vorhandenen Schlüssel</dt>
+              <dd>Ein Zweitschlüssel wirkt sich auf den Preis aus, auch wenn er nur in der Schublade lag.</dd>
+            </div>
+            <div class="kv">
+              <dt>Personalausweis des Halters</dt>
+              <dd>Nötig für den Kaufvertrag. Verkaufen Sie für jemand anderen, brauchen wir eine Vollmacht.</dd>
+            </div>
+            <div class="kv">
+              <dt>Serviceheft und TÜV-Bericht</dt>
+              <dd>Keine Pflicht, hilft aber beim Preis. Wenn nichts mehr da ist, geht es auch ohne.</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PAPIERE ============================ -->
+  <section class="papers" id="papiere">
+    <div class="container papers-in">
+      <div class="sec-head reveal">
+        <h2>Was mit Ihren Papieren passiert</h2>
+        <p>Der häufigste Grund für ein ungutes Gefühl beim Autoverkauf ist die Frage, was nach der Übergabe mit den Dokumenten geschieht.</p>
+      </div>
+      <div class="papers-list">
+        <div class="paper-row reveal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h5M9 13h6M9 17h6"/></svg>
+          <div>
+            <h3>Kaufvertrag in zwei Ausfertigungen</h3>
+            <p>Wird vor Ort ausgefüllt und von beiden Seiten unterschrieben. Ein Exemplar bleibt bei Ihnen, mit Kilometerstand, Datum, Uhrzeit und dem vereinbarten Preis.</p>
+          </div>
+        </div>
+        <div class="paper-row reveal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4zM4 10h16M8 14h4"/></svg>
+          <div>
+            <h3>Abmeldung und Bestätigung</h3>
+            <p>Auf Wunsch übernehmen wir die Abmeldung bei der Zulassungsstelle. Sie bekommen die Bestätigung, mit der Sie Versicherung und Kfz-Steuer beenden können.</p>
+          </div>
+        </div>
+        <div class="paper-row reveal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4-3 7.5-7 9-4-1.5-7-5-7-9V6zM9.5 12l2 2 3.5-3.5"/></svg>
+          <div>
+            <h3>Kennzeichen bleiben nicht offen</h3>
+            <p>Solange ein Fahrzeug auf Sie zugelassen ist, haften Sie für Bußgelder und Steuer. Deshalb wird die Ab- oder Ummeldung Teil des Termins und nicht auf später verschoben.</p>
+          </div>
+        </div>
+        <div class="paper-row reveal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11V8a5 5 0 0110 0v3M5 11h14v9H5z"/></svg>
+          <div>
+            <h3>Ihre Daten bleiben bei uns</h3>
+            <p>Die Angaben aus dem Formular nutzen wir für die Bewertung und den Rückruf. Keine Weitergabe an Vermittlerportale, keine Werbeanrufe von Dritten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= WER ZU IHNEN KOMMT ====================== -->
+  <section id="besuch">
+    <div class="container">
+      <div class="sec-head reveal">
+        <h2>Wer bei Ihnen vor der Tür steht</h2>
+        <p>Sie lassen jemanden an Ihr Fahrzeug und an Ihre Papiere. Deshalb hier vorab, wie der Termin abläuft.</p>
+      </div>
+      <div class="visit">
+        <div class="visit-card is-wide reveal">
+          <div class="visit-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a4 4 0 100-8 4 4 0 000 8M5 20a7 7 0 0114 0"/></svg>
+          </div>
+          <h3>Ein Ansprechpartner, vom Anruf bis zur Übergabe</h3>
+          <p>Die Person, die Sie am Telefon hatten, kommt auch zum Termin. Kein wechselnder Subunternehmer, der von der Absprache nichts weiß und vor Ort neu verhandeln will.</p>
+        </div>
+        <div class="visit-card reveal d1">
+          <div class="visit-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2M12 21a9 9 0 100-18 9 9 0 000 18"/></svg>
+          </div>
+          <h3>Fester Termin statt Zeitfenster</h3>
+          <p>Wir vereinbaren eine Uhrzeit und melden uns, wenn wir losfahren. Sie warten nicht den halben Tag.</p>
+        </div>
+        <div class="visit-card reveal d2">
+          <div class="visit-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/></svg>
+          </div>
+          <h3>Preis bleibt Preis</h3>
+          <p>Der telefonisch genannte Betrag gilt, solange das Fahrzeug so ist wie beschrieben. Nachverhandeln an der Haustür ist keine Verkaufstaktik von uns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FAHRZEUGE =========================== -->
+  <section id="fahrzeuge">
+    <div class="container">
+      <div class="sec-head reveal">
+        <h2>Wir kaufen fast jedes Fahrzeug</h2>
+        <p>Auch das, was auf Verkaufsportalen liegen bleibt. Ein defektes Auto ist für uns kein Ausschlussgrund, sondern eine andere Kalkulation.</p>
+      </div>
+      <div class="cars">
+        <div class="car reveal">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 16v-3l2-4.5h13l2 4.5v3M3.5 16h17M7 18.7a1.7 1.7 0 100-3.4 1.7 1.7 0 000 3.4M17 18.7a1.7 1.7 0 100-3.4 1.7 1.7 0 000 3.4"/></svg>
+          <h3>Gebrauchtwagen</h3>
+          <p>Vom gepflegten Kleinwagen bis zum Kombi mit hoher Laufleistung.</p>
+        </div>
+        <div class="car reveal d1">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg>
+          <h3>Motor- und Getriebeschaden</h3>
+          <p>Auch wenn nichts mehr anspringt. Reparieren müssen Sie vorher nichts.</p>
+        </div>
+        <div class="car reveal d2">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l7 4v8l-7 4-7-4V8zM12 12v8M5 8l7 4 7-4"/></svg>
+          <h3>Unfallwagen</h3>
+          <p>Vom Parkrempler bis zum wirtschaftlichen Totalschaden nach Gutachten.</p>
+        </div>
+        <div class="car reveal">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16V7h11v9M14 10h4l2 3v3h-2M6.5 19a1.7 1.7 0 100-3.4 1.7 1.7 0 000 3.4M17.5 19a1.7 1.7 0 100-3.4 1.7 1.7 0 000 3.4"/></svg>
+          <h3>Transporter und Nutzfahrzeuge</h3>
+          <p>Auch mit Firmenbeschriftung, Regaleinbau oder abgelaufenem TÜV.</p>
+        </div>
+        <div class="car reveal d1">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17V9l4-3h9v11M16 12h4v5h-2M8 20a1.8 1.8 0 100-3.6 1.8 1.8 0 000 3.6M7 9h5v3H7z"/></svg>
+          <h3>Wohnmobile und Anhänger</h3>
+          <p>Standschäden und Feuchtigkeit im Aufbau schließen einen Kauf nicht aus.</p>
+        </div>
+        <div class="car reveal d2">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9M5.6 18.4L18.4 5.6"/></svg>
+          <h3>Fahrzeuge ohne TÜV</h3>
+          <p>Abgelaufene Hauptuntersuchung, abgemeldet oder seit Jahren stehend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== REGION ============================= -->
+  <section id="region">
+    <div class="container region">
+      <div class="region-text">
+        <div class="sec-head reveal" style="margin-bottom:1.5rem">
+          <h2>Autoankauf in ganz Nordrhein-Westfalen</h2>
+        </div>
+        <p class="reveal">Unser Standort ist Bochum, gefahren wird in das ganze Ruhrgebiet und darüber hinaus. Vom Niederrhein bis ins Sauerland ist die Abholung Teil des Preises und wird nicht nachträglich abgezogen.</p>
+        <p class="reveal d1">Steht Ihre Stadt nicht in der Liste, rufen Sie trotzdem an. In den meisten Fällen lässt sich ein Termin einrichten, oft schon in derselben Woche.</p>
+      </div>
+      <nav class="cities reveal d1" aria-label="Städte in NRW">
+        <a href="#bochum">Bochum</a><a href="#essen">Essen</a><a href="#dortmund">Dortmund</a>
+        <a href="#duisburg">Duisburg</a><a href="#gelsenkirchen">Gelsenkirchen</a><a href="#herne">Herne</a>
+        <a href="#witten">Witten</a><a href="#hagen">Hagen</a><a href="#wuppertal">Wuppertal</a>
+        <a href="#duesseldorf">Düsseldorf</a><a href="#koeln">Köln</a><a href="#muenster">Münster</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ================================ FAQ ============================== -->
+  <section id="faq">
+    <div class="container">
+      <div class="sec-head reveal">
+        <h2>Häufige Fragen zum Autoankauf</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>Kostet die Bewertung wirklich nichts?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="answer"><p>Ja. Sie schicken die Daten, wir nennen einen Preis. Wenn Ihnen der Preis nicht passt, entstehen keine Kosten und Sie hören nichts weiter von uns.</p></div>
+        </details>
+        <details>
+          <summary>Wie schnell bekomme ich eine Antwort?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="answer"><p>In der Regel am selben Tag, meist telefonisch. Anfragen, die spät abends eingehen, beantworten wir am nächsten Vormittag.</p></div>
+        </details>
+        <details>
+          <summary>Kaufen Sie auch Autos ohne TÜV oder mit Motorschaden?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="answer"><p>Ja. Reparieren Sie vorher nichts, das rechnet sich für Sie fast nie. Wichtig ist nur, dass Sie den Schaden bei der Anfrage nennen, damit der Preis von Anfang an stimmt.</p></div>
+        </details>
+        <details>
+          <summary>Was passiert, wenn der Fahrzeugbrief fehlt?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="answer"><p>Ein Verkauf ist auch dann möglich, der Ablauf ist aber ein anderer. Die Zulassungsbescheinigung Teil II kann bei der Zulassungsstelle neu beantragt werden. Sagen Sie es einfach vorher, dann klären wir das gemeinsam.</p></div>
+        </details>
+        <details>
+          <summary>Wie und wann wird bezahlt?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="answer"><p>Bei der Übergabe, bevor das Fahrzeug verladen wird. Bar oder als Sofortüberweisung, die Sie auf Ihrem Konto sehen, solange wir noch vor Ort sind.</p></div>
+        </details>
+        <details>
+          <summary>Muss ich das Fahrzeug vorher abmelden?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="answer"><p>Nein. Auf Wunsch übernehmen wir die Abmeldung und schicken Ihnen die Bestätigung zu, damit Sie Versicherung und Kfz-Steuer beenden können.</p></div>
+        </details>
+        <details>
+          <summary>Kommen Sie auch am Wochenende?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="answer"><p>Samstags in der Regel ja, nach Absprache. Nennen Sie beim Rückruf einfach, wann es Ihnen passt.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FINAL CTA =========================== -->
+  <section id="final">
+    <div class="container">
+      <div class="final-in reveal">
+        <div>
+          <h2>Lassen Sie Ihr Fahrzeug bewerten</h2>
+          <p>Ein paar Angaben genügen, den Rest übernehmen wir. Und wenn Sie es lieber besprechen möchten, geht das genauso.</p>
+        </div>
+        <div class="final-actions">
+          <a class="btn btn-primary btn-full" href="#fahrzeug-bewerten">Fahrzeug bewerten</a>
+          <a class="btn btn-ghost btn-full num" href="tel:+492340000000">0234 000 000</a>
+          <span class="small">Kostenlos und unverbindlich</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-contact">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">A</span>
+          Autoankauf NRW
+        </a>
+        <br>
+        <a class="tel num" href="tel:+492340000000">0234 000 000</a>
+        <address>
+          Musterstraße 00<br>
+          44787 Bochum<br>
+          Montag bis Samstag, 8 bis 20 Uhr
+        </address>
+      </div>
+      <div>
+        <h4>Service</h4>
+        <div class="footer-links">
+          <a href="#ablauf">Ablauf</a>
+          <a href="#papiere">Papiere und Abmeldung</a>
+          <a href="#fahrzeuge">Welche Fahrzeuge</a>
+          <a href="#faq">Häufige Fragen</a>
+          <a href="#fahrzeug-bewerten">Fahrzeug bewerten</a>
+        </div>
+      </div>
+      <div>
+        <h4>Autoankauf in NRW</h4>
+        <div class="footer-cities">
+          <a href="#bochum">Bochum</a><a href="#essen">Essen</a><a href="#dortmund">Dortmund</a>
+          <a href="#duisburg">Duisburg</a><a href="#gelsenkirchen">Gelsenkirchen</a><a href="#herne">Herne</a>
+          <a href="#witten">Witten</a><a href="#hagen">Hagen</a><a href="#wuppertal">Wuppertal</a>
+          <a href="#duesseldorf">Düsseldorf</a><a href="#koeln">Köln</a><a href="#muenster">Münster</a>
+          <a href="#recklinghausen">Recklinghausen</a><a href="#oberhausen">Oberhausen</a><a href="#bottrop">Bottrop</a>
+          <a href="#staedte">Alle Städte anzeigen</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Autoankauf NRW, Bochum</span>
+      <nav aria-label="Rechtliches">
+        <a href="#impressum">Impressum</a>
+        <a href="#datenschutz">Datenschutz</a>
+        <a href="#agb">AGB</a>
+      </nav>
+    </div>
+  </div>
+  <div class="container">
+    <p class="entwurf-note">Entwurf — unverbindliche Vorschau. Texte, Zahlen und Kontaktdaten sind Platzhalter</p>
+  </div>
+</footer>
+
+<div class="sticky-bar" id="sticky-bar">
+  <a class="btn btn-quiet" href="tel:+492340000000">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4.5-2 1.5a12 12 0 006 6l1.5-2L21 14.5v3a2 2 0 01-2.2 2A17 17 0 014 5.2 2 2 0 016 3z"/></svg>
+    Anrufen
+  </a>
+  <a class="btn btn-primary" href="https://wa.me/492340000000">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 01-13.3 7.9L3 21l1.2-4.6A9 9 0 1121 12z"/><path d="M8.8 8.6c.4-.9.7-.8 1.1-.8h.6c.2 0 .5 0 .7.5l.7 1.7c.1.2 0 .4-.1.6l-.4.5c-.1.2-.3.3-.1.6a7 7 0 003.2 2.7c.3.1.5.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.4v.6c0 .5-.5 1.2-1.4 1.3-1 .1-2.5-.1-4.6-1.4a9 9 0 01-3.5-4c-.4-1-.4-1.9 0-2.6z"/></svg>
+    WhatsApp
+  </a>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- Reveal: nur IntersectionObserver, kein Scroll-Listener --------------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function(el){ el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: .15, rootMargin: '0px 0px -40px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* --- Header-Zustand und Sticky-Leiste, beide ohne Scroll-Listener --------- */
+  if ('IntersectionObserver' in window){
+    var header = document.getElementById('header');
+    var sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden','true');
+    sentinel.style.cssText = 'position:absolute;top:0;left:0;height:1px;width:1px;pointer-events:none';
+    document.body.prepend(sentinel);
+    new IntersectionObserver(function(e){
+      header.classList.toggle('is-scrolled', !e[0].isIntersecting);
+    }).observe(sentinel);
+
+    var bar = document.getElementById('sticky-bar');
+    new IntersectionObserver(function(e){
+      bar.classList.toggle('is-visible', !e[0].isIntersecting);
+    }, { threshold: 0 }).observe(document.getElementById('hero'));
+  }
+
+  /* --- Mobiles Menü --------------------------------------------------------- */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobile-menu');
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    if (open){
+      Array.prototype.forEach.call(menu.children, function(a,i){
+        a.style.animationDelay = (i*40) + 'ms';
+      });
+    }
+  });
+  menu.addEventListener('click', function(e){
+    if (e.target.tagName === 'A'){
+      menu.classList.remove('is-open');
+      burger.setAttribute('aria-expanded','false');
+      burger.setAttribute('aria-label','Menü öffnen');
+    }
+  });
+
+  /* --- Mehrstufiges Formular ------------------------------------------------ */
+  var form   = document.getElementById('valuation');
+  var steps  = document.getElementById('steps');
+  var panels = form.querySelectorAll('[data-panel]');
+  var tabs   = steps.querySelectorAll('.step-tab');
+  var done   = document.getElementById('form-done');
+  var recap  = document.getElementById('recap');
+  var card   = document.getElementById('fahrzeug-bewerten');
+  var first  = true;
+
+  function show(step){
+    panels.forEach(function(p){ p.hidden = (p.dataset.panel !== String(step)); });
+    tabs.forEach(function(t){
+      var n = Number(t.dataset.step);
+      t.classList.toggle('is-active', n === step);
+      t.classList.toggle('is-done', n < step);
+    });
+    if (!first){
+      var f = form.querySelector('[data-panel="'+step+'"] .control');
+      if (f){ f.focus({ preventScroll: true }); }
+    }
+    first = false;
+  }
+
+  function valid(step){
+    var fields = form.querySelectorAll('[data-panel="'+step+'"] .control, [data-panel="'+step+'"] input[type=checkbox]');
+    for (var i = 0; i < fields.length; i++){
+      if (!fields[i].checkValidity()){ fields[i].reportValidity(); return false; }
+    }
+    return true;
+  }
+
+  form.addEventListener('click', function(e){
+    var next = e.target.closest('[data-next]');
+    var back = e.target.closest('[data-back]');
+    if (next){
+      var cur = Number(next.closest('[data-panel]').dataset.panel);
+      if (valid(cur)){ show(Number(next.dataset.next)); }
+    } else if (back){
+      show(Number(back.dataset.back));
+    }
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!valid(3)){ return; }
+    var d = new FormData(form);
+
+    /* Bestaetigung wird als Text-Knoten gebaut, nicht als HTML-String */
+    recap.textContent = '';
+    var line1 = document.createElement('div');
+    var strong = document.createElement('strong');
+    strong.textContent = d.get('marke') + ' ' + d.get('modell');
+    line1.appendChild(strong);
+    line1.appendChild(document.createTextNode(
+      ', Erstzulassung ' + d.get('baujahr') + ', ' + d.get('km') + ' km'
+    ));
+    var line2 = document.createElement('div');
+    line2.appendChild(document.createTextNode('Rückruf an '));
+    var tel = document.createElement('span');
+    tel.className = 'num';
+    tel.textContent = d.get('telefon');
+    line2.appendChild(tel);
+    recap.appendChild(line1);
+    recap.appendChild(line2);
+
+    form.hidden = true;
+    steps.hidden = true;
+    done.classList.add('is-visible');
+    card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+  });
+
+  document.getElementById('restart').addEventListener('click', function(){
+    form.reset();
+    form.hidden = false;
+    steps.hidden = false;
+    done.classList.remove('is-visible');
+    first = true;
+    show(1);
+  });
+})();
+</script>
+
+<!--
+================================ PLATZHALTER ==================================
+Alles hier Genannte ist Demo-Material und muss vor dem Livegang durch echte
+Daten des Kunden ersetzt werden.
+
+1. Telefonnummer  0234 000 000  (auch tel: und wa.me Links) — Platzhalter
+2. Adresse        Musterstrasse 00, 44787 Bochum — Platzhalter
+3. Oeffnungszeiten Montag bis Samstag, 8 bis 20 Uhr — Platzhalter, mit Kunden abstimmen
+4. Firmenname / Wortmarke "Autoankauf NRW" und das Logo-Zeichen "A" — Platzhalter
+5. Impressum, Datenschutz, AGB — nur Anker, die Seiten fehlen noch (Pflicht in DE)
+6. Staedteliste — Auswahl zur Demo, die finale Liste kommt aus der SEO-Planung
+7. HERO IMAGE SLOT — im Markup markiert. Der Hero laeuft aktuell rein auf CSS
+   (Raster, Verlauf, ein Leuchten, Korn). Sobald ein echtes dunkles Fahrzeugfoto
+   vorliegt, kommt es dort hinein: AVIF + WebP, drei Breiten, fetchpriority=high.
+8. Das Formular sendet nichts. preventDefault plus lokale Bestaetigung.
+   Backend, Zustellung per E-Mail und Spamschutz fehlen noch.
+9. Schriften ueber Google Fonts nur fuer diese Demo. Produktion: self-hosted WOFF2.
+
+BEWUSST NICHT ENTHALTEN, weil dazu keine Daten vorliegen:
+   Gruendungsjahr, Anzahl gekaufter Fahrzeuge, Sternebewertungen, Kundenstimmen,
+   Auszeichnungen, Bearbeitungszeit in Minuten. Solche Zahlen kommen erst hinein,
+   wenn sie belegbar sind. Erfundene Werte sind ein Rechtsrisiko (UWG) und fallen
+   Verkaeufern schneller auf, als sie nuetzen.
+===============================================================================
+-->
+</body>
+</html>

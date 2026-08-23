@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="de" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Autoankauf Bochum · NRW — Variante C</title>
+<meta name="description" content="Autoankauf in Bochum und in ganz Nordrhein-Westfalen. Kostenlose Bewertung, Abholung, Bezahlung bei Übergabe.">
+<meta name="color-scheme" content="dark">
+
+<!--
+  DEMO-HINWEIS ZU DEN SCHRIFTEN
+  Archivo (Variable, mit wdth-Achse) und JetBrains Mono werden hier nur fuer diesen
+  Entwurf ueber Google Fonts geladen, damit die Datei per Doppelklick ohne lokale
+  Assets funktioniert. In der Produktion werden beide als lokale WOFF2-Dateien
+  selbst gehostet und per <link rel="preload" as="font" type="font/woff2" crossorigin>
+  eingebunden. Externe Requests im Live-Betrieb: null.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   VARIANTE C — "DERB LOKAL"
+   Orange ist Grundfarbe, nicht Akzent. Rhythmus Kohle - Orange - Kohle - Orange.
+   Radius 0 ueberall. Keine Schatten. Sichtbare Rasterlinien.
+
+   Kontraste geprueft per Skript (WCAG 2.1 relative luminance), nicht geschaetzt:
+     #0B0B0C auf #FF6A00 .... 6.85:1   Text auf Orange
+     #412009 auf #FF6A00 .... 5.10:1   Sekundaertext auf Orange
+     #682F07 auf #FF6A00 .... 3.66:1   bedeutungstragende Linie auf Orange
+     #F5F6F7 auf #0B0B0C .... 18.18:1
+     #A6ACB6 auf #0B0B0C .... 8.62:1
+     #FF9142 auf #0B0B0C .... 8.79:1
+     #6E747E auf #1E2025 .... 3.46:1   Feldrahmen
+   WEISSER TEXT AUF ORANGE IST VERBOTEN (2.87:1). Kommt hier nirgends vor.
+   ========================================================================== */
+
+:root{
+  --bg:#0B0B0C;
+  --surface-1:#121316;
+  --surface-2:#17181C;
+  --surface-3:#1E2025;
+
+  --line:#2A2C32;
+  --line-strong:#3A3D45;
+  --line-input:#6E747E;
+
+  --text:#F5F6F7;
+  --text-muted:#A6ACB6;
+  --text-faint:#7A808A;
+
+  --accent:#FF6A00;
+  --accent-hover:#FF823A;
+  --accent-active:#E85E00;
+  --accent-text:#FF9142;
+
+  --ink:#0B0B0C;
+  --ink-2:#412009;
+  --ink-line:#682F07;
+  --ink-line-soft:#C25203;
+  --focus:#FF9142;
+
+  --font-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+
+  --ease-out:cubic-bezier(.2,0,0,1);
+  --ease-soft:cubic-bezier(.32,.72,0,1);
+
+  --pad-x:clamp(1.25rem,4vw,3.5rem);
+  --pad-y:clamp(4rem,8.5vw,8.5rem);
+  --maxw:1360px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html,body{max-width:100%;overflow-x:clip}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--font-mono);
+  font-size:clamp(1rem,.972rem+.12vw,1.0625rem);line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:64px;
+}
+@media (min-width:768px){body{padding-bottom:0}}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:var(--accent);color:var(--ink)}
+
+/* --- Deutsche Typo-Absicherung: Woerter werden gestaucht, nicht getrennt --- */
+h1,h2,h3,h4{
+  font-family:var(--font-display);margin:0;text-transform:uppercase;
+  font-weight:900;letter-spacing:-.035em;line-height:.9;
+  overflow-wrap:break-word;hyphens:none;text-wrap:balance;
+}
+h1{font-stretch:82%}
+h2{font-stretch:86%}
+h3{font-stretch:96%;font-weight:800;letter-spacing:-.018em;line-height:1.08}
+h4{font-stretch:100%;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+@media (max-width:430px){h1{font-stretch:70%}h2{font-stretch:76%}h3{font-stretch:88%}}
+p{margin:0;text-wrap:pretty;overflow-wrap:break-word;hyphens:auto}
+input,select,textarea,.num,.mono{font-variant-numeric:tabular-nums}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad-x)}
+.sec{padding-block:var(--pad-y);position:relative}
+.sec--coal{background:var(--bg)}
+.sec--coal2{background:var(--surface-1)}
+.sec--orange{background:var(--accent);color:var(--ink)}
+.sec--orange h1,.sec--orange h2,.sec--orange h3,.sec--orange h4{color:var(--ink)}
+
+.eyebrow{
+  font-family:var(--font-mono);font-size:.6875rem;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--accent-text);
+  display:flex;align-items:center;gap:.85rem;margin:0 0 clamp(1.5rem,3vw,2.25rem)
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line-strong)}
+.sec--orange .eyebrow{color:var(--ink-2)}
+.sec--orange .eyebrow::after{background:var(--ink-line)}
+
+.lead{font-size:clamp(1.0625rem,1rem+.34vw,1.3125rem);line-height:1.5;color:var(--text-muted);max-width:54ch}
+.sec--orange .lead{color:var(--ink-2)}
+.h1{font-size:clamp(3rem,13.5vw,9rem)}
+.h2{font-size:clamp(2.1rem,7.4vw,5rem)}
+.h3{font-size:clamp(1.125rem,.985rem+.6vw,1.5rem)}
+.tag{font-family:var(--font-mono);font-size:.6875rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint)}
+.sec--orange .tag{color:var(--ink-2)}
+
+/* --- Buttons: Text auf Orange ist immer fast schwarz ---------------------- */
+.btn{
+  --btn-bg:var(--accent);--btn-fg:var(--ink);--btn-bd:var(--accent);
+  display:inline-flex;align-items:center;justify-content:center;gap:.65rem;
+  min-height:58px;padding:0 clamp(1.25rem,3vw,2.1rem);
+  border:2px solid var(--btn-bd);background:var(--btn-bg);color:var(--btn-fg);
+  border-radius:0;cursor:pointer;text-decoration:none;
+  font-family:var(--font-display);font-weight:800;font-size:.9375rem;
+  font-stretch:96%;letter-spacing:.055em;text-transform:uppercase;text-align:center;
+  transition:background-color 160ms var(--ease-out),color 160ms var(--ease-out),
+             border-color 160ms var(--ease-out),transform 110ms var(--ease-out);
+}
+.btn:hover{--btn-bg:var(--accent-hover);--btn-bd:var(--accent-hover)}
+.btn:active{--btn-bg:var(--accent-active);--btn-bd:var(--accent-active);transform:scale(.985)}
+.btn--ghost{--btn-bg:transparent;--btn-fg:var(--text);--btn-bd:var(--line-strong)}
+.btn--ghost:hover{--btn-bg:var(--accent);--btn-fg:var(--ink);--btn-bd:var(--accent)}
+.btn--ink{--btn-bg:var(--ink);--btn-fg:var(--accent);--btn-bd:var(--ink)}
+.btn--ink:hover{--btn-bg:#1C1D21;--btn-fg:var(--accent-hover);--btn-bd:#1C1D21}
+.btn--inkghost{--btn-bg:transparent;--btn-fg:var(--ink);--btn-bd:var(--ink)}
+.btn--inkghost:hover{--btn-bg:var(--ink);--btn-fg:var(--accent);--btn-bd:var(--ink)}
+.btn--block{width:100%}
+:where(a,button,summary,input,select,textarea):focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.sec--orange :where(a,button,summary,input,select,textarea):focus-visible{outline-color:var(--ink)}
+
+/* --- Nummernschild als Grafikelement -------------------------------------- */
+.plate{
+  display:inline-flex;align-items:stretch;border:2px solid #0B0B0C;background:#F2F3F4;
+  color:#0B0B0C;font-family:var(--font-mono);font-weight:700;letter-spacing:.04em;
+  line-height:1;overflow:hidden;font-size:clamp(1rem,.86rem+.62vw,1.5rem);
+}
+.plate__eu{
+  background:#0B2A6B;color:#FFD400;display:flex;flex-direction:column;align-items:center;
+  justify-content:space-between;padding:.42em .3em;font-size:.55em;letter-spacing:0;gap:.35em
+}
+.plate__stars{font-size:.9em;line-height:1}
+.plate__no{display:flex;align-items:center;gap:.5em;padding:.5em .7em}
+.plate__seal{border:1px solid #0B0B0C;padding:.08em .22em;font-size:.5em;letter-spacing:.04em}
+.sec--orange .plate{border-color:var(--ink)}
+
+/* --- Raster mit sichtbaren Linien ----------------------------------------- */
+.rulegrid{display:grid;border-top:1px solid var(--line-strong);border-left:1px solid var(--line-strong)}
+.rulegrid>*{border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong)}
+.sec--orange .rulegrid{border-color:var(--ink-line)}
+.sec--orange .rulegrid>*{border-color:var(--ink-line)}
+
+/* --- Header ---------------------------------------------------------------- */
+.hdr{
+  position:sticky;top:0;z-index:50;background:rgba(11,11,12,.9);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-strong);
+}
+.hdr__in{display:flex;align-items:center;gap:1.25rem;min-height:68px}
+.brand{display:flex;align-items:baseline;gap:.5rem;text-decoration:none;font-family:var(--font-display);
+  font-weight:900;font-stretch:78%;letter-spacing:-.02em;text-transform:uppercase;font-size:1.125rem;white-space:nowrap}
+.brand b{color:var(--accent-text);font-weight:900}
+.hdr__nav{display:none;margin-left:auto;gap:1.75rem}
+.hdr__nav a{font-size:.6875rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-muted);text-decoration:none;transition:color 160ms var(--ease-out)}
+.hdr__nav a:hover{color:var(--accent-text)}
+.hdr__tel{margin-left:auto;font-weight:700;letter-spacing:.04em;text-decoration:none;white-space:nowrap;font-size:.9375rem}
+.hdr__cta{display:none}
+@media (min-width:900px){
+  .hdr__nav{display:flex}
+  .hdr__tel{margin-left:0;padding-left:1.75rem;border-left:1px solid var(--line-strong)}
+  .hdr__cta{display:inline-flex;min-height:44px;font-size:.8125rem}
+}
+
+/* --- Hero ------------------------------------------------------------------ */
+.hero{position:relative;overflow:hidden;background:var(--bg);
+  padding-block:clamp(3rem,7vw,5.5rem) clamp(2.5rem,6vw,4.5rem)}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(62% 46% at 8% 92%,rgba(255,106,0,.20),transparent 68%),
+    linear-gradient(180deg,rgba(255,106,0,.05),transparent 34%);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:calc(100% / 6) 100%;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 40%,#000 78%,transparent);
+  mask-image:linear-gradient(180deg,transparent,#000 40%,#000 78%,transparent);
+}
+.hero__in{position:relative;z-index:1}
+.hero h1{margin-block:.15em .5em}
+.hero h1 .o{color:var(--accent)}
+.hero h1 .out{color:transparent;-webkit-text-stroke:2px var(--line-strong)}
+.hero__grid{display:grid;gap:clamp(2rem,4vw,3rem)}
+@media (min-width:1000px){.hero__grid{grid-template-columns:minmax(0,1fr) 340px;align-items:end}}
+.hero__cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:clamp(1.75rem,3.5vw,2.5rem)}
+.hero__cta .btn{flex:1 1 240px}
+.hero__side{display:flex;flex-direction:column;gap:1.25rem;align-items:flex-start}
+.hero__meta{grid-template-columns:1fr;width:100%;margin-top:clamp(2.5rem,5vw,3.5rem)}
+@media (min-width:640px){.hero__meta{grid-template-columns:repeat(3,1fr)}}
+.hero__meta>div{padding:1rem 1.1rem}
+.hero__meta dt{font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint);margin:0 0 .45rem}
+.hero__meta dd{margin:0;font-family:var(--font-display);font-weight:800;font-stretch:88%;
+  text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(1rem,.93rem+.3vw,1.1875rem)}
+
+/* --- Laufband -------------------------------------------------------------- */
+.bandwrap{overflow:hidden;background:var(--bg)}
+.band{
+  background:var(--accent);color:var(--ink);border-block:2px solid var(--ink);
+  transform:rotate(-1.4deg) scale(1.045);
+}
+.marquee{display:flex;overflow:hidden;padding-block:.85rem;-webkit-user-select:none;user-select:none}
+.marquee__track{display:flex;flex:0 0 auto;gap:0;animation:marq 46s linear infinite;will-change:transform}
+.marquee:hover .marquee__track{animation-play-state:paused}
+.marquee__track span{
+  flex:0 0 auto;padding-inline:1.15rem;font-family:var(--font-display);font-weight:900;
+  font-stretch:80%;text-transform:uppercase;letter-spacing:-.02em;
+  font-size:clamp(1.25rem,3.4vw,2rem);white-space:nowrap;color:var(--ink)}
+.marquee__track span::after{content:"·";margin-left:1.15rem;color:var(--ink-line)}
+@keyframes marq{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+/* --- USP -------------------------------------------------------------------- */
+.usp{grid-template-columns:1fr}
+@media (min-width:560px){.usp{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.usp{grid-template-columns:repeat(4,1fr)}}
+.usp>div{padding:clamp(1.5rem,3vw,2.25rem)}
+.usp .no{font-family:var(--font-mono);font-size:.6875rem;font-weight:700;letter-spacing:.2em;color:var(--accent-text)}
+.usp h3{margin:1.75rem 0 .6rem}
+.usp p{color:var(--text-muted);font-size:.9375rem;line-height:1.55}
+
+/* --- Formular ---------------------------------------------------------------- */
+.formgrid{display:grid;gap:clamp(2rem,4vw,3.5rem)}
+@media (min-width:1040px){.formgrid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:start}}
+.formcard{background:var(--bg);border:2px solid var(--ink);color:var(--text);padding:clamp(1.5rem,3.5vw,2.5rem)}
+.formcard h3{color:var(--text)}
+.fields{display:grid;gap:1rem;grid-template-columns:1fr}
+@media (min-width:560px){.fields{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:.45rem;min-width:0}
+.f--full{grid-column:1/-1}
+.f label{font-size:.625rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted)}
+.f label .req{color:var(--accent-text)}
+.f input,.f select,.f textarea{
+  width:100%;min-height:56px;padding:0 1rem;background:var(--surface-3);color:var(--text);
+  border:1px solid var(--line-input);border-radius:0;font-family:var(--font-mono);
+  font-size:1rem;transition:border-color 160ms var(--ease-out),box-shadow 160ms var(--ease-out);
+}
+.f textarea{min-height:110px;padding:.85rem 1rem;line-height:1.5;resize:vertical}
+.f select{appearance:none;-webkit-appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,var(--accent) 50%),linear-gradient(135deg,var(--accent) 50%,transparent 50%);
+  background-position:calc(100% - 20px) calc(50% + 2px),calc(100% - 14px) calc(50% + 2px);
+  background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:2.75rem}
+.f input::placeholder,.f textarea::placeholder{color:var(--text-faint)}
+.f input:focus,.f select:focus,.f textarea:focus{
+  border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);outline-offset:2px}
+.check{grid-column:1/-1;display:flex;gap:.8rem;align-items:flex-start;font-size:.8125rem;color:var(--text-muted);line-height:1.5}
+.check input{width:22px;height:22px;min-height:0;flex:0 0 auto;margin-top:.15rem;accent-color:var(--accent)}
+.formnote{grid-column:1/-1;font-size:.75rem;color:var(--text-faint);line-height:1.5}
+.formok{
+  grid-column:1/-1;display:none;border:2px solid var(--accent);background:rgba(255,106,0,.1);
+  padding:1rem 1.15rem;color:var(--text);font-size:.9375rem;line-height:1.5;font-family:var(--font-mono)}
+.formok.is-on{display:block}
+.formok b{display:block;font-family:var(--font-display);font-weight:800;font-stretch:92%;
+  text-transform:uppercase;letter-spacing:-.01em;font-size:1.0625rem;margin-bottom:.3rem;color:var(--accent-text)}
+.fsidelist{display:grid;margin-top:clamp(1.75rem,3vw,2.5rem)}
+.fsidelist>div{padding:.9rem 0;border-bottom:1px solid var(--ink-line);display:flex;gap:1rem;align-items:baseline;flex-wrap:wrap}
+.fsidelist>div:first-child{border-top:1px solid var(--ink-line)}
+.fsidelist .k{font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);flex:0 0 5.5rem}
+.fsidelist .v{font-family:var(--font-display);font-weight:800;font-stretch:92%;text-transform:uppercase;
+  letter-spacing:-.012em;font-size:clamp(.9375rem,.88rem+.25vw,1.125rem)}
+
+/* --- Schritte ----------------------------------------------------------------- */
+.steps{display:grid;gap:0;margin-top:clamp(2rem,4vw,3rem);border-top:1px solid var(--line-strong)}
+.step{display:grid;grid-template-columns:1fr;gap:.5rem 2rem;padding-block:clamp(1.75rem,4vw,3rem);
+  border-bottom:1px solid var(--line-strong);align-items:center}
+@media (min-width:760px){.step{grid-template-columns:minmax(0,.42fr) minmax(0,1fr) 8rem;gap:2.5rem}}
+.step__no{
+  font-family:var(--font-display);font-weight:900;font-stretch:68%;line-height:.8;
+  letter-spacing:-.05em;font-size:clamp(4.25rem,18vw,12rem);
+  color:transparent;-webkit-text-stroke:2px var(--line-strong);
+  transition:color 300ms var(--ease-out),-webkit-text-stroke-color 300ms var(--ease-out)}
+.step:hover .step__no,.step:focus-within .step__no{-webkit-text-stroke-color:var(--accent);color:rgba(255,106,0,.08)}
+.step p{color:var(--text-muted);margin-top:.7rem;max-width:46ch}
+.step__tag{font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint);text-align:left}
+@media (min-width:760px){.step__tag{text-align:right}}
+
+/* --- Was wir kaufen (orange) ---------------------------------------------------- */
+.buy{grid-template-columns:1fr;margin-top:clamp(2rem,4vw,3rem)}
+@media (min-width:820px){.buy{grid-template-columns:repeat(3,1fr)}}
+.buy>div{padding:clamp(1.5rem,3vw,2.25rem);min-height:clamp(200px,26vw,300px);
+  display:flex;flex-direction:column;justify-content:space-between;gap:2rem;
+  transition:background-color 200ms var(--ease-out)}
+.buy>div:hover{background:rgba(11,11,12,.07)}
+.buy .no{font-family:var(--font-mono);font-size:.6875rem;font-weight:700;letter-spacing:.2em;color:var(--ink-2)}
+.buy h3{font-size:clamp(1.375rem,1.05rem+1.35vw,2.125rem)}
+.buy p{color:var(--ink-2);font-size:.9375rem;line-height:1.5;margin-top:.65rem}
+
+/* --- Region NRW ------------------------------------------------------------------ */
+.nrw{display:grid;gap:clamp(2rem,4vw,3.5rem);align-items:center}
+@media (min-width:900px){.nrw{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}}
+.nrw__word{
+  font-family:var(--font-display);font-weight:900;font-stretch:62%;letter-spacing:-.055em;
+  line-height:.78;font-size:clamp(5.5rem,25vw,19rem);color:var(--accent);margin:0}
+.nrw__word span{display:block;color:transparent;-webkit-text-stroke:2px var(--line-strong);
+  font-size:.2em;letter-spacing:-.02em;font-stretch:74%;margin-top:.4em;line-height:1}
+.nrw__map{width:100%;height:auto}
+.nrw__map .shape{fill:none;stroke:var(--line-strong);stroke-width:2}
+.nrw__map .hatch{stroke:var(--line);stroke-width:1;fill:none}
+.nrw__map .pin{fill:var(--accent)}
+.nrw__map .pinring{fill:none;stroke:var(--accent);stroke-width:2}
+.nrw__map text{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;fill:var(--text-muted)}
+.nrw__map text.hi{fill:var(--accent-text);font-weight:700}
+.cities{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin-top:clamp(2.5rem,5vw,4rem)}
+.cities a{
+  padding:.9rem .25rem;text-decoration:none;font-family:var(--font-display);font-weight:800;
+  font-stretch:88%;text-transform:uppercase;letter-spacing:-.012em;font-size:1rem;
+  border-bottom:1px solid var(--line);color:var(--text);
+  display:flex;align-items:center;gap:.5rem;transition:color 160ms var(--ease-out)}
+.cities a::before{content:"";width:8px;height:8px;background:var(--line-strong);flex:0 0 auto;
+  transition:background-color 160ms var(--ease-out)}
+.cities a:hover{color:var(--accent-text)}
+.cities a:hover::before{background:var(--accent)}
+
+/* --- FAQ ---------------------------------------------------------------------------- */
+.faq{border-top:1px solid var(--line-strong);margin-top:clamp(2rem,4vw,3rem)}
+.faq details{border-bottom:1px solid var(--line-strong)}
+.faq summary{
+  list-style:none;cursor:pointer;min-height:72px;display:flex;align-items:center;gap:1rem;
+  padding-block:1.1rem;font-family:var(--font-display);font-weight:800;font-stretch:92%;
+  text-transform:uppercase;letter-spacing:-.018em;line-height:1.15;
+  font-size:clamp(1rem,.93rem+.36vw,1.3125rem)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";margin-left:auto;flex:0 0 auto;font-family:var(--font-mono);font-weight:400;
+  font-size:1.75rem;line-height:1;color:var(--accent);
+  transition:transform 220ms var(--ease-out)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .a{padding:0 0 1.6rem;color:var(--text-muted);max-width:70ch;font-size:.9375rem;line-height:1.65}
+.faq .idx{font-family:var(--font-mono);font-size:.6875rem;font-weight:700;letter-spacing:.18em;
+  color:var(--text-faint);flex:0 0 2.25rem}
+
+/* --- Schluss-CTA ------------------------------------------------------------------- */
+.final{position:relative;overflow:hidden}
+.final::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(90deg,var(--ink-line-soft) 1px,transparent 1px);
+  background-size:calc(100% / 8) 100%}
+.final__in{position:relative}
+.final__cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:clamp(1.75rem,3.5vw,2.5rem)}
+.final__cta .btn{flex:1 1 250px}
+
+/* --- Footer -------------------------------------------------------------------------- */
+.ft{background:var(--surface-1);border-top:1px solid var(--line-strong);padding-block:clamp(3rem,6vw,5rem) 1.5rem}
+.ft__top{display:grid;gap:clamp(2rem,4vw,3rem)}
+@media (min-width:820px){.ft__top{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}}
+.ft__tel{font-family:var(--font-display);font-weight:900;font-stretch:82%;letter-spacing:-.03em;
+  text-transform:uppercase;font-size:clamp(2rem,6vw,3.25rem);color:var(--accent-text);
+  text-decoration:none;display:inline-block;margin-block:.35em .25em;line-height:1}
+.ft__addr{color:var(--text-muted);font-size:.9375rem;line-height:1.6;font-style:normal}
+.ft__links{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:0}
+.ft__links a{padding:.65rem .25rem;font-size:.8125rem;color:var(--text-muted);text-decoration:none;
+  border-bottom:1px solid var(--line);transition:color 160ms var(--ease-out)}
+.ft__links a:hover{color:var(--accent-text)}
+.ft__legal{margin-top:clamp(2.5rem,5vw,4rem);padding-top:1.5rem;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:.75rem 1.75rem;align-items:center;
+  font-size:.75rem;color:var(--text-faint)}
+.ft__legal a{text-decoration:none;color:var(--text-faint)}
+.ft__legal a:hover{color:var(--accent-text)}
+.ft__legal .sp{margin-left:auto}
+
+/* --- Mobile Sticky-Leiste --------------------------------------------------------------- */
+.stick{
+  position:fixed;left:0;right:0;bottom:0;z-index:55;display:grid;grid-template-columns:1fr 1fr 1fr;
+  border-top:2px solid var(--ink);
+  transform:translateY(100%);transition:transform 260ms var(--ease-out);
+  padding-bottom:env(safe-area-inset-bottom)}
+.stick.is-on{transform:translateY(0)}
+.stick a{min-height:64px;display:flex;align-items:center;justify-content:center;gap:.5rem;
+  text-decoration:none;font-family:var(--font-display);font-weight:800;font-stretch:94%;
+  text-transform:uppercase;letter-spacing:.05em;font-size:.875rem}
+.stick .a1{background:var(--surface-3);color:var(--text);border-right:1px solid var(--line-strong)}
+.stick .a3{background:var(--surface-3);color:var(--text);border-right:1px solid var(--line-strong)}
+.stick .a2{background:var(--accent);color:var(--ink)}
+@media (max-width:400px){.stick a{font-size:.8125rem;letter-spacing:.03em}}
+@media (min-width:768px){.stick{display:none}}
+
+/* --- Korn ------------------------------------------------------------------------------- */
+.grain{
+  position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.055;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>")}
+
+/* --- Reveal: Startzustand nur wenn JS laeuft ---------------------------------------------- */
+.js .reveal{opacity:0;transform:translateY(22px);
+  transition:opacity 520ms var(--ease-soft),transform 520ms var(--ease-soft)}
+.js .reveal.is-in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important}
+  .marquee__track{animation:none !important;transform:none !important}
+  .js .reveal{opacity:1 !important;transform:none !important}
+  .stick{transform:translateY(0)}
+}
+
+.entwurf-note{border-top:1px solid rgba(255,255,255,.10);margin-top:8px;padding:14px 0 0;
+  font-size:.8125rem;line-height:1.5;opacity:.62}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="#top">BILAL <b>AUTOANKAUF</b></a>
+    <nav class="hdr__nav" aria-label="Hauptnavigation">
+      <a href="#bewerten">Bewerten</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#fahrzeuge">Fahrzeuge</a>
+      <a href="#region">Region</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="hdr__tel mono" href="tel:+492340000000">0234 000 000</a>
+    <a class="btn hdr__cta" href="#bewerten">Fahrzeug bewerten</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- =================== S1 HERO =================== -->
+  <!-- HERO IMAGE SLOT -->
+  <!-- Platz fuer das spaetere Hero-Foto: dunkles Fahrzeug in Dreiviertelansicht,
+       links freie dunkle Flaeche fuer den Text. Bis dahin traegt die Typografie
+       den Screen allein: Verlaeufe, Rasterlinien, Korn. Kein Stockfoto. -->
+  <section class="hero" aria-labelledby="h-hero">
+    <div class="wrap hero__in">
+      <p class="eyebrow">Autoankauf Bochum · Nordrhein-Westfalen</p>
+
+      <div class="hero__grid">
+        <div>
+          <h1 class="h1" id="h-hero">Wir kaufen<br><span class="o">Ihr Auto</span><br><span class="out">Heute</span></h1>
+          <p class="lead">Bewertung kostenlos, Abholung in ganz NRW, Bezahlung bei Übergabe. Mit Mängeln, mit Motorschaden, ohne TÜV.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#bewerten">Fahrzeug bewerten</a>
+            <a class="btn btn--ghost" href="tel:+492340000000">0234 000 000 anrufen</a>
+          </div>
+        </div>
+
+        <div class="hero__side">
+          <span class="tag">Standort</span>
+          <span class="plate" aria-label="Kennzeichen Bochum, Grafikelement B O A K 250">
+            <span class="plate__eu" aria-hidden="true"><span class="plate__stars">★</span><span>D</span></span>
+            <span class="plate__no">BO<span class="plate__seal">AK</span>250</span>
+          </span>
+          <p class="tag" style="letter-spacing:.14em;line-height:1.7">Ankauf vor Ort in Bochum<br>Abholung in ganz NRW</p>
+        </div>
+      </div>
+
+      <dl class="hero__meta rulegrid">
+        <div><dt>Marken</dt><dd>Alle Hersteller</dd></div>
+        <div><dt>Zustand</dt><dd>Auch defekt</dd></div>
+        <div><dt>Abholung</dt><dd>Kostenlos</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- =================== S2 LAUFBAND (ORANGE) =================== -->
+  <div class="bandwrap" aria-hidden="true">
+    <div class="band">
+      <div class="marquee">
+        <div class="marquee__track">
+          <span>Bochum</span><span>Dortmund</span><span>Essen</span><span>Duisburg</span><span>Gelsenkirchen</span><span>Herne</span><span>Witten</span><span>Hagen</span><span>Wuppertal</span><span>Düsseldorf</span><span>Köln</span><span>Münster</span><span>Bielefeld</span><span>Oberhausen</span><span>Recklinghausen</span><span>Hamm</span><span>Bochum</span><span>Dortmund</span><span>Essen</span><span>Duisburg</span><span>Gelsenkirchen</span><span>Herne</span><span>Witten</span><span>Hagen</span><span>Wuppertal</span><span>Düsseldorf</span><span>Köln</span><span>Münster</span><span>Bielefeld</span><span>Oberhausen</span><span>Recklinghausen</span><span>Hamm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== S3 USP (KOHLE) =================== -->
+  <section class="sec sec--coal">
+    <div class="wrap">
+      <div class="usp rulegrid reveal">
+        <div>
+          <span class="no">01</span>
+          <h3 class="h3">Kostenlose Bewertung</h3>
+          <p>Fahrzeugdaten senden, Preis erhalten. Ohne Termin, ohne Gebühr.</p>
+        </div>
+        <div>
+          <span class="no">02</span>
+          <h3 class="h3">Abholung in ganz NRW</h3>
+          <p>Wir kommen zu Ihnen. Auch wenn das Fahrzeug nicht mehr fährt.</p>
+        </div>
+        <div>
+          <span class="no">03</span>
+          <h3 class="h3">Bezahlung bei Übergabe</h3>
+          <p>Bar oder per Sofortüberweisung, bevor das Auto auf den Hänger geht.</p>
+        </div>
+        <div>
+          <span class="no">04</span>
+          <h3 class="h3">Abmeldung inklusive</h3>
+          <p>Kaufvertrag und Abmeldung übernehmen wir. Sie unterschreiben und sind raus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== S4 FORMULAR (ORANGE) =================== -->
+  <section class="sec sec--orange" id="bewerten" aria-labelledby="h-form">
+    <div class="wrap">
+      <div class="formgrid">
+        <div class="reveal">
+          <p class="eyebrow">Bewertung anfragen</p>
+          <h2 class="h2" id="h-form">Was ist Ihr Fahrzeug wert</h2>
+          <p class="lead" style="margin-top:1.25rem">Fünf Angaben reichen für ein Angebot. Kein Konto, keine versteckten Kosten.</p>
+
+          <div class="fsidelist">
+            <div><span class="k">Ankauf</span><span class="v">Pkw · Transporter · Wohnmobile</span></div>
+            <div><span class="k">Zustand</span><span class="v">Unfall · Motorschaden · ohne TÜV</span></div>
+            <div><span class="k">Zahlung</span><span class="v">Bar oder sofort überwiesen</span></div>
+            <div><span class="k">Region</span><span class="v">Bochum und ganz NRW</span></div>
+          </div>
+        </div>
+
+        <div class="formcard reveal">
+          <h3 class="h3" style="margin-bottom:1.5rem">Fahrzeugdaten</h3>
+          <form class="fields" id="bewertung">
+            <div class="f">
+              <label for="marke">Marke <span class="req" aria-hidden="true">*</span></label>
+              <input id="marke" name="marke" type="text" autocomplete="off" required placeholder="z. B. Volkswagen">
+            </div>
+            <div class="f">
+              <label for="modell">Modell <span class="req" aria-hidden="true">*</span></label>
+              <input id="modell" name="modell" type="text" autocomplete="off" required placeholder="z. B. Passat Variant">
+            </div>
+            <div class="f">
+              <label for="ez">Erstzulassung <span class="req" aria-hidden="true">*</span></label>
+              <input id="ez" name="ez" type="text" inputmode="numeric" required placeholder="MM/JJJJ">
+            </div>
+            <div class="f">
+              <label for="km">Kilometerstand <span class="req" aria-hidden="true">*</span></label>
+              <input id="km" name="km" type="text" inputmode="numeric" pattern="[0-9 .]{1,9}" required placeholder="z. B. 185000">
+            </div>
+            <div class="f f--full">
+              <label for="zustand">Zustand <span class="req" aria-hidden="true">*</span></label>
+              <select id="zustand" name="zustand" required>
+                <option value="" selected disabled>Bitte wählen</option>
+                <option>Fahrbereit, ohne größere Mängel</option>
+                <option>Fahrbereit, mit Mängeln</option>
+                <option>Unfallschaden</option>
+                <option>Motor- oder Getriebeschaden</option>
+                <option>Nicht fahrbereit</option>
+              </select>
+            </div>
+            <div class="f">
+              <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Vor- und Nachname">
+            </div>
+            <div class="f">
+              <label for="tel">Telefon <span class="req" aria-hidden="true">*</span></label>
+              <input id="tel" name="tel" type="tel" autocomplete="tel" required placeholder="0234 000 000">
+            </div>
+            <div class="f f--full">
+              <label for="plz">PLZ oder Ort <span class="req" aria-hidden="true">*</span></label>
+              <input id="plz" name="plz" type="text" autocomplete="postal-code" required placeholder="44787 Bochum">
+            </div>
+            <div class="f f--full">
+              <label for="nachricht">Nachricht <span class="tag" style="letter-spacing:.14em">optional</span></label>
+              <textarea id="nachricht" name="nachricht" placeholder="Ausstattung, Schäden, Wunschtermin"></textarea>
+            </div>
+
+            <label class="check" for="dsgvo">
+              <input id="dsgvo" name="dsgvo" type="checkbox" required>
+              <span>Ich bin mit der Verarbeitung meiner Daten zur Bearbeitung der Anfrage einverstanden. Datenschutzerklärung gelesen.</span>
+            </label>
+
+            <div class="f--full">
+              <button class="btn btn--block" type="submit">Bewertung anfordern</button>
+            </div>
+
+            <p class="formnote">Felder mit <span aria-hidden="true">*</span> sind Pflichtfelder. Ihre Daten werden ausschließlich für die Bearbeitung dieser Anfrage verwendet und nicht weitergegeben.</p>
+
+            <div class="formok" id="ok" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== S5 SCHRITTE (KOHLE) =================== -->
+  <section class="sec sec--coal" id="ablauf" aria-labelledby="h-steps">
+    <div class="wrap">
+      <p class="eyebrow">Ablauf</p>
+      <h2 class="h2" id="h-steps">In drei Schritten<br>verkauft</h2>
+
+      <div class="steps">
+        <article class="step reveal">
+          <div class="step__no" aria-hidden="true">01</div>
+          <div>
+            <h3 class="h3">Fahrzeugdaten senden</h3>
+            <p>Formular ausfüllen oder anrufen. Fotos helfen, sind aber kein Muss.</p>
+          </div>
+          <div class="step__tag">Online oder Telefon</div>
+        </article>
+        <article class="step reveal">
+          <div class="step__no" aria-hidden="true">02</div>
+          <div>
+            <h3 class="h3">Festpreis erhalten</h3>
+            <p>Sie bekommen einen konkreten Preis, keine Spanne. Der Preis gilt so, wie er genannt wurde.</p>
+          </div>
+          <div class="step__tag">Ohne Verhandlung vor Ort</div>
+        </article>
+        <article class="step reveal">
+          <div class="step__no" aria-hidden="true">03</div>
+          <div>
+            <h3 class="h3">Abholung und Bezahlung</h3>
+            <p>Termin, Kaufvertrag, Geld bei Übergabe. Die Abmeldung übernehmen wir.</p>
+          </div>
+          <div class="step__tag">Kostenlos in ganz NRW</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== S6 WAS WIR KAUFEN (ORANGE) =================== -->
+  <section class="sec sec--orange" id="fahrzeuge" aria-labelledby="h-buy">
+    <div class="wrap">
+      <p class="eyebrow">Ankauf</p>
+      <h2 class="h2" id="h-buy">Wir kaufen<br>jedes Fahrzeug</h2>
+
+      <div class="buy rulegrid reveal">
+        <div>
+          <span class="no">TYP 01</span>
+          <div>
+            <h3>Gebrauchtwagen</h3>
+            <p>Pkw jeden Alters und jeder Marke, mit oder ohne TÜV, auch mit hoher Laufleistung.</p>
+          </div>
+        </div>
+        <div>
+          <span class="no">TYP 02</span>
+          <div>
+            <h3>Unfall und Motorschaden</h3>
+            <p>Blechschaden, Getriebe defekt, Motor fest. Wir holen das Fahrzeug auch stehend ab.</p>
+          </div>
+        </div>
+        <div>
+          <span class="no">TYP 03</span>
+          <div>
+            <h3>Transporter und Wohnmobile</h3>
+            <p>Kastenwagen, Pritschen, Wohnmobile und Firmenfahrzeuge, einzeln oder als Flotte.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== S7 REGION (KOHLE) =================== -->
+  <section class="sec sec--coal2" id="region" aria-labelledby="h-region">
+    <div class="wrap">
+      <p class="eyebrow">Einsatzgebiet</p>
+
+      <div class="nrw">
+        <div>
+          <h2 class="nrw__word" id="h-region">NRW<span>Nordrhein-Westfalen</span></h2>
+          <p class="lead" style="margin-top:1.5rem">Sitz in Bochum, Abholung im gesamten Land. Im Ruhrgebiet meist am selben Tag, im übrigen NRW nach Absprache.</p>
+        </div>
+
+        <!-- Stilisierte Landkarte, rein grafisch. Fuer die Produktion wird eine
+             massstabsgetreue NRW-Silhouette als Inline-SVG eingesetzt. -->
+        <div class="reveal">
+          <svg class="nrw__map" viewBox="0 0 420 380" role="img" aria-label="Stilisierte Karte von Nordrhein-Westfalen mit Markierung Bochum">
+            <g class="hatch">
+              <path d="M0 60 H420 M0 120 H420 M0 180 H420 M0 240 H420 M0 300 H420"></path>
+              <path d="M60 0 V380 M120 0 V380 M180 0 V380 M240 0 V380 M300 0 V380 M360 0 V380"></path>
+            </g>
+            <path class="shape" d="M84 44 L146 22 L202 40 L246 24 L292 52 L338 48 L362 92 L340 132 L360 176 L332 214 L346 262 L306 296 L258 292 L232 330 L182 342 L142 318 L116 336 L88 300 L104 258 L72 226 L92 182 L62 146 L80 104 Z"></path>
+            <path class="hatch" d="M84 44 L346 262 M362 92 L142 318" stroke-dasharray="4 7"></path>
+            <circle class="pinring" cx="176" cy="168" r="17"></circle>
+            <circle class="pin" cx="176" cy="168" r="6"></circle>
+            <text class="hi" x="202" y="164">BOCHUM</text>
+            <text x="202" y="182">51.48 N · 7.22 O</text>
+          </svg>
+        </div>
+      </div>
+
+      <p class="tag" style="margin-top:clamp(2.5rem,5vw,4rem)">Autoankauf in</p>
+      <nav class="cities" aria-label="Städte in Nordrhein-Westfalen">
+        <a href="#bewerten">Bochum</a>
+        <a href="#bewerten">Dortmund</a>
+        <a href="#bewerten">Essen</a>
+        <a href="#bewerten">Duisburg</a>
+        <a href="#bewerten">Gelsenkirchen</a>
+        <a href="#bewerten">Herne</a>
+        <a href="#bewerten">Witten</a>
+        <a href="#bewerten">Hagen</a>
+        <a href="#bewerten">Wuppertal</a>
+        <a href="#bewerten">Düsseldorf</a>
+        <a href="#bewerten">Köln</a>
+        <a href="#bewerten">Münster</a>
+        <a href="#bewerten">Bielefeld</a>
+        <a href="#bewerten">Oberhausen</a>
+        <a href="#bewerten">Recklinghausen</a>
+        <a href="#bewerten">Hamm</a>
+        <a href="#bewerten">Mülheim</a>
+        <a href="#bewerten">Bottrop</a>
+        <a href="#bewerten">Unna</a>
+        <a href="#bewerten">Castrop-Rauxel</a>
+        <a href="#bewerten">Solingen</a>
+        <a href="#bewerten">Krefeld</a>
+        <a href="#bewerten">Leverkusen</a>
+        <a href="#bewerten">Herten</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- =================== S8 FAQ (KOHLE) =================== -->
+  <section class="sec sec--coal" id="faq" aria-labelledby="h-faq">
+    <div class="wrap">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2 class="h2" id="h-faq">Fragen zum<br>Autoankauf</h2>
+
+      <div class="faq">
+        <details>
+          <summary><span class="idx" aria-hidden="true">01</span>Was kostet die Bewertung</summary>
+          <div class="a">Nichts. Bewertung und Angebot sind kostenlos und unverbindlich. Es entstehen keine Kosten, wenn Sie das Angebot nicht annehmen.</div>
+        </details>
+        <details>
+          <summary><span class="idx" aria-hidden="true">02</span>Kaufen Sie auch Fahrzeuge ohne TÜV</summary>
+          <div class="a">Ja. Abgelaufene Hauptuntersuchung, Mängel, Rost oder ein nicht bestandener Termin sind kein Ausschlusskriterium. Bitte im Formular unter Zustand angeben.</div>
+        </details>
+        <details>
+          <summary><span class="idx" aria-hidden="true">03</span>Was ist, wenn das Auto nicht mehr fährt</summary>
+          <div class="a">Wir holen das Fahrzeug auch stehend ab, mit Motorschaden, Unfallschaden oder ohne Zulassung. Der Transport ist für Sie kostenlos.</div>
+        </details>
+        <details>
+          <summary><span class="idx" aria-hidden="true">04</span>Wie wird bezahlt</summary>
+          <div class="a">Bei Übergabe, bar oder per Sofortüberweisung, bevor das Fahrzeug verladen wird. Sie erhalten einen schriftlichen Kaufvertrag.</div>
+        </details>
+        <details>
+          <summary><span class="idx" aria-hidden="true">05</span>Wer meldet das Fahrzeug ab</summary>
+          <div class="a">Auf Wunsch übernehmen wir die Abmeldung bei der Zulassungsstelle und schicken Ihnen die Bestätigung zu. Alternativ melden Sie selbst ab und wir kaufen das Fahrzeug bereits abgemeldet.</div>
+        </details>
+        <details>
+          <summary><span class="idx" aria-hidden="true">06</span>Welche Unterlagen brauche ich</summary>
+          <div class="a">Zulassungsbescheinigung Teil I und Teil II, alle Schlüssel und Ihren Ausweis. Serviceheft, Rechnungen und Ersatzteile bitte bereitlegen, sie wirken sich auf den Preis aus.</div>
+        </details>
+        <details>
+          <summary><span class="idx" aria-hidden="true">07</span>Kaufen Sie auch mehrere Fahrzeuge</summary>
+          <div class="a">Ja, Firmenflotten und Händlerbestände nach Absprache. Bitte kurz telefonisch melden, damit wir die Abholung planen können.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== S9 SCHLUSS-CTA (ORANGE) =================== -->
+  <section class="sec sec--orange final" aria-labelledby="h-final">
+    <div class="wrap final__in">
+      <p class="eyebrow">Jetzt starten</p>
+      <h2 class="h2" id="h-final">Fahrzeug bewerten<br>lassen</h2>
+      <p class="lead" style="margin-top:1.25rem">Zwei Minuten Formular oder ein Anruf. Danach wissen Sie, was Ihr Auto bei uns bringt.</p>
+      <div class="final__cta">
+        <a class="btn btn--ink" href="#bewerten">Zum Formular</a>
+        <a class="btn btn--inkghost" href="tel:+492340000000">0234 000 000 anrufen</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft__top">
+      <div>
+        <span class="brand" style="font-size:1.25rem">BILAL <b>AUTOANKAUF</b></span>
+        <a class="ft__tel" href="tel:+492340000000">0234 000 000</a>
+        <address class="ft__addr">
+          Musterstraße 00<br>
+          44787 Bochum<br>
+          Montag bis Samstag, 08:00 bis 20:00 Uhr
+        </address>
+      </div>
+      <div>
+        <p class="tag" style="margin-bottom:.75rem">Autoankauf in NRW</p>
+        <nav class="ft__links" aria-label="Städte im Footer">
+          <a href="#bewerten">Bochum</a><a href="#bewerten">Dortmund</a><a href="#bewerten">Essen</a>
+          <a href="#bewerten">Duisburg</a><a href="#bewerten">Gelsenkirchen</a><a href="#bewerten">Herne</a>
+          <a href="#bewerten">Witten</a><a href="#bewerten">Hagen</a><a href="#bewerten">Wuppertal</a>
+          <a href="#bewerten">Düsseldorf</a><a href="#bewerten">Köln</a><a href="#bewerten">Münster</a>
+          <a href="#bewerten">Bielefeld</a><a href="#bewerten">Oberhausen</a><a href="#bewerten">Hamm</a>
+          <a href="#bewerten">Alle Städte anzeigen</a>
+        </nav>
+      </div>
+    </div>
+    <div class="ft__legal">
+      <a href="#impressum">Impressum</a>
+      <a href="#datenschutz">Datenschutz</a>
+      <a href="#agb">AGB</a>
+      <span class="sp">Entwurf, Variante C</span>
+    </div>
+  </div>
+  <div class="container">
+    <p class="entwurf-note">Entwurf — unverbindliche Vorschau. Texte, Zahlen und Kontaktdaten sind Platzhalter</p>
+  </div>
+</footer>
+
+<div class="stick" id="stick">
+  <a class="a1" href="tel:+492340000000">Anrufen</a>
+  <a class="a3" href="https://wa.me/492340000000?text=Hallo%2C%20ich%20m%C3%B6chte%20mein%20Auto%20verkaufen" rel="noopener">WhatsApp</a>
+  <a class="a2" href="#bewerten">Bewerten</a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  root.classList.remove("no-js");
+  root.classList.add("js");
+
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* --- Reveal. Bei reduced motion oder fehlendem Observer sofort sichtbar. --- */
+  var items = document.querySelectorAll(".reveal");
+  var i;
+  if (reduced || !("IntersectionObserver" in window)) {
+    for (i = 0; i < items.length; i++) { items[i].classList.add("is-in"); }
+  } else {
+    var io = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) { return; }
+        e.target.classList.add("is-in");
+        obs.unobserve(e.target);
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+    for (i = 0; i < items.length; i++) { io.observe(items[i]); }
+  }
+
+  /* --- Mobile Sticky-Leiste erscheint nach dem Hero --- */
+  var stick = document.getElementById("stick");
+  var hero = document.querySelector(".hero");
+  if (stick && hero && "IntersectionObserver" in window) {
+    new IntersectionObserver(function(entries){
+      stick.classList.toggle("is-on", !entries[0].isIntersecting);
+    }, { threshold: 0 }).observe(hero);
+  } else if (stick) {
+    stick.classList.add("is-on");
+  }
+
+  /* --- Formular: HTML5-Validierung, im Entwurf wird nichts versendet --- */
+  var form = document.getElementById("bewertung");
+  var ok = document.getElementById("ok");
+  if (form) {
+    form.addEventListener("submit", function(ev){
+      ev.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        if (ok) { ok.classList.remove("is-on"); }
+        return;
+      }
+      var nameField = document.getElementById("name");
+      var vorname = ((nameField && nameField.value) || "").trim().split(/\s+/)[0];
+      if (ok) {
+        while (ok.firstChild) { ok.removeChild(ok.firstChild); }
+        var head = document.createElement("b");
+        head.textContent = "Anfrage eingegangen";
+        ok.appendChild(head);
+        var body = document.createElement("span");
+        body.textContent = (vorname ? "Danke, " + vorname + ". " : "Danke. ") +
+          "Wir prüfen die Fahrzeugdaten und melden uns telefonisch mit einem Festpreis. " +
+          "Hinweis: Dies ist ein Entwurf, es wurde nichts versendet.";
+        ok.appendChild(body);
+        ok.classList.add("is-on");
+        ok.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+      }
+      form.reset();
+    });
+  }
+})();
+</script>
+
+<!--
+  ==========================================================================
+  PLATZHALTER UND OFFENE PUNKTE — VARIANTE C
+  ==========================================================================
+  Bewusst NICHT erfunden: Gruendungsjahr, Anzahl gekaufter Fahrzeuge,
+  Sternebewertungen, Kundenstimmen, Auszeichnungen. Solange dafuer keine
+  echten Daten vorliegen, existieren diese Bausteine auf der Seite nicht.
+  Eine leere Zahlenzeile schadet mehr als eine fehlende Sektion.
+
+  Platzhalter, die vor dem Livegang ersetzt werden muessen:
+   1. Telefonnummer   0234 000 000  (Header, Hero, Footer, Sticky-Leiste, tel:-Links)
+   2. Firmenname      "Bilal Autoankauf" — echte Firmierung noch offen
+   3. Adresse         Musterstrasse 00, 44787 Bochum
+   4. Oeffnungszeiten Mo bis Sa, 08:00 bis 20:00 Uhr — vom Kunden zu bestaetigen
+   5. Kennzeichen     BO AK 250 — reines Grafikelement, kein reales Kennzeichen
+   6. HERO IMAGE SLOT — Position im Markup markiert. Bis ein eigenes Fahrzeugfoto
+      vorliegt, traegt die Typografie den Hero. Kein Stockfoto einsetzen.
+   7. NRW-Karte       stilisierte Form ohne massstabsgetreue Geometrie.
+      Ersetzen durch praezises Inline-SVG der Landesgrenze.
+   8. Stadt-Links     fuehren im Entwurf auf das Formular.
+      Spaeter: /autoankauf-<stadt>
+   9. Impressum, Datenschutz, AGB — Links ohne Ziel, Inhalte fehlen noch
+  10. Formular        sendet nichts. Ziel-Endpunkt, Empfaengeradresse und
+      Spam-Schutz sind noch festzulegen.
+
+  Aussagen, die der Kunde bestaetigen muss, bevor sie live gehen:
+  - "Abholung kostenlos in ganz NRW"
+  - "Bezahlung bei Uebergabe, bar oder Sofortueberweisung"
+  - "Abmeldung uebernehmen wir"
+  - "Im Ruhrgebiet meist am selben Tag"
+  - "Festpreis statt Preisspanne"
+
+  Technische Hinweise:
+  - Schriften laufen im Entwurf ueber Google Fonts. Produktion: lokale WOFF2.
+  - Kein Framework, keine Animationsbibliothek. Der gesamte JS-Anteil ist der
+    Block oben: IntersectionObserver, Sticky-Leiste, Formular.
+  - Weisser Text auf Orange kommt nirgends vor. Auf Orange gilt #0B0B0C (6.85:1),
+    fuer Sekundaertext #412009 (5.10:1).
+  - prefers-reduced-motion: Reveals sind sofort sichtbar, das Laufband steht still.
+  ==========================================================================
+-->
+</body>
+</html>
