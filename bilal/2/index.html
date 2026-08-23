@@ -1,0 +1,2680 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Autoankauf Bochum und NRW — Variante 2</title>
+<meta name="description" content="Autoankauf in Bochum und ganz Nordrhein-Westfalen. Kostenlose Bewertung, Abholung vor Ort, Bezahlung bei Übergabe. Auch Unfallwagen und Motorschaden.">
+<meta name="theme-color" content="#0A0A0A">
+
+<!--
+  DEMO. Schriften kommen über Google Fonts, damit die Datei sofort läuft.
+  IN PRODUKTION: self-hosted WOFF2, keine externen Requests.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap">
+
+<style>
+/* ---- part 01 ---- */
+/* ============================================================
+   REF-2 «FLUXORA» — Teil 1/4
+   Tokens, Reset, Basis-Komponenten, Header, Hero, Sticky-Leiste
+   Basisklassen fuer alle weiteren Teile:
+   .container .btn .btn--primary .btn--ghost .card .eyebrow
+   .reveal .accent-em
+   ============================================================ */
+
+/* Schriften: <link> im <head>, vom Build gesetzt */
+/* ---------- 1. Tokens ---------- */
+:root{
+  --bg:#0A0A0A;
+  --surface-1:#141414;
+  --surface-2:#1C1C1C;
+  --surface-3:#242424;
+  --line:rgba(255,255,255,.09);
+  --line-strong:rgba(255,255,255,.16);
+  --text:#FAFAFA;
+  --text-muted:#B4B4B4;
+  --text-faint:#8A8A8A;
+  --accent:#F2400C;
+  --accent-hover:#FF5A24;
+  --accent-ink:#0A0A0A;
+  --accent-text:#FF7A45;
+  --glow:radial-gradient(60% 60% at 50% 0%, rgba(242,64,12,.28), transparent 70%);
+  --r:14px;
+  --r-lg:24px;
+  --r-pill:999px;
+  --container:1240px;
+  --pad-x:clamp(1.25rem,4vw,2.5rem);
+  --section-y:clamp(4rem,7vw,8rem);
+  --ease:cubic-bezier(.32,.72,0,1);
+
+  --font-sans:'Instrument Sans','Helvetica Neue',Arial,sans-serif;
+  --font-serif:'Instrument Serif','Times New Roman',Georgia,serif;
+  --hd-h:64px;
+}
+
+/* ---------- 2. Reset ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body,h1,h2,h3,h4,p,figure,blockquote,dl,dd,ul,ol{margin:0}
+ul[class],ol[class]{list-style:none;padding:0}
+html:focus-within{scroll-behavior:smooth}
+img,svg,video{max-width:100%;display:block}
+input,button,textarea,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+summary::-webkit-details-marker{display:none}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-sans);
+  font-weight:400;
+  font-size:clamp(1rem,.97rem + .15vw,1.0625rem);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+:focus-visible{outline:2px solid var(--accent-text);outline-offset:3px;border-radius:4px}
+
+::selection{background:var(--accent);color:var(--accent-ink)}
+
+/* ---------- 3. Typografie ---------- */
+h1,h2,h3,h4{
+  font-family:var(--font-sans);
+  font-weight:600;
+  line-height:1.1;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+}
+h1{font-size:clamp(2.5rem,1.6rem + 4.2vw,4.5rem)}
+h2{font-size:clamp(2rem,1.4rem + 2.6vw,3.25rem)}
+h3{font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem)}
+h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.01em}
+
+/* Signature-Detail der Referenz:
+   EIN Wort im Titel — Serif, kursiv, orange */
+.accent-em{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:400;
+  color:var(--accent-text);
+  letter-spacing:0;
+  padding-right:.04em;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-size:.75rem;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--text-faint);
+}
+.eyebrow::before{
+  content:"";
+  width:6px;
+  height:6px;
+  background:var(--accent);
+  transform:rotate(45deg);
+  flex:none;
+}
+
+.lead{
+  color:var(--text-muted);
+  font-size:clamp(1rem,.95rem + .35vw,1.1875rem);
+  max-width:46ch;
+}
+
+/* ---------- 4. Layout ---------- */
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:var(--pad-x);
+}
+.section{padding-block:var(--section-y)}
+
+/* ---------- 5. Buttons (Pill) ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.55rem;
+  min-height:52px;
+  padding:0 1.6rem;
+  border-radius:var(--r-pill);
+  font-size:.9375rem;
+  font-weight:600;
+  letter-spacing:-.01em;
+  white-space:nowrap;
+  border:1px solid transparent;
+  transition:background-color .3s var(--ease),border-color .3s var(--ease),
+             color .3s var(--ease),transform .3s var(--ease);
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+
+.btn--primary{background:var(--accent);color:var(--accent-ink)}
+.btn--primary:hover{background:var(--accent-hover);color:var(--accent-ink)}
+
+.btn--ghost{background:transparent;color:var(--text);border-color:var(--line-strong)}
+.btn--ghost:hover{border-color:var(--text);background:rgba(255,255,255,.04)}
+
+.btn--sm{min-height:42px;padding:0 1.1rem;font-size:.875rem}
+.btn--block{width:100%}
+
+/* ---------- 6. Cards ---------- */
+.card{
+  background:var(--surface-1);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:clamp(1.25rem,2.4vw,2rem);
+}
+.card--flat{background:var(--surface-2);border-radius:var(--r)}
+.card--tight{padding:1.1rem 1.25rem}
+
+/* ---------- 7. Utilities ---------- */
+.muted{color:var(--text-muted)}
+.faint{color:var(--text-faint)}
+.accent{color:var(--accent-text)}
+.stack-sm{display:flex;flex-direction:column;gap:.65rem}
+.stack{display:flex;flex-direction:column;gap:1.25rem}
+.row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+.sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+  border:0;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+  will-change:opacity,transform;
+}
+.reveal.is-visible{opacity:1;transform:none}
+
+/* ---------- 8. Header — schwebende Kapsel ---------- */
+.hd{
+  position:sticky;
+  top:16px;
+  z-index:60;
+  padding-inline:var(--pad-x);
+  margin-bottom:calc(var(--hd-h) * -1);
+}
+.hd__inner{
+  max-width:1100px;
+  margin-inline:auto;
+  min-height:var(--hd-h);
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  padding:.5rem .5rem .5rem 1.4rem;
+  background:rgba(20,20,20,.72);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  backdrop-filter:blur(16px) saturate(140%);
+  border:1px solid var(--line);
+  border-radius:var(--r-pill);
+}
+.hd__brand{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  font-weight:700;
+  font-size:1.0625rem;
+  letter-spacing:-.02em;
+}
+.hd__dot{
+  width:9px;
+  height:9px;
+  background:var(--accent);
+  transform:rotate(45deg);
+  border-radius:2px;
+  flex:none;
+}
+.hd__nav{
+  display:flex;
+  align-items:center;
+  gap:.35rem;
+  margin-inline:auto;
+}
+.hd__link{
+  padding:.5rem .8rem;
+  border-radius:var(--r-pill);
+  font-size:.9375rem;
+  color:var(--text-muted);
+  transition:color .25s var(--ease),background-color .25s var(--ease);
+}
+.hd__link:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.hd__cta{flex:none}
+
+.hd__burger{
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius:var(--r-pill);
+  border:1px solid var(--line-strong);
+  align-items:center;
+  justify-content:center;
+  flex:none;
+}
+.hd__burger span{
+  display:block;
+  width:17px;
+  height:1.5px;
+  background:var(--text);
+  position:relative;
+  transition:transform .3s var(--ease),background-color .3s var(--ease);
+}
+.hd__burger span::before,
+.hd__burger span::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:17px;
+  height:1.5px;
+  background:var(--text);
+  transition:transform .3s var(--ease),top .3s var(--ease);
+}
+.hd__burger span::before{top:-5px}
+.hd__burger span::after{top:5px}
+.hd__burger[aria-expanded="true"] span{background:transparent}
+.hd__burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.hd__burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+
+.hd__mobile{
+  display:none;
+  max-width:1100px;
+  margin:.6rem auto 0;
+  padding:1rem;
+  background:rgba(20,20,20,.94);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+}
+.hd__mobile.is-open{display:block}
+.hd__mobile a{
+  display:block;
+  padding:.7rem .4rem;
+  color:var(--text-muted);
+  border-bottom:1px solid var(--line);
+}
+.hd__mobile a.btn{border-bottom:0;color:var(--accent-ink);margin-top:.9rem}
+.hd__mobile a:not(.btn):last-of-type{border-bottom:0}
+
+@media (max-width:900px){
+  .hd__nav,.hd__cta{display:none}
+  .hd__burger{display:inline-flex}
+  .hd__inner{padding-right:.5rem}
+  .hd__brand{margin-inline-end:auto}
+}
+
+/* ---------- 9. Hero ---------- */
+.hero{
+  position:relative;
+  padding-top:clamp(6.5rem,5rem + 7vw,10rem);
+  padding-bottom:var(--section-y);
+  overflow:hidden;
+}
+.hero__grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);
+  gap:clamp(2rem,4vw,4rem);
+  align-items:center;
+}
+.hero__title{margin-top:1.1rem}
+.hero__text{margin-top:1.4rem}
+
+.hero__facts{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.75rem;
+  margin-top:2rem;
+  max-width:34rem;
+}
+.hero__fact{
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  padding:1rem 1.1rem;
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+  font-size:.9375rem;
+  font-weight:500;
+}
+.hero__fact svg{width:18px;height:18px;flex:none;color:var(--accent-text)}
+
+.hero__actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+
+/* Bildkarte mit Glow und Lichtstreifen */
+.hero__visual{position:relative}
+.hero__visual::before{
+  content:"";
+  position:absolute;
+  inset:-24% -14% 6%;
+  background:var(--glow);
+  filter:blur(6px);
+  z-index:0;
+  pointer-events:none;
+}
+.hero__card{
+  position:relative;
+  z-index:1;
+  border-radius:var(--r-lg);
+  border:1px solid var(--line-strong);
+  background:radial-gradient(120% 90% at 50% 6%, #23150F 0%, #141414 46%, #0E0E0E 100%);
+  overflow:hidden;
+  aspect-ratio:4/3.2;
+  display:grid;
+  place-items:center;
+}
+.hero__car{width:88%;max-width:520px;height:auto}
+.hero__floor{
+  position:absolute;
+  left:8%;
+  right:8%;
+  bottom:12%;
+  height:34px;
+  background:radial-gradient(50% 100% at 50% 50%, rgba(242,64,12,.4), transparent 72%);
+  filter:blur(10px);
+  pointer-events:none;
+}
+/* duenner Neon-Lichtstreifen ueber dem Bild */
+.hero__beam{
+  position:absolute;
+  left:-10%;
+  right:-10%;
+  top:26%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent-hover) 22%,#FFD9C7 50%,var(--accent-hover) 78%,transparent);
+  transform:rotate(-8deg);
+  box-shadow:0 0 22px 6px rgba(242,64,12,.45);
+  opacity:.9;
+  pointer-events:none;
+}
+.hero__beam--soft{
+  top:auto;
+  bottom:30%;
+  height:1px;
+  opacity:.45;
+  transform:rotate(-8deg) scaleX(.82);
+  box-shadow:0 0 14px 3px rgba(242,64,12,.3);
+}
+.hero__tag{
+  position:absolute;
+  z-index:2;
+  left:1rem;
+  bottom:1rem;
+  background:rgba(10,10,10,.72);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--line-strong);
+  border-radius:var(--r-pill);
+  padding:.45rem 1rem;
+  font-size:.8125rem;
+  font-weight:600;
+  color:var(--text);
+}
+
+@media (max-width:900px){
+  .hero__grid{grid-template-columns:1fr}
+  .hero__visual{order:-1}
+  .hero__facts{max-width:none}
+}
+@media (max-width:520px){
+  .hero__facts{grid-template-columns:1fr}
+  .hero__actions .btn{width:100%}
+}
+
+/* ---------- 10. Sticky-Leiste (mobil) ---------- */
+.sticky-bar{
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  z-index:80;
+  display:none;
+  gap:.5rem;
+  padding:.5rem;
+  background:rgba(20,20,20,.86);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  backdrop-filter:blur(16px) saturate(140%);
+  border:1px solid var(--line);
+  border-radius:var(--r-pill);
+  transform:translateY(140%);
+  opacity:0;
+  transition:transform .45s var(--ease),opacity .45s var(--ease);
+}
+.sticky-bar.is-visible{transform:none;opacity:1}
+.sticky-bar .btn{flex:1;min-height:46px;padding:0 .6rem;font-size:.875rem}
+
+@media (max-width:760px){
+  .sticky-bar{display:flex}
+  body{padding-bottom:88px}
+}
+
+/* ---------- 11. Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html:focus-within{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+  .reveal{opacity:1;transform:none}
+  .sticky-bar{transition:none}
+}
+
+/* ---- part 02 ---- */
+/* ============================================================
+   REF-2 «FLUXORA» — ЧАСТЬ 2 из 4
+   3. Wer bei Ihnen vor der Tür steht  (.who-*)
+   4. Was wir ankaufen — Grid 2x2      (.buy-*)
+   Токены и базовые классы — из ЧАСТИ 1, здесь не переопределяются
+   ============================================================ */
+
+/* ---------- 3. Wer bei Ihnen vor der Tür steht ---------- */
+
+.who{
+  padding-block: var(--section-y);
+}
+
+.who__grid{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3.5vw, 3.25rem);
+  align-items: center;
+}
+
+/* Левая карточка — слот изображения */
+.who__media{
+  position: relative;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--surface-1);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.who__media::before{
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 70%;
+  background: var(--glow);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.who__media-inner{
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 4 / 3.4;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background:
+    linear-gradient(160deg, rgba(242, 64, 12, .16) 0%, rgba(242, 64, 12, 0) 46%),
+    linear-gradient(#1C1C1C, #101010);
+}
+
+/* Тонкая оранжевая световая полоса поверх «фото» */
+.who__media-inner::after{
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 17%;
+  height: 2px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: .75;
+  filter: blur(.3px);
+}
+
+.who__svg{
+  width: 100%;
+  height: auto;
+  max-width: 420px;
+  display: block;
+}
+
+.who__media-caption{
+  position: absolute;
+  z-index: 2;
+  left: clamp(1rem, 2.5vw, 1.5rem);
+  bottom: clamp(1rem, 2.5vw, 1.5rem);
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .45rem .85rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-strong);
+  background: rgba(20, 20, 20, .72);
+  backdrop-filter: blur(8px);
+  color: var(--text-muted);
+  font-size: .8125rem;
+  line-height: 1;
+}
+
+.who__media-caption span{
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+
+/* Правая колонка — текст */
+.who__body{
+  max-width: 34rem;
+}
+
+.who__title{
+  margin: .85rem 0 0;
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+.who__lead{
+  margin: 1.25rem 0 0;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.15vw, 1.0625rem);
+  line-height: 1.65;
+}
+
+.who__lead + .who__lead{
+  margin-top: .9rem;
+}
+
+.who__list{
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: .85rem;
+}
+
+.who__list li{
+  position: relative;
+  padding-left: 1.6rem;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.who__list li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .52em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ---------- 4. Was wir ankaufen ---------- */
+
+.buy{
+  padding-block: var(--section-y);
+}
+
+.buy__head{
+  max-width: 44rem;
+  margin: 0 0 clamp(2rem, 4vw, 3.25rem);
+}
+
+.buy__title{
+  margin: .85rem 0 0;
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+.buy__lead{
+  margin: 1.1rem 0 0;
+  max-width: 38rem;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.15vw, 1.0625rem);
+  line-height: 1.65;
+}
+
+.buy__grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+.buy__card{
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--surface-1);
+  padding: clamp(1.4rem, 2.4vw, 2.1rem);
+  transition:
+    border-color .35s var(--ease),
+    background-color .35s var(--ease),
+    transform .35s var(--ease);
+}
+
+.buy__card:hover{
+  border-color: var(--line-strong);
+  background: #171717;
+  transform: translateY(-3px);
+}
+
+.buy__icon{
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+}
+
+.buy__icon svg{
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.buy__card-title{
+  margin: 1.15rem 0 0;
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+}
+
+.buy__card-text{
+  margin: .6rem 0 0;
+  color: var(--text-muted);
+  font-size: .9688rem;
+  line-height: 1.6;
+}
+
+.buy__note{
+  margin: clamp(1.5rem, 2.5vw, 2rem) 0 0;
+  color: var(--text-faint);
+  font-size: .9375rem;
+  line-height: 1.6;
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 900px){
+  .who__grid{
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+  .who__body{
+    max-width: none;
+  }
+  .buy__grid{
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px){
+  .who__media-inner{
+    aspect-ratio: 4 / 3.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .buy__card{
+    transition: none;
+  }
+  .buy__card:hover{
+    transform: none;
+  }
+}
+
+/* ---- part 03 ---- */
+/* ==========================================================================
+   REF-2 «FLUXORA» — ЧАСТЬ 3 из 4
+   Пункты 5, 6, 8 спецификации:
+     5. «Wie es funktioniert» — аккордеон из четырёх шагов (native <details>)
+     6. Карточка «Papiere und Abmeldung übernehmen wir»
+     8. FAQ — шесть вопросов (native <details>)
+   Токены и базовые классы (container, btn, card, eyebrow, reveal, accent-em)
+   приходят из ЧАСТИ 1 и здесь НЕ переопределяются.
+   Префиксы: steps- / docs- / faq-
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Общий маркер «+» → «×» (аккордеоны шагов и FAQ)
+   -------------------------------------------------------------------------- */
+
+.steps-mark,
+.faq-mark{
+  position:relative;
+  flex:0 0 auto;
+  width:32px;
+  height:32px;
+  border-radius:var(--r-pill);
+  border:1px solid var(--line-strong);
+  background:var(--surface-2);
+  transition:transform 220ms var(--ease),
+             background-color 220ms var(--ease),
+             border-color 220ms var(--ease);
+}
+
+.steps-mark::before,
+.steps-mark::after,
+.faq-mark::before,
+.faq-mark::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:50%;
+  background:var(--text);
+  border-radius:2px;
+  transform:translate(-50%,-50%);
+  transition:background-color 220ms var(--ease);
+}
+
+.steps-mark::before,
+.faq-mark::before{ width:12px; height:1.5px; }
+.steps-mark::after,
+.faq-mark::after{ width:1.5px; height:12px; }
+
+/* «+» повёрнутый на 45° читается как «×» */
+.steps-item[open] > .steps-summary .steps-mark,
+.faq-item[open] > .faq-summary .faq-mark{
+  transform:rotate(45deg);
+  background:var(--accent);
+  border-color:var(--accent);
+}
+
+.steps-item[open] > .steps-summary .steps-mark::before,
+.steps-item[open] > .steps-summary .steps-mark::after,
+.faq-item[open] > .faq-summary .faq-mark::before,
+.faq-item[open] > .faq-summary .faq-mark::after{
+  background:var(--accent-ink);
+}
+
+.steps-summary::-webkit-details-marker,
+.faq-summary::-webkit-details-marker{ display:none; }
+.steps-summary::marker,
+.faq-summary::marker{ content:""; }
+
+/* --------------------------------------------------------------------------
+   5. Секция «Wie es funktioniert»
+   -------------------------------------------------------------------------- */
+
+.steps-section{
+  padding-block:var(--section-y);
+}
+
+.steps-grid{
+  display:grid;
+  grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:start;
+}
+
+.steps-intro{
+  position:sticky;
+  top:104px;
+}
+
+.steps-title{
+  margin:.75rem 0 0;
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-weight:600;
+  font-size:clamp(2rem,3.6vw,3.1rem);
+  line-height:1.1;
+  letter-spacing:-.02em;
+  color:var(--text);
+}
+
+.steps-lead{
+  margin:1.25rem 0 0;
+  max-width:40ch;
+  font-size:1.0625rem;
+  line-height:1.65;
+  color:var(--text-muted);
+}
+
+.steps-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.steps-item{
+  background:var(--surface-1);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  transition:border-color 220ms var(--ease), background-color 220ms var(--ease);
+}
+
+.steps-item[open]{
+  border-color:var(--line-strong);
+}
+
+.steps-item:hover{ border-color:var(--line-strong); }
+
+.steps-summary{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  padding:clamp(1.1rem,2vw,1.5rem) clamp(1.1rem,2.2vw,1.75rem);
+  cursor:pointer;
+  list-style:none;
+  user-select:none;
+}
+
+.steps-summary:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:-2px;
+  border-radius:var(--r-lg);
+}
+
+.steps-num{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:2.25rem;
+  height:2.25rem;
+  padding-inline:.5rem;
+  border-radius:10px;
+  background:var(--surface-3);
+  color:var(--text-faint);
+  font-size:.8125rem;
+  font-weight:600;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.04em;
+  transition:background-color 220ms var(--ease), color 220ms var(--ease);
+}
+
+.steps-item[open] .steps-num{
+  background:rgba(242,64,12,.14);
+  color:var(--accent-text);
+}
+
+.steps-head{
+  flex:1 1 auto;
+  margin:0;
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-size:clamp(1.0625rem,1.6vw,1.25rem);
+  font-weight:600;
+  line-height:1.25;
+  letter-spacing:-.01em;
+  color:var(--text);
+}
+
+.steps-body{
+  padding:0 clamp(1.1rem,2.2vw,1.75rem) clamp(1.25rem,2.2vw,1.6rem);
+  padding-left:calc(clamp(1.1rem,2.2vw,1.75rem) + 2.25rem + 1rem);
+}
+
+.steps-text{
+  margin:0;
+  max-width:56ch;
+  font-size:1rem;
+  line-height:1.7;
+  color:var(--text-muted);
+}
+
+.steps-note{
+  margin:.9rem 0 0;
+  font-size:.875rem;
+  line-height:1.6;
+  color:var(--text-faint);
+}
+
+/* --------------------------------------------------------------------------
+   6. Карточка «Papiere und Abmeldung übernehmen wir»
+   -------------------------------------------------------------------------- */
+
+.docs-section{
+  padding-block:0 var(--section-y);
+}
+
+.docs-card{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,.9fr);
+  gap:clamp(1.75rem,4vw,3.5rem);
+  align-items:center;
+  padding:clamp(1.5rem,3.4vw,3rem);
+  background:var(--surface-1);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+}
+
+.docs-title{
+  margin:.75rem 0 0;
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-weight:600;
+  font-size:clamp(1.75rem,3.1vw,2.6rem);
+  line-height:1.12;
+  letter-spacing:-.02em;
+  color:var(--text);
+}
+
+.docs-lead{
+  margin:1.1rem 0 0;
+  max-width:44ch;
+  font-size:1.0625rem;
+  line-height:1.65;
+  color:var(--text-muted);
+}
+
+.docs-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  margin-top:1.5rem;
+  padding:.5rem 1rem;
+  border-radius:var(--r-pill);
+  background:var(--accent);
+  color:var(--accent-ink);
+  font-size:.8125rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.docs-badge-dot{
+  width:6px;
+  height:6px;
+  border-radius:var(--r-pill);
+  background:var(--accent-ink);
+}
+
+.docs-panel{
+  padding:clamp(1.25rem,2.4vw,1.75rem);
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+}
+
+.docs-panel-title{
+  margin:0 0 .35rem;
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--text-faint);
+}
+
+.docs-list{
+  margin:1rem 0 0;
+  padding:0;
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.docs-list li{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  padding:.7rem .25rem;
+  border-bottom:1px solid var(--line);
+  font-size:1rem;
+  line-height:1.4;
+  color:var(--text);
+}
+
+.docs-list li:last-child{ border-bottom:0; }
+
+.docs-check{
+  flex:0 0 auto;
+  width:22px;
+  height:22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:var(--r-pill);
+  background:rgba(242,64,12,.14);
+  color:var(--accent);
+}
+
+.docs-check svg{ display:block; width:12px; height:12px; }
+
+.docs-hint{
+  margin:1.1rem 0 0;
+  font-size:.875rem;
+  line-height:1.6;
+  color:var(--text-faint);
+}
+
+/* --------------------------------------------------------------------------
+   8. FAQ
+   -------------------------------------------------------------------------- */
+
+.faq-section{
+  padding-block:var(--section-y);
+}
+
+.faq-head{
+  max-width:46ch;
+  margin-bottom:clamp(1.75rem,3.5vw,3rem);
+}
+
+.faq-title{
+  margin:.75rem 0 0;
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-weight:600;
+  font-size:clamp(2rem,3.6vw,3.1rem);
+  line-height:1.1;
+  letter-spacing:-.02em;
+  color:var(--text);
+}
+
+.faq-lead{
+  margin:1.1rem 0 0;
+  font-size:1.0625rem;
+  line-height:1.65;
+  color:var(--text-muted);
+}
+
+.faq-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-width:920px;
+}
+
+.faq-item{
+  background:var(--surface-1);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  transition:border-color 220ms var(--ease);
+}
+
+.faq-item:hover{ border-color:var(--line-strong); }
+.faq-item[open]{ border-color:var(--line-strong); }
+
+.faq-summary{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  padding:clamp(1rem,1.8vw,1.35rem) clamp(1rem,2vw,1.5rem);
+  cursor:pointer;
+  list-style:none;
+  user-select:none;
+}
+
+.faq-summary:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:-2px;
+  border-radius:var(--r);
+}
+
+.faq-q{
+  flex:1 1 auto;
+  margin:0;
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-size:clamp(1rem,1.5vw,1.125rem);
+  font-weight:600;
+  line-height:1.35;
+  letter-spacing:-.01em;
+  color:var(--text);
+}
+
+.faq-a{
+  padding:0 clamp(1rem,2vw,1.5rem) clamp(1.1rem,2vw,1.4rem);
+  padding-right:calc(clamp(1rem,2vw,1.5rem) + 32px + 1rem);
+}
+
+.faq-a p{
+  margin:0;
+  max-width:64ch;
+  font-size:1rem;
+  line-height:1.7;
+  color:var(--text-muted);
+}
+
+.faq-a p + p{ margin-top:.75rem; }
+
+/* --------------------------------------------------------------------------
+   Адаптив
+   -------------------------------------------------------------------------- */
+
+@media (max-width:900px){
+  .steps-grid{ grid-template-columns:1fr; }
+  .steps-intro{ position:static; }
+  .docs-card{ grid-template-columns:1fr; align-items:start; }
+}
+
+@media (max-width:560px){
+  .steps-body{
+    padding-left:clamp(1.1rem,2.2vw,1.75rem);
+  }
+  .faq-a{
+    padding-right:clamp(1rem,2vw,1.5rem);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — переключение мгновенное
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion:reduce){
+  .steps-mark,
+  .faq-mark,
+  .steps-mark::before,
+  .steps-mark::after,
+  .faq-mark::before,
+  .faq-mark::after,
+  .steps-item,
+  .steps-num,
+  .faq-item{
+    transition:none !important;
+  }
+}
+
+/* ---- part 04 ---- */
+/* ============================================================
+   REF-2 «FLUXORA» — ЧАСТЬ 4/4
+   7. Formular  ·  9. Finaler CTA mit Bögen  ·  10. Footer
+   Tokens und Basisklassen kommen aus TEIL 1 — hier nicht neu definiert.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   7. FORMULAR
+   ------------------------------------------------------------ */
+
+.form-section {
+  padding-block: var(--section-y);
+}
+
+.form-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.form-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 320px;
+  background: var(--glow);
+  pointer-events: none;
+}
+
+.form-head {
+  position: relative;
+  max-width: 46rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+.form-title {
+  font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0.75rem 0 0;
+}
+
+.form-lead {
+  color: var(--text-muted);
+  max-width: 38rem;
+  margin: 1rem 0 0;
+  line-height: 1.6;
+}
+
+.form-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.25rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.form-field--wide {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+}
+
+.form-req {
+  color: var(--accent-text);
+  margin-left: 0.15em;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 0.98rem;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-textarea {
+  min-height: 8.5rem;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-faint);
+}
+
+.form-input:hover,
+.form-textarea:hover {
+  border-color: var(--line-strong);
+}
+
+.form-input:focus-visible,
+.form-textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-color: transparent;
+  background: var(--surface-3);
+}
+
+.form-hint {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+
+/* Honeypot — für Menschen unsichtbar, für Bots sichtbar */
+.form-website {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-consent {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.form-consent input[type="checkbox"] {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.1rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.form-consent label {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.form-consent a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.35rem;
+}
+
+.form-submit {
+  width: 100%;
+  justify-content: center;
+  border-radius: var(--r-pill);
+  padding-block: 1.05rem;
+  font-size: 1rem;
+}
+
+.form-note {
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* Bestätigung nach dem Absenden */
+.form-done {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 42rem;
+}
+
+.form-done[data-visible="true"] {
+  display: flex;
+}
+
+.form-done-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--r-pill);
+  padding: 0.4rem 0.9rem;
+}
+
+.form-done-title {
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.form-done-text {
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.form-done-car {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.75rem 1.1rem;
+  font-weight: 500;
+}
+
+.form-done-car span:first-child {
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------
+   9. FINALER CTA
+   ------------------------------------------------------------ */
+
+.cta-section {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(5rem, 10vw, 10rem);
+  isolation: isolate;
+}
+
+.cta-section::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -40% 0;
+  height: 80%;
+  background: radial-gradient(50% 50% at 50% 100%, rgba(242, 64, 12, 0.22), transparent 70%);
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Zwei breite dünne Bögen im Hintergrund */
+.cta-arc {
+  position: absolute;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  border-top-color: rgba(242, 64, 12, 0.55);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.cta-arc--1 {
+  width: 180vw;
+  height: 180vw;
+  max-width: 2200px;
+  max-height: 2200px;
+  top: -6%;
+  transform: translateX(-50%) rotate(-14deg);
+}
+
+.cta-arc--2 {
+  width: 230vw;
+  height: 230vw;
+  max-width: 2800px;
+  max-height: 2800px;
+  top: 6%;
+  border-top-color: rgba(242, 64, 12, 0.28);
+  transform: translateX(-50%) rotate(12deg);
+}
+
+.cta-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 3vw, 3rem);
+}
+
+.cta-center {
+  text-align: center;
+}
+
+.cta-title {
+  font-size: clamp(2.1rem, 5.6vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 0.9rem 0 0;
+  text-wrap: balance;
+}
+
+.cta-lead {
+  color: var(--text-muted);
+  max-width: 34rem;
+  margin: 1.1rem auto 0;
+  line-height: 1.6;
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.cta-actions .btn {
+  border-radius: var(--r-pill);
+  padding-inline: 1.6rem;
+}
+
+.cta-ghost {
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  background: transparent;
+}
+
+.cta-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+/* Zwei kleine geneigte Karten */
+.cta-thumb {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--surface-1);
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  transition: transform 0.6s var(--ease);
+}
+
+.cta-thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(242, 64, 12, 0.35), transparent 45%),
+    linear-gradient(160deg, var(--surface-3), var(--surface-1) 60%, #000);
+}
+
+.cta-thumb::after {
+  content: "";
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: 34%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-hover), transparent);
+  filter: blur(1px);
+}
+
+.cta-thumb--left {
+  transform: rotate(-6deg);
+}
+
+.cta-thumb--right {
+  transform: rotate(6deg);
+}
+
+.cta-thumb-label {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 1;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 900px) {
+  .cta-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cta-side {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   10. FOOTER
+   ------------------------------------------------------------ */
+
+.ft {
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.ft-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ft-brand {
+  max-width: 22rem;
+}
+
+.ft-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.ft-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--accent);
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+.ft-about {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin: 1rem 0 0;
+}
+
+.ft-col h3 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0 0 1rem;
+}
+
+.ft-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.ft-list a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.94rem;
+  transition: color 0.2s var(--ease);
+}
+
+.ft-list a:hover {
+  color: var(--accent-text);
+}
+
+.ft-contact {
+  font-style: normal;
+}
+
+.ft-contact a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.ft-contact a:hover {
+  color: var(--accent-text);
+}
+
+.ft-contact-line {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.9rem;
+}
+
+.ft-contact-line span {
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.ft-legal {
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  padding-block: 1.5rem 2rem;
+}
+
+.ft-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.ft-legal-links a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.ft-legal-links a:hover {
+  color: var(--accent-text);
+}
+
+.ft-disclaimer {
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  max-width: 44rem;
+}
+
+@media (max-width: 900px) {
+  .ft-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ft-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .ft-top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------
+   Reduzierte Bewegung — Bögen bleiben, nichts bewegt sich
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .form-input,
+  .form-textarea,
+  .cta-thumb,
+  .ft-list a {
+    transition: none;
+  }
+  .cta-thumb--left {
+    transform: rotate(-6deg);
+  }
+  .cta-thumb--right {
+    transform: rotate(6deg);
+  }
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+
+<!-- ==== part 01 ==== -->
+<!-- ==========================================================
+     REF-2 «FLUXORA» — Teil 1/4: Header, Hero, Sticky-Leiste
+     Fragment — wird in mockups/ref2.html eingesetzt
+     ========================================================== -->
+
+<!-- ===== Header: schwebende Kapsel ===== -->
+<header class="hd">
+  <div class="hd__inner">
+    <a class="hd__brand" href="#top">
+      <span class="hd__dot" aria-hidden="true"></span>
+      Autoankauf NRW
+    </a>
+
+    <nav class="hd__nav" aria-label="Hauptnavigation">
+      <a class="hd__link" href="#ankauf">Was wir ankaufen</a>
+      <a class="hd__link" href="#ablauf">Ablauf</a>
+      <a class="hd__link" href="#formular">Bewertung</a>
+      <a class="hd__link" href="#faq">Fragen</a>
+    </nav>
+
+    <a class="btn btn--primary btn--sm hd__cta" href="#formular">Bewerten lassen</a>
+
+    <button class="hd__burger" type="button" id="hdBurger"
+            aria-expanded="false" aria-controls="hdMobile" aria-label="Menü öffnen">
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="hd__mobile" id="hdMobile">
+    <a href="#ankauf">Was wir ankaufen</a>
+    <a href="#ablauf">Ablauf</a>
+    <a href="#formular">Bewertung</a>
+    <a href="#faq">Fragen</a>
+    <a class="btn btn--primary btn--block" href="#formular">Bewerten lassen</a>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top">
+  <div class="container hero__grid">
+
+    <div class="hero__copy reveal">
+      <p class="eyebrow">Autoankauf in ganz NRW</p>
+
+      <h1 class="hero__title">
+        Wir kaufen Ihr <em class="accent-em">Auto</em><br>
+        nicht Ihre Zeit
+      </h1>
+
+      <p class="lead hero__text">
+        Sie schicken uns die Eckdaten Ihres Fahrzeugs, wir melden uns mit einem
+        konkreten Angebot. Passt es, kommen wir zu Ihnen, prüfen das Auto vor Ort
+        und nehmen es direkt mit.
+      </p>
+
+      <div class="hero__facts">
+        <div class="hero__fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          Kostenlose Bewertung
+        </div>
+        <div class="hero__fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/>
+            <circle cx="12" cy="10" r="2.6"/>
+          </svg>
+          Abholung in ganz NRW
+        </div>
+      </div>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#formular">Fahrzeug bewerten</a>
+        <a class="btn btn--ghost" href="tel:0234000000">Anrufen</a>
+      </div>
+    </div>
+
+    <div class="hero__visual reveal">
+      <!-- HERO IMAGE SLOT -->
+      <div class="hero__card">
+        <svg class="hero__car" viewBox="0 0 640 260" role="img"
+             aria-label="Dunkles Fahrzeug in Seitenansicht">
+          <defs>
+            <linearGradient id="ref2CarBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3A3A3E"/>
+              <stop offset=".55" stop-color="#212124"/>
+              <stop offset="1" stop-color="#131315"/>
+            </linearGradient>
+            <linearGradient id="ref2Glass" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4A4A52"/>
+              <stop offset="1" stop-color="#1A1A1E"/>
+            </linearGradient>
+          </defs>
+
+          <path fill="url(#ref2CarBody)" stroke="rgba(255,255,255,.14)" stroke-width="1.5"
+                d="M52 186c-14 0-22-8-22-21 0-16 9-25 26-30l52-14c9-3 14-6 21-12l30-25c16-13 32-19 54-21 30-3 66-3 96 1 24 3 41 9 58 21l38 26c6 4 11 6 19 8l60 13c22 5 32 15 32 32 0 14-8 22-23 22H52Z"/>
+
+          <path fill="url(#ref2Glass)"
+                d="M196 108c14-12 27-19 44-22 22-4 47-4 68-1l-4 40H176l20-17Z"/>
+          <path fill="url(#ref2Glass)"
+                d="M324 85c22 3 38 10 53 21l30 22H320l4-43Z"/>
+
+          <path fill="none" stroke="rgba(255,122,69,.55)" stroke-width="2"
+                d="M40 168c110-14 430-14 560 0"/>
+
+          <circle cx="176" cy="186" r="42" fill="#0B0B0C" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
+          <circle cx="176" cy="186" r="18" fill="#25252A"/>
+          <circle cx="470" cy="186" r="42" fill="#0B0B0C" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
+          <circle cx="470" cy="186" r="18" fill="#25252A"/>
+
+          <rect x="566" y="140" width="34" height="12" rx="6" fill="#FF7A45" opacity=".85"/>
+          <rect x="42" y="142" width="26" height="10" rx="5" fill="#F2400C" opacity=".7"/>
+        </svg>
+
+        <span class="hero__beam" aria-hidden="true"></span>
+        <span class="hero__beam hero__beam--soft" aria-hidden="true"></span>
+        <span class="hero__floor" aria-hidden="true"></span>
+        <span class="hero__tag">Vor Ort geprüft, direkt mitgenommen</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== Sticky-Leiste (mobil) ===== -->
+<div class="sticky-bar" id="stickyBar" aria-label="Schnellkontakt">
+  <a class="btn btn--ghost" href="tel:0234000000">Anrufen</a>
+  <a class="btn btn--ghost" href="https://wa.me/49234000000">WhatsApp</a>
+  <a class="btn btn--primary" href="#formular">Bewerten</a>
+</div>
+
+<!-- ==== part 02 ==== -->
+<!-- ============================================================
+     REF-2 «FLUXORA» — ЧАСТЬ 2 из 4
+     3. Wer bei Ihnen vor der Tür steht
+     4. Was wir ankaufen (Grid 2x2)
+     Стили: parts/ref2/02.css
+     ============================================================ -->
+
+<!-- ================= 3. Wer bei Ihnen vor der Tür steht ================= -->
+<section class="who" id="team" aria-labelledby="who-title">
+  <div class="container">
+    <div class="who__grid">
+
+      <!-- Linke Spalte: Bildkarte -->
+      <!-- IMAGE SLOT -->
+      <figure class="who__media reveal">
+        <div class="who__media-inner">
+          <svg class="who__svg" viewBox="0 0 420 300" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+               role="img" aria-labelledby="who-svg-title">
+            <title id="who-svg-title">Fahrzeug, Schlüssel und Fahrzeugunterlagen als Silhouette</title>
+
+            <!-- Fahrzeug-Silhouette -->
+            <g stroke="rgba(250,250,250,.42)">
+              <path d="M64 176h292" />
+              <path d="M84 176v-24l26-38c4-6 11-9 18-9h124c7 0 14 3 18 9l26 38v24" />
+              <path d="M116 114h188" />
+              <path d="M210 114v-71" opacity=".55" />
+              <path d="M96 152h228" opacity=".4" />
+              <circle cx="132" cy="176" r="21" />
+              <circle cx="132" cy="176" r="8" opacity=".5" />
+              <circle cx="288" cy="176" r="21" />
+              <circle cx="288" cy="176" r="8" opacity=".5" />
+              <path d="M84 160h-14" opacity=".6" />
+              <path d="M336 160h14" opacity=".6" />
+            </g>
+
+            <!-- Schlüssel-Silhouette -->
+            <g stroke="rgba(255,122,69,.85)">
+              <circle cx="92" cy="238" r="14" />
+              <circle cx="92" cy="238" r="5" opacity=".6" />
+              <path d="M106 238h44" />
+              <path d="M138 238v10" />
+              <path d="M150 238v13" />
+            </g>
+
+            <!-- Unterlagen-Mappe als Silhouette -->
+            <g stroke="rgba(250,250,250,.42)">
+              <path d="M242 214h48l10 12h48c5 0 9 4 9 9v40c0 5-4 9-9 9H242c-5 0-9-4-9-9v-52c0-5 4-9 9-9z" />
+              <path d="M258 248h74" opacity=".7" />
+              <path d="M258 264h52" opacity=".5" />
+            </g>
+          </svg>
+        </div>
+        <figcaption class="who__media-caption"><span aria-hidden="true"></span>Vor Ort in ganz NRW</figcaption>
+      </figure>
+
+      <!-- Rechte Spalte: Text -->
+      <div class="who__body reveal">
+        <p class="eyebrow">Persönlich statt anonym</p>
+        <h2 class="who__title" id="who-title">Wer bei Ihnen vor der <em class="accent-em">Tür</em> steht</h2>
+
+        <p class="who__lead">
+          Zu Ihnen kommt kein wechselnder Fahrdienst, sondern derselbe Ansprechpartner,
+          mit dem Sie vorher telefoniert haben. Er kennt Ihr Fahrzeug aus der Anfrage
+          und bringt die Unterlagen fertig vorbereitet mit.
+        </p>
+        <p class="who__lead">
+          Die Besichtigung dauert nur wenige Minuten: Zustand prüfen, Papiere durchgehen,
+          Preis bestätigen. Nachverhandeln an der Haustür gibt es bei uns nicht — was am
+          Telefon vereinbart wurde, gilt auch im Hof.
+        </p>
+
+        <ul class="who__list">
+          <li>Fester Ansprechpartner von der Anfrage bis zur Abholung</li>
+          <li>Termin nach Ihrem Zeitplan, auch abends und samstags</li>
+          <li>Kaufvertrag und Abmeldeunterlagen bereits ausgefüllt dabei</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. Was wir ankaufen ================= -->
+<section class="buy" id="ankauf" aria-labelledby="buy-title">
+  <div class="container">
+
+    <div class="buy__head reveal">
+      <p class="eyebrow">Fahrzeugarten</p>
+      <h2 class="buy__title" id="buy-title">Was wir <em class="accent-em">ankaufen</em></h2>
+      <p class="buy__lead">
+        Zustand, Laufleistung und Alter entscheiden über den Preis, nicht über die Annahme.
+        Auch Fahrzeuge, die keine Werkstatt mehr reparieren würde, nehmen wir mit.
+      </p>
+    </div>
+
+    <div class="buy__grid">
+
+      <article class="buy__card card reveal">
+        <div class="buy__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 14.5h18" />
+            <path d="M4.5 14.5v-3l1.9-4.3A2 2 0 0 1 8.2 6h7.6a2 2 0 0 1 1.8 1.2l1.9 4.3v3" />
+            <path d="M5.6 11.5h12.8" />
+            <circle cx="7.6" cy="17" r="2" />
+            <circle cx="16.4" cy="17" r="2" />
+            <path d="M4.5 17h1.1" />
+            <path d="M18.4 17h1.1" />
+          </svg>
+        </div>
+        <h3 class="buy__card-title">Gebrauchtwagen</h3>
+        <p class="buy__card-text">
+          Vom gepflegten Kleinwagen bis zur Limousine mit hoher Laufleistung.
+          Wir kaufen unabhängig von Marke, Baujahr und Kilometerstand und rechnen
+          den Restwert offen vor.
+        </p>
+      </article>
+
+      <article class="buy__card card reveal">
+        <div class="buy__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.1a3.6 3.6 0 0 0 4.7 4.7l-7.6 7.6a2.4 2.4 0 0 1-3.4-3.4z" />
+            <path d="M14.7 6.1 17 3.8" />
+            <path d="M4 9.5 6.5 7 9 9.5 6.5 12z" />
+            <path d="M5.2 18.9h.01" />
+          </svg>
+        </div>
+        <h3 class="buy__card-title">Unfall- und Motorschaden</h3>
+        <p class="buy__card-text">
+          Blechschaden, Getriebeschaden oder ein stehengebliebener Motor sind kein
+          Ausschlusskriterium. Nicht fahrbereite Fahrzeuge holen wir per Transporter ab.
+        </p>
+      </article>
+
+      <article class="buy__card card reveal">
+        <div class="buy__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3.2 19 6v5.4c0 4.1-2.8 7.4-7 9.4-4.2-2-7-5.3-7-9.4V6z" />
+            <path d="M9.4 11.2 15 15.8" />
+            <path d="M15 11.2 9.4 15.8" />
+          </svg>
+        </div>
+        <h3 class="buy__card-title">Fahrzeuge ohne TÜV</h3>
+        <p class="buy__card-text">
+          Abgelaufene Hauptuntersuchung, offene Mängel oder ein Auto, das seit Monaten
+          steht. Sie müssen vorher nichts reparieren und keine Prüfstelle anfahren.
+        </p>
+      </article>
+
+      <article class="buy__card card reveal">
+        <div class="buy__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.8 16.5V7.4a1.4 1.4 0 0 1 1.4-1.4h9.3v10.5" />
+            <path d="M13.5 9.2h3.3l3.4 3.9v3.4" />
+            <path d="M4.4 16.5h.6" />
+            <path d="M9.6 16.5h4.6" />
+            <path d="M19.6 16.5h1.6" />
+            <circle cx="6.9" cy="16.8" r="2" />
+            <circle cx="17" cy="16.8" r="2" />
+            <path d="M15.4 10.8h1.6l1.7 2.1h-3.3z" />
+          </svg>
+        </div>
+        <h3 class="buy__card-title">Transporter und Wohnmobile</h3>
+        <p class="buy__card-text">
+          Pritschenwagen und Kastenwagen aus dem Gewerbe sowie Wohnmobile und Camper.
+          Für gewerbliche Verkäufer stellen wir den Kaufvertrag mit ausgewiesener
+          Umsatzsteuer aus.
+        </p>
+      </article>
+
+    </div>
+
+    <p class="buy__note">
+      Nicht sicher, ob Ihr Fahrzeug dazugehört? Schicken Sie uns die Eckdaten,
+      die Einschätzung kostet Sie nichts.
+    </p>
+
+  </div>
+</section>
+
+<!-- ==== part 03 ==== -->
+<!-- ==========================================================================
+     REF-2 «FLUXORA» — ЧАСТЬ 3 из 4
+     5. Wie es funktioniert (аккордеон шагов) · 6. Papiere und Abmeldung · 8. FAQ
+     ========================================================================== -->
+
+<!-- ===== 5. Wie es funktioniert ============================================ -->
+<section class="steps-section" id="ablauf">
+  <div class="container">
+    <div class="steps-grid">
+
+      <div class="steps-intro reveal">
+        <span class="eyebrow">Ablauf</span>
+        <h2 class="steps-title">In vier Schritten zum <em class="accent-em">Verkauf</em></h2>
+        <p class="steps-lead">Sie schicken uns die Eckdaten, wir melden uns mit einem Preis. Passt er, kommen wir zu Ihnen und nehmen das Fahrzeug mit.</p>
+        <p class="steps-lead">Tippen Sie auf einen Schritt, um Details zu sehen.</p>
+      </div>
+
+      <div class="steps-list reveal">
+
+        <details class="steps-item" name="steps" open>
+          <summary class="steps-summary">
+            <span class="steps-num">01</span>
+            <h3 class="steps-head">Anfrage senden</h3>
+            <span class="steps-mark" aria-hidden="true"></span>
+          </summary>
+          <div class="steps-body">
+            <p class="steps-text">Marke, Modell, Baujahr, Laufleistung und der Zustand reichen als Einstieg. Fotos helfen, sind aber kein Muss. Sie können das Formular nutzen, anrufen oder uns die Daten per WhatsApp schicken.</p>
+            <p class="steps-note">Ohne Registrierung, ohne Konto</p>
+          </div>
+        </details>
+
+        <details class="steps-item" name="steps">
+          <summary class="steps-summary">
+            <span class="steps-num">02</span>
+            <h3 class="steps-head">Angebot erhalten</h3>
+            <span class="steps-mark" aria-hidden="true"></span>
+          </summary>
+          <div class="steps-body">
+            <p class="steps-text">Wir prüfen die Angaben und nennen Ihnen einen konkreten Preis, telefonisch oder schriftlich. Was den Preis beeinflusst, sagen wir dazu, damit die Zahl nachvollziehbar bleibt. Sie entscheiden in Ruhe.</p>
+            <p class="steps-note">Kostenlos und unverbindlich</p>
+          </div>
+        </details>
+
+        <details class="steps-item" name="steps">
+          <summary class="steps-summary">
+            <span class="steps-num">03</span>
+            <h3 class="steps-head">Termin vereinbaren</h3>
+            <span class="steps-mark" aria-hidden="true"></span>
+          </summary>
+          <div class="steps-body">
+            <p class="steps-text">Wir stimmen einen Termin ab, der Ihnen passt, auch abends oder am Wochenende. Sie müssen nirgendwo hinfahren, wir kommen zu Ihnen nach Hause, in die Werkstatt oder ins Büro.</p>
+            <p class="steps-note">Abholung in ganz NRW</p>
+          </div>
+        </details>
+
+        <details class="steps-item" name="steps">
+          <summary class="steps-summary">
+            <span class="steps-num">04</span>
+            <h3 class="steps-head">Abholung und Bezahlung</h3>
+            <span class="steps-mark" aria-hidden="true"></span>
+          </summary>
+          <div class="steps-body">
+            <p class="steps-text">Vor Ort schauen wir uns das Fahrzeug an, danach unterschreiben wir den Kaufvertrag. Sie bekommen das Geld direkt bei der Übergabe, in bar oder per Echtzeitüberweisung. Das Fahrzeug nehmen wir auf eigenem Weg mit.</p>
+            <p class="steps-note">Kaufvertrag und Abmeldebescheinigung erhalten Sie als Beleg</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. Papiere und Abmeldung ========================================== -->
+<section class="docs-section" id="papiere">
+  <div class="container">
+    <div class="docs-card reveal">
+
+      <div class="docs-copy">
+        <span class="eyebrow">Formalitäten</span>
+        <h2 class="docs-title">Papiere und <em class="accent-em">Abmeldung</em> übernehmen wir</h2>
+        <p class="docs-lead">Den Kaufvertrag setzen wir auf, die Abmeldung bei der Zulassungsstelle erledigen wir nach der Übergabe. Sie bekommen die Abmeldebescheinigung von uns und können damit Versicherung und Steuer beenden.</p>
+        <span class="docs-badge"><span class="docs-badge-dot" aria-hidden="true"></span>kostenlos</span>
+      </div>
+
+      <div class="docs-panel">
+        <p class="docs-panel-title">Das brauchen wir von Ihnen</p>
+        <ul class="docs-list">
+          <li>
+            <span class="docs-check" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5 6 12l7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Fahrzeugschein
+          </li>
+          <li>
+            <span class="docs-check" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5 6 12l7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Fahrzeugbrief
+          </li>
+          <li>
+            <span class="docs-check" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5 6 12l7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Schlüssel
+          </li>
+          <li>
+            <span class="docs-check" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5 6 12l7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            TÜV-Bericht
+          </li>
+        </ul>
+        <p class="docs-hint">Fehlt ein Papier, sagen Sie kurz Bescheid. In den meisten Fällen finden wir einen Weg.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. FAQ ============================================================ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+
+    <div class="faq-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="faq-title">Häufige <em class="accent-em">Fragen</em></h2>
+      <p class="faq-lead">Was Verkäufer uns am öftesten fragen, kurz beantwortet.</p>
+    </div>
+
+    <div class="faq-list reveal">
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <h3 class="faq-q">Muss ich mein Auto vorher abmelden</h3>
+          <span class="faq-mark" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">
+          <p>Nein. Sie können das Fahrzeug angemeldet lassen, wir übernehmen die Abmeldung bei der Zulassungsstelle nach der Übergabe und schicken Ihnen die Abmeldebescheinigung zu.</p>
+          <p>Wenn Sie bereits abgemeldet haben, ist das ebenfalls kein Problem. Dann holen wir das Fahrzeug mit Kurzzeitkennzeichen oder auf dem Anhänger ab.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <h3 class="faq-q">Welche Unterlagen brauche ich für den Verkauf</h3>
+          <span class="faq-mark" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">
+          <p>Fahrzeugschein, Fahrzeugbrief, alle vorhandenen Schlüssel und Ihren Personalausweis. Der letzte TÜV-Bericht und das Scheckheft sind hilfreich, aber keine Voraussetzung.</p>
+          <p>Fehlt der Fahrzeugbrief oder ist er bei der Bank, sprechen Sie uns vorher an. Wir klären dann, welcher Weg möglich ist.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <h3 class="faq-q">Kaufen Sie auch Autos mit Motorschaden</h3>
+          <span class="faq-mark" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">
+          <p>Ja. Motorschaden, Getriebeschaden, Unfallschaden oder Wasserschaden schließen einen Ankauf nicht aus. Beschreiben Sie den Defekt bitte so genau wie möglich, das macht das Angebot belastbar.</p>
+          <p>Fährt das Fahrzeug nicht mehr, organisieren wir den Transport.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <h3 class="faq-q">Was ist mit Fahrzeugen ohne TÜV</h3>
+          <span class="faq-mark" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">
+          <p>Abgelaufene Hauptuntersuchung ist kein Hindernis. Sie müssen das Fahrzeug nicht vorher durch den TÜV bringen, das rechnet sich vor einem Verkauf in der Regel nicht.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <h3 class="faq-q">Wie läuft die Bezahlung ab</h3>
+          <span class="faq-mark" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">
+          <p>Bezahlt wird bei der Übergabe, bevor das Fahrzeug mitgenommen wird. Sie wählen zwischen Barzahlung und Echtzeitüberweisung, die Sie noch vor Ort auf Ihrem Konto sehen.</p>
+          <p>Den Kaufvertrag unterschreiben beide Seiten, ein Exemplar bleibt bei Ihnen.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <h3 class="faq-q">Holen Sie auch außerhalb von Bochum ab</h3>
+          <span class="faq-mark" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">
+          <p>Ja, wir fahren in ganz NRW zu Ihnen, von Dortmund und Essen über Düsseldorf und Köln bis ins Münsterland. Die Anfahrt stellen wir Ihnen nicht in Rechnung.</p>
+          <p>Liegt der Standort weiter entfernt, fragen Sie einfach an. Wir sagen Ihnen dann ehrlich, ob sich die Fahrt für beide Seiten lohnt.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==== part 04 ==== -->
+<!-- ============================================================
+     REF-2 «FLUXORA» — TEIL 4/4
+     7. Formular  ·  9. Finaler CTA  ·  10. Footer
+     ============================================================ -->
+
+<!-- ============ 7. FORMULAR ============ -->
+<section class="form-section" id="bewertung">
+  <div class="container">
+    <div class="form-card reveal">
+
+      <div class="form-head">
+        <p class="eyebrow">Fahrzeugbewertung</p>
+        <h2 class="form-title">Was ist Ihr Fahrzeug <em class="accent-em">wert</em>?</h2>
+        <p class="form-lead">Ein paar Angaben genügen. Wir melden uns mit einem konkreten Preis zurück — kostenlos und unverbindlich</p>
+      </div>
+
+      <form class="form-grid" id="bewertungForm">
+
+        <!-- Honeypot: nicht ausfüllen -->
+        <div class="form-website" aria-hidden="true">
+          <label for="ref2-website">Website</label>
+          <input type="text" id="ref2-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <input type="hidden" name="stadt" value="Bochum">
+        <input type="hidden" name="seite" value="ref2-fluxora">
+
+        <div class="form-field">
+          <label class="form-label" for="ref2-name">Name<span class="form-req">*</span></label>
+          <input class="form-input" type="text" id="ref2-name" name="name" autocomplete="name" placeholder="Vor- und Nachname" required>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="ref2-telefon">Telefon<span class="form-req">*</span></label>
+          <input class="form-input" type="tel" id="ref2-telefon" name="telefon" autocomplete="tel" placeholder="0234 000 000" required>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="ref2-marke">Marke<span class="form-req">*</span></label>
+          <input class="form-input" type="text" id="ref2-marke" name="marke" placeholder="z. B. Volkswagen" required>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="ref2-modell">Modell<span class="form-req">*</span></label>
+          <input class="form-input" type="text" id="ref2-modell" name="modell" placeholder="z. B. Passat Variant" required>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="ref2-erstzulassung">Erstzulassung</label>
+          <input class="form-input" type="text" id="ref2-erstzulassung" name="erstzulassung" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Jahr, vierstellig">
+          <span class="form-hint">Nur das Jahr, zum Beispiel als vierstellige Zahl</span>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="ref2-kilometerstand">Kilometerstand</label>
+          <input class="form-input" type="text" id="ref2-kilometerstand" name="kilometerstand" inputmode="numeric" placeholder="Laufleistung in km">
+          <span class="form-hint">Geschätzt reicht uns völlig</span>
+        </div>
+
+        <div class="form-field form-field--wide">
+          <label class="form-label" for="ref2-nachricht">Nachricht</label>
+          <textarea class="form-textarea" id="ref2-nachricht" name="nachricht" placeholder="Schäden, Ausstattung, TÜV, gewünschter Abholtermin"></textarea>
+        </div>
+
+        <div class="form-consent">
+          <input type="checkbox" id="ref2-datenschutz" name="datenschutz" required>
+          <label for="ref2-datenschutz">Ich habe die <a href="/datenschutz">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden<span class="form-req">*</span></label>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn--primary form-submit" type="submit">Bewertung anfordern</button>
+          <p class="form-note">Kostenlos, unverbindlich und ohne Weitergabe an Dritte</p>
+        </div>
+
+      </form>
+
+      <div class="form-done" id="bewertungDone" role="status" aria-live="polite" hidden>
+        <span class="form-done-badge">Anfrage eingegangen</span>
+        <h3 class="form-done-title" id="bewertungDoneTitle">Danke, wir haben Ihre Anfrage</h3>
+        <p class="form-done-car"><span>Ihr Fahrzeug</span><span id="bewertungDoneCar"></span></p>
+        <p class="form-done-text" id="bewertungDoneText"></p>
+        <button class="btn btn--primary" type="button" id="bewertungReset">Neue Anfrage</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. FINALER CTA ============ -->
+<section class="cta-section" id="kontakt">
+  <span class="cta-arc cta-arc--1" aria-hidden="true"></span>
+  <span class="cta-arc cta-arc--2" aria-hidden="true"></span>
+
+  <div class="container cta-inner">
+
+    <div class="cta-side" aria-hidden="true">
+      <div class="cta-thumb cta-thumb--left">
+        <span class="cta-thumb-label">Ankauf vor Ort</span>
+      </div>
+    </div>
+
+    <div class="cta-center reveal">
+      <p class="eyebrow">Bereit, wenn Sie es sind</p>
+      <h2 class="cta-title">Verkaufen Sie Ihr Auto noch diese <em class="accent-em">Woche</em></h2>
+      <p class="cta-lead">Anfrage am Vormittag, Angebot am selben Tag, Abholung nach Absprache in ganz NRW</p>
+      <div class="cta-actions">
+        <a class="btn btn--primary" href="#bewertung">Fahrzeug bewerten</a>
+        <a class="btn cta-ghost" href="tel:0234000000">0234 000 000</a>
+      </div>
+    </div>
+
+    <div class="cta-side" aria-hidden="true">
+      <div class="cta-thumb cta-thumb--right">
+        <span class="cta-thumb-label">Abholung in NRW</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 10. FOOTER ============ -->
+<footer class="ft">
+  <div class="container">
+
+    <div class="ft-top">
+
+      <div class="ft-brand">
+        <a class="ft-wordmark" href="#top">
+          <span class="ft-dot" aria-hidden="true"></span>
+          Autoankauf NRW
+        </a>
+        <p class="ft-about">Fahrzeugankauf in Bochum und Umgebung. Bewertung kostenlos, Abmeldung und Papiere übernehmen wir, Abholung nach Absprache</p>
+      </div>
+
+      <div class="ft-col">
+        <h3>Ankauf</h3>
+        <ul class="ft-list">
+          <li><a href="#ankauf">Gebrauchtwagen</a></li>
+          <li><a href="#ankauf">Unfall- und Motorschaden</a></li>
+          <li><a href="#ankauf">Fahrzeuge ohne TÜV</a></li>
+          <li><a href="#ankauf">Transporter und Wohnmobile</a></li>
+        </ul>
+      </div>
+
+      <div class="ft-col">
+        <h3>Ablauf</h3>
+        <ul class="ft-list">
+          <li><a href="#ablauf">Anfrage senden</a></li>
+          <li><a href="#ablauf">Angebot erhalten</a></li>
+          <li><a href="#ablauf">Termin vereinbaren</a></li>
+          <li><a href="#faq">Häufige Fragen</a></li>
+        </ul>
+      </div>
+
+      <div class="ft-col">
+        <h3>Kontakt</h3>
+        <address class="ft-contact">
+          <span class="ft-contact-line">
+            <span>Telefon</span>
+            <a href="tel:0234000000">0234 000 000</a>
+          </span>
+          <span class="ft-contact-line">
+            <span>WhatsApp</span>
+            <a href="https://wa.me/49234000000" rel="noopener">Nachricht schreiben</a>
+          </span>
+          <span class="ft-contact-line">
+            <span>Erreichbar</span>
+            <a href="#bewertung">Anfrage rund um die Uhr</a>
+          </span>
+        </address>
+      </div>
+
+    </div>
+
+    <div class="ft-legal">
+      <div class="ft-legal-links">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+      </div>
+      <p class="ft-disclaimer">Entwurf — unverbindliche Vorschau. Texte, Zahlen und Kontaktdaten sind Platzhalter</p>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+/* ---- part 01 ---- */
+/* ==========================================================
+   REF-2 «FLUXORA» — Teil 1/4
+   Burger-Menü, Sticky-Leiste nach dem Hero, Reveal-Basis
+   ========================================================== */
+(function () {
+  'use strict';
+
+  var reduced = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Burger ---------- */
+  var burger = document.getElementById('hdBurger');
+  var mobile = document.getElementById('hdMobile');
+
+  if (burger && mobile) {
+    var setMenu = function (open) {
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+      mobile.classList.toggle('is-open', open);
+    };
+
+    burger.addEventListener('click', function () {
+      setMenu(burger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    mobile.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setMenu(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        burger.focus();
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 900) setMenu(false);
+    });
+  }
+
+  /* ---------- Sticky-Leiste: erst nach dem Hero ---------- */
+  var bar = document.getElementById('stickyBar');
+  var hero = document.querySelector('.hero');
+
+  if (bar && hero) {
+    if ('IntersectionObserver' in window) {
+      var barObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          // Hero ganz aus dem Viewport heraus gescrollt -> Leiste zeigen
+          var passed = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+          bar.classList.toggle('is-visible', passed);
+        });
+      }, { threshold: 0, rootMargin: '0px' });
+
+      barObserver.observe(hero);
+    } else {
+      bar.classList.add('is-visible');
+    }
+  }
+
+  /* ---------- Reveal (Basis für alle Teile) ---------- */
+  var revealItems = document.querySelectorAll('.reveal');
+
+  if (!revealItems.length) return;
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    Array.prototype.forEach.call(revealItems, function (el) {
+      el.classList.add('is-visible');
+    });
+    return;
+  }
+
+  var revealObserver = new IntersectionObserver(function (entries, obs) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      obs.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  Array.prototype.forEach.call(revealItems, function (el) {
+    revealObserver.observe(el);
+  });
+})();
+
+/* ---- part 04 ---- */
+/* ============================================================
+   REF-2 «FLUXORA» — TEIL 4/4
+   Formular: HTML5-Validierung + Bestätigung ohne Reload
+   Kein innerHTML — ausschliesslich textContent
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  var form = document.getElementById('bewertungForm');
+  var done = document.getElementById('bewertungDone');
+  if (!form || !done) return;
+
+  var doneTitle = document.getElementById('bewertungDoneTitle');
+  var doneCar = document.getElementById('bewertungDoneCar');
+  var doneText = document.getElementById('bewertungDoneText');
+  var resetBtn = document.getElementById('bewertungReset');
+
+  function val(name) {
+    var el = form.elements[name];
+    return el && typeof el.value === 'string' ? el.value.trim() : '';
+  }
+
+  function showDone() {
+    var marke = val('marke');
+    var modell = val('modell');
+    var name = val('name');
+    var fahrzeug = (marke + ' ' + modell).trim();
+
+    doneTitle.textContent = name
+      ? 'Danke, ' + name + ' — Ihre Anfrage ist da'
+      : 'Danke, Ihre Anfrage ist da';
+
+    doneCar.textContent = fahrzeug || 'ohne Angabe';
+
+    doneText.textContent =
+      'Wir schauen uns ' +
+      (fahrzeug ? 'Ihren ' + fahrzeug : 'Ihr Fahrzeug') +
+      ' an und melden uns telefonisch mit einem konkreten Angebot. ' +
+      'Wenn Sie in der Zwischenzeit etwas ergänzen möchten, rufen Sie uns unter 0234 000 000 an.';
+
+    form.hidden = true;
+    form.style.display = 'none';
+    done.hidden = false;
+    done.setAttribute('data-visible', 'true');
+
+    if (typeof done.focus === 'function') {
+      done.setAttribute('tabindex', '-1');
+      done.focus({ preventScroll: true });
+    }
+  }
+
+  function showForm() {
+    done.hidden = true;
+    done.removeAttribute('data-visible');
+    form.hidden = false;
+    form.style.display = '';
+    doneTitle.textContent = '';
+    doneCar.textContent = '';
+    doneText.textContent = '';
+    var first = form.elements['name'];
+    if (first && typeof first.focus === 'function') first.focus();
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // Honeypot: ausgefüllt heisst Bot — still verwerfen
+    if (val('website') !== '') return;
+
+    if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+      if (typeof form.reportValidity === 'function') form.reportValidity();
+      return;
+    }
+
+    showDone();
+    form.reset();
+  });
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function () {
+      form.reset();
+      showForm();
+    });
+  }
+})();
+</script>
+</body>
+</html>
