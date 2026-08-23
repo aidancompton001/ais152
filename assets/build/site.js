@@ -893,13 +893,17 @@
     const lenis = window.AIS && window.AIS.lenis;
     if (lenis && typeof lenis.scrollTo === 'function') {
       lenis.scrollTo(target, { offset: -72 });
-      return;
-    }
-    if (typeof target === 'number') {
+    } else if (typeof target === 'number') {
       window.scrollTo({ top: target, behavior: 'smooth' });
     } else {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+    // Пересчёт после собственного перехода: плавная прокрутка двигает
+    // страницу своим циклом, и обычное событие прокрутки до слушателя в
+    // этот момент не доходит. Поймано в браузере — кнопка оставалась
+    // включённой после нажатия.
+    setTimeout(update, 120);
+    setTimeout(update, 900);
   }
 
   next.addEventListener('click', () => {
