@@ -2,6 +2,24 @@
 
 > Read this once. Then you're done.
 
+> **Устарело с 23.08.2026.** Сборка появилась. Правь `_src/index.src.html`
+> и файлы в `assets/css/`, `assets/js/` — и запускай:
+>
+> ```
+> py scripts/build_langs.py --write
+> py scripts/build_services.py --write
+> py scripts/build_cases.py --write
+> py scripts/build_sitemap.py --write
+> ```
+>
+> `build_langs` сам вызывает `bundle_assets.py` (склейка семи стилей и семи
+> скриптов в два файла) и `render_work_static.py` (карточки работ в исходный
+> код). Править `index.html` и `en/index.html` руками нельзя: следующая
+> сборка сотрёт правку.
+>
+> Число проектов, число коммитов и метки версий считаются при сборке из
+> `data/projects.json` и git. Руками их не пишут.
+
 This is a static site. Zero build step. Open `index.html` directly in a browser → it works. Push to `master` → GitHub Pages updates within ~2 minutes.
 
 ## File map
