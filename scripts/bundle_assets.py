@@ -28,7 +28,7 @@ SRC = ROOT / "_src" / "index.src.html"
 OUT = ROOT / "assets" / "build"
 
 CSS_ORDER = ["tokens", "base", "layout", "components", "motion", "hero", "marks"]
-JS_ORDER = ["lang", "dotgrid", "terminal", "projects", "form", "whatsapp", "main"]
+JS_ORDER = ["lang", "dotgrid", "terminal", "projects", "form", "whatsapp", "navhelp", "main"]
 
 
 def listed(kind):

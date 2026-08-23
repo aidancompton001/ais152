@@ -720,3 +720,65 @@ html[data-lang="de"] #contact-form.is-loading .form-submit-loading[data-lang-de]
 @media (min-width: 1025px) {
   .work-track.is-native .card { flex: 0 0 clamp(300px, 24vw, 380px); }
 }
+
+/* ── Кнопки-подсказки: уйти дальше и вернуться наверх ─────────
+   Раздел работ листается вбок колесом, пока указатель над лентой. Кто
+   этого не понял, должен иметь очевидный выход, а не догадываться, что
+   мышь надо увести в сторону. Вторая кнопка возвращает к началу из
+   нижней трети страницы, чтобы не мотать колесом всю ленту обратно.
+
+   Справа, столбиком над кнопкой WhatsApp: та занимает 56 пикселей плюс
+   отступ, поэтому отсчёт идёт от неё, а не от края экрана. */
+.navhelp {
+  position: fixed;
+  right: var(--sp-6);
+  z-index: var(--z-fab);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 10px var(--sp-3);
+  border: 1px solid var(--bd-strong);
+  background: var(--bg-elev-2);
+  color: var(--tx);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--lt-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.45);
+  /* Скрыта, но не удалена: появление и уход должны быть плавными, а не
+     мельканием. Пока скрыта — не ловит нажатия и не читается вслух. */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out),
+              visibility 0s linear var(--dur-fast),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+.navhelp.is-on {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+.navhelp:hover,
+.navhelp:focus-visible {
+  color: var(--ac);
+  border-color: var(--bd-accent);
+}
+.navhelp-next { bottom: calc(var(--sp-6) + 56px + var(--sp-3)); }
+.navhelp-top { bottom: calc(var(--sp-6) + 56px + var(--sp-3)); }
+
+/* Телефон: подпись прячется, остаётся стрелка. Место у нижнего края
+   узкого экрана дорогое, а стрелка вверх и вниз читается без слов. */
+@media (max-width: 640px) {
+  .navhelp { padding: 12px; }
+  .navhelp-text { display: none; }
+}
+
+/* Просили меньше движения — кнопка появляется без сдвига. */
+@media (prefers-reduced-motion: reduce) {
+  .navhelp { transform: none; transition: opacity var(--dur-fast) linear, visibility 0s linear var(--dur-fast); }
+}
