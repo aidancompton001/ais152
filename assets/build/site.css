@@ -1,0 +1,2302 @@
+
+/* ── tokens ── */
+/* ─────────────────────────────────────────────────────────────
+   AIS.152 — Design Tokens (v2 — Editorial Ink)
+   Single source of truth. No hardcoded values outside this file.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── COLORS — EDITORIAL INK ──────────────────────────── */
+  /* Фон: тёплый уголь, не чёрный и не синий.
+     Было #0B0E12 — сине-серая тушь. Замена 19.08.2026: барс закреплён
+     как часть бренда и рендерится на тёплом песочном; холодный фон рядом
+     с ним читался как две разные работы. Контраст кости проверен:
+     16,20 против прежних 16,88 — читаемость не пострадала. */
+  --bg:           #141311;
+  --bg-elev-1:    #1B1917;
+  --bg-elev-2:    #23201D;
+  --bg-elev-3:    #2B2724;
+
+  /* Borders: warm bone at low alpha */
+  --bd:           rgba(244, 239, 229, 0.08);
+  --bd-strong:    rgba(244, 239, 229, 0.18);
+  --bd-accent:    rgba(255, 106, 60, 0.34);
+
+  /* Text: warm bone, never pure white */
+  --tx:           #F4EFE5;
+  --tx-mu:        rgba(244, 239, 229, 0.62);
+  --tx-fa:        rgba(244, 239, 229, 0.36);
+  --tx-on-ac:     #0B0E12;
+
+  /* Primary accent: warm coral (replaces lime) — German Werkbund warm */
+  --ac:           #FF6A3C;
+  --ac-soft:      rgba(255, 106, 60, 0.10);
+  --ac-glow:      rgba(255, 106, 60, 0.45);
+  --ac-hover:     #FF8559;
+
+  /* Ссылки. Холодный голубой #7DC4FF снят 19.08.2026: на песочном фоне
+     светлых сцен он даёт контраст 1,40 — то есть исчезает, — и тянет
+     весь сайт обратно в холод. Тёплый янтарь работает на обоих фонах. */
+  --link:         #E8A33D;
+  --link-soft:    rgba(232, 163, 61, 0.10);
+
+
+  /* ── СВЕТЛЫЕ СЦЕНЫ С ПЕРСОНАЖЕМ ───────────────────────
+     Барс рендерится на #AF9D89 — это его родной фон, поэтому вырезать
+     его по контуру не нужно нигде, где сцена светлая.
+     На этом фоне кость нечитаема (2,29), а коралл исчезает (1,09),
+     поэтому у светлых сцен своя пара: тёмный текст и терракота. */
+  --sand:         #AF9D89;
+  --sand-elev:    #BCAB97;
+  --on-sand:      #141311;      /* контраст 7,08 */
+  --on-sand-mu:   rgba(20, 19, 17, 0.66);
+  /* Терракота #8C3A1E давала на песочном 2,92 — ниже порога читаемости.
+     Затемнена до 4,67: это уже настоящий текстовый контраст, а не «почти». */
+  --ac-on-sand:   #5C2411;      /* контраст 4,67 */
+  --link-on-sand: #5C2411;      /* янтарь на песочном даёт 1,22 — не годится */
+  --bd-on-sand:   rgba(20, 19, 17, 0.14);
+
+  /* Status */
+  --status-ok:    #6EE7B7;
+  --status-warn:  #FCD34D;
+  --status-err:   #FB7185;
+  --status-dev:   #94A3B8;
+
+  /* Code syntax (terminal panel) */
+  --code-keyword: #FF6A3C;     /* coral — matches accent */
+  --code-string:  #7DC4FF;     /* sky */
+  --code-fn:      #F4EFE5;     /* bone */
+  --code-num:     #FCD34D;     /* amber */
+  --code-comment: rgba(244, 239, 229, 0.34);
+  --code-punct:   rgba(244, 239, 229, 0.50);
+
+  /* ── TYPOGRAPHY ──────────────────────────────────────── */
+  /* Mona Sans = variable font (wght 200-900, wdth 75-125). */
+  /* Falls back to Inter, then system. */
+  --ff-sans:      'Mona Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+  --ff-mono:      'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
+  /* Заголовочный отделён от текстового 19.08.2026. Bricolage Grotesque
+     держит характер, Mona Sans остаётся в тексте — на её осях построена
+     вся шкала размеров, и менять её целиком значит пересобирать
+     типографику на 34 страницах. */
+  --ff-display:   'Bricolage Grotesque', 'Mona Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  /* Variable axes default values */
+  --wght-light:   320;
+  --wght-regular: 420;
+  --wght-medium:  540;
+  --wght-semibold:620;
+  --wght-bold:    720;
+  --wdth-narrow:  88;
+  --wdth-normal:  100;
+  --wdth-wide:    112;
+
+  /* Fluid type scale */
+  --fs-2xs:       clamp(0.6875rem, 0.65rem + 0.18vw, 0.75rem);
+  --fs-xs:        clamp(0.75rem,   0.7rem  + 0.25vw, 0.8125rem);
+  --fs-sm:        clamp(0.8125rem, 0.75rem + 0.30vw, 0.9375rem);
+  --fs-base:      clamp(0.9375rem, 0.85rem + 0.45vw, 1.0625rem);
+  --fs-lg:        clamp(1.0625rem, 0.95rem + 0.55vw, 1.25rem);
+  --fs-xl:        clamp(1.25rem,   1.10rem + 0.75vw, 1.5rem);
+  --fs-2xl:       clamp(1.5rem,    1.25rem + 1.25vw, 2rem);
+  --fs-3xl:       clamp(2rem,      1.50rem + 2.50vw, 3rem);
+  --fs-4xl:       clamp(2.5rem,    1.75rem + 3.75vw, 4.5rem);
+  --fs-5xl:       clamp(3.5rem,    2.25rem + 6.25vw, 7rem);
+  --fs-display:   clamp(3.5rem,    2.0rem  + 7.5vw,  9rem);
+
+  --lh-tight:     1.05;
+  --lh-snug:      1.42;   /* было 1.18 — ниже порога читаемости для текста,
+                             который читают. Аудит Impeccable, 19.08.2026 */
+  --lh-base:      1.55;
+  --lh-loose:     1.7;
+
+  --lt-tighter:   -0.04em;
+  --lt-tight:     -0.02em;
+  --lt-base:      -0.005em;
+  --lt-wide:      0.02em;
+  --lt-mono:      0;
+
+  /* Legacy weight tokens (now mapped to wght axis) */
+  --fw-light:     var(--wght-light);
+  --fw-regular:   var(--wght-regular);
+  --fw-medium:    var(--wght-medium);
+  --fw-semibold:  var(--wght-semibold);
+  --fw-bold:      var(--wght-bold);
+
+  /* ── SPACING (8pt grid) ──────────────────────────────── */
+  --sp-0: 0;       --sp-1: 0.25rem; --sp-2: 0.5rem;  --sp-3: 0.75rem;
+  --sp-4: 1rem;    --sp-5: 1.25rem; --sp-6: 1.5rem;  --sp-7: 1.75rem;
+  --sp-8: 2rem;    --sp-10: 2.5rem; --sp-12: 3rem;   --sp-14: 3.5rem;
+  --sp-16: 4rem;   --sp-20: 5rem;   --sp-24: 6rem;   --sp-32: 8rem;
+  --sp-40: 10rem;  --sp-48: 12rem;
+
+  /* ── LAYOUT ──────────────────────────────────────────── */
+  --container-max:    1280px;
+  --container-px:     clamp(1rem, 4vw, 2.5rem);
+  --header-h:         64px;
+  --section-py:       clamp(4rem, 8vw, 8rem);
+  --section-py-lg:    clamp(6rem, 12vw, 12rem);
+
+  /* ── BORDER ──────────────────────────────────────────── */
+  --r-0: 0px; --r-sm: 2px; --r-base: 4px; --r-lg: 8px; --r-pill: 999px;
+
+  /* ── MOTION ──────────────────────────────────────────── */
+  /* 180 мс на наведении и нажатии читались как щелчок, а не как перетекание.
+     Сравнил в браузере с sweness.com, который CEO назвал эталоном мягкости:
+     там у каждого интерактивного элемента 300 мс. Ставим 280 — мягко, но
+     без ощущения, что интерфейс думает. Кривая остаётся своей: (0.16, 1,
+     0.3, 1) — плавный выход, он мягче их симметричной. */
+  --dur-instant: 100ms; --dur-fast: 280ms;  --dur-base: 320ms;
+  --dur-slow:    600ms; --dur-slower: 900ms; --dur-page: 1200ms;
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:      cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-linear:  linear;
+
+  /* ── Z-INDEX ─────────────────────────────────────────── */
+  --z-base: 1; --z-progress: 50; --z-fab: 70;
+  --z-header: 80; --z-mobile-nav: 90; --z-modal: 100;
+
+  /* ── SHADOWS ─────────────────────────────────────────── */
+  --shadow-sm:    0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-base:  0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg:    0 12px 32px rgba(0, 0, 0, 0.6);
+  --shadow-glow:  0 0 0 1px var(--bd-accent), 0 0 32px var(--ac-soft);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Mona Sans (variable, OFL — by GitHub).
+   Download: https://github.com/github/mona-sans → Mona-Sans.woff2
+   See assets/fonts/README.md.
+
+   Until the WOFF2 file is downloaded, the site falls back to Inter
+   or the system stack defined in --ff-sans.
+   ───────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Mona Sans';
+  /* Сабсет 19.08.2026: полный файл весил 530 КБ и составлял 86 % всей
+     страницы. В нём 566 символов, из которых на сайте встречается 171.
+     В сабсете 225 — реальные плюс запас на будущие немецкие и служебные.
+     Вариативные оси wght/wdth/opsz/ital сохранены, кернинг и лигатуры тоже. */
+  src: url('../fonts/Mona-Sans.subset.woff2') format('woff2-variations'),
+       url('../fonts/Mona-Sans.subset.woff2') format('woff2');
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('../fonts/BricolageGrotesque-Variable.woff2') format('woff2-variations'),
+       url('../fonts/BricolageGrotesque-Variable.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+/* Apply variable axes globally when Mona Sans loads */
+html { font-variation-settings: "wght" var(--wght-regular), "wdth" var(--wdth-normal); }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ff-display);
+  /* Ось wdth у Bricolage идёт 75-100, у Mona 75-125. Значение задаётся
+     общее и безопасное для обоих, иначе на подмене шрифта буквы поплывут. */
+  font-variation-settings: "wght" var(--wght-semibold), "wdth" 100;
+}
+strong, b { font-variation-settings: "wght" var(--wght-bold), "wdth" var(--wdth-normal); }
+
+
+/* ── base ── */
+/* ─────────────────────────────────────────────────────────────
+   AIS.152 — Base Reset & Typography
+   ───────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+* { margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis takes over */
+  scrollbar-gutter: stable;
+}
+
+body {
+  background: var(--bg);
+  color: var(--tx);
+  font-family: var(--ff-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--lt-base);
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  min-height: 100vh;
+}
+
+img, svg, video, canvas, picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+ol, ul { list-style: none; }
+
+::selection {
+  background: var(--ac);
+  color: var(--tx-on-ac);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bd-strong); }
+::-webkit-scrollbar-thumb:hover { background: var(--ac); }
+
+/* ── Headings ──────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ff-display);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--lt-tighter);
+  color: var(--tx);
+}
+
+p { line-height: var(--lh-base); }
+
+em { font-style: italic; color: var(--ac); }
+
+code, pre, kbd, samp {
+  font-family: var(--ff-mono);
+  font-size: 0.92em;
+}
+
+code {
+  background: var(--bg-elev-1);
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--bd);
+  letter-spacing: var(--lt-mono);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--ac);
+  outline-offset: 3px;
+}
+
+/* ── Bilingual default visibility ──────────────────────── */
+/* Правило, прятавшее немецкий текст, снято 18.08.2026.
+   Обе версии теперь живут на своих адресах: / — немецкий, /en/ — английский.
+   Прежняя схема отдавала Googlebot ВСЕГДА английский, потому что язык
+   выбирался по настройке браузера, которой у краулера нет. */
+html[data-lang="de"] [data-lang-en] { display: none !important; }
+html[data-lang="de"] [data-lang-de] { display: inline !important; }
+html[data-lang="de"] [data-lang-de].block { display: block !important; }
+html[data-lang="de"] [data-lang-de].flex  { display: flex  !important; }
+
+/* ── Skip link (a11y) ──────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--sp-4);
+  background: var(--ac);
+  color: var(--tx-on-ac);
+  padding: var(--sp-3) var(--sp-4);
+  font-weight: var(--fw-semibold);
+  z-index: var(--z-modal);
+  transition: top var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus { top: var(--sp-4); }
+
+/* ── Utilities ─────────────────────────────────────────── */
+.overline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--lt-wide);
+  text-transform: uppercase;
+  color: var(--tx-mu);
+}
+.overline::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--bd-strong);
+  margin-right: var(--sp-2);
+}
+
+.link-inline {
+  color: var(--ac);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.link-inline:hover { opacity: 0.75; }
+
+
+/* ── layout ── */
+/* ─────────────────────────────────────────────────────────────
+   AIS.152 — Layout
+   Container, header, sections, footer skeleton.
+   ───────────────────────────────────────────────────────────── */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-px);
+  padding-right: var(--container-px);
+}
+
+/* ════════════════ SCROLL PROGRESS ════════════════ */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--bg-elev-2);
+  z-index: var(--z-progress);
+  transform-origin: left;
+}
+.scroll-progress::after {
+  content: '';
+  display: block;
+  height: 100%;
+  background: var(--ac);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+  transition: transform 80ms linear;
+}
+
+/* ════════════════ HEADER ════════════════ */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  z-index: var(--z-header);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  background: rgba(10, 10, 11, 0.7);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-base) var(--ease-out),
+              background var(--dur-base) var(--ease-out);
+}
+.header.is-scrolled {
+  border-bottom-color: var(--bd);
+  background: rgba(10, 10, 11, 0.85);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: var(--sp-6);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--ff-mono);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--lt-mono);
+  color: var(--tx);
+  white-space: nowrap;
+}
+.logo-mark { color: var(--tx); }
+.logo-version {
+  color: var(--ac);
+  font-weight: var(--fw-regular);
+  font-style: italic;
+}
+
+.nav { flex: 1; display: flex; justify-content: center; }
+.nav-list {
+  display: flex;
+  gap: var(--sp-6);
+}
+.nav-link {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--tx-mu);
+  padding: var(--sp-2) 0;
+  position: relative;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nav-link:hover { color: var(--tx); }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--ac);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.nav-link:hover::after { transform: scaleX(1); }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+/* ── Lang toggle ──────────────────────────────────────── */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--tx-mu);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--bd);
+  letter-spacing: var(--lt-wide);
+  transition: border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+.lang-toggle:hover { border-color: var(--bd-strong); color: var(--tx); }
+.lang-toggle-current { color: var(--ac); }
+.lang-toggle-sep { color: var(--tx-fa); }
+.lang-toggle-other { color: var(--tx-mu); }
+
+/* ── Mobile burger ────────────────────────────────────── */
+.nav-burger {
+  display: none;
+  width: 40px; height: 40px;
+  position: relative;
+  border: 1px solid var(--bd);
+}
+.nav-burger span {
+  position: absolute;
+  left: 11px; right: 11px;
+  height: 1px;
+  background: var(--tx);
+  transition: transform var(--dur-base) var(--ease-out),
+              top var(--dur-base) var(--ease-out),
+              opacity var(--dur-fast) var(--ease-out);
+}
+.nav-burger span:nth-child(1) { top: 16px; }
+.nav-burger span:nth-child(2) { top: 22px; }
+.nav-burger[aria-expanded="true"] span:nth-child(1) {
+  top: 19px; transform: rotate(45deg);
+}
+.nav-burger[aria-expanded="true"] span:nth-child(2) {
+  top: 19px; transform: rotate(-45deg);
+}
+
+/* ── Mobile nav ───────────────────────────────────────── */
+.nav-mobile {
+  position: fixed;
+  top: var(--header-h); left: 0; right: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--bd);
+  padding: var(--sp-6) var(--container-px) var(--sp-8);
+  z-index: var(--z-mobile-nav);
+  transform: translateY(-110%);
+  transition: transform var(--dur-base) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.nav-mobile.is-open { transform: translateY(0); }
+.nav-mobile-link {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--lt-tight);
+  color: var(--tx);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--bd);
+}
+.nav-mobile-link:last-of-type { border-bottom: none; }
+.nav-mobile-mail {
+  margin-top: var(--sp-4);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  color: var(--ac);
+}
+
+/* ════════════════ HERO ════════════════ */
+.hero {
+  padding-top: calc(var(--header-h) + var(--sp-16));
+  padding-bottom: var(--section-py);
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(800px 500px at 90% 10%, var(--ac-soft), transparent 60%),
+    radial-gradient(600px 400px at 5% 90%, rgba(80,140,255,0.05), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-mu);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--bd);
+  align-self: flex-start;
+}
+.status-dot {
+  width: 8px; height: 8px;
+  background: var(--status-ok);
+  border-radius: var(--r-pill);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.4);  /* было цветное свечение
+     с нулевым смещением — дежурный приём ИИ-интерфейсов. Аудит 19.08.2026 */
+  animation: status-pulse 2.4s var(--ease-in-out) infinite;
+}
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.6; transform: scale(0.85); }
+}
+
+.hero-title {
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--lt-tighter);
+  font-weight: var(--fw-semibold);
+  max-width: 16ch;
+}
+.hero-title-line { display: block; }
+
+.hero-lead {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--tx-mu);
+  max-width: 56ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-6);
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--bd);
+  max-width: 720px;
+}
+.hero-meta-item dt {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-fa);
+  margin-bottom: var(--sp-2);
+}
+.hero-meta-item dd {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--tx);
+}
+
+/* ════════════════ MARQUEE ════════════════ */
+.marquee {
+  border-top: 1px solid var(--bd);
+  border-bottom: 1px solid var(--bd);
+  padding: var(--sp-5) 0;
+  overflow: hidden;
+  background: var(--bg-elev-1);
+}
+.marquee-track {
+  display: inline-flex;
+  gap: var(--sp-6);
+  white-space: nowrap;
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  color: var(--tx-mu);
+  letter-spacing: var(--lt-wide);
+  /* Капс снят: бегущая строка со стеком. Слово узнаётся по силуэту — заглавные
+     его убирают, и длинная строка читается тяжелее.
+     Аудит Impeccable, 19.08.2026 */
+  letter-spacing: var(--lt-wide);
+  /* PX-008: 60s (was 40s) — main.js doubles the content for infinite loop, so
+     the same visual speed needs longer duration over the doubled track. */
+  animation: marquee 60s linear infinite;
+  will-change: transform;
+}
+.marquee-track > span:nth-child(odd) { color: var(--tx); }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ════════════════ STATS ════════════════ */
+.stats { padding: var(--section-py) 0; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-6);
+}
+.stat {
+  padding: var(--sp-6) var(--sp-5);
+  border: 1px solid var(--bd);
+  background: var(--bg-elev-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  transition: border-color var(--dur-base) var(--ease-out),
+              background var(--dur-base) var(--ease-out);
+}
+.stat:hover {
+  border-color: var(--bd-strong);
+  background: var(--bg-elev-2);
+}
+.stat-num {
+  font-family: var(--ff-display);
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--lt-tighter);
+  color: var(--tx);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.stat-suffix {
+  font-size: 0.5em;
+  color: var(--ac);
+  font-weight: var(--fw-regular);
+}
+.stat-label {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-mu);
+}
+/* PX-008: small print under stat-label, mirrors .section-fineprint style */
+.stat-fineprint {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-fa);
+  margin-top: var(--sp-1);
+}
+
+/* ════════════════ SECTION HEAD (shared) ════════════════ */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  max-width: 760px;
+  margin-bottom: var(--sp-12);
+}
+.section-title {
+  font-size: var(--fs-4xl);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--lt-tighter);
+  font-weight: var(--fw-semibold);
+}
+.section-lead {
+  font-size: var(--fs-lg);
+  color: var(--tx-mu);
+  line-height: var(--lh-snug);
+  max-width: 56ch;
+}
+.section-fineprint {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--tx-fa);
+  letter-spacing: var(--lt-wide);
+  line-height: var(--lh-base);
+  max-width: 64ch;
+  margin-top: calc(var(--sp-2) * -1);
+}
+
+/* ════════════════ WORK (pinned horizontal) ════════════════ */
+.work {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+  position: relative;
+}
+.work-pin {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  /* Обрезка снята по горизонтали только там, где она нужна лентой:
+     контейнер с overflow резал позиционированных потомков — подсказки
+     и всплывающие слои. Аудит Impeccable, 19.08.2026 */
+  overflow-x: hidden;
+  overflow-y: visible;
+  position: relative;
+}
+.work-track {
+  display: flex;
+  gap: var(--sp-6);
+  padding-left: var(--container-px);
+  padding-right: 25vw;
+  will-change: transform;
+}
+.work-loading {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  color: var(--tx-fa);
+  padding: var(--sp-12);
+}
+.work-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-top: var(--sp-8);
+}
+.work-progress-track {
+  flex: 1;
+  height: 2px;
+  background: var(--bg-elev-2);
+  position: relative;
+}
+.work-progress-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 12.5%;
+  background: var(--ac);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.work-progress-meta {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  color: var(--tx-mu);
+  letter-spacing: var(--lt-wide);
+}
+.work-progress-current { color: var(--ac); }
+.work-progress-sep { color: var(--tx-fa); margin: 0 4px; }
+
+/* PX-013: mobile fallback — native CSS scroll-snap instead of GSAP pin.
+   Scoped to (prefers-reduced-motion: no-preference) so the existing motion.css
+   reduced-motion vertical-stack fallback wins for users who request it.
+   NOT setting touch-action — default 'auto' lets browser route vertical swipes
+   to the page (touch-action: pan-x consumed them, re-creating the original bug).
+   NOT setting -webkit-overflow-scrolling — deprecated since iOS 13, no-op. */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .work-pin {
+    height: auto;
+    overflow: visible;
+  }
+  .work-track {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    padding-right: var(--container-px);
+  }
+  .work-progress-track {
+    display: none; /* pin-bound bar meaningless without pin */
+  }
+}
+
+/* ════════════════ SERVICES ════════════════ */
+.services { padding: var(--section-py) 0; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+}
+
+/* ════════════════ PROCESS ════════════════ */
+.process { padding: var(--section-py) 0; background: var(--bg-elev-1); border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd); }
+.process-list {
+  display: flex;
+  flex-direction: column;
+}
+.process-step {
+  display: grid;
+  grid-template-columns: 80px 1fr 140px;
+  gap: var(--sp-8);
+  padding: var(--sp-8) 0;
+  border-top: 1px solid var(--bd);
+  align-items: start;
+  transition: background var(--dur-base) var(--ease-out);
+}
+.process-step:last-child { border-bottom: 1px solid var(--bd); }
+.process-step:hover { background: var(--bg-elev-2); }
+.process-step-num {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xl);
+  color: var(--ac);
+  font-weight: var(--fw-medium);
+}
+.process-step-title {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--sp-3);
+}
+.process-step-body p {
+  color: var(--tx-mu);
+  max-width: 60ch;
+}
+.process-step-time {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-fa);
+  text-align: right;
+}
+
+/* ════════════════ ABOUT ════════════════ */
+.about { padding: var(--section-py) 0; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--sp-16);
+  align-items: start;
+}
+.about-text p {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-base);
+  color: var(--tx-mu);
+  max-width: 56ch;
+  margin-bottom: var(--sp-5);
+}
+.about-text p:first-child { color: var(--tx); }
+.about-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-8);
+}
+.about-chips li {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-mu);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--bd);
+}
+
+/* ════════════════ CONTACT ════════════════ */
+.contact {
+  padding: var(--section-py-lg) 0;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elev-1) 100%);
+  border-top: 1px solid var(--bd);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--sp-16);
+}
+.contact-intro .section-title { margin-bottom: var(--sp-6); }
+.contact-promise {
+  font-size: var(--fs-lg);
+  color: var(--tx-mu);
+  margin-bottom: var(--sp-8);
+  max-width: 48ch;
+}
+.contact-channels {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--bd);
+}
+.contact-channels li { border-bottom: 1px solid var(--bd); }
+.contact-channel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-5) 0;
+  width: 100%;
+  text-align: left;
+  transition: transform var(--dur-base) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+.contact-channel:hover {
+  padding-left: var(--sp-3);
+  color: var(--ac);
+}
+.contact-channel-label {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-fa);
+  min-width: 90px;
+}
+.contact-channel-value {
+  font-size: var(--fs-base);
+  color: inherit;
+  font-weight: var(--fw-medium);
+}
+
+/* ════════════════ FOOTER ════════════════ */
+.footer {
+  padding: var(--section-py) 0 var(--sp-8);
+  border-top: 1px solid var(--bd);
+  background: var(--bg);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--sp-12);
+  margin-bottom: var(--sp-12);
+}
+.footer-brand .footer-logo { font-size: var(--fs-lg); margin-bottom: var(--sp-4); }
+.footer-tagline {
+  color: var(--tx-mu);
+  max-width: 36ch;
+  font-size: var(--fs-sm);
+}
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.footer-title {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-fa);
+  font-weight: var(--fw-medium);
+  margin-bottom: var(--sp-2);
+}
+.footer-col a, .footer-col button {
+  text-align: left;
+  font-size: var(--fs-sm);
+  color: var(--tx-mu);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.footer-col a:hover, .footer-col button:hover { color: var(--tx); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--bd);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--tx-fa);
+  /* Капс снят: строка копирайта — 31 знак. Слово узнаётся по силуэту — заглавные
+     его убирают, и длинная строка читается тяжелее.
+     Аудит Impeccable, 19.08.2026 */
+  letter-spacing: var(--lt-wide);
+  letter-spacing: var(--lt-wide);
+}
+
+/* ════════════════ RESPONSIVE ════════════════ */
+@media (max-width: 1024px) {
+  .nav { display: none; }
+  .nav-burger { display: inline-flex; align-items: center; justify-content: center; }
+  .header-actions .btn { display: none; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: var(--sp-8); }
+  .contact-grid { grid-template-columns: 1fr; gap: var(--sp-12); }
+  .hero-meta { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
+  .process-step { grid-template-columns: 60px 1fr; }
+  .process-step-time { grid-column: 2; text-align: left; margin-top: var(--sp-2); }
+}
+
+@media (max-width: 640px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .hero-meta { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
+  .header-actions .lang-toggle { padding: var(--sp-1) var(--sp-2); }
+}
+
+/* PX-014: нативная горизонтальная прокрутка ленты работ.
+   Включается из main.js, когда закрепление недоступно: GSAP не загрузился
+   (блокировщик, сбой CDN) или система просит меньше анимации. Без этого
+   карточки оставались обрезанным рядом, который нечем прокрутить. */
+.work-pin.is-native {
+  height: auto;
+  overflow: visible;
+}
+.work-track.is-native {
+  /* .work-pin — это flex-контейнер, поэтому лента как flex-элемент растягивалась
+     под суммарную ширину карточек: clientWidth равнялся scrollWidth и прокручивать
+     было нечего. Ограничиваем ленту шириной окна, тогда она становится
+     контейнером прокрутки, а не просто длинным рядом. */
+  flex: 0 1 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* Без scroll-snap: он возвращал ленту к текущей точке привязки после каждого
+     шага колеса, из-за чего scrollLeft оставался на месте, а страница уезжала
+     вниз. Замерено: 5 шагов по 200px -> scrollLeft 40 -> 40, window.scrollY 1929. */
+  scroll-behavior: auto;              /* без плавности: режим «меньше анимации» */
+  padding-right: var(--container-px);
+  will-change: auto;
+  scrollbar-width: thin;
+}
+.work-track.is-native:focus-visible {
+  outline: 2px solid var(--ac);
+  outline-offset: 4px;
+}
+
+
+/* Страницы услуг и кейсов: сплошной текст, а не сетка карточек.
+   Аудит Impeccable, 19.08.2026: строки выходили на ~140 знаков при норме
+   до 80. Мера старая и физиологическая — на длинной строке глаз теряет
+   начало следующей. */
+.page-leistung .container p,
+.page-leistung .container ul,
+.page-leistung .container ol,
+.page-case .container p,
+.page-case .container ul,
+.page-case .container ol {
+  max-width: 60ch;
+}
+
+.page-leistung .container h1,
+.page-case .container h1 {
+  max-width: 22ch;
+}
+
+.page-leistung .container h2,
+.page-case .container h2 {
+  max-width: 28ch;
+}
+
+/* Списки внутри текста: маркеры и внятный отступ вместо голых строк. */
+.page-leistung .container ul li,
+.page-leistung .container ol li,
+.page-case .container ul li,
+.page-case .container ol li {
+  margin-block: 0.4em;
+}
+
+/* Первая секция страницы услуги стоит вплотную под несущей шапкой.
+   Пока заголовки умещались в одну строку, запаса секции хватало; заголовок
+   в две строки уезжал под шапку и терял верхнюю строку — на странице для
+   практик это первое, что видел посетитель. */
+.page-leistung > .section:first-child,
+.page-case > .section:first-child {
+  padding-top: calc(var(--header-h) + var(--sp-12));
+}
+
+/* Иерархия заголовков на страницах услуг и кейсов.
+   Замер на живой странице: главный заголовок выходил 62 px, подзаголовок —
+   72 px, то есть подзаголовок был крупнее главного. На узком экране то же
+   самое: 36 против 42,6. Размеры заданы явно, чтобы порядок читался глазом,
+   а не выводился из наследования. */
+.page-leistung .container h1,
+.page-case .container h1 {
+  font-size: var(--fs-4xl);
+}
+
+.page-leistung .container h2,
+.page-case .container h2 {
+  font-size: var(--fs-3xl);
+}
+
+/* Воздух вокруг подзаголовков на страницах услуг и кейсов.
+   Без него подзаголовок стоит вплотную к абзацу над ним и читается как
+   продолжение предыдущей мысли, а не как начало новой. */
+.page-leistung .container h2,
+.page-case .container h2 {
+  margin-top: var(--sp-12);
+  margin-bottom: var(--sp-5);
+}
+
+.page-leistung > .section:first-child .container h1,
+.page-case > .section:first-child .container h1 {
+  margin-bottom: var(--sp-6);
+}
+
+
+/* ── components ── */
+/* ─────────────────────────────────────────────────────────────
+   AIS.152 — Components
+   Buttons, cards, forms, FAB, modal.
+   ───────────────────────────────────────────────────────────── */
+
+/* ════════════════ BUTTONS ════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font-family: var(--ff-sans);
+  font-size: var(--fs-sm);
+  font-variation-settings: "wght" var(--wght-medium), "wdth" var(--wdth-normal);
+  letter-spacing: var(--lt-base);
+  padding: var(--sp-3) var(--sp-5);
+  border: 1px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out),
+              font-variation-settings var(--dur-base) var(--ease-out);
+  text-align: center;
+  white-space: nowrap;
+}
+.btn:hover {
+  font-variation-settings: "wght" var(--wght-semibold), "wdth" var(--wdth-narrow);
+}
+
+.btn-sm { padding: var(--sp-2) var(--sp-4); font-size: var(--fs-xs); }
+.btn-lg { padding: var(--sp-4) var(--sp-6); font-size: var(--fs-base); }
+
+.btn-primary {
+  background: var(--ac);
+  color: var(--tx-on-ac);
+  border-color: var(--ac);
+}
+.btn-primary:hover {
+  background: var(--ac-hover);
+  border-color: var(--ac-hover);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost {
+  color: var(--tx);
+  border-color: var(--bd-strong);
+  background: transparent;
+}
+.btn-ghost:hover {
+  border-color: var(--ac);
+  color: var(--ac);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+[data-magnetic] {
+  will-change: transform;
+}
+
+/* PX-007: stabilize variable-font hover/scroll axis changes — contain layout
+   so that font-variation-settings transitions don't trigger page-level reflow. */
+[data-vfont-hover] {
+  contain: layout style;
+  transition: font-variation-settings 220ms var(--ease-out);
+}
+
+/* ════════════════ PROJECT CARD — UNIFIED (PX-004) ════════════════ */
+/* All cards share one width, one aspect-ratio, one composition.
+   Variation lives ONLY in content (mark, title, tags), not size. */
+.card {
+  flex: 0 0 clamp(360px, 38vw, 520px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Featured pill — kept as content marker, but no size/layout impact */
+.card.is-featured::before {
+  content: 'Featured';
+  position: absolute;
+  top: -1px;
+  left: var(--sp-3);
+  background: var(--ac);
+  color: var(--tx-on-ac);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  padding: 3px var(--sp-2);
+  z-index: 2;
+  font-variation-settings: "wght" 600;
+}
+
+@media (max-width: 1024px) {
+  .card { flex: 0 0 clamp(300px, 80vw, 480px); }
+}
+
+/* PX-013: scroll-snap alignment for mobile native-snap carousel.
+   Scoped to no-preference to coexist with motion.css reduced-motion vertical stack. */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .card { scroll-snap-align: start; }
+}
+
+.card-num {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--tx-fa);
+  letter-spacing: var(--lt-wide);
+  margin-bottom: var(--sp-3);
+  text-transform: uppercase;
+}
+
+.card-link {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--bd);
+  align-self: start;
+  transition: border-color var(--dur-base) var(--ease-out),
+              background var(--dur-base) var(--ease-out);
+}
+.card-link:hover {
+  border-color: var(--bd-accent);
+  background: var(--bg-elev-2);
+}
+.card-link:hover .card-img { transform: scale(1.04); }
+.card-link:hover .card-cta { color: var(--ac); }
+.card-link:hover .card-title { color: var(--ac); }
+
+/* PX-004: unified media — 16:10, dark frame, gradient overlays mask
+   any cookie banner / light-bg dissonance from full-page screenshots */
+.card-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--bd);
+  background: var(--bg-elev-2);
+  isolation: isolate;
+}
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: brightness(0.94) contrast(1.02) saturate(0.95);
+  transition: transform var(--dur-slow) var(--ease-out),
+              filter var(--dur-base) var(--ease-out);
+}
+.card-link:hover .card-img {
+  filter: brightness(1) contrast(1.05) saturate(1);
+}
+/* Top vignette — masks cookie banners that sit at the top of full-page snapshots */
+.card-media::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 22%;
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(11,14,18,0.72) 45%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+/* Bottom vignette — soft fade to card body, masks footers / sticky CTAs */
+.card-media::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 28%;
+  background: linear-gradient(0deg, var(--bg-elev-1) 0%, rgba(17,21,27,0.55) 50%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+/* Lift status badge above the vignette */
+.card-status { z-index: 2; }
+.card-status {
+  position: absolute;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  padding: var(--sp-1) var(--sp-2);
+  background: rgba(10, 10, 11, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--bd-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.card-status::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--status-ok);
+}
+.card-status[data-status="in-development"]::before { background: var(--status-warn); }
+.card-status[data-status="archived"]::before { background: var(--status-dev); }
+
+.card-body {
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.card-meta {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--tx-fa);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.card-sep { opacity: 0.5; }
+.card-tag-primary { color: var(--ac); }
+
+.card-title {
+  font-size: var(--fs-2xl);
+  font-variation-settings: "wght" var(--wght-semibold), "wdth" var(--wdth-normal);
+  letter-spacing: var(--lt-tight);
+  transition: color var(--dur-fast) var(--ease-out),
+              font-variation-settings var(--dur-base) var(--ease-out);
+}
+.card-link:hover .card-title {
+  font-variation-settings: "wght" var(--wght-bold), "wdth" var(--wdth-narrow);
+}
+
+.card-tagline {
+  color: var(--tx-mu);
+  font-size: var(--fs-base);
+  line-height: var(--lh-snug);
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  margin-top: var(--sp-2);
+}
+.card-tags li {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  color: var(--tx-mu);
+  padding: 2px var(--sp-2);
+  border: 1px solid var(--bd);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+}
+
+.card-cta {
+  margin-top: auto;
+  padding-top: var(--sp-4);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+/* ════════════════ SERVICE CARD ════════════════ */
+.service {
+  padding: var(--sp-8);
+  border: 1px solid var(--bd);
+  background: var(--bg-elev-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  transition: border-color var(--dur-base) var(--ease-out),
+              background var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+.service:hover {
+  border-color: var(--bd-accent);
+  background: var(--bg-elev-2);
+  transform: translateY(-2px);
+}
+.service-num {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--ac);
+  letter-spacing: var(--lt-wide);
+}
+.service-title {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-semibold);
+}
+.service-text {
+  color: var(--tx-mu);
+  line-height: var(--lh-base);
+  flex: 1;
+}
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  margin-top: var(--sp-2);
+}
+.service-tags li {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-fa);
+  padding: var(--sp-1) var(--sp-2);
+  border: 1px solid var(--bd);
+}
+
+/* ════════════════ FORM ════════════════ */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  background: var(--bg-elev-1);
+  border: 1px solid var(--bd);
+  padding: var(--sp-8);
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.form-label {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-mu);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+.form-required { color: var(--ac); }
+.form-input {
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--bg);
+  border: 1px solid var(--bd);
+  color: var(--tx);
+  font-family: var(--ff-sans);
+  font-size: var(--fs-base);
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.form-input:focus {
+  border-color: var(--ac);
+  background: var(--bg-elev-2);
+  outline: none;
+}
+.form-input::placeholder { color: var(--tx-fa); }
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: var(--ff-sans);
+  line-height: var(--lh-base);
+}
+.form-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+.form-fineprint {
+  font-size: var(--fs-xs);
+  color: var(--tx-fa);
+}
+.form-fineprint a { color: var(--tx-mu); text-decoration: underline; }
+
+.form-status {
+  display: none;
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  border: 1px solid;
+}
+.form-status.is-success {
+  display: block;
+  color: var(--status-ok);
+  border-color: var(--status-ok);
+  background: rgba(74, 222, 128, 0.06);
+}
+.form-status.is-error {
+  display: block;
+  color: var(--status-err);
+  border-color: var(--status-err);
+  background: rgba(248, 113, 113, 0.06);
+}
+
+/* PX-008: graceful fallback shown when both form providers fail */
+.form-fallback {
+  margin-top: var(--sp-3);
+  padding: var(--sp-4);
+  border: 1px solid var(--bd-strong);
+  background: var(--bg-elev-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.form-fallback-text {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--tx-mu);
+  letter-spacing: var(--lt-wide);
+}
+.form-fallback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+#contact-form .form-submit-loading { display: none; }
+#contact-form.is-loading .form-submit-idle { display: none; }
+#contact-form.is-loading .form-submit-loading { display: inline; }
+#contact-form.is-loading .btn { opacity: 0.6; pointer-events: none; }
+
+html[data-lang="de"] #contact-form .form-submit-loading[data-lang-en] { display: none; }
+html[data-lang="de"] #contact-form.is-loading .form-submit-loading[data-lang-de] { display: inline; }
+
+/* ════════════════ WHATSAPP FAB ════════════════ */
+.fab {
+  position: fixed;
+  bottom: var(--sp-6);
+  right: var(--sp-6);
+  width: 56px;
+  height: 56px;
+  background: var(--ac);
+  color: var(--tx-on-ac);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-fab);
+  /* Цветной ореол снят: тень должна быть от света, а не от самого
+     предмета. Аудит Impeccable, 19.08.2026 */
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.45), 0 2px 6px rgb(0 0 0 / 0.35);
+  transition: transform var(--dur-base) var(--ease-spring),
+              box-shadow var(--dur-base) var(--ease-out);
+  cursor: pointer;
+}
+.fab:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 14px 36px rgb(0 0 0 / 0.55), 0 3px 8px rgb(0 0 0 / 0.4);
+}
+.fab::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid var(--ac);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out),
+              inset var(--dur-base) var(--ease-out);
+}
+.fab:hover::before {
+  opacity: 0.5;
+  inset: -8px;
+}
+
+@media (max-width: 640px) {
+  .fab {
+    bottom: var(--sp-4);
+    right: var(--sp-4);
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ════════════════ WA MODAL ════════════════ */
+.wa-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--container-px);
+  pointer-events: none;
+}
+.wa-modal[aria-hidden="false"] { pointer-events: auto; }
+.wa-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.wa-modal[aria-hidden="false"] .wa-modal-backdrop { opacity: 1; }
+.wa-modal-card {
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--bd-strong);
+  padding: var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  transform: translateY(16px) scale(0.97);
+  opacity: 0;
+  transition: transform var(--dur-base) var(--ease-spring),
+              opacity var(--dur-base) var(--ease-out);
+}
+.wa-modal[aria-hidden="false"] .wa-modal-card {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+.wa-modal-title {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-semibold);
+}
+.wa-modal-text {
+  color: var(--tx-mu);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+}
+.wa-modal-text a { color: var(--ac); text-decoration: underline; }
+.wa-modal-actions {
+  display: flex;
+  gap: var(--sp-3);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+/* Ссылка на страницу проекта. Лежит рядом с внешней, а не внутри неё:
+   ссылка внутри ссылки браузером разрывается. */
+.card-case {
+  display: inline-block;
+  margin-top: .5rem;
+  font-size: .8125rem;
+  letter-spacing: .04em;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: .25em;
+}
+.card-case:hover,
+.card-case:focus-visible { color: var(--ac); }
+
+/* ─────────────────────────────────────────────────────────────
+   БЛОК ОТЗЫВОВ (Google-Unternehmensprofil)
+
+   Разметку кладёт scripts/render_reviews_static.py из data/reviews.json,
+   скрипта в браузере здесь нет. Секция несёт атрибут hidden, пока
+   показывать нечего, — правило [hidden] ниже нужно потому, что display
+   у грид-контейнера иначе перебивает встроенное поведение атрибута.
+   ───────────────────────────────────────────────────────────── */
+.reviews[hidden] { display: none; }
+
+.reviews {
+  padding: var(--sp-24) 0;
+  background: var(--bg-elev-1);
+  border-top: 1px solid var(--bd);
+}
+.reviews-head { max-width: 46rem; margin-bottom: var(--sp-12); }
+.reviews-figures {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin-top: var(--sp-5);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  color: var(--tx);
+}
+.reviews-shown {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--tx-fa);
+}
+
+.review-stars { display: inline-flex; gap: .1em; line-height: 1; }
+.review-star { color: var(--tx-fa); font-size: 1rem; }
+.review-star.is-on { color: var(--ac); }
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+  gap: var(--sp-5);
+  align-items: start;
+}
+
+.review {
+  background: var(--bg-elev-2);
+  border: 1px solid var(--bd);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.review:hover { border-color: var(--bd-strong); }
+
+.review-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+.review-date {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  color: var(--tx-fa);
+  white-space: nowrap;
+}
+
+/* Кавычки рисует блок, а не текст: подставлять их в данные значило бы
+   править то, что человек написал у Google. */
+.review-text {
+  margin: 0;
+  color: var(--tx);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+}
+.review-text p { margin: 0 0 var(--sp-3); }
+.review-text p:last-child { margin-bottom: 0; }
+.review-text p:first-child::before { content: "\201E"; }
+.review-text p:last-child::after { content: "\201C"; }
+
+.review-by {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--bd);
+  font-size: var(--fs-sm);
+  color: var(--tx-mu);
+}
+.review-by strong { color: var(--tx); font-weight: var(--wght-semibold); }
+.review-service { color: var(--ac); }
+
+/* Пометка по § 5b Abs. 3 UWG. Приглушена по цвету, но не по размеру:
+   мелкий шрифт у обязательного указания — это его сокрытие. */
+.reviews-note {
+  max-width: 44rem;
+  margin: var(--sp-10) 0 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--tx-mu);
+}
+
+.reviews-profile {
+  display: inline-block;
+  margin-top: var(--sp-4);
+  font-size: var(--fs-sm);
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: .25em;
+}
+.reviews-profile:hover,
+.reviews-profile:focus-visible { color: var(--ac); }
+
+.reviews-ask {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+  margin-top: var(--sp-12);
+  padding-top: var(--sp-8);
+  border-top: 1px solid var(--bd);
+}
+.reviews-ask p { margin: 0; color: var(--tx-mu); font-size: var(--fs-base); }
+.reviews-ask-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sp-3) var(--sp-6);
+  border-radius: var(--r-base);
+  background: var(--ac);
+  color: var(--tx-on-ac);
+  font-weight: var(--wght-semibold);
+  font-size: var(--fs-sm);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.reviews-ask-cta:hover,
+.reviews-ask-cta:focus-visible { background: var(--ac-hover); }
+
+@media (max-width: 640px) {
+  .reviews { padding: var(--sp-16) 0; }
+  .reviews-grid { gap: var(--sp-4); }
+  .review { padding: var(--sp-5); }
+}
+
+/* Карточки работ лежат в разметке целиком — так их видит поиск и человек
+   без скриптов. Плата за это: браузер считает вёрстку всех пятнадцати уже
+   при открытии, хотя на экране нет ни одной. Замерено на живом сайте
+   23.08: появление страницы уехало с 0,8 до 1,5 с.
+
+   content-visibility говорит браузеру пропустить вёрстку того, что за
+   экраном, и посчитать её, когда до карточки дойдёт прокрутка. Разметка
+   при этом остаётся в странице целиком.
+
+   contain-intrinsic-size обязателен: без него у пропущенной карточки
+   нулевая высота, полоса прокрутки прыгает и страница дёргается. Число —
+   примерная высота карточки, точность не важна, важно, что она не ноль. */
+.work-track .card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 520px;
+}
+
+
+/* ── motion ── */
+/* ─────────────────────────────────────────────────────────────
+   AIS.152 — Motion
+   GSAP-driven entrance reveals + reduced-motion fallback.
+   ───────────────────────────────────────────────────────────── */
+
+/* Default state for elements that GSAP will animate in. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+}
+
+[data-reveal-up] {
+  opacity: 0;
+  transform: translateY(60px);
+  will-change: transform, opacity;
+}
+
+[data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+}
+
+[data-split] {
+  visibility: hidden;
+}
+
+.split-char {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Reduced motion — disable all transitions and animations,
+   reveal everything immediately, no Lenis, no GSAP timelines.
+   ───────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal],
+  [data-reveal-up],
+  [data-reveal-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [data-split] { visibility: visible !important; }
+  .split-char { opacity: 1 !important; transform: none !important; }
+
+  .marquee-track { animation: none !important; transform: none !important; }
+  .status-dot { animation: none !important; }
+  .fab::before, .fab:hover::before { transition: none !important; }
+
+  /* Disable horizontal scroll pin — show projects in vertical stack */
+  .work-pin {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  /* PX-014: раньше здесь лента разворачивалась в вертикальный столбец.
+     Вместе с этим пропадала и лента, и счётчик переставал что-либо значить.
+     Теперь main.js включает нативную горизонтальную прокрутку: пользователь
+     листает сам, анимации нет, требование режима выполнено. */
+  .work-track {
+    transform: none !important;
+  }
+}
+
+
+/* ── hero ── */
+/* ─────────────────────────────────────────────────────────────
+   AIS.152 — Hero (v2)
+   Split layout: content-left + terminal-right + canvas dot grid bg.
+   ───────────────────────────────────────────────────────────── */
+
+.hero {
+  padding-top: calc(var(--header-h) + var(--sp-12));
+  padding-bottom: var(--section-py);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Canvas dot grid sits as background */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.55;
+  z-index: 0;
+}
+
+/* Soft warm coral glow overlays (replaces previous radial gradients) */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 560px at 90% 8%, rgba(255, 106, 60, 0.10), transparent 65%),
+    radial-gradient(720px 440px at 5% 92%, rgba(125, 196, 255, 0.05), transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  /* PX-007: LEFT widened to 1.3fr (≈ 56% of 1200px = 583px) so 'Engineering' at
+     clamped 6.5rem (≈ 560px) fits without overflowing into terminal column.
+     RIGHT minmax(380px, 1fr) protects terminal from collapsing. */
+  grid-template-columns: minmax(0, 1.3fr) minmax(380px, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+/* ── LEFT: content ─────────────────────────────────────── */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+  min-width: 0;
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-mu);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--bd);
+  align-self: flex-start;
+}
+.status-dot {
+  width: 8px; height: 8px;
+  background: var(--status-ok);
+  border-radius: var(--r-pill);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.4);  /* было цветное свечение
+     с нулевым смещением — дежурный приём ИИ-интерфейсов. Аудит 19.08.2026 */
+  animation: status-pulse 2.4s var(--ease-in-out) infinite;
+}
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.82); }
+}
+
+.hero-title {
+  /* PX-007: capped at 6.5rem (≈ 104px) instead of var(--fs-display) (max 9rem/144px).
+     At 144px 'Engineering' was ~770px wide, overflowing the 583px LEFT grid-cell into the
+     terminal column. At 104px it's ~560px and fits cleanly. */
+  /* Аудит Impeccable, 19.08.2026: немецкий заголовок в 62 знака при 86px
+     занимал 76 % экрана — над сгибом не оставалось ничего. Крупный кегль
+     рассчитан на два-три слова; длинная фраза требует меньшего. */
+  font-size: clamp(2.25rem, 1rem + 3.2vw, 4rem);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--lt-tighter);
+  font-variation-settings: "wght" var(--wght-semibold), "wdth" var(--wdth-normal);
+  max-width: 20ch;
+  text-wrap: balance;             /* graceful no-op on Safari < 17.4 */
+  overflow-wrap: break-word;      /* defense-in-depth: rare super-long word can break */
+  contain: layout style;          /* isolate variable-axis font changes from page reflow */
+}
+.hero-title-line { display: block; }
+.hero-title em {
+  font-style: normal;
+  color: var(--ac);
+  font-variation-settings: "wght" var(--wght-bold), "wdth" var(--wdth-narrow);
+}
+
+.hero-lead {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--tx-mu);
+  max-width: 50ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-5);
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--bd);
+}
+.hero-meta-item dt {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--lt-wide);
+  color: var(--tx-fa);
+  margin-bottom: var(--sp-1);
+}
+.hero-meta-item dd {
+  font-size: var(--fs-sm);
+  font-variation-settings: "wght" var(--wght-medium);
+  color: var(--tx);
+}
+
+/* ── RIGHT: terminal panel ────────────────────────────── */
+.hero-terminal {
+  border: 1px solid var(--bd-strong);
+  background: var(--bg-elev-1);
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+  max-height: 560px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.hero-terminal::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ac) 30%, var(--link) 70%, transparent);
+  opacity: 0.5;
+}
+
+.hero-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--bg-elev-2);
+  border-bottom: 1px solid var(--bd);
+}
+.hero-terminal-dot {
+  width: 10px; height: 10px;
+  border-radius: var(--r-pill);
+  background: var(--bd-strong);
+}
+.hero-terminal-dot[data-color="r"] { background: #FF5F57; }
+.hero-terminal-dot[data-color="y"] { background: #FEBC2E; }
+.hero-terminal-dot[data-color="g"] { background: #28C840; }
+.hero-terminal-path {
+  margin-left: var(--sp-3);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--tx-fa);
+  letter-spacing: var(--lt-mono);
+}
+
+.hero-terminal-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--bd);
+  background: var(--bg-elev-1);
+}
+.hero-terminal-tab {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--tx-fa);
+  padding: var(--sp-3) var(--sp-4);
+  border-right: 1px solid var(--bd);
+  transition: color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+  letter-spacing: var(--lt-mono);
+  cursor: pointer;
+}
+.hero-terminal-tab:hover { color: var(--tx-mu); }
+.hero-terminal-tab.is-active {
+  color: var(--ac);
+  background: var(--bg);
+}
+.hero-terminal-tab.is-active::after {
+  content: '';
+  display: block;
+  width: 6px; height: 6px;
+  background: var(--ac);
+  border-radius: var(--r-pill);
+  margin-top: var(--sp-1);
+  margin-left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  bottom: -1px;
+}
+
+.hero-terminal-code {
+  flex: 1;
+  padding: var(--sp-5) var(--sp-5) var(--sp-4);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--code-fn);
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  letter-spacing: var(--lt-mono);
+}
+.hero-terminal-code .tk { color: var(--code-keyword); font-variation-settings: "wght" var(--wght-medium); }
+.hero-terminal-code .ts { color: var(--code-string); }
+.hero-terminal-code .tn { color: var(--code-num); }
+.hero-terminal-code .tc { color: var(--code-comment); font-style: italic; }
+.hero-terminal-code .tp { color: var(--code-punct); }
+.hero-terminal-code .tf { color: var(--code-fn); font-variation-settings: "wght" var(--wght-medium); }
+.hero-terminal-code .tcoral { color: var(--ac); }
+.hero-terminal-code .caret {
+  display: inline-block;
+  width: 0.55em;
+  background: var(--ac);
+  color: transparent;
+  /* Мигание снято: курсор в первом экране имитирует ввод там, где вводить
+     некуда — заимствованная эстетика редактора как украшение. Настоящее поле
+     рисует свой курсор само. Аудит Impeccable, 19.08.2026 */
+  opacity: 0.7;
+}
+@keyframes caret-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+.hero-terminal-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-2) var(--sp-4);
+  border-top: 1px solid var(--bd);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-2xs);
+  color: var(--tx-fa);
+  letter-spacing: var(--lt-wide);
+  text-transform: uppercase;
+}
+.hero-terminal-status-left {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.hero-terminal-status-dot {
+  width: 6px; height: 6px;
+  background: var(--status-ok);
+  border-radius: var(--r-pill);
+  animation: status-pulse 2s var(--ease-in-out) infinite;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+/* PX-007: breakpoint moved 1024 → 1280 — between 1024 and 1280 the 2-col layout
+   couldn't guarantee H1 fit beside the terminal (only proven safe ≥ ~1400px). */
+@media (max-width: 1280px) {
+  .hero { min-height: auto; }
+  .hero > .container {
+    grid-template-columns: 1fr;
+    gap: var(--sp-10);
+  }
+  .hero-meta { grid-template-columns: repeat(2, 1fr); }
+  .hero-terminal { min-height: 360px; max-height: 420px; }
+}
+@media (max-width: 640px) {
+  .hero-terminal-status { font-size: 9px; padding: var(--sp-2) var(--sp-3); }
+  .hero-terminal-code { font-size: var(--fs-xs); padding: var(--sp-4); }
+  .hero-meta { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* ── marks ── */
+/* ─────────────────────────────────────────────────────────────
+   AIS.152 — Project Marks
+   Custom geometric SVG glyphs per project.
+   ───────────────────────────────────────────────────────────── */
+
+.card-mark {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--ac);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  transition: color var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-spring);
+  margin-bottom: var(--sp-1);
+}
+.card-link:hover .card-mark {
+  color: var(--ac-hover);
+  transform: rotate(-6deg) scale(1.08);
+}
+
+/* draw-in animation on scroll-reveal (controlled by JS adding .is-drawn) */
+.card-mark path,
+.card-mark line,
+.card-mark circle,
+.card-mark rect,
+.card-mark polyline,
+.card-mark polygon {
+  stroke-dasharray: var(--len, 100);
+  stroke-dashoffset: var(--len, 100);
+  transition: stroke-dashoffset 1.2s var(--ease-out);
+}
+.card-mark.is-drawn path,
+.card-mark.is-drawn line,
+.card-mark.is-drawn circle,
+.card-mark.is-drawn rect,
+.card-mark.is-drawn polyline,
+.card-mark.is-drawn polygon {
+  stroke-dashoffset: 0;
+}
+
+/* hidden sprite container */
+.svg-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}

@@ -21,6 +21,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import bundle_tags  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 # Источник лежит в каталоге с подчёркиванием намеренно: GitHub Pages прогоняет
 # Jekyll, а тот не публикует пути, начинающиеся с подчёркивания. Иначе двуязычный
@@ -230,8 +233,10 @@ def main():
     src = io.open(SOURCE, encoding="utf-8").read()
     problems = []
     for lang, target in TARGETS.items():
-        page = stamp_assets(fill_counts(
-            apply_head(apply_meta(absolutise(strip_other(src, lang)), lang), lang)))
+        page = bundle_tags.apply(
+            stamp_assets(fill_counts(
+                apply_head(apply_meta(absolutise(strip_other(src, lang)), lang), lang))),
+            ROOT)
 
         other = "en" if lang == "de" else "de"
         left = page.count("data-lang-%s" % other)
@@ -247,6 +252,20 @@ def main():
         for p in problems:
             print("ОСТАТКИ ЧУЖОГО ЯЗЫКА: %s" % p)
         return 1
+
+    # Склейка стилей и скриптов идёт ПЕРЕД тем, как страницы получат метки
+    # версий: метка считается по содержимому собранного файла, и порядок
+    # здесь не вопрос вкуса. Запускается один раз, до записи страниц.
+    if write:
+        import subprocess
+        r = subprocess.run([sys.executable, str(ROOT / "scripts" / "bundle_assets.py"),
+                            "--write"], cwd=str(ROOT), capture_output=True, text=True,
+                           encoding="utf-8", errors="replace")
+        for line in (r.stdout or "").strip().splitlines():
+            print("  %s" % line)
+        if r.returncode != 0:
+            print("СКЛЕЙКА НЕ СОБРАЛАСЬ")
+            return 1
 
     # Карточки работ вписываются в исходный код ПОСЛЕ сборки языковых версий:
     # иначе эта же сборка их и затрёт. Порядок важен и потому зафиксирован
