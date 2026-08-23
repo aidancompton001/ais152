@@ -248,10 +248,10 @@ u{text-decoration:underline;text-underline-offset:3px}
 .wordmark__dot{
   position:absolute;
   left:50%;
-  top:-.34em;
+  top:-.28em;
   width:.25em;                   /* ⌀ 7,5 px при 30px — 1,90 %W [изм.] */
   height:.25em;
-  transform:translateX(-50%);
+  transform:translateX(-42%);
   border-radius:50%;
   background:var(--accent);
 }
@@ -484,34 +484,31 @@ u{text-decoration:underline;text-underline-offset:3px}
   .hero{min-height:calc(100vh - var(--hd-h))}
 }
 
-/* IMAGE SLOT: сюда встанет фото тёмного автомобиля */
-.hero__media{position:absolute;inset:0;z-index:-3}
-.hero__media img{width:100%;height:100%;object-fit:cover;object-position:32% 60%}
+/* Hero-Foto liegt zuunterst, die Verdunklung darüber */
+.hero__media{position:absolute;inset:0;z-index:-4}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:38% 62%}
+@media (min-width:900px){
+  .hero__media img{object-position:60% 58%}
+}
 
-/* подложка вместо фото: тёмный градиент */
+/* Verdunklung über dem Foto: rechts unten muss die Schlagzeile lesbar bleiben.
+   Früher war das eine deckende Fläche — sie hat das Foto komplett verdeckt. */
 .hero__bg{
   position:absolute;
   inset:0;
   z-index:-3;
   background:
-    radial-gradient(120% 78% at 22% 92%,#1A1A1C 0%,#0E0E0F 46%,#070708 100%),
-    linear-gradient(180deg,#2A2B2E 0%,#141416 34%,#070708 100%);
-}
-/* горизонт трассы, как в кадре оригинала */
-.hero__bg::before{
-  content:"";
-  position:absolute;
-  left:0;right:0;top:0;
-  height:34%;
-  background:linear-gradient(180deg,rgba(150,152,156,.30) 0%,rgba(58,59,62,.14) 62%,transparent 100%);
+    linear-gradient(200deg,rgba(7,7,8,.20) 0%,rgba(7,7,8,.42) 46%,rgba(7,7,8,.86) 100%),
+    radial-gradient(120% 90% at 78% 92%,rgba(7,7,8,.78) 0%,rgba(7,7,8,.30) 52%,transparent 100%);
 }
 /* силуэт автомобиля — смещён влево, как в оригинале */
 .hero__car{
   position:absolute;
   z-index:-2;
-  left:-16%;
-  bottom:6%;
-  width:min(126%,1180px);
+  left:-78%;
+  bottom:-2%;
+  width:min(240%,1500px);
+  max-width:none;          /* перебивает img,svg{max-width:100%} из reset */
   height:auto;
   filter:drop-shadow(0 40px 60px rgba(0,0,0,.75));
   pointer-events:none;
@@ -522,8 +519,8 @@ u{text-decoration:underline;text-underline-offset:3px}
   inset:0;
   z-index:-1;
   background:
-    radial-gradient(88% 68% at 44% 46%,transparent 0%,rgba(6,6,7,.42) 66%,rgba(4,4,5,.88) 100%),
-    linear-gradient(180deg,rgba(0,0,0,.42) 0%,transparent 22%,transparent 52%,rgba(0,0,0,.72) 100%);
+    radial-gradient(96% 74% at 42% 52%,transparent 0%,rgba(6,6,7,.26) 62%,rgba(4,4,5,.72) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.40) 0%,transparent 24%,transparent 56%,rgba(0,0,0,.60) 100%);
 }
 
 .hero__inner{
@@ -550,7 +547,9 @@ u{text-decoration:underline;text-underline-offset:3px}
   width:100%;
   text-align:right;
   font-weight:400;                       /* [CSS] data-text w:normal */
-  font-size:clamp(52px,14.5vw,190px);    /* [CSS] 190/110/80/70 по брейкпоинтам */
+  /* [CSS] 190/110/80/70 px по брейкпоинтам; 18vh страхует низкие экраны,
+     иначе три строки по 190px не помещаются в первый экран */
+  font-size:min(clamp(52px,14.5vw,190px),18vh);
   line-height:1.05;                      /* шаг 15,66 %W [изм.]; [CSS] l≈s */
   letter-spacing:0;
   color:var(--text);
@@ -579,7 +578,7 @@ u{text-decoration:underline;text-underline-offset:3px}
 
 /* стрелка вниз [CSS] viewBox 0 0 32 78, w:32px/21px */
 .hero__arrow{
-  margin-top:clamp(24px,6vw,44px);
+  margin-top:clamp(20px,4vw,32px);
   width:21px;
   height:auto;
   display:block;
@@ -630,7 +629,7 @@ u{text-decoration:underline;text-underline-offset:3px}
   .hero__pretitle{display:block}
   .hero__inner{padding-block:clamp(60px,9vw,120px) clamp(40px,7vw,70px)}
   .hero__arrow{width:32px}
-  .hero__car{left:-8%;width:min(96%,1180px)}
+  .hero__car{left:-12%;width:min(86%,1340px);bottom:-8%}
   .wordmark{font-size:34px}
   .hd__phone{width:34px;height:34px;padding:8px}
   .hd__phone svg{width:14px;height:14px}
@@ -645,7 +644,16 @@ u{text-decoration:underline;text-underline-offset:3px}
   .hd__burger{display:none}
   .hd__phone{display:none}
   .hd__cta{display:inline-flex}
-  .hero{min-height:calc(100svh - var(--hd-h-lg))}
+  .hero{min-height:calc(100svh - var(--hd-h-lg) - var(--topbar-h))}
+  /* надзаголовок стоит слева по нижней линии — как колонка 25 % в оригинале */
+  .hero__pretitle{
+    position:absolute;
+    left:clamp(24px,3.4vw,70px);
+    bottom:clamp(40px,7vw,70px);
+    width:25%;
+    margin:0;
+  }
+  .hero__inner{padding-block:clamp(34px,4vw,54px) clamp(30px,4vw,52px)}
   .wordmark{font-size:40px}
 }
 
@@ -1244,12 +1252,12 @@ u{text-decoration:underline;text-underline-offset:3px}
 .ft{
   /* карточка формы: 90,10 %W ширина, 5,02 %W поля — [изм.] */
   --f-card-pad: clamp(18px, 4.73vw, 34px);   /* 4,73 %W = 18,6 px [изм.] */
-  --f-card-radius: clamp(11px, 2.81vw, 18px);/* 2,81 %W = 11,0 px [изм.], согласуется с border-radius:10px [CSS] */
-  --f-field-radius: clamp(9px, 2.36vw, 14px);/* 2,36 %W = 9,3 px  [изм.] */
+  --f-card-radius: var(--radius-card, 11px); /* 2,81 %W = 11,0 px [изм.], согласуется с border-radius:10px [CSS] */
+  --f-field-radius: var(--radius-field, 9px);/* 2,36 %W = 9,3 px  [изм.] */
   --f-field-h: clamp(48px, 12.11vw, 58px);   /* 12,11 %W = 47,6 px [изм.] */
   --f-gap: clamp(12px, 3.2vw, 18px);         /* [лог.] шаг между полями */
-  --p3-pad-x: clamp(18px, 5vw, 40px);        /* padding:0% 5% [CSS] = 4,9–5,0 %W [изм.] */
-  --p3-max: 1180px;
+  --p3-pad-x: var(--pad-x, clamp(20px, 5vw, 40px));  /* padding:0% 5% [CSS] = 4,9–5,0 %W [изм.] */
+  --p3-max: var(--container, 1290px);
   --p3-line: 1.45;
 }
 
@@ -1265,7 +1273,7 @@ u{text-decoration:underline;text-underline-offset:3px}
   text-align: left;                 /* §3.2: секция выровнена по левому краю */
 }
 .partner-title{
-  font-family: var(--font-body, "Manrope", "Segoe UI", sans-serif);
+  font-family: var(--font, "Manrope", "Segoe UI", sans-serif);
   font-weight: 800;
   /* межстрочный шаг 8,12 %W = 31,9 px @393 [изм.] → кегль ≈ 28 px */
   font-size: clamp(28px, 7.2vw, 52px);
@@ -1405,7 +1413,7 @@ u{text-decoration:underline;text-underline-offset:3px}
   width: 100%;                    /* 80,21 %W = во всю внутреннюю ширину карточки [изм.] */
   height: var(--f-field-h);
   padding: 0 clamp(14px, 3.6vw, 18px) 0 clamp(44px, 11vw, 52px);
-  background: #1E1D1B;            /* [изм.] фон поля, почти равен фону страницы */
+  background: var(--bg-field, #1E1D1B);   /* [изм.] фон поля, почти равен фону страницы */
   color: var(--text, #FFFEFE);
   border: 1px solid rgba(0,0,0,.18);
   border-radius: var(--f-field-radius);
@@ -1425,7 +1433,7 @@ u{text-decoration:underline;text-underline-offset:3px}
 }
 .form-input::placeholder,
 .form-textarea::placeholder{
-  color: #A8A6A7;                 /* [изм.] цвет плейсхолдера */
+  color: var(--text-placeholder, #A8A6A7);   /* [изм.] цвет плейсхолдера */
   opacity: 1;
 }
 .form-input:focus-visible,
@@ -1436,7 +1444,7 @@ u{text-decoration:underline;text-underline-offset:3px}
 }
 .form-input[aria-invalid="true"],
 .form-textarea[aria-invalid="true"]{
-  border-color: var(--danger, #E52643);
+  border-color: var(--red-icon, #E52643);
   box-shadow: 0 0 0 2px rgba(229,38,67,.35);
 }
 .form-error{
@@ -1591,8 +1599,8 @@ u{text-decoration:underline;text-underline-offset:3px}
   min-height: 52px;
   padding: 0 16px;
   background: var(--bg-card, #1C1C1C);
-  border: 1px solid #161718;     /* разделитель #161718 [CSS] */
-  border-radius: 10px;           /* border-radius:10px [CSS] */
+  border: 1px solid var(--line, #161718);   /* разделитель #161718 [CSS] */
+  border-radius: var(--radius, 10px);   /* border-radius:10px [CSS] */
   color: var(--text, #FFFEFE);
   font-size: 15px;
   font-weight: 600;
@@ -1629,8 +1637,8 @@ u{text-decoration:underline;text-underline-offset:3px}
 .faq-list{ display: grid; gap: 10px }
 .faq-item{
   background: var(--bg-card, #1C1C1C);
-  border: 1px solid #161718;
-  border-radius: 10px;
+  border: 1px solid var(--line, #161718);
+  border-radius: var(--radius, 10px);
   overflow: hidden;
 }
 .faq-item[open]{ border-color: rgba(253,86,34,.45) }
@@ -1678,7 +1686,7 @@ u{text-decoration:underline;text-underline-offset:3px}
 .ft{
   background: var(--bg-section, #1F1C1C);
   color: var(--text, #FFFEFE);
-  border-top: 2px solid #161718;       /* разделитель 2 px solid #161718 [CSS] */
+  border-top: 2px solid var(--line, #161718);   /* разделитель 2 px solid #161718 [CSS] */
   padding: clamp(48px, 12vw, 90px) var(--p3-pad-x) clamp(24px, 6vw, 36px);
 }
 .ft-inner{ max-width: var(--p3-max); margin-inline: auto }
@@ -1758,7 +1766,7 @@ u{text-decoration:underline;text-underline-offset:3px}
   gap: 12px;
   margin-top: clamp(32px, 8vw, 56px);
   padding-top: clamp(18px, 4.6vw, 24px);
-  border-top: 2px solid #161718;
+  border-top: 2px solid var(--line, #161718);
 }
 .ft-legal{ display: flex; flex-wrap: wrap; gap: 18px }
 .ft-legal a{
@@ -1951,41 +1959,19 @@ u{text-decoration:underline;text-underline-offset:3px}
 <!-- ==================== ПЕРВЫЙ ЭКРАН ==================== -->
 <section class="hero" id="hero" aria-label="Wir kaufen Ihr Auto">
 
-  <!-- IMAGE SLOT: Hero-Foto dunkles Auto -->
-  <!-- <div class="hero__media"><img src="images/hero-auto.jpg" alt=""></div> -->
+  <!-- Hero-Foto: generiert, gespiegelt (Original zeigt die Fahrzeugmasse links) -->
+  <div class="hero__media">
+    <picture>
+      <source type="image/webp" media="(max-width:640px)" srcset="img/hero-auto-828.webp">
+      <source type="image/webp" media="(max-width:1280px)" srcset="img/hero-auto-1280.webp">
+      <source type="image/webp" srcset="img/hero-auto-1920.webp">
+      <img src="img/hero-auto-1280.jpg" alt="" width="1920" height="1072"
+           fetchpriority="high" decoding="sync">
+    </picture>
+  </div>
 
   <div class="hero__bg" aria-hidden="true"></div>
-
-  <!-- силуэт вместо фото: тёмный автомобиль анфас, смещён влево -->
-  <svg class="hero__car" viewBox="0 0 900 520" fill="none" aria-hidden="true" focusable="false">
-    <!-- тень на асфальте -->
-    <ellipse cx="450" cy="474" rx="392" ry="34" fill="#000" opacity=".82"/>
-    <!-- колёса -->
-    <path d="M118 336h122v122c0 14-10 22-28 22h-64c-18 0-30-8-30-22z" fill="#050506"/>
-    <path d="M782 336H660v122c0 14 10 22 28 22h64c18 0 30-8 30-22z" fill="#050506"/>
-    <!-- зеркала -->
-    <path d="M176 196c-28-12-56-8-64 8l4 24 60 4z" fill="#141416"/>
-    <path d="M724 196c28-12 56-8 64 8l-4 24-60 4z" fill="#141416"/>
-    <!-- кузов -->
-    <path d="M120 366c-12-72-4-136 24-180l40-64c22-42 60-66 116-74 40-6 168-6 208 0 56 8 94 32 116 74l40 64c28 44 36 108 24 180l-8 60c-2 18-18 28-40 28H168c-22 0-38-10-40-28z" fill="#0E0E10"/>
-    <!-- плечевая линия / отблеск капота -->
-    <path d="M184 186c22-42 60-66 116-74 40-6 168-6 208 0 56 8 94 32 116 74l20 32c-80-32-176-46-240-46s-160 14-240 46z" fill="#1B1B1E" opacity=".75"/>
-    <path d="M146 282c80-28 172-42 260-42s180 14 260 42l12 34c-84-28-180-42-272-42s-188 14-272 42z" fill="#232326" opacity=".45"/>
-    <!-- лобовое стекло -->
-    <path d="M254 236c16-32 44-48 80-53 36-5 100-5 136 0 36 5 64 21 80 53l16 28c-68-19-116-26-164-26s-96 7-164 26z" fill="#101013"/>
-    <path d="M272 234c14-26 38-40 70-45 22-4 48-4 70-4-64 7-108 21-140 49z" fill="#FFFFFF" opacity=".07"/>
-    <!-- фары, узкие, с бликом -->
-    <path d="M130 322c52-20 108-30 160-32l2 44c-50 2-108 10-158 24z" fill="#E9F2FF" opacity=".9"/>
-    <path d="M770 322c-52-20-108-30-160-32l-2 44c50 2 108 10 158 24z" fill="#E9F2FF" opacity=".9"/>
-    <path d="M146 328c38-13 82-20 124-22v12c-42 2-88 9-124 20z" fill="#FFFFFF" opacity=".55"/>
-    <path d="M754 328c-38-13-82-20-124-22v12c42 2 88 9 124 20z" fill="#FFFFFF" opacity=".55"/>
-    <!-- решётка: две крупные вертикальные секции с белым контуром -->
-    <path d="M330 292h108c14 0 22 9 22 22v76c0 13-8 22-22 22H330c-14 0-22-9-22-22v-76c0-13 8-22 22-22z" fill="#070708" stroke="#C9CACC" stroke-opacity=".55" stroke-width="3"/>
-    <path d="M462 292h108c14 0 22 9 22 22v76c0 13-8 22-22 22H462c-14 0-22-9-22-22v-76c0-13 8-22 22-22z" fill="#070708" stroke="#C9CACC" stroke-opacity=".55" stroke-width="3"/>
-    <!-- бампер -->
-    <path d="M124 402h652l-8 52c-2 18-18 28-40 28H172c-22 0-38-10-40-28z" fill="#0A0A0C"/>
-    <path d="M286 424h328c14 0 22 8 22 20v22c0 12-8 20-22 20H286c-14 0-22-8-22-20v-22c0-12 8-20 22-20z" fill="#050506"/>
-  </svg>
+  <!-- SVG-Silhouette entfernt: echtes Hero-Foto ersetzt sie -->
 
   <div class="hero__vignette" aria-hidden="true"></div>
 
@@ -2040,39 +2026,26 @@ u{text-decoration:underline;text-underline-offset:3px}
          так, что видны только шина и литой диск; тёмный, приглушённый.
          Оригинал: верхнее фото секции «Der Autoverkauf muss nicht stressig sein». -->
     <figure class="about-photo about-photo--wheel">
-      <div class="about-photo__slot">
-        <svg class="about-photo__art" viewBox="0 0 200 120" fill="none" aria-hidden="true">
-          <path d="M6 96h188" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="100" cy="60" r="42" stroke="currentColor" stroke-width="2.5"/>
-          <circle cx="100" cy="60" r="22" stroke="currentColor" stroke-width="2"/>
-          <circle cx="100" cy="60" r="6" stroke="currentColor" stroke-width="2"/>
-          <path d="M100 38v-6M100 88v6M78 60h-6M128 60h6M84 44l-4-4M116 76l4 4M116 44l4-4M84 76l-4 4"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M40 96a60 60 0 0 1 120 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-        </svg>
+      <div class="about-photo__slot about-photo__slot--filled">
+        <picture>
+          <source type="image/webp" media="(max-width:640px)" srcset="img/rad-828.webp">
+          <source type="image/webp" srcset="img/rad-1280.webp">
+          <img src="img/rad-1280.jpg" alt="Rad und Radlauf eines Fahrzeugs aus der Nähe" width="1280" height="716" loading="lazy" decoding="async">
+        </picture>
       </div>
-      <figcaption class="about-photo__note">Bild folgt</figcaption>
     </figure>
 
     <!-- IMAGE SLOT: женщина и мужчина в костюме у серебристого автомобиля
          в салоне дилера, он держит красную папку, оба в кадре по пояс,
          за ними панорамное остекление. Оригинал: pexels-shkrabaanthony-7144243. -->
     <figure class="about-photo about-photo--deal">
-      <div class="about-photo__slot">
-        <svg class="about-photo__art" viewBox="0 0 200 130" fill="none" aria-hidden="true">
-          <path d="M22 96h156" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M34 96V70l14-20h44l14 20v26" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-          <path d="M48 70h48" stroke="currentColor" stroke-width="2"/>
-          <circle cx="50" cy="96" r="8" stroke="currentColor" stroke-width="2.5"/>
-          <circle cx="92" cy="96" r="8" stroke="currentColor" stroke-width="2.5"/>
-          <circle cx="132" cy="40" r="11" stroke="currentColor" stroke-width="2.5"/>
-          <path d="M114 96V72a18 18 0 0 1 36 0v24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="168" cy="46" r="9" stroke="currentColor" stroke-width="2.5"/>
-          <path d="M154 96V76a14 14 0 0 1 28 0v20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-          <rect x="120" y="74" width="24" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
-        </svg>
+      <div class="about-photo__slot about-photo__slot--filled">
+        <picture>
+          <source type="image/webp" media="(max-width:640px)" srcset="img/beratung-828.webp">
+          <source type="image/webp" srcset="img/beratung-1280.webp">
+          <img src="img/beratung-1280.jpg" alt="Beratung an einem Fahrzeug" width="1280" height="716" loading="lazy" decoding="async">
+        </picture>
       </div>
-      <figcaption class="about-photo__note">Bild folgt</figcaption>
     </figure>
 
   </div>
@@ -2319,7 +2292,7 @@ u{text-decoration:underline;text-underline-offset:3px}
      ========================================================== -->
 
 <!-- ---------- Секция «Fritz — dein Partner für Autoankauf» ---------- -->
-<section class="partner-sec" id="partner" aria-labelledby="partner-title">
+<section class="partner-sec reveal" id="autoankauf" aria-labelledby="partner-title">
   <div class="partner-inner">
 
     <h2 class="partner-title" id="partner-title">
@@ -2339,87 +2312,23 @@ u{text-decoration:underline;text-underline-offset:3px}
       keine Probefahrten mit Fremden. Abmeldung und Ummeldung erledigen wir gleich mit.
     </p>
 
-    <!-- Рендер автомобиля: в оригинале — PNG на прозрачном фоне (красная BMW E46,
-         три четверти, передом вправо, тёмные литые диски, без тени и подложки).
-         Файл рендера в архив Wayback не попал, поэтому здесь равнозначный
-         инлайновый SVG той же композиции — слот под фото клиента. -->
+    <!-- Fahrzeug-Rendering: im Original ein PNG auf transparentem Grund
+         (rote Limousine, Dreiviertelansicht). Hier ein generiertes Studio-Rendering
+         auf schwarzem Grund — Platzhalter, bis der Kunde eigene Bilder liefert. -->
     <figure class="partner-figure">
-      <svg viewBox="0 0 900 400" role="img" aria-label="Roter Sportlimousine in Dreiviertelansicht" focusable="false">
-        <defs>
-          <linearGradient id="fzBody" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#F0364F"/>
-            <stop offset=".48" stop-color="#C3122A"/>
-            <stop offset="1" stop-color="#6E0716"/>
-          </linearGradient>
-          <linearGradient id="fzGlass" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#2B3038"/>
-            <stop offset="1" stop-color="#0D1014"/>
-          </linearGradient>
-          <linearGradient id="fzShine" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
-            <stop offset=".45" stop-color="#FFFFFF" stop-opacity=".38"/>
-            <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-
-        <!-- кузов -->
-        <path d="M96 288c-14-6-22-18-22-36l4-42c2-20 14-34 34-40l104-30c34-32 78-48 132-52 62-5 118 2 168 22l86 34c46 8 88 22 122 42 18 11 26 24 26 40 0 20-12 32-36 34l-52 4H140z"
-              fill="url(#fzBody)"/>
-        <!-- плечевая линия -->
-        <path d="M118 232c96-26 200-40 312-40 106 0 196 12 268 36l-2 12c-74-22-162-32-266-32-110 0-212 14-306 38z"
-              fill="#8B0F20" opacity=".55"/>
-        <!-- блик по борту -->
-        <path d="M140 248c108-24 214-36 318-36 96 0 178 10 246 28l-4 14c-68-18-148-28-242-28-104 0-208 12-314 34z"
-              fill="url(#fzShine)" opacity=".5"/>
-        <!-- крыша и стёкла -->
-        <path d="M232 148c32-28 72-42 122-46 58-4 110 3 156 21l64 26c-52-10-108-15-166-15-64 0-124 5-176 14z"
-              fill="#7C0C1B" opacity=".7"/>
-        <path d="M258 156c30-24 66-36 110-39 50-3 96 3 138 19l44 18c-46-8-96-12-150-12-52 0-100 5-142 14z"
-              fill="url(#fzGlass)"/>
-        <path d="M300 152c26-14 56-21 90-22-42 6-74 16-98 30z" fill="#FFFFFF" opacity=".14"/>
-        <!-- стойка -->
-        <path d="M402 133v22" stroke="#5E0713" stroke-width="7" stroke-linecap="round"/>
-        <!-- решётка BMW-типа: две «ноздри» -->
-        <path d="M742 232h48c8 0 13 6 13 14v26c0 8-5 14-13 14h-48c-8 0-13-6-13-14v-26c0-8 5-14 13-14z" fill="#0E1013"/>
-        <path d="M806 236h40c8 0 12 6 12 13v24c0 7-4 13-12 13h-40c-8 0-12-6-12-13v-24c0-7 4-13 12-13z" fill="#0E1013"/>
-        <!-- фары -->
-        <path d="M636 216c34 2 66 7 96 15l-4 26c-30-8-60-13-94-15z" fill="#E9F1FF" opacity=".92"/>
-        <path d="M652 224c22 2 44 6 64 11l-2 10c-20-5-42-9-63-10z" fill="#FFFFFF" opacity=".6"/>
-        <!-- воздухозаборник переднего бампера -->
-        <path d="M700 300h150c10 0 16 6 16 14v10c0 8-6 14-16 14H700c-10 0-16-6-16-14v-10c0-8 6-14 16-14z" fill="#131518"/>
-        <!-- жаберная прорезь на крыле -->
-        <path d="M330 236h44l-6 12h-44z" fill="#1A1C1F"/>
-        <!-- зеркало -->
-        <path d="M418 168c16-8 32-6 38 4l-4 12-34 2z" fill="#B3101F"/>
-        <!-- колёсные арки -->
-        <path d="M186 300c0-46 34-80 80-80s80 34 80 80z" fill="#3C0510"/>
-        <path d="M578 300c0-46 34-80 80-80s80 34 80 80z" fill="#3C0510"/>
-        <!-- колёса -->
-        <g fill="#0A0B0D">
-          <circle cx="266" cy="298" r="76"/>
-          <circle cx="658" cy="298" r="76"/>
-        </g>
-        <g fill="#1D2024">
-          <circle cx="266" cy="298" r="46"/>
-          <circle cx="658" cy="298" r="46"/>
-        </g>
-        <g fill="#2E3238">
-          <circle cx="266" cy="298" r="14"/>
-          <circle cx="658" cy="298" r="14"/>
-        </g>
-        <!-- спицы тёмных литых дисков -->
-        <g stroke="#0E1013" stroke-width="6" stroke-linecap="round">
-          <path d="M266 258v-6M266 344v-6M226 298h-6M312 298h-6M238 270l-4-4M298 326l-4-4M294 270l4-4M234 326l4-4"/>
-          <path d="M658 258v-6M658 344v-6M618 298h-6M704 298h-6M630 270l-4-4M690 326l-4-4M686 270l4-4M626 326l4-4"/>
-        </g>
-      </svg>
+      <picture>
+        <source type="image/webp" media="(max-width:640px)" srcset="img/roter-wagen-828.webp">
+        <source type="image/webp" srcset="img/roter-wagen-1280.webp">
+        <img src="img/roter-wagen-1280.jpg" alt="Rote Limousine in Dreiviertelansicht"
+             width="1280" height="716" loading="lazy" decoding="async">
+      </picture>
     </figure>
 
   </div>
 </section>
 
 <!-- ---------- Форма в оранжевой карточке ---------- -->
-<section class="form-sec" id="formular" aria-labelledby="form-title">
+<section class="form-sec reveal" id="formular" aria-labelledby="form-title">
   <div class="form-card" data-state="edit">
 
     <div class="form-body">
@@ -2569,7 +2478,7 @@ u{text-decoration:underline;text-underline-offset:3px}
 </section>
 
 <!-- ---------- Standorte ---------- -->
-<section class="loc-sec" id="standorte" aria-labelledby="loc-title">
+<section class="loc-sec reveal" id="standorte" aria-labelledby="loc-title">
   <div class="loc-inner">
 
     <h2 class="loc-title" id="loc-title">
@@ -2606,7 +2515,7 @@ u{text-decoration:underline;text-underline-offset:3px}
 </section>
 
 <!-- ---------- FAQs ---------- -->
-<section class="faq-sec" id="faq" aria-labelledby="faq-title">
+<section class="faq-sec reveal" id="faqs" aria-labelledby="faq-title">
   <div class="faq-inner">
     <h2 class="faq-title" id="faq-title"><span class="partner-accent">FAQs</span></h2>
 
@@ -2667,7 +2576,7 @@ u{text-decoration:underline;text-underline-offset:3px}
 </section>
 
 <!-- ---------- Подвал ---------- -->
-<footer class="ft" id="kontakt">
+<footer class="ft reveal" id="kontakt">
   <div class="ft-inner">
 
     <div class="ft-top">
@@ -2682,11 +2591,11 @@ u{text-decoration:underline;text-underline-offset:3px}
       <nav aria-labelledby="ft-menu-title">
         <h2 class="ft-col-title" id="ft-menu-title">Menü</h2>
         <ul class="ft-nav">
-          <li><a href="/">Startseite</a></li>
-          <li><a href="/autoankauf">Autoankauf</a></li>
-          <li><a href="/was-wir-kaufen">Was wir kaufen</a></li>
+          <li><a href="#top">Startseite</a></li>
+          <li><a href="#autoankauf">Autoankauf</a></li>
+          <li><a href="#was-wir-kaufen">Was wir kaufen</a></li>
           <li><a href="#standorte">Standorte</a></li>
-          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#faqs">FAQs</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
       </nav>
