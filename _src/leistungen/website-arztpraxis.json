@@ -1,10 +1,10 @@
 {
   "slug": "website-arztpraxis",
   "phrase": "Website für Arztpraxis",
-  "title": "Website für Arztpraxis erstellen lassen — München | AIS.152",
-  "description": "Praxiswebsite mit Sprechzeiten, Leistungen und Terminanfrage. Barrierearm, schnell, DSGVO-konform: mit Blick auf ärztliche Schweigepflicht.",
-  "h1": "Website für Arztpraxis, die Anrufe am Empfang reduziert",
-  "lead": "Ein großer Teil aller Anrufe in einer Praxis betrifft dieselben drei Dinge: Sprechzeiten, Terminwunsch und die Frage, ob Sie eine bestimmte Leistung anbieten. Eine Praxiswebsite, die das sauber beantwortet, entlastet den Empfang messbar.",
+  "title": "Website für Arztpraxis München — 690 € Festpreis mit AVV | AIS.152",
+  "description": "Praxiswebsite zum Festpreis von 690 €: Sprechzeiten, Leistungen, Terminanfrage. Mit Auftragsverarbeitungsvertrag nach Art. 28 DSGVO, vorab öffentlich einsehbar.",
+  "h1": "Website für Arztpraxis in München — 690 € Festpreis",
+  "lead": "Ein großer Teil aller Anrufe in einer Praxis betrifft dieselben drei Dinge: Sprechzeiten, Terminwunsch und die Frage, ob Sie eine bestimmte Leistung anbieten. Eine Praxiswebsite, die das sauber beantwortet, entlastet den Empfang messbar. Der Preis steht vorher fest, die Domain läuft auf Ihren Namen, und den Auftragsverarbeitungsvertrag können Sie lesen, bevor Sie mir schreiben.",
   "sections": [
     {
       "h2": "Was eine Website für Arztpraxis leisten muss",
@@ -33,9 +33,45 @@
         "Patienten sind älter als der Durchschnitt im Netz. Große Schrift, echter Kontrast, bedienbar mit Tastatur, keine Bewegung, die Schwindel auslöst.",
         "Das kostet beim Bauen fast nichts und entscheidet, ob eine Achtzigjährige Ihre Sprechzeiten findet."
       ]
+    },
+    {
+      "h2": "Was die Website für Ihre Praxis kostet",
+      "body": [
+        "<strong>690 € — Festpreis.</strong> Dafür bekommen Sie:",
+        "<ul><li>bis zu 6 Seiten: Start, Leistungen, Team, Anfahrt, Kontakt, Rechtliches</li><li>für das Smartphone gebaut, dort suchen Patienten</li><li>Sprechzeiten, Anfahrt mit ÖPNV, Kontaktformular, Rückrufwunsch</li><li>Impressum und Datenschutzerklärung, auf Ihre Praxis zugeschnitten</li><li>Kontaktformular ohne Weitergabe an Dritte, kein Google, kein US-Dienstleister</li><li>Schriften und Karten liegen bei Ihnen, statt bei Google geladen zu werden</li><li>Auftragsverarbeitungsvertrag nach Art. 28 DSGVO, unterschrieben</li></ul>",
+        "Mehr als 10 Seiten, zweisprachig oder mit Online-Terminvergabe: 990 bis 1.200 €. Auch das steht vorher fest.",
+        "Nicht enthalten, weil es direkt an Ihren Anbieter geht: Domaingebühr etwa 15 € im Jahr, Hosting etwa 5 bis 10 € im Monat. Beides läuft auf Ihren Namen.",
+        "Ich bin Kleinunternehmer nach § 19 UStG und weise keine Umsatzsteuer aus. Für eine Praxis ist das kein Formaldetail: ärztliche Heilbehandlungen sind nach § 4 Nr. 14 UStG umsatzsteuerfrei, weshalb Sie in der Regel nicht vorsteuerabzugsberechtigt sind. Umsatzsteuer, die Ihnen ein anderer Anbieter berechnet, bekommen Sie also nicht zurück. Ob das auf Ihre Praxis zutrifft, klärt Ihre Steuerberatung — ich rechne hier nur vor, was der Unterschied bedeutet."
+      ]
+    },
+    {
+      "h2": "Der Auftragsverarbeitungsvertrag, den Sie vorher lesen können",
+      "body": [
+        "Sobald jemand Zugriff auf Ihre Website hat, über die Patientenanfragen laufen, verarbeitet er personenbezogene Daten in Ihrem Auftrag. Art. 28 DSGVO verlangt dafür einen schriftlichen Vertrag — und in der Verantwortung stehen Sie, nicht der Dienstleister.",
+        "Mein Muster liegt offen: <a href=\"/avv.html\" class=\"link-inline\">ais152.com/avv.html</a>. Sie können es lesen, bevor Sie mir überhaupt schreiben. Die Endfassung passe ich auf Ihre Praxis an und unterschreibe sie vor Projektbeginn.",
+        "Das ist der Punkt, an dem die meisten Angebote schweigen."
+      ]
+    },
+    {
+      "h2": "Was Ihnen nach der Übergabe gehört",
+      "body": [
+        "Die Domain läuft auf Ihren Namen, Sie sind Domaininhaber. Sie bekommen alle Zugänge. Nach vollständiger Zahlung gehören Website und Inhalte Ihnen.",
+        "Wenn Sie später jemand anderen beauftragen wollen, können Sie das jederzeit: ich übergebe alle Zugänge und ein vollständiges Backup. Kein Abo, keine Mindestlaufzeit.",
+        "Neue Sprechzeiten, ein neuer Behandler im Team, ein Urlaubshinweis: im ersten Jahr ändere ich das ohne Berechnung. Danach nenne ich Ihnen vorab einen Festpreis, keine Stundensätze."
+      ]
+    },
+    {
+      "h2": "Arbeiten, die Sie selbst ansehen können",
+      "body": [
+        "<ul><li><a href=\"https://taxi-moennigmann.de\" class=\"link-inline\" rel=\"noopener\">taxi-moennigmann.de</a> — dreisprachig, barrierefrei nach WCAG 2.1 AA</li><li><a href=\"https://elektrocheckstuttgart.de\" class=\"link-inline\" rel=\"noopener\">elektrocheckstuttgart.de</a> — Prüfservice, B2B</li><li><a href=\"https://rundumshaus-littawe.de\" class=\"link-inline\" rel=\"noopener\">rundumshaus-littawe.de</a> — Hausmeisterservice</li><li><a href=\"/\" class=\"link-inline\">ais152.com</a> — meine eigene Seite mit Impressum, Datenschutz, Widerruf und AVV</li></ul>",
+        "Eine Praxis ist noch nicht dabei — das sage ich lieber, als es zu verschweigen. Was Sie sehen können, ist die Arbeitsweise: Festpreis, saubere Rechtstexte, Übergabe mit allen Zugängen."
+      ]
     }
   ],
   "cta": "Erzählen Sie mir, wofür Ihr Empfang die meiste Zeit am Telefon verliert",
+  "cta_note": "Sie bekommen innerhalb eines Werktages eine ehrliche Einschätzung und einen Festpreis — keinen Beratungstermin, keine Warteschleife.",
+  "cta_label": "Festpreis anfragen",
+  "cta_href": "mailto:ais152.business@gmail.com?subject=Website%20f%C3%BCr%20meine%20Praxis",
   "related": [
     [
       "website-handwerk",

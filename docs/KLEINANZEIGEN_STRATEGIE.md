@@ -982,8 +982,9 @@ vor Ablauf der Widerrufsfrist beginnen. Mir ist bekannt, dass mein
 Widerrufsrecht mit vollständiger Vertragserfüllung erlischt."
 
 Die vollständige Widerrufsbelehrung mit Muster-Widerrufsformular
-schicke ich Ihnen mit der Auftragsbestätigung zu; sie steht außerdem
-in meinem Kleinanzeigen-Profil unter „Rechtliche Angaben".
+schicke ich Ihnen direkt im Anschluss an diese Nachricht — bitte lesen
+Sie sie, bevor Sie zusagen. Sie steht außerdem in meinem
+Kleinanzeigen-Profil unter „Rechtliche Angaben".
 ────────────────────────
 
 Wenn das so passt, antworten Sie einfach mit „Einverstanden" — dann

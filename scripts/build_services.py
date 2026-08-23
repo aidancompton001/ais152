@@ -105,10 +105,18 @@ def body_for(page):
 
     rel = " ".join('<a href="/leistungen/%s.html" class="link-inline">%s</a>' % (slug, name)
                    for slug, name in page["related"])
+    # Страница, на которую ведёт объявление, не должна отправлять посетителя
+    # на главную: там он читает про автоматизацию, а пришёл за сайтом.
+    # Поля необязательные — без них поведение прежнее для всех остальных страниц.
+    cta_label = page.get("cta_label", "Projekt beschreiben")
+    cta_href = page.get("cta_href", "/#contact")
     parts += ['  <section class="section" id="contact">',
               '    <div class="container">',
-              '      <h2 class="section-title">%s</h2>' % page["cta"],
-              '      <p><a href="/#contact" class="btn btn-primary">Projekt beschreiben</a></p>',
+              '      <h2 class="section-title">%s</h2>' % page["cta"]]
+    if page.get("cta_note"):
+        parts.append('      <p class="hero-sub">%s</p>' % page["cta_note"])
+    parts += ['      <p><a href="%s" class="btn btn-primary">%s</a></p>'
+              % (cta_href, cta_label),
               '      <p>Verwandte Leistungen: %s</p>' % rel,
               '      <p>Sechzehn ausgelieferte Projekte stehen unter '
               '<a href="/#work" class="link-inline">Ausgewählte Arbeiten</a></p>',
