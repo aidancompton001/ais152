@@ -2134,7 +2134,10 @@ html[data-lang="de"] #contact-form.is-loading .form-submit-loading[data-lang-de]
      занимал 76 % экрана — над сгибом не оставалось ничего. Крупный кегль
      рассчитан на два-три слова; длинная фраза требует меньшего. */
   font-size: clamp(2.25rem, 1rem + 3.2vw, 4rem);
-  line-height: var(--lh-tight);
+  /* Было var(--lh-tight) = 1,05: содержимое 314 при высоте бокса 309,
+     пять пикселей снизу срезаны. У Bricolage Grotesque длинные
+     выносные, и хвост «g» в Automatisierung уходил под край. */
+  line-height: 1.12;
   letter-spacing: var(--lt-tighter);
   font-variation-settings: "wght" var(--wght-semibold), "wdth" var(--wdth-normal);
   max-width: 20ch;

@@ -406,32 +406,12 @@
     trackCounterByVisibility(track, cards);
   }
 
-  // ──────────────── VARIABLE FONT — HERO H1 SCROLL AXIS ────────────────
-  // As the user scrolls the hero out of view, the H1 letters thicken
-  // and condense slightly. Subtle but signature.
-  if (hasGSAP && hasST && !REDUCED_MOTION) {
-    const heroH1 = document.querySelector('.hero-title');
-    if (heroH1) {
-      // PX-007: removed wdth axis from scroll — width changes per character were
-      // causing layout reflow on every scroll frame (visible jitter on H1 next to
-      // the terminal panel). wght-only axis is composite-friendly and visually
-      // sufficient (text gets bolder as the hero scrolls out).
-      const obj = { wght: 620 };
-      const apply = () => {
-        heroH1.style.fontVariationSettings = `"wght" ${obj.wght.toFixed(0)}`;
-      };
-      ScrollTrigger.create({
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom 30%',
-        scrub: 0.4,
-        onUpdate: (st) => {
-          obj.wght = 620 + st.progress * 200;   // 620 → 820
-          apply();
-        },
-      });
-    }
-  }
+  // ──────────────── ВЕС ЗАГОЛОВКА ПРИ ПРОКРУТКЕ — СНЯТО ────────────────
+  // Здесь вес заголовка ехал с 620 до 820 по мере ухода первого экрана.
+  // У переменного шрифта вес меняет ширину букв, то есть строка
+  // переверстывалась на каждом кадре прокрутки. CEO 23.08: «текст не должен
+  // дёргаться». Точки на фоне на мышь отзываться продолжают — дёргается
+  // только то, что дёргаться не должно.
 
   // ──────────────── VARIABLE FONT — HOVER PULSE ────────────────
   // PX-007: dropped wdth from hover (was 88) — same reflow reason as scroll axis above.
