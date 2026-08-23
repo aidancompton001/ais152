@@ -1144,8 +1144,12 @@
   function initWork() {
     setWorkTotal();
     if (IS_TOUCH_SMALL) return initWorkMobileSnap();
-    if (!hasGSAP || !hasST || REDUCED_MOTION) return initWorkNativeScroll();
-    return initWorkHorizontal();
+    // Закрепление секции убрано 23.08 по решению CEO: оно держало ВСЮ
+    // вертикальную прокрутку в своём диапазоне, и пока не пролистаешь
+    // пятнадцать карточек, дальше по странице было не уйти — где бы ни
+    // стояла мышь. Колесо листает работы вбок только под указателем, а
+    // на краю ленты отпускает страницу.
+    return initWorkNativeScroll();
   }
 
   function setWorkTotal() {
@@ -1203,75 +1207,6 @@
       }
     }, { root: track, threshold: [0.5, 0.75, 1.0] });
     cards.forEach((c) => obs.observe(c));
-  }
-
-  function initWorkHorizontal() {
-    if (!hasGSAP || !hasST || REDUCED_MOTION) return;
-    // PX-013: on touch-small viewports the pin freezes the page (no wheel events to
-    // drive scrub, touch consumed by pin without advancing tween). Route to native
-    // CSS scroll-snap path. iPad landscape (>768px) keeps the desktop pin experience.
-    // Note: Lenis stays active on all devices — with smoothTouch=off (default) it's
-    // dormant on touch and only handles wheel + lenis.scrollTo() for anchor clicks.
-    // Disabling Lenis would break smooth-anchor and gain nothing. (Landa WARN-3)
-    // Known limitation: desktop→mobile resize in the same session does NOT re-route
-    // (IS_TOUCH_SMALL is evaluated once at load). Reload needed. (Landa WARN-2)
-    if (IS_TOUCH_SMALL) return initWorkMobileSnap();
-
-    const pin = document.getElementById('work-pin');
-    const track = document.getElementById('work-track');
-    const fill = document.getElementById('work-progress-fill');
-    const cur = document.getElementById('work-progress-current');
-    const tot = document.getElementById('work-progress-total');
-    if (!pin || !track) return;
-
-    const cards = track.querySelectorAll('.card');
-    if (!cards.length) return;
-    const total = cards.length;
-    if (tot) tot.textContent = String(total).padStart(2, '0');
-
-    // distance to scroll horizontally
-    const calc = () => track.scrollWidth - window.innerWidth + 64;
-
-    const tween = gsap.to(track, {
-      x: () => -calc(),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: pin,
-        start: 'top top',
-        end: () => `+=${calc()}`,
-        scrub: 0.6,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: (st) => {
-          if (fill) fill.style.width = (st.progress * 100).toFixed(1) + '%';
-          if (cur) {
-            const idx = Math.min(total, Math.floor(st.progress * total) + 1);
-            cur.textContent = String(idx).padStart(2, '0');
-          }
-        },
-      },
-    });
-
-    // Пересчёт закреплений — с задержкой и только при смене ШИРИНЫ.
-    //
-    // До 19.08.2026 здесь стоял голый ScrollTrigger.refresh() на каждое
-    // событие resize. На телефоне адресная строка при прокрутке меняет высоту
-    // окна и порождает поток таких событий — каждое запускало полный пересчёт
-    // всех закреплений. Пока закрепление было одно, это терпелось. Со сценами
-    // персонажа их станет семь, и страница начнёт заикаться именно там, где
-    // человек её листает. Нашёл агент при разборе конфликтов, 19.08.2026.
-    //
-    // Высота окна меняется от адресной строки и клавиатуры, ширина — только
-    // от настоящего изменения размера или поворота. Считаем по ширине.
-    let lastWidth = window.innerWidth;
-    let resizeTimer = null;
-    window.addEventListener('resize', () => {
-      if (window.innerWidth === lastWidth) return;
-      lastWidth = window.innerWidth;
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 200);
-    });
   }
 
   // PX-013: mobile path — native horizontal scroll-snap, no pin. Repurposes the
