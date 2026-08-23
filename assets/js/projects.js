@@ -13,6 +13,13 @@
   const LOADING = document.getElementById('work-loading');
   if (!TRACK || !TPL) return;
 
+  // Карточки собраны на этапе сборки (scripts/render_work_static.py) и уже
+  // лежат в странице. Раньше скрипт стирал их и строил заново: замер на
+  // живом сайте 23.08 (телефон, медленный 4G, процессор ×4) дал пересчёт
+  // вёрстки на 526 мс с 1014 узлами плюс отдельный запрос за
+  // data/projects.json уже после загрузки. Теперь скрипт их только оживляет.
+  const STATIC = TRACK.querySelectorAll('.card').length > 0;
+
   const STATUS_LABELS = {
     live: { en: 'Live', de: 'Live' },
     'in-development': { en: 'In dev', de: 'In Arbeit' },
@@ -105,54 +112,59 @@
     }
   }
 
+  function animateMarks() {
+    if ('IntersectionObserver' in window) {
+      const mObs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-drawn');
+            mObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      TRACK.querySelectorAll('.card-mark').forEach((m) => mObs.observe(m));
+    } else {
+      TRACK.querySelectorAll('.card-mark').forEach((m) => m.classList.add('is-drawn'));
+    }
+  }
+
+  function announce(count, error) {
+    document.dispatchEvent(new CustomEvent('ais:projects-rendered', {
+      detail: error ? { count: 0, error: error } : { count: count },
+    }));
+  }
+
+  // Обычный путь: карточки уже в странице. Ни запроса, ни перерисовки,
+  // ни пересчёта вёрстки — только оживление и сообщение остальным скриптам.
+  if (STATIC) {
+    if (LOADING) LOADING.remove();
+    animateMarks();
+    announce(TRACK.querySelectorAll('.card').length);
+    return;
+  }
+
+  // Запасной путь: карточек в разметке нет. Такое бывает, если страницу
+  // собрали в обход сборщика. Тогда рисуем сами, как раньше.
   fetch('/data/projects.json', { cache: 'no-cache' })
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
     })
     .then((projects) => {
-      if (!Array.isArray(projects)) throw new Error('projects.json must be an array');
-
-      const visible = projects
+      const list = Array.isArray(projects) ? projects : (projects.projects || []);
+      const visible = list
         .filter((p) => p && p.status !== 'archived')
         .sort((a, b) => (a.order || 0) - (b.order || 0));
-
       if (LOADING) LOADING.remove();
-
-      // Карточки уже лежат в исходном коде страницы — их кладёт сборщик
-      // scripts/render_work_static.py, чтобы шестнадцать работ существовали
-      // для поиска и для человека без скриптов. Здесь они ЗАМЕНЯЮТСЯ живыми,
-      // иначе на странице оказалось бы тридцать две карточки.
-      TRACK.querySelectorAll('.card').forEach((c) => c.remove());
-
       const frag = document.createDocumentFragment();
       visible.forEach((p, i) => frag.appendChild(renderCard(p, i, visible.length)));
       TRACK.appendChild(frag);
-
-      // Animate marks in via IntersectionObserver
-      if ('IntersectionObserver' in window) {
-        const mObs = new IntersectionObserver((entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add('is-drawn');
-              mObs.unobserve(e.target);
-            }
-          });
-        }, { threshold: 0.4 });
-        TRACK.querySelectorAll('.card-mark').forEach((m) => mObs.observe(m));
-      } else {
-        TRACK.querySelectorAll('.card-mark').forEach((m) => m.classList.add('is-drawn'));
-      }
-
-      document.dispatchEvent(new CustomEvent('ais:projects-rendered', {
-        detail: { count: visible.length, projects: visible },
-      }));
+      animateMarks();
+      announce(visible.length);
     })
     .catch((err) => {
       console.error('[projects.js] failed to load projects.json:', err);
       renderError('Could not load projects. Check data/projects.json.');
-      document.dispatchEvent(new CustomEvent('ais:projects-rendered', {
-        detail: { count: 0, error: err.message },
-      }));
+      announce(0, err.message);
     });
 })();
