@@ -80,10 +80,22 @@
         ['tf', 'docs'], ['tp', ': API reference auto-gen\n'],
         ['tn', '1c87a93'], ['tp', '  '], ['ts', '2026-04-05'], ['tp', '  '],
         ['tf', 'feat'], ['tp', ': PDF quote export\n'],
-        ['tc', '\n# 8 projects · 2,418 commits · last reply 12m ago'],
+        ['tc', '\n# ' + statusLine() + ' · last reply 12m ago'],
       ],
     },
   ];
+
+  // Числа берутся из строки состояния той же панели: её собирает сборка из
+  // data/projects.json и git. Внутри набираемого текста стояло «8 projects,
+  // 2 418 commits» — остаток старой версии, противоречивший соседней строке
+  // в том же окне. Второму источнику правды здесь взяться неоткуда.
+  function statusLine() {
+    const el = document.querySelector('.hero-terminal-status');
+    const text = el ? el.textContent.replace(/\s+/g, ' ').trim() : '';
+    const m = text.match(/([\d.,]+)\s*COMMITS?\s*·\s*([\d.,]+)\s*PROJECTS?/i);
+    if (!m) return '';
+    return m[2] + ' projects · ' + m[1] + ' commits';
+  }
 
   let fileIdx = 0;
   let typingTimer = null;
