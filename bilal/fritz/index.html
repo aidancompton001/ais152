@@ -669,6 +669,10 @@ u{text-decoration:underline;text-underline-offset:3px}
   .mobilebar{transform:none}
 }
 
+/* Sprungmarken: die Kopfzeile ist sticky und 74 px hoch — ohne diesen Abstand
+   verschwindet die Überschrift des Zielabschnitts darunter. Gemessen im Browser. */
+section[id], footer[id]{ scroll-margin-top: calc(var(--hd-h, 74px) + 12px); }
+
 /* ---- part 02 ---- */
 /* ============================================================
    FRITZ AUTO ANKAUF — ЧАСТЬ 2 из 3
