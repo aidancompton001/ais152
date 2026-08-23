@@ -1260,6 +1260,18 @@ section[id], footer[id]{ scroll-margin-top: calc(var(--hd-h, 74px) + 12px); }
   .buy-card__more svg { transition: none; }
 }
 
+/* Echte Fotos in den Karten und im Foto-Block: absolut im Medien-Rahmen,
+   damit das Seitenverhältnis 16:9 bzw. das der Fotoleiste erhalten bleibt. */
+.buy-card__media picture,
+.about-photo picture{position:absolute;inset:0;display:block}
+.buy-card__media img,
+.about-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.buy-card__media img{filter:grayscale(.28) contrast(1.03)}
+.buy-card:hover .buy-card__media img{filter:none;transition:filter .3s ease}
+@media (prefers-reduced-motion:reduce){
+  .buy-card:hover .buy-card__media img{transition:none}
+}
+
 /* ---- part 03 ---- */
 /* ============================================================
    FRITZ AUTOANKAUF — ЧАСТЬ 3/3
@@ -1834,6 +1846,10 @@ section[id], footer[id]{ scroll-margin-top: calc(var(--hd-h, 74px) + 12px); }
   .form-input,
   .form-textarea{ transition: none }
 }
+
+/* Foto statt Inline-SVG: Höhe aus dem Attribut würde das Bild stauchen */
+.partner-figure picture{display:block}
+.partner-figure img{width:100%;height:auto;display:block}
 </style>
 </head>
 <body>
@@ -2240,17 +2256,11 @@ section[id], footer[id]{ scroll-margin-top: calc(var(--hd-h, 74px) + 12px); }
            Werkstatthof, kühles Tageslicht. Оригинал: страница /unfallwagen/. -->
       <article class="buy-card">
         <div class="buy-card__media">
-          <div class="buy-card__slot">
-            <svg class="buy-card__art" viewBox="0 0 160 90" fill="none" aria-hidden="true">
-              <path d="M18 66h124" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M26 66V50l12-16h44l14 16h20a8 8 0 0 1 8 8v8" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-              <path d="M40 50h40" stroke="currentColor" stroke-width="2"/>
-              <circle cx="46" cy="66" r="8" stroke="currentColor" stroke-width="2.5"/>
-              <circle cx="108" cy="66" r="8" stroke="currentColor" stroke-width="2.5"/>
-              <path d="m112 28 6 8-9 4 7 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <span class="buy-card__note">Bild folgt</span>
+          <picture>
+            <source type="image/webp" media="(max-width:640px)" srcset="img/unfallwagen-828.webp">
+            <source type="image/webp" srcset="img/unfallwagen-1280.webp">
+            <img src="img/unfallwagen-1280.jpg" alt="Unfallwagen mit Frontschaden" width="1280" height="716" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="buy-card__body">
           <h3 class="buy-card__title">Unfallwagen</h3>
@@ -2264,20 +2274,13 @@ section[id], footer[id]{ scroll-margin-top: calc(var(--hd-h, 74px) + 12px); }
         </div>
       </article>
 
-      <!-- IMAGE SLOT: Gebrauchtwagen — gepflegter Kombi in Seitenansicht
-           auf einem Händlerhof. Оригинал: страница /gebrauchtwagen/. -->
       <article class="buy-card">
         <div class="buy-card__media">
-          <div class="buy-card__slot">
-            <svg class="buy-card__art" viewBox="0 0 160 90" fill="none" aria-hidden="true">
-              <path d="M14 66h132" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M24 66V48l14-16h52l16 16h20a8 8 0 0 1 8 8v10" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-              <path d="M40 48h48M64 32v16" stroke="currentColor" stroke-width="2"/>
-              <circle cx="48" cy="66" r="9" stroke="currentColor" stroke-width="2.5"/>
-              <circle cx="112" cy="66" r="9" stroke="currentColor" stroke-width="2.5"/>
-            </svg>
-          </div>
-          <span class="buy-card__note">Bild folgt</span>
+          <picture>
+            <source type="image/webp" media="(max-width:640px)" srcset="img/gebrauchtwagen-828.webp">
+            <source type="image/webp" srcset="img/gebrauchtwagen-1280.webp">
+            <img src="img/gebrauchtwagen-1280.jpg" alt="Gepflegter Gebrauchtwagen in Seitenansicht" width="1280" height="716" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="buy-card__body">
           <h3 class="buy-card__title">Gebrauchtwagen</h3>
@@ -2291,19 +2294,13 @@ section[id], footer[id]{ scroll-margin-top: calc(var(--hd-h, 74px) + 12px); }
         </div>
       </article>
 
-      <!-- IMAGE SLOT: Lackschaden und Kratzer — Nahaufnahme einer zerkratzten
-           Fahrzeugtür mit Lackabrieb. Оригинал: /lackschaden-kratzern-farbabrieben/. -->
       <article class="buy-card">
         <div class="buy-card__media">
-          <div class="buy-card__slot">
-            <svg class="buy-card__art" viewBox="0 0 160 90" fill="none" aria-hidden="true">
-              <rect x="24" y="20" width="112" height="52" rx="8" stroke="currentColor" stroke-width="2.5"/>
-              <path d="M24 40h112" stroke="currentColor" stroke-width="2"/>
-              <circle cx="46" cy="56" r="5" stroke="currentColor" stroke-width="2"/>
-              <path d="m66 62 22-26M76 64l20-24M88 66l18-22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <span class="buy-card__note">Bild folgt</span>
+          <picture>
+            <source type="image/webp" media="(max-width:640px)" srcset="img/lackschaden-828.webp">
+            <source type="image/webp" srcset="img/lackschaden-1280.webp">
+            <img src="img/lackschaden-1280.jpg" alt="Kratzer im Lack aus der Nähe" width="1280" height="716" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="buy-card__body">
           <h3 class="buy-card__title">Lackschaden und Kratzer</h3>
