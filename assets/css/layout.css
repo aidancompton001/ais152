@@ -772,3 +772,17 @@
 .page-case .container h2 {
   font-size: var(--fs-3xl);
 }
+
+/* Воздух вокруг подзаголовков на страницах услуг и кейсов.
+   Без него подзаголовок стоит вплотную к абзацу над ним и читается как
+   продолжение предыдущей мысли, а не как начало новой. */
+.page-leistung .container h2,
+.page-case .container h2 {
+  margin-top: var(--sp-12);
+  margin-bottom: var(--sp-5);
+}
+
+.page-leistung > .section:first-child .container h1,
+.page-case > .section:first-child .container h1 {
+  margin-bottom: var(--sp-6);
+}
