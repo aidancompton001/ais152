@@ -12,8 +12,12 @@
 <!--
   Schriften self-hosted: keine Verbindung zu Google.
   LG Munchen I, Az. 3 O 17493/20 — Google Fonts per CDN = Art. 82 DSGVO.
-  @font-face steht unten im 
-<link rel="stylesheet" href="/bilal/site/assets/site.5176e63b.css">
+  @font-face steht unten im <style>, damit url() relativ zum Dokument aufloest.
+-->
+<link rel="preload" href="/bilal/site/fonts/Manrope-latin-vf.woff2" as="font" type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="/bilal/site/assets/site.e52a0afc.css">
 
 <style>
 /* ---- Городская страница: единственное отличие от главной ---- */
@@ -56,7 +60,7 @@
 
      Меню — дословно из оригинала (ORIGINAL_hrpulse_20250112.html,
      ul#menu_main): Startseite · Autoankauf (Kostenlose Angebote,
-     Garantie und Gewährleistung) · Was wir kaufen (Unfallwagen,
+     Ablauf) · Was wir kaufen (Unfallwagen,
      Gebrauchtwagen, Lackschaden und Kratzer) · Standorte · FAQs ·
      Kontakt. Кнопка «Jetzt anbieten».
 
@@ -105,8 +109,8 @@
             <svg class="nav__caret" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z"/></svg>
           </a>
           <ul class="nav__sub">
-            <li><a href="#kostenlose-angebote">Kostenlose Angebote</a></li>
-            <li><a href="#garantie">Garantie und Gewährleistung</a></li>
+            <li><a href="#formular">Kostenlose Bewertung</a></li>
+            <li><a href="#ablauf-schritte">Ablauf in drei Schritten</a></li>
           </ul>
         </li>
 
@@ -167,8 +171,8 @@
         </div>
         <div class="mnav__sub">
           <ul>
-            <li><a href="#kostenlose-angebote">Kostenlose Angebote</a></li>
-            <li><a href="#garantie">Garantie und Gewährleistung</a></li>
+            <li><a href="#formular">Kostenlose Bewertung</a></li>
+            <li><a href="#ablauf-schritte">Ablauf in drei Schritten</a></li>
           </ul>
         </div>
       </li>
@@ -349,8 +353,8 @@
         <!-- Kartenstapel -->
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><g clip-path="url(#p2ic2)"><path d="M9.54112 19.7812H6.43115C6.04284 19.7812 5.72803 20.0961 5.72803 20.4844C5.72803 20.8727 6.04284 21.1875 6.43115 21.1875H9.54112C9.92943 21.1875 10.2442 20.8727 10.2442 20.4844C10.2442 20.0961 9.92943 19.7812 9.54112 19.7812Z" fill="currentColor"/><path d="M22.1377 2.81536H15.9727V2.26359C15.9727 1.01545 14.9572 0 13.7091 0H2.26359C1.01545 0 0 1.01545 0 2.26359V21.7364C0 22.9845 1.01545 24 2.26359 24H13.7091C14.9572 24 15.9727 22.9845 15.9727 21.7364V15.5625H22.1377C23.1646 15.5625 24 14.727 24 13.7002V4.6777C24 3.65081 23.1645 2.81536 22.1377 2.81536ZM9.18169 7.03411H22.5938V8.44036H9.18169V7.03411ZM22.5938 4.6777V5.62786H9.18169V4.6777C9.18169 4.42622 9.3863 4.22161 9.63783 4.22161H22.1377C22.3891 4.22161 22.5938 4.42622 22.5938 4.6777ZM13.7091 22.5938H2.26359C1.79086 22.5938 1.40625 22.2091 1.40625 21.7364V18.375H14.5664V21.7364C14.5664 22.2091 14.1818 22.5938 13.7091 22.5938ZM14.5664 16.9688H1.40625V2.26359C1.40625 1.79086 1.79086 1.40625 2.26359 1.40625H13.7091C14.1818 1.40625 14.5664 1.79086 14.5664 2.26359V2.81536H9.63783C8.61089 2.81536 7.77544 3.65081 7.77544 4.6777V13.7002C7.77544 14.727 8.61089 15.5625 9.63783 15.5625H14.5664V16.9688ZM22.1377 14.1562H9.63783C9.3863 14.1562 9.18169 13.9516 9.18169 13.7002V9.84661H22.5938V13.7002C22.5938 13.9516 22.3891 14.1562 22.1377 14.1562Z" fill="currentColor"/><path d="M20.4844 11.2529H17.8096C17.4213 11.2529 17.1064 11.5677 17.1064 11.9561C17.1064 12.3444 17.4213 12.6592 17.8096 12.6592H20.4844C20.8727 12.6592 21.1875 12.3444 21.1875 11.9561C21.1875 11.5677 20.8727 11.2529 20.4844 11.2529Z" fill="currentColor"/></g><defs><clipPath id="p2ic2"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
       </span>
-      <h3 class="usp-item__title">Autoankauf innerhalb von 24 Stunden</h3>
-      <p class="usp-item__text">Von deiner Anfrage bis zum Geld vergeht bei uns meist nur ein Tag</p>
+      <h3 class="usp-item__title">Schnelle Abwicklung</h3>
+      <p class="usp-item__text">Wir melden uns nach deiner Anfrage zurueck und stimmen den Termin direkt mit dir ab</p>
     </li>
 
     <li class="usp-item">
@@ -453,7 +457,7 @@
 
       <!-- IMAGE SLOT: Unfallwagen — Fahrzeug mit deutlichem Frontschaden,
            Werkstatthof, kühles Tageslicht. Оригинал: страница /unfallwagen/. -->
-      <article class="buy-card">
+      <article class="buy-card" id="unfallwagen">
         <div class="buy-card__media">
           <picture>
             <source type="image/webp" media="(max-width:640px)" srcset="/bilal/site/img/unfallwagen-828.webp">
@@ -473,7 +477,7 @@
         </div>
       </article>
 
-      <article class="buy-card">
+      <article class="buy-card" id="gebrauchtwagen">
         <div class="buy-card__media">
           <picture>
             <source type="image/webp" media="(max-width:640px)" srcset="/bilal/site/img/gebrauchtwagen-828.webp">
@@ -493,7 +497,7 @@
         </div>
       </article>
 
-      <article class="buy-card">
+      <article class="buy-card" id="lackschaden">
         <div class="buy-card__media">
           <picture>
             <source type="image/webp" media="(max-width:640px)" srcset="/bilal/site/img/lackschaden-828.webp">
@@ -728,7 +732,7 @@
     <ul class="loc-grid"><li><a class="loc-link" href="/bilal/site/autoankauf-arnsberg/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Arnsberg</a></li><li><a class="loc-link" href="/bilal/site/autoankauf-sundern-sauerland/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sundern (Sauerland)</a></li><li><a class="loc-link" href="/bilal/site/autoankauf-brilon/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Brilon</a></li><li><a class="loc-link" href="/bilal/site/autoankauf-schmallenberg/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Schmallenberg</a></li><li><a class="loc-link" href="/bilal/site/autoankauf-marsberg/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Marsberg</a></li><li><a class="loc-link" href="/bilal/site/autoankauf-olsberg/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Olsberg</a></li><li><a class="loc-link" href="/bilal/site/autoankauf-winterberg/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Winterberg</a></li><li><a class="loc-link" href="/bilal/site/autoankauf-medebach/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Medebach</a></li></ul>
 
     <p class="loc-note">
-      Deine Stadt steht nicht dabei? Ruf trotzdem an – im Umkreis von rund 100 km holen wir ab
+      Deine Stadt steht nicht dabei? Ruf trotzdem an – wir sagen dir direkt, ob wir zu dir kommen
     </p>
   </div>
 </section>
@@ -832,7 +836,7 @@
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
-            Mo – Sa, 8 – 20 Uhr
+            Ruf einfach an oder schreib per WhatsApp
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -859,6 +863,6 @@
 </footer>
 
 
-<script src="/bilal/site/assets/site.5176e63b.js" defer></script>
+<script src="/bilal/site/assets/site.e52a0afc.js" defer></script>
 </body>
 </html>
