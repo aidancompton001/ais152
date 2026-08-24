@@ -50,11 +50,21 @@ body{margin:0;background:#282525;color:#FFFEFE;
   padding:clamp(96px,14vw,160px) 0 clamp(56px,11vw,120px);
 }
 
+.legal, .legal *{
+  box-sizing:border-box;           /* без этого 100% + padding уезжает за экран:
+                                      на 414 давало горизонтальный скролл 440/399 */
+}
+
 .legal__inner{
   width:min(var(--container,1290px),100%);
   max-width:760px;                 /* мера строки для длинного текста */
   margin:0 auto;
   padding:0 var(--pad-x,clamp(20px,5vw,40px));
+}
+
+.legal :is(pre,code,table){
+  max-width:100%;
+  overflow-x:auto;                 /* длинные строки скроллятся внутри себя */
 }
 
 .legal h1{
