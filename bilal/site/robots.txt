@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://autoankauf-bo24.de/sitemap.xml
