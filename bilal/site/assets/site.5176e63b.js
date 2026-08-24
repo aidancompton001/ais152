@@ -432,6 +432,17 @@
       return;
     }
 
+    /* Демо-выкладка (GitHub Pages) — PHP там нет, отправлять некуда.
+       Показываем экран благодарности и честно помечаем, что это витрина. */
+    if (form.getAttribute('data-demo') === '1') {
+      showConfirmation(marke, modell);
+      if (doneText) {
+        doneText.textContent += ' (Demo-Ansicht: das Formular verschickt erst '
+          + 'auf dem echten Hosting eine Anfrage.)';
+      }
+      return;
+    }
+
     /* Отправка на server/lead.php. Экран благодарности показывается ТОЛЬКО
        после ответа сервера: подтверждение, нарисованное раньше ответа, врёт
        посетителю ровно в том случае, когда заявка не дошла. */
