@@ -2,6 +2,30 @@
 
 ## Журнал разработки
 
+### [S020] — 2026-08-24 — Rechnungsmuster, Wartungsservice, юридические страницы, Impressum
+
+**Роли:** Assistant (Drafting/Coordination)
+**Статус:** завершено
+
+**Что сделано:**
+- Wartungsservice-лендинг `wartung.html` 39 €/мес с § 3 AGB exclusions; ссылка в Footer + Service #04 в `index.html`.
+- Полный юридический комплект: `impressum.html`, `agb.html`, `widerruf.html`, `avv.html`, `rechnungen/muster.html` — приведены к бренду AIS.152.
+- Impressum: убран OS-Plattform (закрыта Verordnung 2024/3228 к 20.07.2025), все `§ 5 TMG` → `§ 5 DDG`, `§ 7 TMG` → `§ 7 DDG`.
+- Rechnungsmuster построен на § 34a UStDV (Kleinunternehmer с 01.01.2025 — полный адрес обязателен).
+- Push на ais152.com (GitHub Pages).
+
+**Ключевые решения:**
+- Kleinunternehmer §19 UStG подтверждён на всех документах (сайт + счёт + EKS).
+- Fonts: self-hosted Inter/JetBrains Mono — соответствие LG München I 20.01.2022 (Az. 3 O 17493/20).
+
+**Артефакты:** `wartung.html`, `impressum.html`, `agb.html`, `widerruf.html`, `avv.html`, `datenschutz.html`, `rechnungen/muster.html`, `index.html`
+
+**Следующие шаги:**
+- Ждать Steuernummer от Finanzamt München (через ELSTER Fragebogen zur steuerlichen Erfassung).
+- Дополнить Impressum поле Steuernummer, когда придёт.
+
+---
+
 ### [S019] — 2026-08-21 — AIS152-REVIEWS-001 Блок отзывов из Google-Профиля
 
 **Задача:** CEO — «давай собирай». В тот же день создан Google-Unternehmensprofil для AIS.152
