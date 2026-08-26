@@ -1317,3 +1317,18 @@ n=101, медиана 5 мин, задержек больше 3 часов 15, �
 
 **Артефакты:** `verify/probes/t078_sortierung.py`, `t079_zweite_seite.py`,
 `t079_test.py`, `t080_fix_takt.py`
+
+### [S-KVR] — 2026-08-26 — Постоянный Aktenzeichen KVR
+
+**Статус:** завершено
+
+**Что сделано:**
+- `impressum.html`: `Auftragsnummer: GEWANZ-...` → `Aktenzeichen: 8220-26-14125`
+- `rechnungen/muster.html`: добавлен блок Gewerbeanmeldung с Aktenzeichen и строкой
+  «Steuernummer beantragt, wird nachgereicht»
+- Выложено, проверено на живом сайте: новый номер есть на обеих страницах, старого нет
+
+**Решение:** фамилия сотрудника KVR на публичные страницы не вынесена — она нужна для
+переписки и лежит во внутреннем архиве, а на Impressum это имя третьего лица.
+
+**Артефакты:** `impressum.html`, `rechnungen/muster.html`
