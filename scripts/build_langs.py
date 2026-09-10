@@ -282,6 +282,19 @@ def main():
             print("КАРТОЧКИ РАБОТ НЕ ВПИСАНЫ")
             return 1
 
+        # Блок отзывов — тоже после сборки. Раньше его вписывали отдельной
+        # командой, и первая же пересборка страниц стирала его: 10.09.2026
+        # на обеих главных блока не было вовсе, хотя сборщик существовал
+        # с 21.08. Команда, которую надо помнить запускать, не запускается.
+        r = subprocess.run([sys.executable, str(ROOT / "scripts" / "render_reviews_static.py"),
+                            "--write"], cwd=str(ROOT), capture_output=True, text=True,
+                           encoding="utf-8", errors="replace")
+        for line in (r.stdout or "").strip().splitlines():
+            print("  %s" % line)
+        if r.returncode != 0:
+            print("БЛОК ОТЗЫВОВ НЕ ВПИСАН")
+            return 1
+
     print("собрано" if write else "холостой прогон, запусти с --write")
     return 0
 

@@ -56,23 +56,23 @@
     },
     {
       "id": "06",
-      "text": "Нумерация разделов не задвоилась: отзывы стали пятыми, контакт перенумерован в шестые на обеих страницах",
+      "text": "Нумерация видимых разделов идёт подряд без повторов на обеих страницах: пока отзывы скрыты — 01 работы … 05 контакт",
       "asserted": true,
       "proof": {
         "cmd": "py verify/probes/reviews_overline_unique.py",
         "expect_contain": "OVERLINE_UNIQUE"
       },
-      "note": "Секция вставлена между «04 / Über» и контактом, который был «05». Без перенумерации на странице оказалось бы два раздела под одним номером — это видно читателю."
+      "note": "10.09.2026 блок переехал над работами. Номер внутри скрытого раздела посетитель не видит, поэтому проба считает только видимые разделы и требует ряд 01..N."
     },
     {
       "id": "07",
-      "text": "Ничего из прежнего содержимого не потеряно: шестнадцать карточек работ и ссылки на юридические страницы на месте",
+      "text": "Ничего из прежнего содержимого не потеряно: карточек работ на обеих главных столько же, сколько проектов в data/projects.json, ссылка на Impressum на месте",
       "asserted": true,
       "proof": {
-        "cmd": "py -c \"import io;h=io.open('index.html',encoding='utf-8').read();print(h.count('class=\\\"card\\\"')>=16 and 'impressum' in h and 'datenschutz' in h)\"",
-        "expect_equal": "True"
+        "cmd": "py verify/probes/reviews_work_intact.py",
+        "expect_contain": "WORK_INTACT"
       },
-      "note": "Вставка секции переписывает файл целиком — проверка на то, что она ничего не срезала."
+      "note": "Прежний пруф искал точное class=\"card\" и находил одну карточку: у карточек работ есть классы раскладки. Число теперь сверяется с источником данных, а не с константой (Закон 27 §5)."
     },
     {
       "id": "08",
@@ -109,10 +109,50 @@
       "text": "Приёмка задачи проходит целиком прямо сейчас, а не по памяти о прошлом прогоне",
       "asserted": true,
       "proof": {
-        "cmd": "py verify/verify.py",
+        "cmd": "py ../MainCore/core/verify/verify.py verify/acceptance.json",
         "expect_contain": "TASK VERIFIED"
       },
       "note": "Приёмка прошлой задачи (SEO-план) сохранена рядом как acceptance.seoplan.json — по находке #14 acceptance.json обязана описывать ТЕКУЩУЮ работу, иначе verify.py выдаёт зелёный свет за чужую."
+    },
+    {
+      "id": "12",
+      "text": "Блок отзывов стоит ровно один раз и сразу над разделом работ на обеих главных; при показе нумерация становится 01 отзывы … 06 контакт",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/probes/reviews_placement.py",
+        "expect_contain": "PLACEMENT_OK"
+      },
+      "note": "Место выбрал CEO 10.09.2026. Ветка «блок показан» проверяется на копии страницы в памяти, рабочие файлы не трогаются."
+    },
+    {
+      "id": "13",
+      "text": "Блок переживает пересборку сайта: build_langs.py сам вписывает его заново, после полной сборки он стоит на месте",
+      "asserted": true,
+      "proof": {
+        "cmd": "py scripts/build_langs.py --write && py verify/probes/reviews_placement.py",
+        "expect_contain": "PLACEMENT_OK"
+      },
+      "note": "Причина, по которой блока не было на сайте: сборщик отзывов писал в готовые страницы, а каждая сборка их перезаписывала. Пруф сначала пересобирает, потом смотрит."
+    },
+    {
+      "id": "14",
+      "text": "В data/reviews.json внесены ссылки на профиль Google AIS.152 и на форму отзыва, отзывов в файле ноль",
+      "asserted": true,
+      "proof": {
+        "cmd": "py -c \"import io,json;g=json.load(io.open('data/reviews.json',encoding='utf-8'));p=g['googleProfile'];print(p['profileUrl'],p['reviewUrl'],len(g['reviews']))\"",
+        "expect_equal": "https://www.google.com/maps?cid=13297933187844153824 https://g.page/r/CeAhVGTHv4u4EBM/review 0"
+      },
+      "note": "Ссылки взяты из самого профиля AIS.152 (аккаунт ais152.business). Отзывов ноль — значит блок скрыт, и никакие цифры рейтинга на сайте не показываются."
+    },
+    {
+      "id": "15",
+      "text": "Сборщик отказывает, если отзывы есть, а даты «Stand» нет; при одном отзыве пишет «1 Bewertung»/«1 review»; блок без комментария-маркера тоже вырезается",
+      "asserted": true,
+      "proof": {
+        "cmd": "py verify/probes/reviews_render_refusals.py",
+        "expect_contain": "REFUSALS_OK A B C"
+      },
+      "note": "Закрывает находки #14 круга 1: F-01, F-08, F-03. Проба работает на временном файле данных, рабочие страницы не трогает."
     }
   ]
 }

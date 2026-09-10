@@ -1,0 +1,143 @@
+{
+  "reviewer": "#14 Hans Landa",
+  "task": "AIS152-REVIEWS-001",
+  "ledger": "verify/hrc_ledger_ais152reviews001.json",
+  "review_round": 2,
+  "reviewed_at": "2026-09-10",
+  "method": "Круг 2 из 2 (Закон 31), проверял только исправления находок круга 1. Хэши рабочих index.html, en/index.html и data/reviews.json до работы, после двух build_langs.py --write и после verify.py одни и те же: ea00f245… / 0743a954… / a958e415…, равны снимку круга 1. Мутации делал только в копии в scratchpad (scripts/render_reviews_static.py, пробы, обе страницы), рабочие файлы не трогал. Проба 15 краснеет на каждой из трёх мутаций. Git-команду из resolution 2 перезапустил. verify.py: 13/13. hrc.py перезапустил после подписи.",
+  "reviewed_claims": [
+    {
+      "id": "01",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: PAGES=2 (в составе hrc.py).",
+      "claim_hash": "cf08e86bc5e3c532"
+    },
+    {
+      "id": "02",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: STATE_CONSISTENT reviews=0 hidden=True.",
+      "claim_hash": "1a284d62bb819779"
+    },
+    {
+      "id": "03",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: SELFTEST_OK. Фикстура самопроверки несёт asOfLabel/asOfShort, поэтому новый отказ по дате (F-01) её не ломает. F-07 в долге.",
+      "claim_hash": "9fbaeaec6e4306dd"
+    },
+    {
+      "id": "04",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: True.",
+      "claim_hash": "4b3c40c3715c4fe8"
+    },
+    {
+      "id": "05",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: NO_VERIFIED_CLAIM.",
+      "claim_hash": "43cc30687aa5855a"
+    },
+    {
+      "id": "06",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: OVERLINE_UNIQUE. F-02 в долге.",
+      "claim_hash": "5ee96a4d6da9c59d"
+    },
+    {
+      "id": "07",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: WORK_INTACT cards=16. F-05 в долге.",
+      "claim_hash": "5b5cab874bfbc85a"
+    },
+    {
+      "id": "08",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: BALANCED.",
+      "claim_hash": "ff31f141383c3d4b"
+    },
+    {
+      "id": "09",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: вывод дословно совпал.",
+      "claim_hash": "925f2076683a9535"
+    },
+    {
+      "id": "10",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: True.",
+      "claim_hash": "9cfce75a9cea927a"
+    },
+    {
+      "id": "11",
+      "verdict": "CONFIRMED",
+      "why": "Мой прогон: RESULT: 13/13 PASSED (100.0%), VERDICT: TASK VERIFIED. С докладом исполнителя расхождений нет.",
+      "claim_hash": "7dc2d57aad82169f"
+    },
+    {
+      "id": "12",
+      "verdict": "CONFIRMED",
+      "why": "Факт верен, проверил сам в памяти на обеих страницах: при показанном блоке DE 01 Stimmen, 02 Ausgewählte Arbeiten … 06 Kontakt, EN 01 Reviews … 06 Contact. Но пруф потерял чувствительность (F-04R): len(OVER.findall(...)) считает все overline, скрытые тоже, поэтому before+1 == len(nums) — это 6 == 6 при любом состоянии, проверка тождественна. Мутация в песочнице: у блока отзывов удалён номер раздела на обеих страницах, PLACEMENT_OK и OVERLINE_UNIQUE остались зелёными. Часть «01 отзывы … 06 контакт» пруфом больше не доказывается. Константа 6 из круга 1 это ловила. Уходит в долг, не блокер.",
+      "claim_hash": "257b080bae861628"
+    },
+    {
+      "id": "13",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: два прогона build_langs.py --write подряд дают те же хэши (index.html ea00f245…, en/index.html 0743a954…), что и снимок круга 1. Проба placement после сборки даёт PLACEMENT_OK; её слабость см. 12.",
+      "claim_hash": "4bda394829aa4ae8"
+    },
+    {
+      "id": "14",
+      "verdict": "CONFIRMED",
+      "why": "Повторно: строки совпали. F-06 в долге.",
+      "claim_hash": "d3e15aacbea6fdd4"
+    },
+    {
+      "id": "15",
+      "verdict": "CONFIRMED",
+      "why": "Воспроизведено: REFUSALS_OK A B C. Чувствительность проверена на копии в песочнице, рабочие файлы не тронуты. Убрал отказ по дате: REFUSALS_BAD A (rc=0). Вернул константное «Bewertungen»: REFUSALS_BAD B и B-en. Сделал маркер обязательным: REFUSALS_BAD C. Замечания в долг: N-01 — множественное число не проверяется (при count_word[0] всегда проба зелёная, а на 7 отзывах выходит «7 Bewertung»); N-02 — дата из одних пробелов («Stand:  ») проходит отказ (rc 0).",
+      "claim_hash": "824822ca3309013e"
+    }
+  ],
+  "findings_round1_status": {
+    "F-01": "ЗАКРЫТО: отказ есть (render_reviews_static.py:250-253), мутация даёт REFUSALS_BAD A",
+    "F-02": "В ДОЛГЕ: REVIEW_DEBT.md, строка сценария совпадает с находкой",
+    "F-03": "ЗАКРЫТО: OLD_BLOCK_RE:45, мутация даёт REFUSALS_BAD C",
+    "F-04": "НЕ ЗАКРЫТО → F-04R: новая проверка тождественна (6 == 6), в долг",
+    "F-05": "В ДОЛГЕ: совпадает",
+    "F-06": "В ДОЛГЕ: сценарий в REVIEW_DEBT.md записан неточно. «Чужой профиль того же формата» пруф 14 поймает, потому что он сверяет точные строки. Реальный риск другой: CID изначально взят не тот, и пруф тавтологически подтверждает внесённое значение. Сценарий исправить",
+    "F-07": "В ДОЛГЕ: совпадает",
+    "F-08": "ЗАКРЫТО для единственного числа: мутация даёт REFUSALS_BAD B. Множественное не проверяется, см. N-01",
+    "F-09": "ЗАКРЫТО ЧАСТИЧНО: три пробы только в индексе (A), не в коммите; изменения render_reviews_static.py и reviews_overline_unique.py не проиндексированы. Пока нет коммита, на чистом клоне пруфы 07/12/13/15 упадут. Закрывается коммитом задачи, verify/hrc.py в него не входит"
+  },
+  "findings": [
+    "F-04R MEDIUM (В ДОЛГ): reviews_placement.py:403-404 — проверка тождественна; удаление номера у блока отзывов не ловится; вывод «shown 01..06» захардкожен. Фикс: visible_numbers из reviews_overline_unique при скрытом блоке + первый overline при показе обязан лежать внутри section id=reviews.",
+    "N-01 LOW (В ДОЛГ): reviews_render_refusals.py ветка B проверяет только ratingCount=1. Мутация count_word[0] → проба зелёная, на сайте «7 Bewertung». Фикс: добавить ratingCount=7 → «7 Bewertungen»/«7 reviews».",
+    "N-02 LOW (В ДОЛГ): render_reviews_static.py:250 — asOfShort/asOfLabel из пробелов проходят отказ (rc 0, пометка «Stand:  »). Фикс: .strip() и формат MM/YYYY.",
+    "N-03 LOW (В ДОЛГ): reviews_render_refusals.py:344 — диагностика ветки B режет строку от первого «bei Google», а это заголовок «Was Kunden bei Google schreiben», не строка цифр. При провале выводится не то. Фикс: искать от class=\"reviews-figures\".",
+    "N-04 LOW (В ДОЛГ): пробы reviews_placement и reviews_render_refusals есть только в реестре hrc, в acceptance.json их нет. verify.py 13/13 закрытие F-01/F-03/F-08 не проверяет, это делает только hrc.py.",
+    "F-06-doc LOW (В ДОЛГ): в REVIEW_DEBT.md неверный сценарий F-06, см. findings_round1_status."
+  ],
+  "verdict": "APPROVED WITH WARNINGS",
+  "summary": "15 из 15 CONFIRMED. F-01, F-03 и F-08 (для единственного числа) закрыты, проба 15 чувствительна ко всем трём мутациям. F-04 не закрыта: новая проверка тождественна, поэтому часть утверждения 12 «при показе 01 отзывы» пруфом больше не доказывается. Сам факт верен, я его проверил. Блокеров нет: блок скрыт, сайт корректен, сборка идемпотентна, verify.py 13/13. В долг: F-04R, N-01…N-04, правка сценария F-06. Третьего круга по фазе нет.",
+  "unlisted_claims": [
+    {
+      "text": "В докладе: старый блок, где бы ни стоял, вырезается (OLD_BLOCK_RE) и вписывается заново",
+      "verdict": "REJECTED",
+      "why": "Не в реестре и в общем виде неверно: вырезается только блок с комментарием REVIEWS перед секцией. Песочница S6 — блок без комментария остался, на странице два блока. Гейт ловит это пробой reviews_placement (PLACEMENT_BAD), поэтому находка LOW (F-03). Утверждение сузить до «блок с комментарием-маркером» или починить регулярку.",
+      "resolution": "Исправлено, не сужено: OLD_BLOCK_RE теперь вырезает блок и без комментария-маркера (группа маркера необязательна). Доказано веткой C пробы reviews_render_refusals.py, внесено в реестр как утверждение 15.",
+      "round2": "Resolution проверена: мутация «маркер обязателен» даёт REFUSALS_BAD C, в реестре есть утверждение 15. Закрыто."
+    },
+    {
+      "text": "В докладе: прежний пруф искал точное class=card и падал ещё до задачи",
+      "verdict": "UNVERIFIED",
+      "why": "Историческое утверждение, в реестре только как note к claim 07. Я его не воспроизводил: прежней пробы в рабочем дереве нет. На вердикт не влияет.",
+      "resolution": "Воспроизведено: git show HEAD:index.html (коммит 4c04614) содержит ровно одно точное class=\"card\" (grep -o 'class=\"card\"' | wc -l → 1), а прежний пруф требовал >=16 — на HEAD он давал False. Остаётся примечанием к 07, фактом реестра не заявлено.",
+      "round2": "Перезапустил: git show HEAD:index.html | grep -o 'class=\"card\"' | wc -l → 1 (HEAD = 4c0461430e46…). Точный класс один раз, остальные 16 карточек несут классы раскладки layout-*. Resolution честная. Закрыто."
+    },
+    {
+      "text": "В докладе круга 2: F-04 исправлена, reviews_placement.py «ждёт на один раздел больше, чем видно при скрытом блоке»",
+      "verdict": "REJECTED",
+      "why": "Код считает не видимые разделы, а все overline: before = len(OVER.findall(renumber_sections(html))) - 1. Число overline одинаково при скрытом и показанном блоке (замер: 6 и 6), поэтому условие len(nums) != before + 1 не срабатывает никогда. Строка «shown 01..06» в выводе захардкожена. Мутация: номер у блока отзывов удалён, проба зелёная.",
+      "resolution": "Отклонено как факт. По Закону 31 это F-04R, открыто после круга 2 и уходит в долг ревью. Исполнитель вносит строку в docs/tasks/REVIEW_DEBT.md. Закрыть так: считать видимые при скрытом блоке через reviews_overline_unique.visible_numbers и требовать, чтобы при показе первым шёл overline внутри section id=reviews."
+    }
+  ]
+}

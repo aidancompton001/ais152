@@ -34,15 +34,24 @@ DATA = ROOT / "data" / "reviews.json"
 PAGES = {"de": ROOT / "index.html", "en": ROOT / "en" / "index.html"}
 MARK_OPEN = "<!-- reviews:static:start -->"
 MARK_CLOSE = "<!-- reviews:static:end -->"
-ANCHOR = '<section class="contact" id="contact">'
+# Блок стоит сразу над работами (решение CEO 10.09.2026): отзыв читается раньше
+# портфолио и задаёт, как на портфолио смотреть. Прежде якорем был контакт.
+ANCHOR = '<section class="work" id="work">'
 SECTION_RE = r'<section class="reviews" id="reviews"[^>]*>'
+# Прежний блок, где бы он ни стоял, вырезается целиком — с комментарием-маркером
+# перед ним или без него (находка #14 F-03: без маркера оставались два блока).
+# Вложенных секций внутри блока отзывов нет, поэтому ленивое .*? до </section>
+# забирает ровно его.
+OLD_BLOCK_RE = (r'(?:<!-- ═+ REVIEWS ═+ -->\s*)?<section class="reviews" id="reviews"[^>]*>'
+                r'.*?</section>\s*')
 
 T = {
     "de": {
         "overline": "Stimmen",
         "title": "Was Kunden bei Google schreiben",
         "aria_stars": "%d von %d Sternen",
-        "figures": "%s bei Google · %d Bewertungen (Stand: %s)",
+        "figures": "%s bei Google · %d %s (Stand: %s)",
+        "count_word": ("Bewertung", "Bewertungen"),
         "shown": "Hier zeigen wir %d davon",
         "note": ("Diese Bewertungen haben Kundinnen und Kunden bei Google "
                  "veröffentlicht. Wir haben sie von dort übernommen (Stand: %s) "
@@ -58,7 +67,8 @@ T = {
         "overline": "Reviews",
         "title": "What clients write on Google",
         "aria_stars": "%d out of %d stars",
-        "figures": "%s on Google · %d reviews (as of %s)",
+        "figures": "%s on Google · %d %s (as of %s)",
+        "count_word": ("review", "reviews"),
         "shown": "Showing %d of them",
         "note": ("These reviews were published by customers on Google. We "
                  "copied them from there (as of %s) and do not check their "
@@ -142,6 +152,7 @@ def block(items, prof, lang, num):
                    % (stars(int(round(rating)), prof.get("bestRating") or 5,
                             t["aria_stars"]),
                       esc(t["figures"] % (rating_txt, prof["ratingCount"],
+                                          t["count_word"][prof["ratingCount"] != 1],
                                           as_of))))
 
     shown = ('      <p class="reviews-shown">%s</p>\n'
@@ -193,12 +204,34 @@ def section(items, prof, lang, num):
     )
 
 
-def renumber_contact(html, num):
-    """Контакт был 05. С появлением отзывов он становится 06 — иначе на
-    странице два раздела под одним номером."""
-    return re.sub(
-        r'(<span class="overline">)\d\d( / <span>(?:Kontakt|Contact)</span>)',
-        lambda m: "%s%02d%s" % (m.group(1), num, m.group(2)), html)
+OVERLINE_RE = re.compile(r'(<span class="overline">)\d\d( / <span>)')
+
+
+def renumber_sections(html):
+    """Пронумеровать разделы подряд — только ВИДИМЫЕ.
+
+    Блок отзывов стоит первым, над работами. Пока он скрыт, номера остаются
+    прежними (работы — 01); когда он виден — отзывы 01, работы 02 и так далее.
+    Считать скрытый раздел нельзя: посетитель увидел бы первым номер 02.
+    Прежняя редакция перенумеровывала только контакт — годилась, пока блок
+    стоял предпоследним.
+    """
+    sections = [(m.start(), " hidden" in m.group(0))
+                for m in re.finditer(r"<section\b[^>]*>", html)]
+    out, last, n = [], 0, 0
+    for m in OVERLINE_RE.finditer(html):
+        owner = [h for pos, h in sections if pos < m.start()]
+        hidden = owner[-1] if owner else False
+        if not hidden:
+            n += 1
+            num = n
+        else:
+            num = 1          # номер скрытого раздела никто не видит
+        out.append(html[last:m.start()])
+        out.append("%s%02d%s" % (m.group(1), num, m.group(2)))
+        last = m.end()
+    out.append(html[last:])
+    return "".join(out)
 
 
 def main():
@@ -210,6 +243,13 @@ def main():
     if items and not prof.get("profileUrl"):
         print("ОТКАЗ: есть отзывы, но нет profileUrl — цифры станут "
               "непроверяемыми, а ссылка на профиль обязательна")
+        return 1
+
+    # Дата «Stand» стоит в юридической пометке § 5b UWG. Пустая дала бы на сайте
+    # «(Stand: )» — пометка без даты (находка #14 F-01).
+    if items and not (prof.get("asOfShort") and prof.get("asOfLabel")):
+        print("ОТКАЗ: есть отзывы, но не заполнены asOfShort/asOfLabel — "
+              "в пометке о происхождении отзывов не будет даты")
         return 1
 
     rc = prof.get("ratingCount") or 0
@@ -224,21 +264,15 @@ def main():
             return 1
         html = io.open(path, encoding="utf-8").read()
 
-        body = block(items, prof, lang, 5)
-        if MARK_OPEN in html:
-            html = re.sub(re.escape(MARK_OPEN) + r".*?" + re.escape(MARK_CLOSE),
-                          MARK_OPEN + "\n" + body + "\n" + MARK_CLOSE,
-                          html, flags=re.S)
-            html = re.sub(SECTION_RE,
-                          '<section class="reviews" id="reviews"%s>'
-                          % ("" if items else " hidden"), html)
-        else:
-            if ANCHOR not in html:
-                print("НЕ НАЙДЕН ЯКОРЬ КОНТАКТА в %s" % path.name)
-                return 1
-            html = html.replace(ANCHOR, section(items, prof, lang, 5) + ANCHOR, 1)
+        # Блок всегда вписывается заново: прежний, где бы он ни стоял, убирается.
+        # Так перенос места (контакт → работы) не оставляет двух блоков сразу.
+        html = re.sub(OLD_BLOCK_RE, "", html, flags=re.S)
+        if ANCHOR not in html:
+            print("НЕ НАЙДЕН ЯКОРЬ РАЗДЕЛА РАБОТ в %s" % path.name)
+            return 1
+        html = html.replace(ANCHOR, section(items, prof, lang, 1) + ANCHOR, 1)
 
-        html = renumber_contact(html, 6)
+        html = renumber_sections(html)
 
         if write:
             io.open(path, "w", encoding="utf-8", newline="\n").write(html)
