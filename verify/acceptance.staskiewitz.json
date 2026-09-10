@@ -1,0 +1,23 @@
+{
+  "_comment": "Приёмка PX-022. Отдельный файл: verify/acceptance.json занят задачей AIS152-REVIEWS-001 и не трогается. Запуск: py ../MainCore/core/verify/verify.py verify/acceptance.staskiewitz.json",
+  "task": "PX-022 — The Crazy Bee первой карточкой, счётчик 15 → 16",
+  "checks": [
+    {"id": "AC1",  "desc": "The Crazy Bee стоит первой в данных",                          "cmd": "py verify/probe_px022.py first",         "expect_equal": "staskiewitz order=1"},
+    {"id": "AC2",  "desc": "живых проектов 16",                                             "cmd": "py verify/probe_px022.py total",         "expect_equal": "16"},
+    {"id": "AC3",  "desc": "порядковые номера 1..16 без дыр и дублей",                      "cmd": "py verify/probe_px022.py orders",        "expect_equal": "ok"},
+    {"id": "AC4",  "desc": "прежние 15 проектов идут в прежнем порядке",                    "cmd": "py verify/probe_px022.py old_order",     "expect_equal": "сохранён"},
+    {"id": "AC5",  "desc": "тексты карточки в лимитах схемы",                               "cmd": "py verify/probe_px022.py lengths",       "expect_equal": "ok"},
+    {"id": "AC6",  "desc": "ссылка ведёт на живой сайт, корень без якоря",                  "cmd": "py verify/probe_px022.py url",           "expect_equal": "https://thecrazybee.de"},
+    {"id": "AC7",  "desc": "снимок 2880×1800, как у соседних feature-карточек",             "cmd": "py verify/probe_px022.py shot",          "expect_equal": "2880x1800 True"},
+    {"id": "AC8",  "desc": "знак-пчела есть в спрайте обеих главных",                       "cmd": "py verify/probe_px022.py mark",          "expect_equal": "1 1"},
+    {"id": "AC9",  "desc": "первая карточка в собранных DE и EN — The Crazy Bee",           "cmd": "py verify/probe_px022.py first_card",    "expect_equal": "staskiewitz staskiewitz"},
+    {"id": "AC10", "desc": "карточек в исходном коде по 16 на обоих языках",                "cmd": "py verify/probe_px022.py cards",         "expect_equal": "16 16"},
+    {"id": "AC11", "desc": "число 16 во всех местах, где сайт называет число проектов",     "cmd": "py verify/probe_px022.py sixteen",       "expect_equal": "9/9"},
+    {"id": "AC12", "desc": "старого числа 15 не осталось ни на одной собранной странице",  "cmd": "py verify/probe_px022.py no_fifteen",    "expect_equal": "0"},
+    {"id": "AC13", "desc": "два места, где число писали руками, берут его из данных",       "cmd": "py verify/probe_px022.py src_from_data", "expect_equal": "True True"},
+    {"id": "AC14", "desc": "страница проекта собрана и ведёт на живой сайт",                "cmd": "py verify/probe_px022.py case_page",     "expect_equal": "True True"},
+    {"id": "AC15", "desc": "страница проекта в карте сайта",                                "cmd": "py verify/probe_px022.py sitemap",       "expect_equal": "True"},
+    {"id": "AC16", "desc": "живой сайт клиента отвечает 200",                               "cmd": "py verify/probe_px022.py live",          "expect_equal": "200"},
+    {"id": "AC17", "desc": "задача не добавила ни одного заголовка h1–h4 с точкой в конце",                              "cmd": "py verify/probe_px022.py periods",       "expect_equal": "0"}
+  ]
+}

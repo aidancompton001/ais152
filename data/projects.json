@@ -1,5 +1,30 @@
 [
   {
+    "slug": "staskiewitz",
+    "title": "The Crazy Bee",
+    "tagline_en": "Beekeeper website & shop — WordPress + WooCommerce, Spessart",
+    "tagline_de": "Imkerei-Website & Shop — WordPress + WooCommerce, Spessart",
+    "year": 2026,
+    "url": "https://thecrazybee.de",
+    "status": "live",
+    "tags": [
+      "WordPress",
+      "WooCommerce",
+      "Shop",
+      "Migration",
+      "Handwerk",
+      "DE"
+    ],
+    "summary_en": "WordPress site and WooCommerce shop for a family beekeeping business in the Spessart nature park. 26 content pages moved 1:1 from the old site and checked block by block, a honey shop with invoice and prepayment, 203 old addresses redirected so no search ranking is lost.",
+    "summary_de": "WordPress-Website und WooCommerce-Shop für eine Familien-Imkerei im Naturpark Spessart. 26 Inhaltsseiten 1:1 vom alten Auftritt übernommen und Block für Block geprüft, Honig-Shop mit Rechnung und Vorkasse, 203 alte Adressen weitergeleitet, damit kein Ranking verloren geht.",
+    "screenshot": "assets/staskiewitz-site.jpg",
+    "screenshot_2x": "assets/staskiewitz-site.jpg",
+    "mark": "staskiewitz",
+    "layout": "feature",
+    "featured": true,
+    "order": 1
+  },
+  {
     "slug": "hennerheede",
     "title": "Henner Heede",
     "tagline_en": "Design Director portfolio — BOSS, MANGO, Baldessarini, Mustang",
@@ -22,7 +47,7 @@
     "mark": "hennerheede",
     "layout": "feature",
     "featured": true,
-    "order": 1
+    "order": 2
   },
   {
     "slug": "taxi-moennigmann",
@@ -47,7 +72,7 @@
     "mark": "taxi-moennigmann",
     "layout": "feature",
     "featured": true,
-    "order": 2
+    "order": 3
   },
   {
     "slug": "sorrysara",
@@ -71,7 +96,7 @@
     "mark": "sorrysara",
     "layout": "feature",
     "featured": true,
-    "order": 3
+    "order": 4
   },
   {
     "slug": "silkekleinart",
@@ -96,7 +121,7 @@
     "mark": "silkekleinart",
     "layout": "feature",
     "featured": true,
-    "order": 4
+    "order": 5
   },
   {
     "slug": "ofnstube",
@@ -121,7 +146,7 @@
     "mark": "ofnstube",
     "layout": "feature",
     "featured": true,
-    "order": 5
+    "order": 6
   },
   {
     "slug": "elektrocheck-stuttgart",
@@ -146,7 +171,7 @@
     "mark": "elektrocheck",
     "layout": "feature",
     "featured": true,
-    "order": 6
+    "order": 7
   },
   {
     "slug": "kontur",
@@ -170,7 +195,7 @@
     "mark": "kontur",
     "layout": "feature",
     "featured": true,
-    "order": 7
+    "order": 8
   },
   {
     "slug": "pomp",
@@ -194,7 +219,7 @@
     "mark": "pomp",
     "layout": "feature",
     "featured": true,
-    "order": 8
+    "order": 9
   },
   {
     "slug": "baupreis",
@@ -218,7 +243,7 @@
     "mark": "baupreis",
     "layout": "feature",
     "featured": true,
-    "order": 9
+    "order": 10
   },
   {
     "slug": "eko-oylis-ua",
@@ -242,7 +267,7 @@
     "mark": "eko-oylis",
     "layout": "tile",
     "featured": false,
-    "order": 10
+    "order": 11
   },
   {
     "slug": "rundumshaus",
@@ -266,7 +291,7 @@
     "mark": "rundumshaus",
     "layout": "tile",
     "featured": false,
-    "order": 11
+    "order": 12
   },
   {
     "slug": "stormguard-v2",
@@ -290,7 +315,7 @@
     "mark": "stormguard",
     "layout": "wide",
     "featured": false,
-    "order": 12
+    "order": 13
   },
   {
     "slug": "edmi",
@@ -313,7 +338,7 @@
     "mark": "edmi",
     "layout": "tall",
     "featured": false,
-    "order": 13
+    "order": 14
   },
   {
     "slug": "provenly-homes",
@@ -337,7 +362,7 @@
     "mark": "provenly-homes",
     "layout": "square",
     "featured": false,
-    "order": 14
+    "order": 15
   },
   {
     "slug": "studioglamour",
@@ -360,6 +385,6 @@
     "mark": "studioglamour",
     "layout": "wide",
     "featured": false,
-    "order": 15
+    "order": 16
   }
 ]

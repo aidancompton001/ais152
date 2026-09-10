@@ -174,6 +174,10 @@ def main():
     # Хаб-страница раздела: без неё пять страниц висят на одном абзаце
     # главной, а раздел не существует как сущность.
     hub_body = io.open(ROOT / "_src" / "leistungen_index.html", encoding="utf-8").read()
+    # Число проектов в хабе стояло словом «Sechzehn» при пятнадцати живых —
+    # единственное место на сайте, где его писали руками. Теперь из данных,
+    # как на всех остальных страницах раздела. PX-022.
+    hub_body = hub_body.replace("{{WORD_DE}}", _projects_word())
     hub = {"slug": "index", "phrase": "Leistungen",
            "title": "Leistungen — Automatisierung und KI für den Mittelstand | AIS.152",
            "description": ("Automatisierung mit n8n, KI-Integration und Betrieb. "

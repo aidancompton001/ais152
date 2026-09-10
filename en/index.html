@@ -128,6 +128,7 @@
 <!-- SVG sprite, custom marks for project cards -->
 <svg xmlns="http://www.w3.org/2000/svg" class="svg-sprite" aria-hidden="true" focusable="false">
   <defs>
+    <symbol id="mark-staskiewitz" viewBox="0 0 24 24"><circle cx="12" cy="6" r="2"/><path d="M12 8 C15.5 8 16.5 11 16.5 14 C16.5 17.5 14.5 20 12 20 C9.5 20 7.5 17.5 7.5 14 C7.5 11 8.5 8 12 8 Z"/><line x1="8" y1="12.5" x2="16" y2="12.5"/><line x1="7.7" y1="15.5" x2="16.3" y2="15.5"/><path d="M9 10 C5 8 3 10 4 12 C5 13.5 8 12.5 9 11"/><path d="M15 10 C19 8 21 10 20 12 C19 13.5 16 12.5 15 11"/><line x1="12" y1="20" x2="12" y2="22"/></symbol>
     <symbol id="mark-hennerheede" viewBox="0 0 24 24"><line x1="6" y1="4" x2="6" y2="20"/><line x1="18" y1="4" x2="18" y2="20"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="3.5" y1="4" x2="8.5" y2="4"/><line x1="15.5" y1="20" x2="20.5" y2="20"/></symbol>
     <symbol id="mark-taxi-moennigmann" viewBox="0 0 24 24"><rect x="3" y="10" width="18" height="7" rx="1.5"/><path d="M5.5 10 L7 5 H17 L18.5 10"/><circle cx="7.5" cy="17.5" r="1.6" fill="currentColor"/><circle cx="16.5" cy="17.5" r="1.6" fill="currentColor"/><rect x="10" y="4" width="4" height="1.8" fill="currentColor"/></symbol>
     <symbol id="mark-sorrysara" viewBox="0 0 24 24"><path d="M4 4 L20 4 L12 13 Z"/><line x1="12" y1="13" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/><circle cx="10.5" cy="8" r="1.1" fill="currentColor"/><circle cx="13" cy="9.5" r="1.1" fill="currentColor"/><circle cx="9.5" cy="10.5" r="0.9" fill="currentColor"/></symbol>
@@ -223,7 +224,7 @@
       </h1>
 
       <p class="hero-lead">
-        <span>Independent studio in Munich. Websites for small businesses and practices, fixed price from 390 € — plus automation and platforms that run in production. 15 projects are live.</span>
+        <span>Independent studio in Munich. Websites for small businesses and practices, fixed price from 390 € — plus automation and platforms that run in production. 16 projects are live.</span>
         
       </p>
 
@@ -241,7 +242,7 @@
 
       <dl class="hero-meta">
         <div class="hero-meta-item"><dt>Based</dt><dd>Munich, DE</dd></div>
-        <div class="hero-meta-item"><dt>Projects</dt><dd>15 live</dd></div>
+        <div class="hero-meta-item"><dt>Projects</dt><dd>16 live</dd></div>
         <div class="hero-meta-item"><dt>Websites</dt><dd>from 390 €</dd></div>
         <div class="hero-meta-item"><dt>Response</dt><dd>same working day</dd></div>
       </dl>
@@ -265,7 +266,7 @@
           <span class="hero-terminal-status-dot"></span>
           <span>main · live</span>
         </div>
-        <div>166 commits · 15 projects</div>
+        <div>167 commits · 16 projects</div>
       </footer>
     </aside>
   </div>
@@ -326,7 +327,7 @@
     <div class="section-head">
       <span class="overline">01 / <span>Selected Work</span></span>
       <h2 class="section-title">
-        <span>Fifteen things I shipped recently</span>
+        <span>Sixteen things I shipped recently</span>
         
       </h2>
       
@@ -343,8 +344,22 @@
       <!-- Карточки собраны здесь, а не в браузере: скрипт их
            только оживляет и не перерисовывает. Правится
            scripts/render_work_static.py из data/projects.json. -->
+      <article class="card layout-feature is-featured" role="listitem" data-slug="staskiewitz">
+        <span class="card-num">01 / 16</span>
+        <a class="card-link" href="https://thecrazybee.de" target="_blank" rel="noopener noreferrer">
+          <div class="card-media"><img class="card-img" src="/assets/staskiewitz-site.jpg" srcset="/assets/staskiewitz-site.jpg 1x, /assets/staskiewitz-site.jpg 2x" alt="The Crazy Bee, Beekeeper website &amp; shop — WordPress + WooCommerce, Spessart" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
+          <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-staskiewitz"></use></svg>
+            <div class="card-meta"><span class="card-year">2026</span><span class="card-sep">·</span><span class="card-tag-primary">WordPress</span></div>
+            <h3 class="card-title">The Crazy Bee</h3>
+            <p class="card-tagline">Beekeeper website &amp; shop — WordPress + WooCommerce, Spessart</p>
+            <ul class="card-tags"><li>WordPress</li><li>WooCommerce</li><li>Shop</li><li>Migration</li><li>Handwerk</li></ul>
+            <span class="card-cta"><span class="card-cta-text">Visit site</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 3h6v6M3 9l6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
+          </div>
+        </a>
+        <a class="card-case" href="/projekte/staskiewitz.html">Read the case</a>
+      </article>
       <article class="card layout-feature is-featured" role="listitem" data-slug="hennerheede">
-        <span class="card-num">01 / 15</span>
+        <span class="card-num">02 / 16</span>
         <a class="card-link" href="https://henner.ais152.com" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/hennerheede-site.jpg" srcset="/assets/hennerheede-site.jpg 1x, /assets/hennerheede-site.jpg 2x" alt="Henner Heede, Design Director portfolio — BOSS, MANGO, Baldessarini, Mustang" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-hennerheede"></use></svg>
@@ -358,7 +373,7 @@
         <a class="card-case" href="/projekte/hennerheede.html">Read the case</a>
       </article>
       <article class="card layout-feature is-featured" role="listitem" data-slug="taxi-moennigmann">
-        <span class="card-num">02 / 15</span>
+        <span class="card-num">03 / 16</span>
         <a class="card-link" href="https://taxi-moennigmann.de" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/taxi-moennigmann-site.jpg" srcset="/assets/taxi-moennigmann-site.jpg 1x, /assets/taxi-moennigmann-site.jpg 2x" alt="Taxi Mönnigmann, Taxi company in Leer (Ostfriesland) — day and night, 20+ years" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-taxi-moennigmann"></use></svg>
@@ -372,7 +387,7 @@
         <a class="card-case" href="/projekte/taxi-moennigmann.html">Read the case</a>
       </article>
       <article class="card layout-feature is-featured" role="listitem" data-slug="sorrysara">
-        <span class="card-num">03 / 15</span>
+        <span class="card-num">04 / 16</span>
         <a class="card-link" href="https://sorrysara.space" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/sorrysara-site.jpg" srcset="/assets/sorrysara-site.jpg 1x, /assets/sorrysara-site.jpg 2x" alt="Sorry Sara, Cocktail &amp; fry bar — Burgas · self-managed via a Telegram bot, tickets via Stripe" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-sorrysara"></use></svg>
@@ -386,7 +401,7 @@
         <a class="card-case" href="/projekte/sorrysara.html">Read the case</a>
       </article>
       <article class="card layout-feature is-featured" role="listitem" data-slug="silkekleinart">
-        <span class="card-num">04 / 15</span>
+        <span class="card-num">05 / 16</span>
         <a class="card-link" href="https://silkekleinart.com" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/silkekleinart-site.jpg" srcset="/assets/silkekleinart-site.jpg 1x, /assets/silkekleinart-site.jpg 2x" alt="Silke Klein Art, Painter portfolio — Kiel · custom WordPress rebuild" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-silkekleinart"></use></svg>
@@ -400,7 +415,7 @@
         <a class="card-case" href="/projekte/silkekleinart.html">Read the case</a>
       </article>
       <article class="card layout-feature is-featured" role="listitem" data-slug="ofnstube">
-        <span class="card-num">05 / 15</span>
+        <span class="card-num">06 / 16</span>
         <a class="card-link" href="https://ofnstube.ais152.com" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/ofnstube-site.jpg" srcset="/assets/ofnstube-site.jpg 1x, /assets/ofnstube-site.jpg 2x" alt="Ofnstube, Munich craft-burger restaurant — landing with reservation" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-ofnstube"></use></svg>
@@ -414,7 +429,7 @@
         <a class="card-case" href="/projekte/ofnstube.html">Read the case</a>
       </article>
       <article class="card layout-feature is-featured" role="listitem" data-slug="elektrocheck-stuttgart">
-        <span class="card-num">06 / 15</span>
+        <span class="card-num">07 / 16</span>
         <a class="card-link" href="https://elektrocheckstuttgart.de" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/elektrocheck-site.jpg" srcset="/assets/elektrocheck-site.jpg 1x, /assets/elektrocheck-site.jpg 2x" alt="ElektroCheck Stuttgart, DGUV V3 electrical safety inspections — Stuttgart region" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-elektrocheck"></use></svg>
@@ -428,7 +443,7 @@
         <a class="card-case" href="/projekte/elektrocheck-stuttgart.html">Read the case</a>
       </article>
       <article class="card layout-feature is-featured" role="listitem" data-slug="kontur">
-        <span class="card-num">07 / 15</span>
+        <span class="card-num">08 / 16</span>
         <a class="card-link" href="https://kontur.ais152.com" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/kontur-site.jpg" srcset="/assets/kontur-site.jpg 1x, /assets/kontur-site.jpg 2x" alt="KONTUR, Specialty coffee roastery — custom WooCommerce store" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-kontur"></use></svg>
@@ -442,7 +457,7 @@
         <a class="card-case" href="/projekte/kontur.html">Read the case</a>
       </article>
       <article class="card layout-feature is-featured" role="listitem" data-slug="pomp">
-        <span class="card-num">08 / 15</span>
+        <span class="card-num">09 / 16</span>
         <a class="card-link" href="https://pomp-landing.vercel.app" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/projects/pomp-landing.jpg" srcset="/assets/projects/pomp-landing.jpg 1x, /assets/projects/pomp-landing@2x.jpg 2x" alt="POMP, Brand identity + landing for a colourful sparkling water" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-pomp"></use></svg>
@@ -456,7 +471,7 @@
         <a class="card-case" href="/projekte/pomp.html">Read the case</a>
       </article>
       <article class="card layout-feature is-featured" role="listitem" data-slug="baupreis">
-        <span class="card-num">09 / 15</span>
+        <span class="card-num">10 / 16</span>
         <a class="card-link" href="https://baupreis.ais152.com" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/baupreis-dashboard.png" srcset="/assets/baupreis-dashboard.png 1x, /assets/baupreis-dashboard.png 2x" alt="BauPreis AI SaaS, AI forecasts for smarter building budgets" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-baupreis"></use></svg>
@@ -470,7 +485,7 @@
         <a class="card-case" href="/projekte/baupreis.html">Read the case</a>
       </article>
       <article class="card layout-tile" role="listitem" data-slug="eko-oylis-ua">
-        <span class="card-num">10 / 15</span>
+        <span class="card-num">11 / 16</span>
         <a class="card-link" href="https://eko-oylis.com.ua" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/eko-oylis-site.jpg?v=2026-04-28-clean" srcset="/assets/eko-oylis-site.jpg?v=2026-04-28-clean 1x, /assets/eko-oylis-site.jpg?v=2026-04-28-clean 2x" alt="EKO-OYLIS UA, Used cooking oil collection — UA → EU" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-eko-oylis"></use></svg>
@@ -484,7 +499,7 @@
         <a class="card-case" href="/projekte/eko-oylis-ua.html">Read the case</a>
       </article>
       <article class="card layout-tile" role="listitem" data-slug="rundumshaus">
-        <span class="card-num">11 / 15</span>
+        <span class="card-num">12 / 16</span>
         <a class="card-link" href="https://rundumshaus-littawe.de" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/rundumshaus-site.jpg" srcset="/assets/rundumshaus-site.jpg 1x, /assets/rundumshaus-site.jpg 2x" alt="Rund ums Haus Littawe, Complete home care — fast and reliable" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-rundumshaus"></use></svg>
@@ -498,7 +513,7 @@
         <a class="card-case" href="/projekte/rundumshaus.html">Read the case</a>
       </article>
       <article class="card layout-wide" role="listitem" data-slug="stormguard-v2">
-        <span class="card-num">12 / 15</span>
+        <span class="card-num">13 / 16</span>
         <a class="card-link" href="https://www.stormguardprofessional.eu/" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/stormguard-site.jpg" srcset="/assets/stormguard-site.jpg 1x, /assets/stormguard-site.jpg 2x" alt="StormGuard Professional V2, Premium pet care e-commerce — full rebuild" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-stormguard"></use></svg>
@@ -512,7 +527,7 @@
         <a class="card-case" href="/projekte/stormguard-v2.html">Read the case</a>
       </article>
       <article class="card layout-tall" role="listitem" data-slug="edmi">
-        <span class="card-num">13 / 15</span>
+        <span class="card-num">14 / 16</span>
         <a class="card-link" href="https://aidancompton001.github.io/edmi-landing/variant-d.html" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/edmi-landing-site.jpg" srcset="/assets/edmi-landing-site.jpg 1x, /assets/edmi-landing-site.jpg 2x" alt="EDMI, Dental microscope landing — bento grid" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-edmi"></use></svg>
@@ -526,7 +541,7 @@
         <a class="card-case" href="/projekte/edmi.html">Read the case</a>
       </article>
       <article class="card layout-square" role="listitem" data-slug="provenly-homes">
-        <span class="card-num">14 / 15</span>
+        <span class="card-num">15 / 16</span>
         <a class="card-link" href="https://aidancompton001.github.io/provenly-homes/" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/provenly-homes-site.jpg" srcset="/assets/provenly-homes-site.jpg 1x, /assets/provenly-homes-site.jpg 2x" alt="Provenly Homes, Premium short-term rentals with motion design" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-provenly-homes"></use></svg>
@@ -540,7 +555,7 @@
         <a class="card-case" href="/projekte/provenly-homes.html">Read the case</a>
       </article>
       <article class="card layout-wide" role="listitem" data-slug="studioglamour">
-        <span class="card-num">15 / 15</span>
+        <span class="card-num">16 / 16</span>
         <a class="card-link" href="https://glamour.ais152.com/" target="_blank" rel="noopener noreferrer">
           <div class="card-media"><img class="card-img" src="/assets/studioglamour-site.jpg" srcset="/assets/studioglamour-site.jpg 1x, /assets/studioglamour-site.jpg 2x" alt="Studio of Glamour, Eyelash studio — Munich" loading="lazy" decoding="async" width="1200" height="900"><span class="card-status" data-status="live">Live</span></div>
           <div class="card-body"><svg class="card-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#mark-studioglamour"></use></svg>
@@ -758,7 +773,7 @@
       <div class="about-text">
         <p>I'm based in Munich and ship code that other people pay for. No PowerPoint decks, no &laquo;digital transformation&raquo; consulting, just working software in repositories with my name on the commits.</p>
 
-        <p>The fifteen projects in <a href="#work" class="link-inline">Selected Work</a> are all live. Some have a hundred users, some have ten thousand. All of them were shipped on the timelines I quoted.</p>
+        <p>The sixteen projects in <a href="#work" class="link-inline">Selected Work</a> are all live. Some have a hundred users, some have ten thousand. All of them were shipped on the timelines I quoted.</p>
 
         <p>If you have a problem that needs to be solved with code rather than slides, write me.</p>
 
