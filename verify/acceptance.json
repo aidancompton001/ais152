@@ -76,7 +76,7 @@
     },
     {
       "id": "AC12",
-      "desc": "ничего не потеряно: карточек работ на обеих главных столько же, сколько проектов в data/projects.json, Impressum на месте",
+      "desc": "ничего не потеряно: карточек работ на обеих главных столько же, сколько live-проектов в data/projects.json, Impressum на месте",
       "cmd": "py verify/probes/reviews_work_intact.py",
       "expect_contain": "WORK_INTACT"
     }

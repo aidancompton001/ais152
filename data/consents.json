@@ -1,0 +1,21 @@
+{
+  "_note": "Согласия клиентов на публикацию имени, ссылки и скриншота в портфолио ais152.com. Источник каждой записи — слово CEO с датой. Без записи здесь страница проекта обезличивается (docs/CASE_TEXT_RULES.md).",
+  "consents": {
+    "staskiewitz":            {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "hennerheede":            {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "taxi-moennigmann":       {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "sorrysara":              {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "silkekleinart":          {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "ofnstube":               {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "elektrocheck-stuttgart": {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "kontur":                 {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "pomp":                   {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "eko-oylis-ua":           {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "rundumshaus":            {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "stormguard-v2":          {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "edmi":                   {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "provenly-homes":         {"name": true, "source": "CEO в чате", "date": "2026-09-11"},
+    "baupreis":               {"name": true, "source": "собственный продукт CEO, клиента нет", "date": "2026-09-11"},
+    "studioglamour":          {"name": false, "source": "не в списке CEO 11.09; редизайн реального салона, сделанный для продажи клиенту (StudioGlamour/CLAUDE.md)", "date": "2026-09-11"}
+  }
+}
