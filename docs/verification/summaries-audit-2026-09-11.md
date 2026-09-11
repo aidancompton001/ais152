@@ -1,3 +1,4 @@
+{% raw %}
 # Сверка кратких описаний проектов на ais152.com с файлами проектов — 2026-09-11
 
 Источник текстов: `C:\Projects\AiS152\data\projects.json`. Взяты записи со status `live`, кроме stormguard-v2 и edmi: 13 проектов.
@@ -473,3 +474,4 @@ CONTRADICTED: «Kurzzeitvermietung» как бизнес (на деле упра
 - summary_de: Relaunch-Entwurf der Corporate-Website eines Kurzzeitvermietungs-Managements aus Köln. An Awwwards-Referenzen orientierte Scroll-Animationen, GSAP + Motion hybrid, JSON-getriebener Inhalt, Vorschau auf GitHub Pages.
 - summary_en: Relaunch draft of the corporate website of a short-term rental management company in Cologne. Scroll animations modelled on Awwwards references, GSAP + Motion hybrid, JSON-driven content, preview on GitHub Pages.
 - status «live»: по файлам сайт не переключён на provenlyhomes.de (там работает Framer), приёмки нет. Показывать как концепт или превью, пока CEO не подтвердит отношения с клиентом.
+{% endraw %}
