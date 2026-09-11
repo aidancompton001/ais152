@@ -4,7 +4,7 @@
   "title": "Website für Arztpraxis München — 690 € Festpreis mit AVV | AIS.152",
   "description": "Praxiswebsite zum Festpreis von 690 €: Sprechzeiten, Leistungen, Terminanfrage. Mit Auftragsverarbeitungsvertrag nach Art. 28 DSGVO, vorab öffentlich einsehbar.",
   "h1": "Website für Arztpraxis in München — 690 € Festpreis",
-  "lead": "Ein großer Teil aller Anrufe in einer Praxis betrifft dieselben drei Dinge: Sprechzeiten, Terminwunsch und die Frage, ob Sie eine bestimmte Leistung anbieten. Eine Praxiswebsite, die das sauber beantwortet, entlastet den Empfang messbar. Der Preis steht vorher fest, die Domain läuft auf Ihren Namen, und den Auftragsverarbeitungsvertrag können Sie lesen, bevor Sie mir schreiben.",
+  "lead": "Ein großer Teil aller Anrufe in einer Praxis betrifft dieselben drei Dinge: Sprechzeiten, Terminwunsch und die Frage, ob Sie eine bestimmte Leistung anbieten. Eine Praxiswebsite, die das sauber beantwortet, entlastet den Empfang. Der Preis steht vorher fest, die Domain läuft auf Ihren Namen, und den Auftragsverarbeitungsvertrag können Sie lesen, bevor Sie mir schreiben.",
   "sections": [
     {
       "h2": "Was eine Website für Arztpraxis leisten muss",
@@ -63,7 +63,7 @@
     {
       "h2": "Arbeiten, die Sie selbst ansehen können",
       "body": [
-        "<ul><li><a href=\"https://taxi-moennigmann.de\" class=\"link-inline\" rel=\"noopener\">taxi-moennigmann.de</a> — dreisprachig, barrierefrei nach WCAG 2.1 AA</li><li><a href=\"https://elektrocheckstuttgart.de\" class=\"link-inline\" rel=\"noopener\">elektrocheckstuttgart.de</a> — Prüfservice, B2B</li><li><a href=\"https://rundumshaus-littawe.de\" class=\"link-inline\" rel=\"noopener\">rundumshaus-littawe.de</a> — Hausmeisterservice</li><li><a href=\"/\" class=\"link-inline\">ais152.com</a> — meine eigene Seite mit Impressum, Datenschutz, Widerruf und AVV</li></ul>",
+        "<ul><li><a href=\"https://taxi-moennigmann.de\" class=\"link-inline\" rel=\"noopener\">taxi-moennigmann.de</a> — dreisprachig</li><li><a href=\"https://elektrocheckstuttgart.de\" class=\"link-inline\" rel=\"noopener\">elektrocheckstuttgart.de</a> — Prüfservice, B2B</li><li><a href=\"https://rundumshaus-littawe.de\" class=\"link-inline\" rel=\"noopener\">rundumshaus-littawe.de</a> — Hausmeisterservice</li><li><a href=\"/\" class=\"link-inline\">ais152.com</a> — meine eigene Seite mit Impressum, Datenschutz, Widerruf und AVV</li></ul>",
         "Eine Praxis ist noch nicht dabei — das sage ich lieber, als es zu verschweigen. Was Sie sehen können, ist die Arbeitsweise: Festpreis, saubere Rechtstexte, Übergabe mit allen Zugängen."
       ]
     }

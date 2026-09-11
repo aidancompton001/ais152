@@ -53,8 +53,8 @@ META = {
     },
     "en": {
         "title": "AIS.152 — Engineering AI systems · Munich",
-        "description": ("Independent engineering studio in Munich. Production AI systems, "
-                        "mobile platforms, and automation for teams that need to ship."),
+        "description": ("Independent studio in Munich. Websites, automation with n8n and AI, "
+                        "and platforms running in production."),
         "og_locale": "en_US",
         "og_locale_alt": "de_DE",
     },

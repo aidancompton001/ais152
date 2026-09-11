@@ -61,11 +61,10 @@
       "Corporate",
       "Astro",
       "DE/EN/Plattdeutsch",
-      "Hero Video",
-      "WCAG 2.1 AA"
+      "Hero Video"
     ],
-    "summary_en": "Corporate website for a taxi company in Leer and Ostfriesland. Astro static build, Markdown news, hero video, 6 service sections from Krankenfahrten to Zeitlosreisen. WCAG 2.1 AA, trilingual DE/EN/Plattdeutsch, no cookies or tracking, hosted on ALL-INKL.",
-    "summary_de": "Firmenwebsite eines Taxiunternehmens in Leer und Ostfriesland. Astro-Static-Build, Markdown-News, Hero-Video, 6 Leistungsbereiche von Krankenfahrten bis Zeitlosreisen. WCAG 2.1 AA, dreisprachig DE/EN/Plattdeutsch, ohne Cookies und Tracking, Hosting bei ALL-INKL.",
+    "summary_en": "Corporate website for a taxi company in Leer and Ostfriesland. Astro static build, Markdown news, hero video, 6 service sections from Krankenfahrten to Zeitlosreisen. trilingual DE/EN/Plattdeutsch, no cookies or tracking, hosted on ALL-INKL.",
+    "summary_de": "Firmenwebsite eines Taxiunternehmens in Leer und Ostfriesland. Astro-Static-Build, Markdown-News, Hero-Video, 6 Leistungsbereiche von Krankenfahrten bis Zeitlosreisen. dreisprachig DE/EN/Plattdeutsch, ohne Cookies und Tracking, Hosting bei ALL-INKL.",
     "screenshot": "assets/taxi-moennigmann-site.jpg",
     "screenshot_2x": "assets/taxi-moennigmann-site.jpg",
     "mark": "taxi-moennigmann",

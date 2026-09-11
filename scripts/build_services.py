@@ -118,7 +118,7 @@ def body_for(page):
     parts += ['      <p><a href="%s" class="btn btn-primary">%s</a></p>'
               % (cta_href, cta_label),
               '      <p>Verwandte Leistungen: %s</p>' % rel,
-              '      <p>%s ausgelieferte Projekte stehen unter '
+              '      <p>%s Projekte stehen unter '
               '<a href="/#work" class="link-inline">Ausgewählte Arbeiten</a></p>'
               % _projects_word(),
               '    </div>',
@@ -178,11 +178,17 @@ def main():
     # единственное место на сайте, где его писали руками. Теперь из данных,
     # как на всех остальных страницах раздела. PX-022.
     hub_body = hub_body.replace("{{WORD_DE}}", _projects_word())
+    # Число услуг стояло словом «Fünf» при девяти ссылках на странице.
+    # Считаем по разметке хаба: сколько разных страниц услуг на нём названо.
+    n_services = len(set(re.findall(r'href="/leistungen/([a-z0-9-]+)\.html"', hub_body)))
+    services_word = {5: "Fünf", 6: "Sechs", 7: "Sieben", 8: "Acht", 9: "Neun", 10: "Zehn",
+                     11: "Elf", 12: "Zwölf"}.get(n_services, str(n_services))
+    hub_body = hub_body.replace("{{LEISTUNGEN_WORD}}", services_word)
     hub = {"slug": "index", "phrase": "Leistungen",
            "title": "Leistungen — Automatisierung und KI für den Mittelstand | AIS.152",
            "description": ("Automatisierung mit n8n, KI-Integration und Betrieb. "
-                           "Fünf Leistungen, jede einzeln beschrieben — mit dem, "
-                           "was sie kann und was nicht.")}
+                           "%s Leistungen, jede einzeln beschrieben — mit dem, "
+                           "was sie kann und was nicht." % services_word)}
     hub_html = ("<!DOCTYPE html>" + chr(10) +
                 '<html lang="de" data-lang="de">' + chr(10) + "<head>%s</head>" + chr(10) +
                 "<body>" + chr(10) + "%s" + chr(10) + "%s" + chr(10) + "%s" + chr(10) + "%s" + chr(10) +

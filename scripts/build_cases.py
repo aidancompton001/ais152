@@ -119,13 +119,31 @@ def case_html(head, header, footer, scripts, p):
              '    </div>',
              '  </section>']
 
+    # Развёрнутый текст кейса (AIS152-IDX-001): страницы по 72–138 слов Google
+    # обходил и не индексировал. Абзацы разделяются пустой строкой в данных.
+    case = p.get("case_de") or {}
+    for key, heading in (("ausgangslage", "Ausgangslage"),
+                         ("umsetzung", "Umsetzung"),
+                         ("ergebnis", "Ergebnis")):
+        text = (case.get(key) or "").strip()
+        if not text:
+            continue
+        paras = "".join("<p>%s</p>" % esc(t.strip())
+                        for t in text.split("\n\n") if t.strip())
+        body += ['  <section class="section">',
+                 '    <div class="container">',
+                 '      <h2 class="section-title">%s</h2>' % heading,
+                 '      %s' % paras,
+                 '    </div>',
+                 '  </section>']
+
     tags = "".join("<li>%s</li>" % esc(t) for t in (p.get("tags") or []))
     if tags:
         body += ['  <section class="section">',
                  '    <div class="container">',
                  '      <h2 class="section-title">Technik und Umfang</h2>',
                  '      <ul class="service-tags">%s</ul>' % tags,
-                 '      <p>Ausgeliefert %s</p>' % esc(str(p.get("year") or "")),
+                 '      <p>Umgesetzt %s</p>' % esc(str(p.get("year") or "")),
                  '    </div>',
                  '  </section>']
 
@@ -198,8 +216,8 @@ def hub_html(head, header, footer, scripts, items, built):
     # правдой в ту же секунду, когда проект добавляли или убирали.
     words = {13: "dreizehn", 14: "vierzehn", 15: "fünfzehn", 16: "sechzehn", 17: "siebzehn", 18: "achtzehn"}
     n = len(built)
-    title = "Projekte — %s ausgelieferte Websites und Systeme | AIS.152" % words.get(n, str(n))
-    description = ("Ausgelieferte Projekte: Websites, Shops, Plattformen und "
+    title = "Projekte — %s Websites und Systeme | AIS.152" % words.get(n, str(n))
+    description = ("Umgesetzte Projekte: Websites, Shops, Plattformen und "
                    "Automatisierung. Jedes einzeln beschrieben, alle live.")
     rows = []
     for p in items:
@@ -216,7 +234,7 @@ def hub_html(head, header, footer, scripts, items, built):
             '        <a href="/">Start</a> <span aria-hidden="true">/</span> '
             '<span aria-current="page">Projekte</span>',
             '      </nav>',
-            '      <h1 class="hero-title">Ausgelieferte Projekte</h1>',
+            '      <h1 class="hero-title">Umgesetzte Projekte</h1>',
             '      <p class="hero-sub">Alle unten stehenden Seiten sind live. '
             'Jede hat eine eigene Seite mit dem, was gebaut wurde und womit.</p>',
             '    </div>',

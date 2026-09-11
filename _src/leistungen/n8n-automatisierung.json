@@ -2,7 +2,7 @@
   "slug": "n8n-automatisierung",
   "phrase": "n8n Automatisierung",
   "title": "n8n Automatisierung für den Mittelstand — München | AIS.152",
-  "description": "n8n-Workflows planen, bauen und betreiben. Angebote, Termine, Rechnungen und Datenübergaben automatisch: mit Daten, die in Deutschland bleiben.",
+  "description": "n8n-Workflows planen, bauen und betreiben. Angebote, Termine, Rechnungen und Datenübergaben automatisch, betrieben auf einem Server in der EU.",
   "h1": "n8n Automatisierung, die im Betrieb läuft und nicht im Demo",
   "lead": "Ich baue Workflows in n8n für Betriebe, die täglich dieselben Handgriffe machen: Anfrage aufnehmen, Angebot schreiben, Termin eintragen, Rechnung stellen, Daten von A nach B tragen. Nicht als Bastelei, sondern als Sache, die morgens läuft, wenn keiner hinschaut.",
   "sections": [
@@ -10,7 +10,7 @@
       "h2": "Was n8n Automatisierung konkret übernimmt",
       "body": [
         "Ein Workflow ist keine Zauberei: er nimmt eine Auslösung entgegen, holt Daten, prüft sie, schreibt sie weiter und meldet sich, wenn etwas nicht stimmt. Typische Stellen im Mittelstand:",
-        "<ul><li>Anfragen aus Formular, E-Mail oder WhatsApp landen strukturiert im CRM statt im Posteingang</li><li>Angebote entstehen aus Vorlage und Stammdaten, nicht aus Copy-Paste</li><li>Termine wandern automatisch in Kalender und Disposition, mit Bestätigung an den Kunden</li><li>Belege gehen an die Buchhaltung, ohne dass jemand sie exportiert</li><li>Systeme, die nicht miteinander reden, bekommen eine Brücke: DATEV, Shopware, Google Workspace, Telefonie</li></ul>",
+        "<ul><li>Anfragen aus Formular, E-Mail oder WhatsApp landen strukturiert im CRM statt im Posteingang</li><li>Angebote entstehen aus Vorlage und Stammdaten, nicht aus Copy-Paste</li><li>Termine wandern automatisch in Kalender und Disposition, mit Bestätigung an den Kunden</li><li>Belege gehen an die Buchhaltung, ohne dass jemand sie exportiert</li><li>Systeme, die nicht miteinander reden, bekommen eine Brücke: etwa Buchhaltung, Shop-System und Google Workspace</li></ul>",
         "Was sich nicht automatisieren lässt, sage ich vorher. Ein Prozess, den niemand beschreiben kann, wird durch Automatisierung nicht besser, sondern schneller falsch."
       ]
     },
@@ -26,7 +26,7 @@
       "h2": "Datenhoheit und DSGVO bei n8n",
       "body": [
         "n8n lässt sich selbst hosten. Das ist der eigentliche Grund, warum es im deutschen Mittelstand ankommt: die Daten verlassen den eigenen Server nicht, solange man das nicht will.",
-        "Ich betreibe die Instanz auf einem Server in Deutschland, trenne Zugänge, protokolliere Läufe und schreibe auf, welcher Workflow welche Daten anfasst. Wo ein externer Dienst nötig ist: etwa ein Sprachmodell, steht das im Verzeichnis der Verarbeitungstätigkeiten, mit Auftragsverarbeitungsvertrag.",
+        "Ich betreibe die Instanz auf einem Server in der EU, trenne Zugänge, protokolliere Läufe und schreibe auf, welcher Workflow welche Daten anfasst. Wo ein externer Dienst nötig ist: etwa ein Sprachmodell, steht das im Verzeichnis der Verarbeitungstätigkeiten, mit Auftragsverarbeitungsvertrag.",
         "Wenn ein Anbieter Ihnen sagt, DSGVO sei bei Automatisierung kein Thema, ist das kein gutes Zeichen."
       ]
     },
