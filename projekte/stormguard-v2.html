@@ -216,6 +216,24 @@
   </section>
   <section class="section">
     <div class="container">
+      <h2 class="section-title">Ausgangslage</h2>
+      <p>Storm Guard Professional ist eine Marke für natürliche Pflegekosmetik für Hunde und Katzen mit Premium-Anspruch. Nach eigener Darstellung entstand sie 2025 als Weiterführung eines 1999 gegründeten Familienzwingers. Das Sortiment umfasst sieben Produkte: Shampoos für Welpen, für empfindliche Haut und für die tägliche Pflege, einen Conditioner und drei Pflegesets.</p><p>Es gab bereits eine erste Version der Website. Die Entscheidung fiel auf einen kompletten Neubau; die alte Seite wurde archiviert und diente nur noch als Quelle für Texte, Bilder und gestalterische Vorgaben. Die neue Website sollte zunächst Englisch und Bulgarisch sprechen, später kam Deutsch hinzu.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Umsetzung</h2>
+      <p>Technisch habe ich die Seite mit dem Static-Site-Generator Eleventy und Nunjucks-Templates aufgebaut, dazu modulares CSS und JavaScript ohne Framework. Produkte, Navigation und Übersetzungen liegen jeweils in genau einer Datendatei, Kopf- und Fußbereich sind gemeinsame Bausteine. Seitenspezifische Stile sind so getrennt, dass eine Änderung an einer Seite keine andere berührt.</p><p>Die Kollektion lässt sich nach Tierart, Pflegebedarf, Felltyp und Produktart filtern, mit Schnellansicht. Jede Produktseite enthält FAQ und die INCI-Liste der Inhaltsstoffe, dazu strukturierte Produktdaten für Suchmaschinen. Inhaltsseiten zu Herkunft, Herstellung, Zertifizierung und Wissenschaft erzählen die Geschichte der Marke. Die Sprachversionen entstehen aus Übersetzungsdateien, hreflang-Verweise und Sitemap werden automatisch erzeugt. Das Journal lädt seine Beiträge aus Supabase, bereinigt sie vor der Anzeige und wird über einen Admin-Bereich gepflegt.</p><p>Beim Datenschutz lädt der Cookie-Banner Analyse-Skripte erst nach Einwilligung. Die Schriften samt kyrillischer Zeichensätze liegen auf dem eigenen Server statt bei Google Fonts, dazu kommen Sicherheits-Header wie HSTS und CSP. Das Redesign im Stil »Apothecary Editorial« setzt auf eine warme Papierpalette und die Serifenschrift Fraunces. Das Deployment läuft automatisch über GitHub Actions.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Ergebnis</h2>
+      <p>Die neue Seite ist auf der Domain der Marke live: Startseite, Kollektion, Produktseiten und Inhaltsseiten in Englisch, Bulgarisch und Deutsch, alle im neuen Design. Die Inhalte bleiben auch ohne JavaScript sichtbar.</p><p>Für die Pflege bedeutet der Aufbau: Ein Produkt, ein Menüpunkt oder eine Übersetzung wird an genau einer Stelle geändert und erscheint auf allen Seiten. Beiträge im Journal entstehen im Admin-Bereich, ohne dass jemand den Code anfassen muss.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
       <h2 class="section-title">Technik und Umfang</h2>
       <ul class="service-tags"><li>E-commerce</li><li>Multi-language</li><li>Eleventy</li><li>Supabase</li></ul>
       <p>Umgesetzt 2025</p>

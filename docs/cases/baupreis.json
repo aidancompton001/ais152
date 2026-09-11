@@ -1,0 +1,204 @@
+{
+  "slug": "baupreis",
+  "ausgangslage": "Baustoffpreise in Deutschland schwanken stark. Trotzdem verfolgen die meisten kleinen und mittleren Bauunternehmen ihre Materialkosten von Hand: per Telefon, über Lieferantenkataloge oder in Excel-Tabellen. Genau diese Betriebe mit bis zu 50 Mitarbeitern, ihre Einkäufer und Projektleiter, sind die Zielgruppe von BauPreis.\n\nDie vorhandenen Werkzeuge passen nicht zu ihnen. Baupreis-Nachschlagewerke sind statisch und arbeiten ohne KI, professionelle Rohstoff-Datendienste sind für den Mittelstand zu teuer, und Bausoftware für die Projektabwicklung beobachtet keine Preise. Zusätzlich schafft die Preisgleitklausel bei öffentlichen Aufträgen Bedarf an verlässlichen Preisdaten.\n\nBauPreis ist mein eigenes Produkt, kein Kundenauftrag. Ich wollte Preise für die wichtigsten Baustoffe automatisch erfassen, auswerten und so aufbereiten, dass Entscheidungen im Einkauf schneller fallen.",
+  "umsetzung": "Ich habe BauPreis als mandantenfähige SaaS-Anwendung mit Next.js 14 (App Router), TypeScript und Tailwind gebaut, die Daten liegen in PostgreSQL 16. Preise, Materialien und Analysen teilen sich alle Kunden, Einstellungen wie Preisalarme und Berichte gehören jeweils einer Organisation. Die Anmeldung läuft per E-Mail oder Google-Konto, und Funktionen werden je nach Tarif freigeschaltet.\n\nDie Preisdaten kommen aus mehreren Schnittstellen: Eurostat für Stahl, Holz, Beton und Dämmstoffe, SMARD der Bundesnetzagentur für Strom, metals.dev für Kupfer, Aluminium, Zink und Nickel. Sieben Cron-Jobs übernehmen den Betrieb: Sie sammeln Preise, starten Analysen, verschicken Preisalarme, erstellen Berichte und berechnen den BauPreis Index. Alarme gehen per E-Mail und Telegram raus, im Kopfbereich zeigt eine Glocke neue Benachrichtigungen.\n\nAnalyse, Prognosen und Chat laufen über die Claude API. Die prozentuale Preisänderung rechnet dabei der Server selbst und nicht das Sprachmodell, damit die Zahl reproduzierbar bleibt. Dazu kommen ein Rechner für die Preisgleitklausel nach VHB Formblatt 225, ein Legierungsrechner für 15 Legierungen, eine Oberfläche auf Deutsch, Englisch und Russisch sowie eine PWA. Jedes Material hat eine eigene Seite mit Preisverlauf und gleitendem 7-Tage-Durchschnitt.\n\nDie Oberfläche folgt einem durchgehenden Bauhaus-Design. Besucher können das Dashboard vorab als Gast ansehen, ein Rate-Limiting schützt den Login, und die Datenbank wird nur über parametrisierte Abfragen angesprochen.",
+  "ergebnis": "BauPreis ist unter baupreis.ais152.com erreichbar. Einkäufer und Projektleiter finden dort aktuelle Preise, Trends, Preisalarme und Rechenwerkzeuge für öffentliche Aufträge an einem Ort, statt sie aus Katalogen und Tabellen zusammenzusuchen.\n\nJe nach Tarif kommen CSV-Export, PDF-Berichte, ein API-Zugang und die Verwaltung eines Teams hinzu. Für mich ist BauPreis das Projekt, in dem ich Datenanbindung, KI-Auswertung und den Betrieb einer SaaS-Anwendung in einem eigenen Produkt zusammengeführt habe.",
+  "word_count": 395,
+  "claims": [
+    {
+      "text": "Baustoffpreise schwanken stark",
+      "source": "C:/Projects/BauPreis AI SaaS/docs/businessplan/BUSINESSPLAN.md:118",
+      "quote": "Trotz dieser extremen Preisvolatilität"
+    },
+    {
+      "text": "KMU verfolgen Materialkosten von Hand: Telefon, Kataloge, Excel",
+      "source": "C:/Projects/BauPreis AI SaaS/docs/businessplan/BUSINESSPLAN.md:118",
+      "quote": "überwachen die meisten KMU ihre Materialkosten nach wie vor manuell — per Telefon, Lieferantenkatalogen oder Excel-Tabellen"
+    },
+    {
+      "text": "Zielgruppe: Betriebe mit bis zu 50 Mitarbeitern",
+      "source": "C:/Projects/BauPreis AI SaaS/docs/businessplan/BUSINESSPLAN.md:21",
+      "quote": "Die primäre Zielgruppe sind kleine und mittlere Bauunternehmen (KMU) mit bis zu 50 Mitarbeitern"
+    },
+    {
+      "text": "Nutzer: Einkäufer und Projektleiter",
+      "source": "C:/Projects/BauPreis AI SaaS/CLAUDE.md:15",
+      "quote": "Платформа для немецких строительных компаний (Bauunternehmen, Einkäufer, Projektleiter)"
+    },
+    {
+      "text": "Baupreis-Nachschlagewerke sind statisch und arbeiten ohne KI",
+      "source": "C:/Projects/BauPreis AI SaaS/docs/PRODUCT_RESEARCH_2026.md:23",
+      "quote": "Справочники (BKI, Baupreislexikon, SIRADOS) — статические, без AI"
+    },
+    {
+      "text": "Professionelle Rohstoff-Datendienste sind für den Mittelstand zu teuer",
+      "source": "C:/Projects/BauPreis AI SaaS/docs/PRODUCT_RESEARCH_2026.md:24",
+      "quote": "Fastmarkets) — слишком дорого для Mittelstand"
+    },
+    {
+      "text": "Bausoftware für die Projektabwicklung beobachtet keine Preise",
+      "source": "C:/Projects/BauPreis AI SaaS/docs/PRODUCT_RESEARCH_2026.md:25",
+      "quote": "Строительные SaaS (PlanRadar, Procore) — не мониторят цены"
+    },
+    {
+      "text": "Preisgleitklausel schafft Bedarf",
+      "source": "C:/Projects/BauPreis AI SaaS/docs/PRODUCT_RESEARCH_2026.md:39",
+      "quote": "Preisgleitklausel создаёт регуляторный спрос"
+    },
+    {
+      "text": "Eigenes Produkt, kein Kundenauftrag",
+      "source": "C:/Projects/AiS152/data/consents.json:80",
+      "quote": "собственный продукт CEO, клиента нет"
+    },
+    {
+      "text": "Mandantenfähige SaaS (Multi-Tenant)",
+      "source": "C:/Projects/BauPreis AI SaaS/CLAUDE.md:15",
+      "quote": "Multi-tenant, 3 плана: Basis"
+    },
+    {
+      "text": "Next.js 14 (App Router), TypeScript, Tailwind",
+      "source": "C:/Projects/BauPreis AI SaaS/CLAUDE.md:38",
+      "quote": "Next.js 14 (App Router) + TypeScript + Tailwind"
+    },
+    {
+      "text": "PostgreSQL 16",
+      "source": "C:/Projects/BauPreis AI SaaS/CLAUDE.md:41",
+      "quote": "PostgreSQL 16 (multi-tenant)"
+    },
+    {
+      "text": "Preise, Materialien, Analysen gemeinsam für alle Kunden",
+      "source": "C:/Projects/BauPreis AI SaaS/CLAUDE.md:205",
+      "quote": "Data (materials, prices, analysis) — SHARED across all tenants"
+    },
+    {
+      "text": "Einstellungen (Alarme, Berichte) je Organisation",
+      "source": "C:/Projects/BauPreis AI SaaS/CLAUDE.md:206",
+      "quote": "Settings (alert_rules, reports, telegram) — PER-ORG"
+    },
+    {
+      "text": "Anmeldung per E-Mail",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:1012",
+      "quote": "Переключили sign-in/sign-up на LocalSignIn (email + baupreis_session cookie)"
+    },
+    {
+      "text": "Anmeldung per Google-Konto",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:20",
+      "quote": "Оба роута (`api/auth/google`, `api/auth/google/callback`) переведены на `getBaseUrl()`"
+    },
+    {
+      "text": "Funktionen je nach Tarif freigeschaltet",
+      "source": "C:/Projects/BauPreis AI SaaS/CLAUDE.md:209",
+      "quote": "Feature gating: `canAccess(org, feature)` перед Pro/Team фичами"
+    },
+    {
+      "text": "Eurostat für Stahl, Holz, Beton, Dämmstoffe",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:1138",
+      "quote": "**Eurostat sts_inppd_m** — 10 материалов (C24 сталь, C16 дерево, C23 бетон/изоляция)"
+    },
+    {
+      "text": "SMARD der Bundesnetzagentur für Strom",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:1139",
+      "quote": "**SMARD.de** — электричество (Bundesnetzagentur, без ключа)"
+    },
+    {
+      "text": "metals.dev für Kupfer, Aluminium, Zink, Nickel",
+      "source": "C:/Projects/BauPreis AI SaaS/README.md:43",
+      "quote": "| [Metals.dev](https://metals.dev) | Cu, Al, Zn, Ni (LME) |"
+    },
+    {
+      "text": "Sieben Cron-Jobs: Preise, Analyse, Alarme, Berichte, Index",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:1258",
+      "quote": "**Phase 5:** 7 cron jobs (collect-prices, analyze, alerts, reports, health, downgrade-trials, index)"
+    },
+    {
+      "text": "BauPreis Index",
+      "source": "C:/Projects/BauPreis AI SaaS/README.md:35",
+      "quote": "**BauPreis Index** — Weighted composite index of 16 construction materials"
+    },
+    {
+      "text": "Alarme per E-Mail",
+      "source": "C:/Projects/BauPreis AI SaaS/README.md:19",
+      "quote": "| Price alerts (Email) |"
+    },
+    {
+      "text": "Alarme per Telegram",
+      "source": "C:/Projects/BauPreis AI SaaS/README.md:20",
+      "quote": "| Telegram alerts |"
+    },
+    {
+      "text": "Glocke im Kopfbereich zeigt neue Benachrichtigungen",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:70",
+      "quote": "`UnifiedHeader.tsx` — Bell между LangDropdown и AccountDropdown"
+    },
+    {
+      "text": "Analyse, Prognosen und Chat über Claude API",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:1257",
+      "quote": "**Phase 4:** Claude API (Haiku): AI-анализ, прогнозы, чат (de/en/ru)"
+    },
+    {
+      "text": "Preisänderung rechnet der Server, nicht das Sprachmodell",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:123",
+      "quote": "сервер считает change_pct сам, НЕ доверяет Claude (детерминизм)"
+    },
+    {
+      "text": "Preisgleitklausel-Rechner nach VHB Formblatt 225",
+      "source": "C:/Projects/BauPreis AI SaaS/README.md:34",
+      "quote": "**Preisgleitklausel calculator** — VHB Formblatt 225 formula for German public contracts"
+    },
+    {
+      "text": "Legierungsrechner für 15 Legierungen, DE/EN/RU, PWA",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:1259",
+      "quote": "i18n (de/en/ru), Legierungsrechner (15 сплавов), PWA"
+    },
+    {
+      "text": "Materialseite mit Preisverlauf und gleitendem 7-Tage-Durchschnitt",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:178",
+      "quote": "Chart: жёлтая штрих-пунктирная SMA-7 линия (скользящее среднее, клиентский расчёт)"
+    },
+    {
+      "text": "Durchgehendes Bauhaus-Design",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:440",
+      "quote": "T004: Bauhaus Bold Full Redesign (50+ файлов)"
+    },
+    {
+      "text": "Dashboard als Gast ansehen",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:203",
+      "quote": "T016: Dashboard Guest Preview"
+    },
+    {
+      "text": "Rate-Limiting beim Login",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:1182",
+      "quote": "Rate limiting на login (10/мин) и register (5/мин) по IP"
+    },
+    {
+      "text": "Nur parametrisierte Datenbankabfragen",
+      "source": "C:/Projects/BauPreis AI SaaS/CLAUDE.md:210",
+      "quote": "SQL: ТОЛЬКО параметризованные запросы"
+    },
+    {
+      "text": "Erreichbar unter baupreis.ais152.com",
+      "source": "C:/Projects/BauPreis AI SaaS/DEVLOG.md:26",
+      "quote": "redirect_uri = `https://baupreis.ais152.com/api/auth/google/callback`, контейнеры healthy"
+    },
+    {
+      "text": "CSV-Export",
+      "source": "C:/Projects/BauPreis AI SaaS/README.md:24",
+      "quote": "| CSV export |"
+    },
+    {
+      "text": "PDF-Berichte",
+      "source": "C:/Projects/BauPreis AI SaaS/README.md:25",
+      "quote": "| PDF reports |"
+    },
+    {
+      "text": "API-Zugang",
+      "source": "C:/Projects/BauPreis AI SaaS/README.md:26",
+      "quote": "| API access |"
+    },
+    {
+      "text": "Teamverwaltung",
+      "source": "C:/Projects/BauPreis AI SaaS/README.md:27",
+      "quote": "| Team management (up to 5) |"
+    }
+  ]
+}

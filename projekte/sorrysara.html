@@ -8,14 +8,14 @@
 
 <title>Sorry Sara: Cocktail- & Fry-Bar in Burgas · Telegram-Bot-CMS, Tickets über Stripe | AIS.152</title>
 
-<meta name="description" content="Website für eine Cocktail- & Fry-Bar in Burgas (Oberfläche BG/EN, Menü und Events auch UK/DE). Menü und Events samt Fotos, Preisen und Übersetzungen pflegt die Inhaberin per Telegr">
+<meta name="description" content="Website für eine Cocktail- & Fry-Bar in Burgas. Menü und Events samt Fotos, Preisen und Übersetzungen pflegt die Betreiberin der Seite per Telegram-Bot. Event-Tickets über Stripe o">
 <meta name="keywords" content="AI engineering, Munich, websites, automation, n8n, SaaS, full-stack, freelance">
 <meta name="author" content="AIS.152">
 <link rel="canonical" href="https://ais152.com/projekte/sorrysara.html">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Sorry Sara: Cocktail- & Fry-Bar in Burgas · Telegram-Bot-CMS, Tickets über Stripe | AIS.152">
-<meta property="og:description" content="Website für eine Cocktail- & Fry-Bar in Burgas (Oberfläche BG/EN, Menü und Events auch UK/DE). Menü und Events samt Fotos, Preisen und Übersetzungen pflegt die Inhaberin per Telegr">
+<meta property="og:description" content="Website für eine Cocktail- & Fry-Bar in Burgas. Menü und Events samt Fotos, Preisen und Übersetzungen pflegt die Betreiberin der Seite per Telegram-Bot. Event-Tickets über Stripe o">
 <meta property="og:url" content="https://ais152.com/projekte/sorrysara.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
@@ -121,7 +121,7 @@
       "@type": "CreativeWork",
       "@id": "https://ais152.com/projekte/sorrysara.html#work",
       "name": "Sorry Sara",
-      "description": "Website für eine Cocktail- & Fry-Bar in Burgas (Oberfläche BG/EN, Menü und Events auch UK/DE). Menü und Events samt Fotos, Preisen und Übersetzungen pflegt die Inhaberin per Telegram-Bot. Event-Tickets über Stripe ohne Überbuchung. Claude übersetzt BG-Inhalte nach EN/UK/DE.",
+      "description": "Website für eine Cocktail- & Fry-Bar in Burgas. Menü und Events samt Fotos, Preisen und Übersetzungen pflegt die Betreiberin der Seite per Telegram-Bot. Event-Tickets über Stripe ohne Überbuchung, Übersetzungen aus dem Bulgarischen mit Claude.",
       "url": "https://ais152.com/projekte/sorrysara.html",
       "dateCreated": "2026",
       "creator": {
@@ -211,13 +211,31 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title">Was gebaut wurde</h2>
-      <p>Website für eine Cocktail- &amp; Fry-Bar in Burgas (Oberfläche BG/EN, Menü und Events auch UK/DE). Menü und Events samt Fotos, Preisen und Übersetzungen pflegt die Inhaberin per Telegram-Bot. Event-Tickets über Stripe ohne Überbuchung. Claude übersetzt BG-Inhalte nach EN/UK/DE.</p>
+      <p>Website für eine Cocktail- &amp; Fry-Bar in Burgas. Menü und Events samt Fotos, Preisen und Übersetzungen pflegt die Betreiberin der Seite per Telegram-Bot. Event-Tickets über Stripe ohne Überbuchung, Übersetzungen aus dem Bulgarischen mit Claude.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Ausgangslage</h2>
+      <p>Sorry Sara ist eine Cocktail- und Fry-Bar in Burgas, Bulgarien. Gebraucht wurde eine Website mit der warmen, gastfreundlichen Stimme der Figur Sara: eine Speisekarte, die Gäste per QR-Code am Tisch öffnen, Veranstaltungen mit Online-Tickets und eine Tischreservierung über Telegram. Die Seite sollte auf Bulgarisch, Englisch, Ukrainisch und Deutsch laufen und in erster Linie auf dem Smartphone funktionieren.</p><p>Veranstaltungen sollte es in zwei Formen geben: kostenpflichtig mit Ticket und kostenlos mit Anmeldung. Die Betreiberin der Seite sollte sie komplett vom Handy aus steuern können: Menü, Preise, Fotos und Veranstaltungen, ohne klassisches Admin-Panel.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Umsetzung</h2>
+      <p>Die Website ist mit Next.js 16, TypeScript und Tailwind CSS 4 gebaut, die Sprachumschaltung läuft über next-intl. Das anfangs geplante Strapi habe ich durch einen Telegram-Bot auf Basis von grammY ersetzt. Er reagiert nur auf die Betreiberin der Seite und behält laufende Dialoge auch nach einem Neustart.</p><p>Im Bot legt sie Kategorien, Gerichte und Veranstaltungen per Klick an und tippt nur die Werte. Preise gibt sie in Euro ein. Nach jeder Änderung aktualisiert der Bot die betroffenen Seiten. Fotos schickt sie als Datei in voller Qualität, der Bot prüft Format und Größe anhand der Bytes. Für Übersetzungen aus dem Bulgarischen ist Claude Haiku eingebunden, eigene Korrekturen bleiben bei einer neuen Übersetzung erhalten. Die letzte Änderung lässt sich rückgängig machen.</p><p>Tickets laufen über Stripe Checkout. Vor der Zahlung wird ein Platz reserviert, und alle Buchungswege sperren dieselbe Veranstaltung in der Datenbank, damit auch gleichzeitige Buchungen nicht überbuchen. Stripe-Webhooks werden auf ihre Signatur geprüft und nur einmal verarbeitet, eine Rückerstattung gibt den Platz frei. Tracking und Google Maps laden erst nach Einwilligung.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Ergebnis</h2>
+      <p>Die Website läuft unter sorrysara.space und bezieht Speisekarte und Veranstaltungen aus der Datenbank, die der Bot befüllt. Die Betreiberin der Seite pflegt sie seit der Übergabe selbst über Telegram. Veranstaltungen legt sie als Entwurf an, veröffentlicht sie per Knopfdruck und archiviert sie danach.</p><p>Der Ticketkauf ist über Stripe im Live-Modus angebunden, Rückerstattungen eingeschlossen. Reservierungsanfragen kommen geprüft direkt in ihrem Telegram an, und vergangene Abende bleiben mit Bewertungen auf einer eigenen Seite sichtbar.</p>
     </div>
   </section>
   <section class="section">
     <div class="container">
       <h2 class="section-title">Technik und Umfang</h2>
-      <ul class="service-tags"><li>Telegram-CMS</li><li>Stripe Ticketing</li><li>BG/EN + UK/DE-Inhalte</li><li>Anti-Overbooking</li><li>Consent Mode v2</li></ul>
+      <ul class="service-tags"><li>Telegram-CMS</li><li>Stripe Ticketing</li><li>Anti-Overbooking</li><li>next-intl</li><li>Consent Mode v2</li></ul>
       <p>Umgesetzt 2026</p>
     </div>
   </section>

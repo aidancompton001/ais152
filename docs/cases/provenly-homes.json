@@ -1,0 +1,254 @@
+{
+  "slug": "provenly-homes",
+  "ausgangslage": "Provenly Homes ist ein Unternehmen aus Köln, das für Eigentümer in NRW Wohnungen in der Kurzzeitvermietung betreut. Zielgruppe sind Eigentümer in Köln, Bonn und Düsseldorf mit einer bis fünf Wohnungen. Der bisherige Auftritt lief auf Framer.\n\nBei der Bestandsaufnahme fielen mehrere Mängel auf: Reste der Vorlage wie eine fremde E-Mail-Adresse im Footer, Kennzahlen, die nur Nullen zeigten, zwei konkurrierende E-Mail-Adressen, Tippfehler in Texten und in der URL der Objektseiten sowie kein Cookie-Hinweis. Ziel war ein neu gebauter Auftritt auf Awwwards-Niveau, der die vorhandenen Inhalte vollständig übernimmt: Leistungen, drei Pakete, Referenzobjekte, Kundenstimmen, FAQ und den Ratgeber.",
+  "umsetzung": "Zuerst habe ich die Inhalte der alten Seite vollständig erfasst, die Tippfehler bereinigt und die Bilder lokal übernommen, mit sprechenden Dateinamen. Gebaut ist die neue Seite mit Next.js 16, App Router, TypeScript und Tailwind CSS v4 als statischer Export. Alle Texte liegen in JSON-Dateien und nicht in den Komponenten.\n\nDas Branding in warmem Sand mit Kupfer-Akzent ist als Design-Tokens hinterlegt und in einem Brand Guide dokumentiert, mit festen Kontrastregeln: Kupfer nie als kleiner Fließtext. Dazu kommen sechs SVG-Logovarianten und die Schriften Lora und Plus Jakarta Sans, lokal eingebunden.\n\nFür Bewegung setze ich GSAP mit ScrollTrigger und SplitText für Scroll-, Text- und Timeline-Animationen ein, Motion für Interface-Zustände und Lenis für weiches Scrollen. Umgesetzt sind unter anderem ein zeichenweise aufgebauter Hero-Titel mit Spotlight-Effekt, eine Navigation, die beim Scrollen aus- und wieder einblendet, eine 3D-Neigung der Objektkarten, eine sich zeichnende Prozesslinie, ein CTA mit umlaufendem Rahmen und schwebende Formularbeschriftungen. Bei reduzierter Bewegung im System entfallen die Animationen.\n\nNeu sind Objektseiten, Ratgeber-Artikel mit FAQ und Standortseiten für Köln, Bonn und Düsseldorf mit Stadtteilen, Marktdaten und Regeln. Das Kontaktformular mit 13 Feldern läuft über FormSubmit mit Honeypot gegen Spam. Datenschutzerklärung und Impressum sind überarbeitet, Schema.org-Daten und Sitemap ergänzt, das Deployment läuft über GitHub Actions.",
+  "ergebnis": "Provenly Homes hat einen vollständig neu gebauten Auftritt mit 20 Seitenrouten erhalten, veröffentlicht auf GitHub Pages. Alle 39 im Designplan festgelegten Effekte sind umgesetzt, auf dem Smartphone teils in einer eigenen mobilen Fassung.\n\nDie Inhalte lassen sich in den JSON-Dateien pflegen, ohne Komponenten anzufassen. Eine schwebende Kontaktleiste mit Telefon und E-Mail hält den Weg zur Anfrage kurz, der Cookie-Hinweis ist vorhanden, und die Seite lädt keine Schriften von Drittanbietern.",
+  "word_count": 363,
+  "claims": [
+    {
+      "text": "Kurzzeitvermietungs-Management in NRW; Ersatz des Framer-Auftritts; Ziel Awwwards-Niveau",
+      "source": "C:/Projects/fr_02_Provenly Homes/CLAUDE.md:15",
+      "quote": "Новый сайт для компании по управлению краткосрочной арендой недвижимости в NRW. Замена текущего Framer-сайта на Next.js + Tailwind + GSAP. Целевой уровень — Awwwards."
+    },
+    {
+      "text": "Standort Köln",
+      "source": "C:/Projects/fr_02_Provenly Homes/CLAUDE.md:16",
+      "quote": "Köln, NRW, Germany"
+    },
+    {
+      "text": "Zielgruppe: Eigentümer in Köln, Bonn, Düsseldorf mit 1 bis 5 Wohnungen",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:33",
+      "quote": "Property owners in NRW (Köln, Bonn, Düsseldorf), 35-60, 1-5 units"
+    },
+    {
+      "text": "Bisheriger Auftritt auf Framer",
+      "source": "C:/Projects/fr_02_Provenly Homes/docs/research/PHASE1_1_RESEARCH_REPORT.md:12",
+      "quote": "Framer (hosted, Framer B.V., Netherlands)"
+    },
+    {
+      "text": "Reste der Vorlage, fremde E-Mail im Footer",
+      "source": "C:/Projects/fr_02_Provenly Homes/docs/research/PHASE1_1_RESEARCH_REPORT.md:48",
+      "quote": "Template leftovers: footer email → hello@refit.com"
+    },
+    {
+      "text": "Kennzahlen zeigten nur Nullen",
+      "source": "C:/Projects/fr_02_Provenly Homes/docs/research/PHASE1_1_RESEARCH_REPORT.md:49",
+      "quote": "Broken stats: all \"0\" in vision section"
+    },
+    {
+      "text": "Zwei konkurrierende E-Mail-Adressen",
+      "source": "C:/Projects/fr_02_Provenly Homes/docs/research/PHASE1_1_RESEARCH_REPORT.md:50",
+      "quote": "Dual email"
+    },
+    {
+      "text": "Tippfehler in der URL der Objektseiten",
+      "source": "C:/Projects/fr_02_Provenly Homes/docs/research/PHASE1_1_RESEARCH_REPORT.md:51",
+      "quote": "URL typo: /siganatures (should be /signatures)"
+    },
+    {
+      "text": "Tippfehler in Texten",
+      "source": "C:/Projects/fr_02_Provenly Homes/docs/research/PHASE1_1_RESEARCH_REPORT.md:52",
+      "quote": "Content typos"
+    },
+    {
+      "text": "Kein Cookie-Hinweis",
+      "source": "C:/Projects/fr_02_Provenly Homes/docs/research/PHASE1_1_RESEARCH_REPORT.md:53",
+      "quote": "No cookie consent (GDPR risk)"
+    },
+    {
+      "text": "Inhalte vollständig erfasst: Pakete, Kundenstimmen, FAQ, Objekte, Ratgeber",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:15",
+      "quote": "Extracted all content: 12 homepage sections, 3 packages, 6 testimonials, 7 FAQs, 3 properties, 5 blog articles"
+    },
+    {
+      "text": "Tippfehler bereinigt",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:133",
+      "quote": "all typos fixed"
+    },
+    {
+      "text": "Bilder lokal übernommen",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:137",
+      "quote": "21 downloaded from Framer CDN via curl"
+    },
+    {
+      "text": "Sprechende Dateinamen",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:341",
+      "quote": "All 21 images renamed from img_NN → semantic names"
+    },
+    {
+      "text": "Next.js 16, Tailwind v4, TypeScript, App Router",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:129",
+      "quote": "Next.js 16.2.3 + Tailwind v4 + TypeScript + App Router"
+    },
+    {
+      "text": "Statischer Export",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:130",
+      "quote": "`output: \"export\"`"
+    },
+    {
+      "text": "Alle Texte in JSON, nicht in Komponenten; Pflege ohne Komponenten",
+      "source": "C:/Projects/fr_02_Provenly Homes/CLAUDE.md:187",
+      "quote": "ВСЕ тексты из `src/data/` JSON файлов. НИКАКОГО hardcode в компонентах."
+    },
+    {
+      "text": "Branding warmer Sand mit Kupfer",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:167",
+      "quote": "Warm Sand + Copper"
+    },
+    {
+      "text": "Branding als Design-Tokens",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:172",
+      "quote": "@theme tokens applied"
+    },
+    {
+      "text": "Brand Guide",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:171",
+      "quote": "`branding/BRAND_GUIDE.md` — complete (palette, typography, type scale, buttons, shadows, spacing, dark sections, WCAG)"
+    },
+    {
+      "text": "Kontrastregel: Kupfer nie als kleiner Fließtext",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:180",
+      "quote": "Copper NEVER as small body text on cream"
+    },
+    {
+      "text": "Sechs SVG-Logovarianten",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:170",
+      "quote": "6 variants (icon, wordmark, full — light + dark)"
+    },
+    {
+      "text": "Schriften Lora und Plus Jakarta Sans lokal",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:173",
+      "quote": "Lora + Plus Jakarta Sans via next/font"
+    },
+    {
+      "text": "Aufgabenteilung GSAP (Scroll, Text, Timeline) und Motion (UI)",
+      "source": "C:/Projects/fr_02_Provenly Homes/docs/tasks/T001_website_rebuild_roadmap.md:61",
+      "quote": "GSAP (scroll, text, timeline) vs Motion (UI, layout, page transitions)"
+    },
+    {
+      "text": "GSAP mit ScrollTrigger und SplitText",
+      "source": "C:/Projects/fr_02_Provenly Homes/CLAUDE.md:41",
+      "quote": "GSAP + ScrollTrigger + SplitText"
+    },
+    {
+      "text": "Lenis für weiches Scrollen",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:134",
+      "quote": "Lenis smooth scroll"
+    },
+    {
+      "text": "Zeichenweise aufgebauter Hero-Titel",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:346",
+      "quote": "GSAP SplitText char reveal on heading"
+    },
+    {
+      "text": "Spotlight-Effekt im Hero; mobile Fassung",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:594",
+      "quote": "Hero: SplitText yPercent:150/power3, Spotlight cursor, Text Generate words, mobile branch"
+    },
+    {
+      "text": "Navigation blendet beim Scrollen aus und ein",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:595",
+      "quote": "Header: Floating Navbar hide/reveal"
+    },
+    {
+      "text": "3D-Neigung der Objektkarten",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:597",
+      "quote": "3D card tilt"
+    },
+    {
+      "text": "Sich zeichnende Prozesslinie",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:350",
+      "quote": "GSAP timeline line draw"
+    },
+    {
+      "text": "CTA mit umlaufendem Rahmen; mobile Fassung",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:603",
+      "quote": "CTA: Moving Border CSS, separate reveals, mobile simple button"
+    },
+    {
+      "text": "Schwebende Formularbeschriftungen",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:650",
+      "quote": "floating label pattern"
+    },
+    {
+      "text": "Reduzierte Bewegung schaltet Animationen ab",
+      "source": "C:/Projects/fr_02_Provenly Homes/docs/tasks/T001_website_rebuild_roadmap.md:55",
+      "quote": "reduced-motion = анимации OFF"
+    },
+    {
+      "text": "Objektseiten",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:398",
+      "quote": "`/objekte/[slug]` — hero image, specs grid, amenities, highlights, distances, rating + CTA"
+    },
+    {
+      "text": "Ratgeber-Artikel mit FAQ",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:400",
+      "quote": "full articles: sections with body, key quotes (blockquote), FAQ accordion, CTA"
+    },
+    {
+      "text": "Standortseiten Köln, Bonn, Düsseldorf",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:403",
+      "quote": "`/standorte/koeln|bonn|duesseldorf`"
+    },
+    {
+      "text": "Standortseiten mit Stadtteilen, Marktdaten, Regeln",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:390",
+      "quote": "Köln (5 districts), Bonn (3 districts), Düsseldorf (4 districts) with market stats, regulations, CTAs"
+    },
+    {
+      "text": "Kontaktformular mit 13 Feldern, FormSubmit, Honeypot",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:273",
+      "quote": "ContactForm (13 fields, 4 sections, FormSubmit.co, honeypot, 4 states)"
+    },
+    {
+      "text": "Datenschutzerklärung überarbeitet",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:405",
+      "quote": "`/datenschutz` — REWRITTEN"
+    },
+    {
+      "text": "Impressum überarbeitet",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:496",
+      "quote": "Added: EU Online-Streitbeilegung Platform link"
+    },
+    {
+      "text": "Schema.org-Daten und Sitemap",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:409",
+      "quote": "Schema.org LocalBusiness JSON-LD in layout.tsx, per-page metadata (title+description), robots.ts, sitemap.ts"
+    },
+    {
+      "text": "Deployment über GitHub Actions auf GitHub Pages",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:140",
+      "quote": "GitHub Actions (lint + test + build + .nojekyll + deploy to GitHub Pages)"
+    },
+    {
+      "text": "20 Seitenrouten",
+      "source": "C:/Projects/fr_02_Provenly Homes/STATUS.md:36",
+      "quote": "20 page routes, all live"
+    },
+    {
+      "text": "Veröffentlicht auf GitHub Pages",
+      "source": "C:/Projects/fr_02_Provenly Homes/STATUS.md:11",
+      "quote": "https://aidancompton001.github.io/provenly-homes/"
+    },
+    {
+      "text": "Alle 39 Effekte des Designplans umgesetzt",
+      "source": "C:/Projects/fr_02_Provenly Homes/STATUS.md:40",
+      "quote": "39/39 DESIGN_MAP effects implemented"
+    },
+    {
+      "text": "Schwebende Kontaktleiste mit Telefon und E-Mail",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:605",
+      "quote": "FloatingContacts: full-width bar with blur + phone + email"
+    },
+    {
+      "text": "Cookie-Hinweis vorhanden",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:502",
+      "quote": "Cookie Banner: TTDSG-compliant"
+    },
+    {
+      "text": "Keine Schriften von Drittanbietern",
+      "source": "C:/Projects/fr_02_Provenly Homes/DEVLOG.md:503",
+      "quote": "Google Fonts: locally served via next/font (no external requests)"
+    }
+  ]
+}

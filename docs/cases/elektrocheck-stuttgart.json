@@ -1,0 +1,194 @@
+{
+  "slug": "elektrocheck-stuttgart",
+  "ausgangslage": "ElektroCheck Stuttgart führt DGUV V3 Elektroprüfungen im Raum Stuttgart durch, für Unternehmen und Gewerbekunden. Für diesen Prüfdienst habe ich die Website gebaut.\n\nDie Seite sollte kompakt sein, nur auf Deutsch erscheinen und Anfragen direkt per Formular an den Betrieb weiterleiten. Inhaltlich stand eine Frage im Mittelpunkt, die sich viele Interessenten zuerst stellen: Bin ich überhaupt zur DGUV V3-Prüfung verpflichtet? Die Website sollte darauf eine erste Antwort geben, bevor jemand eine Anfrage schickt, und dabei sachlich bleiben statt zu drängen.\n\nDomain und Webhosting sollten auf den Betrieb selbst laufen, damit er die Seite später ohne mich weiterführen kann.",
+  "umsetzung": "Für die Gestaltung habe ich drei Markenkonzepte entwickelt, gewählt wurde „Schaltplan-Grid“. Aus drei Seitenkonzepten fiel die Wahl auf einen Aufbau, bei dem ein Pflichten-Check im Mittelpunkt steht.\n\nDer Check steht direkt im ersten Bildschirm und stellt drei Fragen: wofür elektrische Geräte beruflich genutzt werden, welche Gerätetypen im Einsatz sind und wann zuletzt geprüft wurde. Daraus ergibt sich eines von sieben Ergebnissen, jeweils mit dem Hinweis, dass die Einordnung keine Rechtsberatung ersetzt. Das Ergebnis wird als verstecktes Feld mit der Anfrage übermittelt, die Datenschutzerklärung weist darauf hin.\n\nDarunter folgen Leistungen, Ablauf, Über uns, häufige Fragen, das Anfrageformular und ein Block für den direkten Kontakt. Das Formular läuft über FormSubmit, mit Captcha und einem versteckten Honeypot-Feld gegen Spam. Auf dem Smartphone gibt es eine fest stehende Aktionsleiste, am Desktop einen Button im Kopfbereich.\n\nTechnisch ist die Seite reines HTML, CSS und JavaScript ohne externe Bibliotheken. Die Schriften liegen als auf die nötigen Zeichen reduzierte Dateien auf dem Webspace, sodass keine externen Schriftdienste nötig sind. Impressum und Datenschutzerklärung habe ich mit aufgebaut.",
+  "ergebnis": "Der Betrieb hat eine eigene Website unter der Domain elektrocheckstuttgart.de. Das Konto für Domain und Hosting läuft auf ihn, die Dateien liegen auf seinem Webspace, die Domain ist mit dem Webspace verbunden.\n\nWer die Seite besucht, beantwortet drei Fragen und bekommt eine erste Einordnung, ob eine Prüfung Pflicht ist.\n\nAuf dem Smartphone führt eine Leiste am unteren Bildschirmrand jederzeit zum Schnellkontakt und zum Pflichten-Check.",
+  "word_count": 336,
+  "claims": [
+    {
+      "text": "DGUV V3 Elektroprüfungen im Raum Stuttgart",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/CLAUDE.md:5",
+      "quote": "DGUV V3 Elektroprüfungen, Wernau / Stuttgart, BW"
+    },
+    {
+      "text": "Seite sollte kompakt sein",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/CLAUDE.md:10",
+      "quote": "(но компактнее)"
+    },
+    {
+      "text": "Nur Deutsch",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/CLAUDE.md:20",
+      "quote": "**Languages:** DE only"
+    },
+    {
+      "text": "Anfragen per Formular (FormSubmit)",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/CLAUDE.md:17",
+      "quote": "**Forms:** FormSubmit.co"
+    },
+    {
+      "text": "Leitfrage: zur DGUV V3-Prüfung verpflichtet?",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:9",
+      "quote": "Sind Sie zur DGUV V3-Prüfung verpflichtet?"
+    },
+    {
+      "text": "Sachlich statt drängend",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:234",
+      "quote": "Drei Fragen. Klares Ergebnis. Keine Verkaufsmasche."
+    },
+    {
+      "text": "Domain und Hosting auf den Betrieb, für die Übergabe",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/DEVLOG.md:124",
+      "quote": "(не CEO) — clean separation для handoff"
+    },
+    {
+      "text": "Drei Markenkonzepte, gewählt Schaltplan-Grid",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/DEVLOG.md:46",
+      "quote": "Phase 1: 3 brand-концепции (Prüfsiegel / Messkurve / Schaltplan-Grid)"
+    },
+    {
+      "text": "Drei Seitenkonzepte, gewählt Pflichten-Check",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/DEVLOG.md:47",
+      "quote": "Phase 2: 3 IA-концепции (Klassisch / Calculator / Pflichten-Check)"
+    },
+    {
+      "text": "Pflichten-Check im ersten Bildschirm",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:219",
+      "quote": "02. HERO + PFLICHTEN-CHECK"
+    },
+    {
+      "text": "Frage 1: berufliche Nutzung elektrischer Geräte",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:259",
+      "quote": "Wofür nutzen Sie elektrische Geräte beruflich?"
+    },
+    {
+      "text": "Frage 2: Gerätetypen",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:311",
+      "quote": "Welche Geräte-Typen sind im Einsatz?"
+    },
+    {
+      "text": "Frage 3: letzte Prüfung",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:357",
+      "quote": "Wann wurden die Geräte zuletzt geprüft?"
+    },
+    {
+      "text": "Sieben Ergebnisse",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-6/HANDOFF.md:27",
+      "quote": "Pflichten-Check end-to-end функционален всеми 7 outcomes"
+    },
+    {
+      "text": "Hinweis: keine Rechtsberatung",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/script.js:177",
+      "quote": "Diese Einordnung ersetzt keine Rechtsberatung — sie gibt eine erste Orientierung"
+    },
+    {
+      "text": "Ergebnis als verstecktes Feld mit der Anfrage",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:675",
+      "quote": "<input type=\"hidden\" name=\"pflicht_ergebnis\" id=\"pflicht_ergebnis\" value=\"\">"
+    },
+    {
+      "text": "Datenschutzerklärung weist auf das Ergebnisfeld hin",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/docs/tasks/PX-002_TS2.md:197",
+      "quote": "X3-D: datenschutz §3 has `pflicht_ergebnis` disclosure verbatim"
+    },
+    {
+      "text": "Abschnitt Leistungen",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:447",
+      "quote": "Was wir leisten"
+    },
+    {
+      "text": "Abschnitt Ablauf",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:493",
+      "quote": "<h2 id=\"ablauf-title\" class=\"section__title\">Ablauf"
+    },
+    {
+      "text": "Abschnitt Über uns",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:533",
+      "quote": "<h2 id=\"ueber-title\" class=\"section__title\">Über uns"
+    },
+    {
+      "text": "Abschnitt häufige Fragen",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:211",
+      "quote": "Häufige Fragen"
+    },
+    {
+      "text": "Abschnitt Anfrageformular",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:658",
+      "quote": "<h2 id=\"kontakt-title\" class=\"section__title\">Anfrage senden"
+    },
+    {
+      "text": "Abschnitt direkter Kontakt",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:762",
+      "quote": "Direkt erreichen"
+    },
+    {
+      "text": "Honeypot-Feld gegen Spam",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:668",
+      "quote": "<input type=\"text\" name=\"_honey\""
+    },
+    {
+      "text": "Captcha",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:671",
+      "quote": "<input type=\"hidden\" name=\"_captcha\" value=\"true\">"
+    },
+    {
+      "text": "Aktionsleiste mobil, Button im Kopfbereich am Desktop",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-6/HANDOFF.md:30",
+      "quote": "Mobile sticky-bar + desktop header-CTA работают"
+    },
+    {
+      "text": "Reines HTML/CSS/JS ohne externe Bibliotheken",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/CLAUDE.md:16",
+      "quote": "Static HTML/CSS/JS (vanilla, 0 зависимостей"
+    },
+    {
+      "text": "Reduzierte Schriftdateien auf dem Webspace",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/DEVLOG.md:140",
+      "quote": "4 fonts subset"
+    },
+    {
+      "text": "Impressum und Datenschutzerklärung mit aufgebaut",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/CLAUDE.md:24",
+      "quote": "DSGVO Impressum/Datenschutz"
+    },
+    {
+      "text": "Eigene Domain elektrocheckstuttgart.de",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/DEVLOG.md:111",
+      "quote": "Domain elektrocheckstuttgart.de registered"
+    },
+    {
+      "text": "Dateien auf dem Webspace",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/DEVLOG.md:113",
+      "quote": "23 files uploaded"
+    },
+    {
+      "text": "Domain mit Webspace verbunden",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/DEVLOG.md:114",
+      "quote": "Domain bound to /public ✅ (WEBSPACE_CONNECTED)"
+    },
+    {
+      "text": "Erste Einordnung (Ja / Nein / Vermutlich)",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/docs/tasks/PX-002_TS2.md:193",
+      "quote": "renderJa/Nein/Vermutlich output cards"
+    },
+    {
+      "text": "Leiste am unteren Rand nur mobil",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:796",
+      "quote": "<!-- Sticky bottom-bar (mobile only) -->"
+    },
+    {
+      "text": "Leiste mit Schnellkontakt",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:797",
+      "quote": "<nav class=\"sticky-bar\" aria-label=\"Schnellkontakt\">"
+    },
+    {
+      "text": "Leiste führt zum Pflichten-Check",
+      "source": "C:/Projects/ElektroCheck-Stuttgart/design/desktop/phase-3/index.html:807",
+      "quote": "<a href=\"#pflichten-check\">"
+    },
+    {
+      "text": "Prüfungen für Unternehmen und Gewerbekunden",
+      "source": "C:/Projects/AiS152/data/projects.json:165",
+      "quote": "mit Prüfungen für Unternehmen und Gewerbekunden"
+    }
+  ]
+}

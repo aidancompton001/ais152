@@ -1,0 +1,209 @@
+{
+  "slug": "sorrysara",
+  "ausgangslage": "Sorry Sara ist eine Cocktail- und Fry-Bar in Burgas, Bulgarien. Gebraucht wurde eine Website mit der warmen, gastfreundlichen Stimme der Figur Sara: eine Speisekarte, die Gäste per QR-Code am Tisch öffnen, Veranstaltungen mit Online-Tickets und eine Tischreservierung über Telegram. Die Seite sollte auf Bulgarisch, Englisch, Ukrainisch und Deutsch laufen und in erster Linie auf dem Smartphone funktionieren.\n\nVeranstaltungen sollte es in zwei Formen geben: kostenpflichtig mit Ticket und kostenlos mit Anmeldung. Die Betreiberin der Seite sollte sie komplett vom Handy aus steuern können: Menü, Preise, Fotos und Veranstaltungen, ohne klassisches Admin-Panel.",
+  "umsetzung": "Die Website ist mit Next.js 16, TypeScript und Tailwind CSS 4 gebaut, die Sprachumschaltung läuft über next-intl. Das anfangs geplante Strapi habe ich durch einen Telegram-Bot auf Basis von grammY ersetzt. Er reagiert nur auf die Betreiberin der Seite und behält laufende Dialoge auch nach einem Neustart.\n\nIm Bot legt sie Kategorien, Gerichte und Veranstaltungen per Klick an und tippt nur die Werte. Preise gibt sie in Euro ein. Nach jeder Änderung aktualisiert der Bot die betroffenen Seiten. Fotos schickt sie als Datei in voller Qualität, der Bot prüft Format und Größe anhand der Bytes. Für Übersetzungen aus dem Bulgarischen ist Claude Haiku eingebunden, eigene Korrekturen bleiben bei einer neuen Übersetzung erhalten. Die letzte Änderung lässt sich rückgängig machen.\n\nTickets laufen über Stripe Checkout. Vor der Zahlung wird ein Platz reserviert, und alle Buchungswege sperren dieselbe Veranstaltung in der Datenbank, damit auch gleichzeitige Buchungen nicht überbuchen. Stripe-Webhooks werden auf ihre Signatur geprüft und nur einmal verarbeitet, eine Rückerstattung gibt den Platz frei. Tracking und Google Maps laden erst nach Einwilligung.",
+  "ergebnis": "Die Website läuft unter sorrysara.space und bezieht Speisekarte und Veranstaltungen aus der Datenbank, die der Bot befüllt. Die Betreiberin der Seite pflegt sie seit der Übergabe selbst über Telegram. Veranstaltungen legt sie als Entwurf an, veröffentlicht sie per Knopfdruck und archiviert sie danach.\n\nDer Ticketkauf ist über Stripe im Live-Modus angebunden, Rückerstattungen eingeschlossen. Reservierungsanfragen kommen geprüft direkt in ihrem Telegram an, und vergangene Abende bleiben mit Bewertungen auf einer eigenen Seite sichtbar.",
+  "word_count": 343,
+  "claims": [
+    {
+      "text": "Cocktail- und Fry-Bar",
+      "source": "C:\\Projects\\SorrySara\\CLAUDE.md:15",
+      "quote": "Сайт-визитка коктейль- и фрай-бара «Sorry Sara»"
+    },
+    {
+      "text": "Standort Burgas, Bulgarien",
+      "source": "C:\\Projects\\SorrySara\\CLAUDE.md:16",
+      "quote": "Бургас, Болгария"
+    },
+    {
+      "text": "Stimme der Figur Sara, warm und gastfreundlich",
+      "source": "C:\\Projects\\SorrySara\\CLAUDE.md:18",
+      "quote": "**Голос:** Sara — тёплая, гостеприимная"
+    },
+    {
+      "text": "Speisekarte per QR, Events mit Zahlung, Reservierung über Telegram, mobile-first",
+      "source": "C:\\Projects\\SorrySara\\CLAUDE.md:15",
+      "quote": "меню (открывается по QR за столом), анонс событий с резервом/оплатой (Stripe), резерв стола → Telegram. Mobile-first."
+    },
+    {
+      "text": "Vier Sprachen BG/EN/UK/DE",
+      "source": "C:\\Projects\\SorrySara\\CLAUDE.md:17",
+      "quote": "BG (основной) / EN / UK / DE"
+    },
+    {
+      "text": "Kostenpflichtige Events mit Ticket, kostenlose mit Anmeldung",
+      "source": "C:\\Projects\\SorrySara\\CLAUDE.md:164",
+      "quote": "Платные/бесплатные события — обе ветки заложены (paid → Stripe, free → RSVP/Telegram)"
+    },
+    {
+      "text": "Next.js 16 und TypeScript",
+      "source": "C:\\Projects\\SorrySara\\CLAUDE.md:49",
+      "quote": "Next.js 16 (App Router) + TypeScript"
+    },
+    {
+      "text": "Tailwind CSS 4",
+      "source": "C:\\Projects\\SorrySara\\CLAUDE.md:50",
+      "quote": "| Стили | Tailwind CSS 4 |"
+    },
+    {
+      "text": "PostgreSQL und Docker; Strapi nicht verwendet, CMS ist Telegram-Bot",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:52",
+      "quote": "CMS = Telegram-бот (Вариант A), Strapi НЕ используется"
+    },
+    {
+      "text": "Bot auf Basis von grammY",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:21",
+      "quote": "бот-скелет: grammY `@SorrySara_bot`"
+    },
+    {
+      "text": "Bot reagiert nur auf die Betreiberin der Seite (Admin-Chat)",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:778",
+      "quote": "только `ADMIN_CHAT_ID`"
+    },
+    {
+      "text": "Dialoge überleben Neustart",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:21",
+      "quote": "персист-диалог (Postgres) переживает рестарт"
+    },
+    {
+      "text": "Klicks, Text nur für Werte",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:383",
+      "quote": "grammY-conversation (v2) «клик + текст только где значение»"
+    },
+    {
+      "text": "Seiten nach jeder Änderung aktualisiert",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:383",
+      "quote": "После любого сохранения/удаления → `triggerRevalidate('menu')`"
+    },
+    {
+      "text": "Fotos als Datei in voller Qualität",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:25",
+      "quote": "приём как **document** (полное качество"
+    },
+    {
+      "text": "Format anhand der Bytes geprüft",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:25",
+      "quote": "`sniffMime` по магическим байтам"
+    },
+    {
+      "text": "Größenlimit geprüft",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:25",
+      "quote": "валидация 8 МиБ + jpeg/png/webp"
+    },
+    {
+      "text": "Übersetzung per Claude Haiku",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:26",
+      "quote": "Claude Messages API, модель `claude-haiku-4-5-20251001`"
+    },
+    {
+      "text": "BG nach EN, UK, DE",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:26",
+      "quote": "BG источник → EN+UK+DE авто-черновики"
+    },
+    {
+      "text": "Manuelle Korrekturen bleiben erhalten",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:26",
+      "quote": "**manual-preserve** (ре-перевод BG трогает ТОЛЬКО `source='auto'`"
+    },
+    {
+      "text": "Letzte Änderung rückgängig machen",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:27",
+      "quote": "`undoLast` откатывает последнюю НЕотменённую правку"
+    },
+    {
+      "text": "Stripe Checkout",
+      "source": "C:\\Projects\\SorrySara\\CLAUDE.md:55",
+      "quote": "Stripe Checkout (hosted) + webhook"
+    },
+    {
+      "text": "Platz vor der Zahlung reserviert",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:518",
+      "quote": "атомарный hold ДО сессии → 409 при аншлаге"
+    },
+    {
+      "text": "Alle Buchungswege sperren dieselbe Veranstaltung",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:347",
+      "quote": "кросс-процессная сериализация с web-createHold/markPaid"
+    },
+    {
+      "text": "Kein Überbuchen bei gleichzeitigen Buchungen",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:806",
+      "quote": "Ассерт `Σpaid + seats_taken ≤ capacity` НИКОГДА не нарушается (10 раундов)"
+    },
+    {
+      "text": "Webhook-Signatur geprüft, einmalige Verarbeitung",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:518",
+      "quote": "verify подписи→400, dedup по event.id"
+    },
+    {
+      "text": "Rückerstattung gibt Platz frei",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:124",
+      "quote": "EE01 completed persist PI + полный refund → paid→refunded, refunded_at, место свободно — OK"
+    },
+    {
+      "text": "Tracking erst nach Einwilligung",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:454",
+      "quote": "до клика «приемам всички» НЕТ запросов к google-analytics/facebook/clarity/tiktok/maps.google"
+    },
+    {
+      "text": "Google Maps unter Einwilligung",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:448",
+      "quote": "**Google Maps под consent-gate**"
+    },
+    {
+      "text": "Live unter sorrysara.space",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:7",
+      "quote": "**https://sorrysara.space**"
+    },
+    {
+      "text": "Website liest aus der Datenbank",
+      "source": "C:\\Projects\\SorrySara\\DEVLOG.md:185",
+      "quote": "прод-сайта на него с `CMS_SOURCE=db`"
+    },
+    {
+      "text": "Bot bei der Betreiberin der Seite",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:4",
+      "quote": "LIVE В ПРОДЕ — Ф0–Ф9 ✅** — бот у Анны"
+    },
+    {
+      "text": "Entwurf, Veröffentlichen, Archivieren",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:23",
+      "quote": "draft→publish→archive"
+    },
+    {
+      "text": "Formulare gehen an Telegram",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:13",
+      "quote": "**Формы → Telegram @SorrySara_bot"
+    },
+    {
+      "text": "Reservierungsanfragen werden geprüft",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:13",
+      "quote": "валидация телефона (BG+интернационал)"
+    },
+    {
+      "text": "Seite vergangener Abende mit Bewertungen",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:12",
+      "quote": "/past (архив + отзывы)"
+    },
+    {
+      "text": "Preise werden in Euro eingegeben",
+      "source": "C:/Projects/SorrySara/CLAUDE.md:80",
+      "quote": "Hanna вводит цену в €"
+    },
+    {
+      "text": "Betreiberin der Seite pflegt Inhalte per Telegram-Bot",
+      "source": "C:\\Projects\\SorrySara\\STATUS.md:52",
+      "quote": "CMS = Telegram-бот (Вариант A), Strapi НЕ используется"
+    },
+    {
+      "text": "Steuerung vom Handy über Telegram",
+      "source": "C:/Projects/SorrySara/docs/research/CMS_TELEGRAM_BOT_FEASIBILITY.md:19",
+      "quote": "Анна уже живёт в Telegram — ноль обучения"
+    },
+    {
+      "text": "Kein klassisches Admin-Panel (Strapi nicht verwendet, CMS ist der Telegram-Bot)",
+      "source": "C:/Projects/SorrySara/STATUS.md:52",
+      "quote": "CMS = Telegram-бот (Вариант A), Strapi НЕ используется"
+    }
+  ]
+}

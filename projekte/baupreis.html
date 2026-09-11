@@ -216,6 +216,24 @@
   </section>
   <section class="section">
     <div class="container">
+      <h2 class="section-title">Ausgangslage</h2>
+      <p>Baustoffpreise in Deutschland schwanken stark. Trotzdem verfolgen die meisten kleinen und mittleren Bauunternehmen ihre Materialkosten von Hand: per Telefon, über Lieferantenkataloge oder in Excel-Tabellen. Genau diese Betriebe mit bis zu 50 Mitarbeitern, ihre Einkäufer und Projektleiter, sind die Zielgruppe von BauPreis.</p><p>Die vorhandenen Werkzeuge passen nicht zu ihnen. Baupreis-Nachschlagewerke sind statisch und arbeiten ohne KI, professionelle Rohstoff-Datendienste sind für den Mittelstand zu teuer, und Bausoftware für die Projektabwicklung beobachtet keine Preise. Zusätzlich schafft die Preisgleitklausel bei öffentlichen Aufträgen Bedarf an verlässlichen Preisdaten.</p><p>BauPreis ist mein eigenes Produkt, kein Kundenauftrag. Ich wollte Preise für die wichtigsten Baustoffe automatisch erfassen, auswerten und so aufbereiten, dass Entscheidungen im Einkauf schneller fallen.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Umsetzung</h2>
+      <p>Ich habe BauPreis als mandantenfähige SaaS-Anwendung mit Next.js 14 (App Router), TypeScript und Tailwind gebaut, die Daten liegen in PostgreSQL 16. Preise, Materialien und Analysen teilen sich alle Kunden, Einstellungen wie Preisalarme und Berichte gehören jeweils einer Organisation. Die Anmeldung läuft per E-Mail oder Google-Konto, und Funktionen werden je nach Tarif freigeschaltet.</p><p>Die Preisdaten kommen aus mehreren Schnittstellen: Eurostat für Stahl, Holz, Beton und Dämmstoffe, SMARD der Bundesnetzagentur für Strom, metals.dev für Kupfer, Aluminium, Zink und Nickel. Sieben Cron-Jobs übernehmen den Betrieb: Sie sammeln Preise, starten Analysen, verschicken Preisalarme, erstellen Berichte und berechnen den BauPreis Index. Alarme gehen per E-Mail und Telegram raus, im Kopfbereich zeigt eine Glocke neue Benachrichtigungen.</p><p>Analyse, Prognosen und Chat laufen über die Claude API. Die prozentuale Preisänderung rechnet dabei der Server selbst und nicht das Sprachmodell, damit die Zahl reproduzierbar bleibt. Dazu kommen ein Rechner für die Preisgleitklausel nach VHB Formblatt 225, ein Legierungsrechner für 15 Legierungen, eine Oberfläche auf Deutsch, Englisch und Russisch sowie eine PWA. Jedes Material hat eine eigene Seite mit Preisverlauf und gleitendem 7-Tage-Durchschnitt.</p><p>Die Oberfläche folgt einem durchgehenden Bauhaus-Design. Besucher können das Dashboard vorab als Gast ansehen, ein Rate-Limiting schützt den Login, und die Datenbank wird nur über parametrisierte Abfragen angesprochen.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Ergebnis</h2>
+      <p>BauPreis ist unter baupreis.ais152.com erreichbar. Einkäufer und Projektleiter finden dort aktuelle Preise, Trends, Preisalarme und Rechenwerkzeuge für öffentliche Aufträge an einem Ort, statt sie aus Katalogen und Tabellen zusammenzusuchen.</p><p>Je nach Tarif kommen CSV-Export, PDF-Berichte, ein API-Zugang und die Verwaltung eines Teams hinzu. Für mich ist BauPreis das Projekt, in dem ich Datenanbindung, KI-Auswertung und den Betrieb einer SaaS-Anwendung in einem eigenen Produkt zusammengeführt habe.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
       <h2 class="section-title">Technik und Umfang</h2>
       <ul class="service-tags"><li>SaaS</li><li>AI</li><li>Next.js</li><li>Claude API</li><li>Multi-tenant</li></ul>
       <p>Umgesetzt 2025</p>

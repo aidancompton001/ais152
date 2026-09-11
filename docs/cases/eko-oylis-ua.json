@@ -1,0 +1,259 @@
+{
+  "slug": "eko-oylis-ua",
+  "ausgangslage": "EKO-OYLIS sammelt und verarbeitet in der Ukraine gebrauchtes Speiseöl. Das Unternehmen besteht seit 2008, arbeitet mit über 2500 Partnerbetrieben und hat eine Vertretung in Bulgarien, also in der EU.\n\nDie bisherige Website unter eko-oylis.com.ua lief auf einem eigenen PHP- und MySQL-System. Sie sollte vollständig neu entstehen: Layout, Texte, Navigation, Performance, SEO und Barrierefreiheit. Erhalten bleiben sollten das Logo mit sechs grünen Sechsecken, die grüne Farbwelt, das Wabenmotiv sowie die Kontakt- und Rechtsangaben. Die neue Seite sollte zweisprachig sein, mit Ukrainisch als Hauptsprache und Englisch für internationale Geschäftspartner.",
+  "umsetzung": "Vor dem Aufbau habe ich sechs Technologie-Varianten mit einer gewichteten Bewertungsmatrix verglichen. Eleventy 3 lag vorn, vor allem wegen des geringen Umbauaufwands vom Designprototyp und des niedrigen Langzeitrisikos. Die Seite besteht aus Nunjucks-Templates, CSS mit Custom Properties und Vanilla JavaScript, gebündelt mit Vite. Animationen laufen mit GSAP, ScrollTrigger und Lenis. Skripte und Schriften werden selbst gehostet, die Content Security Policy lässt nur eigene Skripte zu. Das Logo ist als SVG mit der Markenschrift Airport umgesetzt.\n\nInhaltlich stützt sich die Seite auf die belegten Fakten der alten Website. Neu sind eine Chronik mit 11 Meilensteinen von 2008 bis 2026, ein FAQ mit 20 Fragen auf Ukrainisch und 23 auf Englisch samt FAQPage-Auszeichnung sowie eine Partnerseite mit 12 einheitlich aufbereiteten SVG-Logos. Das ISCC-EU-Zertifikat ist mit PDF, Link zum öffentlichen Register und Schema.org-Certification eingebunden. Organization- und LocalBusiness-Daten sowie hreflang für beide Sprachen helfen Suchmaschinen.\n\nDas Kontaktformular sendet über einen eigenen Cloudflare Worker per SMTP, geschützt durch Honeypot und Rate-Limit. Die E-Mail-Adresse ist gegen Spam-Bots verschleiert. Für das Team des Kunden habe ich eine PHP-Verwaltung gebaut: Artikel und Zertifikate lassen sich ohne Git und ohne Entwickler veröffentlichen, die Seiten werden dabei als statisches HTML geschrieben. Zum Schluss habe ich die Seite auf das Hosting des Kunden umgezogen, alte Adressen wie /sertifikation leiten per 301 auf die neuen weiter.",
+  "ergebnis": "Die neue Website läuft unter eko-oylis.com.ua und hat das alte PHP-System vollständig ersetzt. Sie ist zweisprachig, wird statisch ausgeliefert und führt die Markenelemente weiter, die das Unternehmen schon vorher genutzt hat.\n\nEKO-OYLIS kann Nachrichten und Zertifikate selbst veröffentlichen, ohne auf einen Entwickler zu warten. Das Zertifikat ist direkt auf der Seite prüfbar, und Partner aus der Gastronomie finden Leistungen, Ablauf und Kontakt in ihrer Sprache.",
+  "word_count": 390,
+  "claims": [
+    {
+      "text": "Sammelt und verarbeitet gebrauchtes Speiseöl in der Ukraine",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:15",
+      "quote": "Компания занимается сбором и переработкой отработанного растительного масла (UCO) на территории Украины"
+    },
+    {
+      "text": "Vertretung in Bulgarien (EU)",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:15",
+      "quote": "с дочерними представительствами в ЕС (Болгария"
+    },
+    {
+      "text": "Besteht seit 2008",
+      "source": "C:/Projects/Eko-Oylis-UA/src/_data/site.json:6",
+      "quote": "\"founded\": 2008"
+    },
+    {
+      "text": "Über 2500 Partnerbetriebe",
+      "source": "C:/Projects/Eko-Oylis-UA/src/_data/site.json:8",
+      "quote": "\"partnersCount\": 2500"
+    },
+    {
+      "text": "Alte Website auf eigenem PHP/MySQL-System",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:190",
+      "quote": "legacy-сайта (custom PHP+MySQL фреймворк"
+    },
+    {
+      "text": "Vollständige Neuentwicklung: Layout",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:34",
+      "quote": "- Вёрстка (полностью)"
+    },
+    {
+      "text": "Neu: Texte",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:35",
+      "quote": "- Контент / копирайтинг (полностью, с сохранением фактов)"
+    },
+    {
+      "text": "Neu: Navigation",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:36",
+      "quote": "- Архитектура сайта / навигация"
+    },
+    {
+      "text": "Neu: Performance, SEO, Barrierefreiheit",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:38",
+      "quote": "- Performance / SEO / a11y"
+    },
+    {
+      "text": "Logo mit sechs grünen Sechsecken bleibt",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:26",
+      "quote": "**Логотип** — шесть зелёных гексагонов"
+    },
+    {
+      "text": "Grüne Farbwelt bleibt",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:27",
+      "quote": "**Палитра** — зелёная"
+    },
+    {
+      "text": "Wabenmotiv bleibt",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:28",
+      "quote": "**Соты (honeycomb)** — визуальный паттерн из логотипа"
+    },
+    {
+      "text": "Kontakt- und Rechtsangaben übernommen",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:29",
+      "quote": "**Контакты и юридическая информация** — перенос из текущего сайта"
+    },
+    {
+      "text": "Zweisprachig, Ukrainisch als Hauptsprache, Englisch",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:20",
+      "quote": "UA primary (`/`), EN (`/en/`)"
+    },
+    {
+      "text": "Englisch für internationale Geschäftspartner",
+      "source": "C:/Projects/Eko-Oylis-UA/STATUS.md:285",
+      "quote": "Q3 = B → asymmetric (UA local market / EN intl B2B)"
+    },
+    {
+      "text": "Sechs Varianten verglichen",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:2507",
+      "quote": "deep-research subagent собрал fact-sheet по 6 кандидатам"
+    },
+    {
+      "text": "Gewichtete Bewertungsmatrix",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:2508",
+      "quote": "weighted scoring matrix"
+    },
+    {
+      "text": "Eleventy 3 vorn: geringer Umbauaufwand vom Prototyp",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:2516",
+      "quote": "минимальный migration cost (prototype JS переносится 1:1)"
+    },
+    {
+      "text": "Niedriges Langzeitrisiko",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:2516",
+      "quote": "самый low-risk 5-year path"
+    },
+    {
+      "text": "Nunjucks-Templates",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:62",
+      "quote": "| Markup | **Nunjucks (.njk) → HTML5 output** | Locked |"
+    },
+    {
+      "text": "CSS mit Custom Properties",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:63",
+      "quote": "| Styles | **CSS3 + Custom Properties**"
+    },
+    {
+      "text": "Vanilla JavaScript, gebündelt mit Vite",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:64",
+      "quote": "| Scripts | **Vanilla JS (ES6+)**, bundled via `eleventy-plugin-vite` | Locked |"
+    },
+    {
+      "text": "GSAP, ScrollTrigger, Lenis, selbst gehostet",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:66",
+      "quote": "**GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.14** (npm self-hosted)"
+    },
+    {
+      "text": "Schriften selbst gehostet",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:2049",
+      "quote": "Zero `googleapis.com`/`gstatic.com` refs в built HTML"
+    },
+    {
+      "text": "CSP lässt nur eigene Skripte zu",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:2522",
+      "quote": "CSP: `script-src 'self'`"
+    },
+    {
+      "text": "Logo als SVG mit Markenschrift Airport",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:611",
+      "quote": "PX-136: Header/footer logo — склеенный lockup SVG, фирменный шрифт Airport"
+    },
+    {
+      "text": "Inhalte auf Basis belegter Fakten der alten Seite",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:2352",
+      "quote": "fabricated hero/KPI replaced with real copy"
+    },
+    {
+      "text": "Chronik mit 11 Meilensteinen",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:1475",
+      "quote": "`src/_data/timeline.json` — 11 milestones in CEO order"
+    },
+    {
+      "text": "Chronik von 2008 bis 2026",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:1440",
+      "quote": "PX-114: About timeline 2008-2026 + i18n UA/EN sync"
+    },
+    {
+      "text": "FAQ: 20 Fragen UA, 23 EN",
+      "source": "C:/Projects/Eko-Oylis-UA/STATUS.md:278",
+      "quote": "UA 20 Q × 6 clusters / EN 23 Q × 7 clusters"
+    },
+    {
+      "text": "FAQPage-Auszeichnung",
+      "source": "C:/Projects/Eko-Oylis-UA/STATUS.md:276",
+      "quote": "Schema.org FAQPage JSON-LD"
+    },
+    {
+      "text": "Partnerseite mit 12 einheitlichen SVG-Logos",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:1525",
+      "quote": "**Final src/assets/partners/:** 12 .svg только"
+    },
+    {
+      "text": "ISCC-EU-Zertifikat mit PDF und Registerlink",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:1345",
+      "quote": "2 SVG-icon buttons (Download PDF + Verify on ISCC registry)"
+    },
+    {
+      "text": "Schema.org-Certification",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:1346",
+      "quote": "`Organization.hasCredential` = `Certification`"
+    },
+    {
+      "text": "Organization- und LocalBusiness-Daten",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:2350",
+      "quote": "`src/_data/schema.js` — Organization + LocalBusiness expanded"
+    },
+    {
+      "text": "hreflang für beide Sprachen",
+      "source": "C:/Projects/Eko-Oylis-UA/CLAUDE.md:20",
+      "quote": "hreflang `uk` + `en`"
+    },
+    {
+      "text": "Formular über eigenen Cloudflare Worker per SMTP",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:738",
+      "quote": "PX-133: Form backend migration FormSubmit.co → own SMTP via Cloudflare Worker"
+    },
+    {
+      "text": "Honeypot",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:747",
+      "quote": "POST handler с honeypot validation"
+    },
+    {
+      "text": "Rate-Limit",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:747",
+      "quote": "KV rate-limit (5 req/IP/hour, 3600 TTL)"
+    },
+    {
+      "text": "E-Mail-Adresse gegen Spam-Bots verschleiert",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:1893",
+      "quote": "**Task A-3 — Email obfuscation**"
+    },
+    {
+      "text": "PHP-Verwaltung: Artikel ohne Git und ohne Entwickler",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:135",
+      "quote": "customer публикует статьи через web-форму, без GitHub, без developer-in-the-loop"
+    },
+    {
+      "text": "Zertifikate über die Verwaltung",
+      "source": "C:/Projects/Eko-Oylis-UA/STATUS.md:7",
+      "quote": "customer самостоятельно грузит PDF + preview JPG + метаданные сертификата"
+    },
+    {
+      "text": "Seiten als statisches HTML geschrieben",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:145",
+      "quote": "save.php пишет `/news/{slug}/index.html` напрямую в webroot"
+    },
+    {
+      "text": "Umzug auf das Hosting des Kunden",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:189",
+      "quote": "на production хостинг заказчика"
+    },
+    {
+      "text": "Alte Adressen wie /sertifikation leiten per 301 weiter",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:20",
+      "quote": "legacy slug `/sertifikation → /sustainability/`"
+    },
+    {
+      "text": "Altes PHP-System durch statische Seite ersetzt",
+      "source": "C:/Projects/Eko-Oylis-UA/STATUS.md:17",
+      "quote": "Legacy PHP+MySQL заменён static-сборкой"
+    },
+    {
+      "text": "Läuft unter eko-oylis.com.ua",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:201",
+      "quote": "| og:image / canonical / sitemap | на eko-oylis.com.ua ✓ |"
+    },
+    {
+      "text": "Partnerbetriebe aus der Gastronomie (HoReCa)",
+      "source": "C:/Projects/AiS152/data/projects.json:260",
+      "quote": "2500+ HoReCa-Partner"
+    },
+    {
+      "text": "Leistungen, Ablauf und Kontakt als eigene Seiten in beiden Sprachen",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:2447",
+      "quote": "13 EN mirror pages with identical body structure"
+    },
+    {
+      "text": "Ablauf-Seite (Prozess in Schritten)",
+      "source": "C:/Projects/Eko-Oylis-UA/DEVLOG.md:2309",
+      "quote": "formal 6-step flow Contact → Assessment → Agreement → Containers (20–1000 L) → Collection → Payment"
+    }
+  ]
+}

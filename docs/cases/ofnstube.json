@@ -1,0 +1,199 @@
+{
+  "slug": "ofnstube",
+  "ausgangslage": "Ofnstube ist ein Konzeptprojekt: ein erfundenes Craft-Burger-Restaurant in München mit bayerischer Stuben-Atmosphäre. Einen realen Betrieb gibt es nicht. Veröffentlicht ist die Website unter einer Subdomain meines Portfolios.\n\nDie Anforderungen habe ich wie bei einem echten Lokal gesetzt. Die Speisekarte braucht eine Allergenkennzeichnung nach LMIV, beim Bier gilt der Jugendschutz, reserviert wird ohne Onlineshop. Die Inhalte sollten auf Deutsch und Englisch erscheinen, weil in München viele Touristen unterwegs sind, und die Seite sollte die Anforderungen des BFSG an Barrierefreiheit berücksichtigen.\n\nAus drei Markenvarianten habe ich eine ausgewählt: Rauchschwarz, Glut-Orange und Knochenweiß, dazu ein pulsierender „Glut-Ring“ als wiederkehrendes Motiv.",
+  "umsetzung": "Die Website besteht aus zehn Seiten in reinem HTML, CSS und JavaScript, ohne Framework. Animationen laufen über GSAP mit ScrollTrigger und Lenis. Die Bibliotheken und die Schriften Fraunces und Inter liegen lokal, externe Schriftdienste werden nicht geladen. Wer im System reduzierte Bewegung eingestellt hat, sieht die Seite ohne diese Effekte.\n\nDie Speisekarte kommt aus Datendateien mit 14 Beispielgerichten und 15 Getränken. Jedes Gericht zeigt seine Allergene als sichtbare Kennzeichnung direkt unter dem Namen, nicht versteckt in einem Tooltip. Bier und Radler tragen einen Hinweis „ab 16“. Ein Altersfilter für die ganze Seite entfällt, weil das Konzept Alkohol nur zum Verzehr vor Ort vorsieht.\n\nDie Gestaltung setzt auf einen asymmetrischen Hero mit großem Foodbild, eine Speisekarte im Magazin-Stil mit breiten, abwechselnden Zeilen, ein Laufband und einen großen Aufruf zur Reservierung.\n\nDie 21 Fotos von Burgern, Beilagen, Desserts, Innenraum und Team sind KI-generiert, beim Team sind nur Hände zu sehen. Die Reservierungsseite zeigt drei Wege, alle mit Beispieldaten: WhatsApp, Telefon und einen Platzhalter für das Reservierungs-Widget von Quandoo. Wie bei einem echten Widget erscheint er erst nach Einwilligung. Alle Inhaltsseiten gibt es auf Deutsch und Englisch, die Rechtstexte bewusst nur auf Deutsch.",
+  "ergebnis": "Das Ergebnis ist eine vollständige Website für ein Konzept-Restaurant mit zehn Seiten, öffentlich erreichbar über GitHub Pages unter einer eigenen Subdomain. Sie zeigt, wie Allergenkennzeichnung, Jugendschutz, Einwilligung vor externen Diensten und Zweisprachigkeit in einem Auftritt zusammenpassen.\n\nDie Bilder habe ich vor der Veröffentlichung komprimiert. Die Darstellung ist für Smartphones mit 375 Pixel Breite und für große Bildschirme mit 1920 Pixel Breite angepasst.\n\nDie Gerichte der Speisekarte stehen in einer Datendatei. Wer dort ein Gericht ergänzt, sieht es samt Allergenkennzeichnung automatisch auf der Seite.",
+  "word_count": 379,
+  "claims": [
+    {
+      "text": "Konzeptprojekt: erfundenes Craft-Burger-Restaurant in München, bayerische Stube, kein realer Betrieb",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:15",
+      "quote": "Ofnstube — Munich Craft-Burger (fictional brand, баварский Stube-feel)"
+    },
+    {
+      "text": "Veröffentlicht unter Subdomain des Portfolios",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:246",
+      "quote": "Pages enabled · CNAME ofnstube.ais152.com"
+    },
+    {
+      "text": "Kein Onlineshop",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:17",
+      "quote": "**Без e-commerce** — ресторан не продаёт онлайн."
+    },
+    {
+      "text": "Deutsch und Englisch für Touristen",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:21",
+      "quote": "Deutsch primary + English secondary (Munich-tourist audience)"
+    },
+    {
+      "text": "Allergenkennzeichnung nach LMIV",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:22",
+      "quote": "LMIV §1169/2011 (Anhang II аллергены + Zusatzstoffe)"
+    },
+    {
+      "text": "Jugendschutz beim Bier und BFSG",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:22",
+      "quote": "JuSchG §9 (≥16 для пива, in-house only), BFSG 2025"
+    },
+    {
+      "text": "Drei Markenvarianten, Farben Rauchschwarz, Glut-Orange, Knochenweiß, Glut-Ring",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:22",
+      "quote": "palette smoked-black + ember-orange + bone, Leitmotiv Glut-Ring — выбрано CEO из 3 brand options"
+    },
+    {
+      "text": "Glut-Ring pulsiert",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:17",
+      "quote": "Leitmotiv «Glut-Ring» (пульсирующее свечение огня в hover'ах)"
+    },
+    {
+      "text": "Zehn Seiten",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:51",
+      "quote": "10 HTML-страниц (index, menu, reservation, ueber-uns, standort, kontakt, impressum,"
+    },
+    {
+      "text": "Reines HTML, CSS, JavaScript",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:16",
+      "quote": "Static website (Vanilla HTML5 + CSS3 + JS)"
+    },
+    {
+      "text": "GSAP, ScrollTrigger, Lenis lokal statt CDN",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:64",
+      "quote": "Lenis + GSAP + ScrollTrigger (self-hosted UMD в `assets/vendor/`, НЕ CDN)"
+    },
+    {
+      "text": "Schriften Fraunces und Inter lokal",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:65",
+      "quote": "Self-hosted WOFF2 (DSGVO) — **Fraunces (variable, headings) + Inter (variable, body)**"
+    },
+    {
+      "text": "Keine externen Schriftdienste",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:68",
+      "quote": "Google-Fonts-CDN = 0 · все `<img>` с width/height"
+    },
+    {
+      "text": "Reduzierte Bewegung wird berücksichtigt",
+      "source": "C:/Projects/Ofnstube/assets/css/motion.css:75",
+      "quote": "@media (prefers-reduced-motion: reduce) {"
+    },
+    {
+      "text": "14 Beispielgerichte und 15 Getränke als Daten",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:54",
+      "quote": "`data/menu.json` (14 Gerichte, LMIV) + `data/drinks.json` (15 Getränke, JuSchG)"
+    },
+    {
+      "text": "Allergene sichtbar pro Gericht",
+      "source": "C:/Projects/Ofnstube/assets/js/menu-renderer.js:4",
+      "quote": "LMIV-CONTRACT-MARKER — every dish gets a VISIBLE allergen"
+    },
+    {
+      "text": "Kein Tooltip",
+      "source": "C:/Projects/Ofnstube/assets/js/menu-renderer.js:5",
+      "quote": "chip-row in the DOM (never a tooltip)"
+    },
+    {
+      "text": "Allergene unter dem Namen des Gerichts",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:132",
+      "quote": "Render: **visible chip-row под именем блюда в DOM**"
+    },
+    {
+      "text": "Hinweis ab 16 bei Bier und Radler",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:137",
+      "quote": "каждое алкогольное блюдо имеет visible `≥ 16` chip"
+    },
+    {
+      "text": "Kein Altersfilter, Konzept sieht Alkohol nur vor Ort vor",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:138",
+      "quote": "НЕТ site-wide age-gate — Ofnstube продаёт алкоголь **только in-house**"
+    },
+    {
+      "text": "Asymmetrischer Hero mit großem Foodbild",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:132",
+      "quote": "асимметричный food-first (claim слева, fullbleed image-панель"
+    },
+    {
+      "text": "Laufband, Speisekarte im Magazin-Stil mit breiten abwechselnden Zeilen",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:134",
+      "quote": "Marquee-strip вместо статичного trust-bar; editorial-меню (чередующиеся широкие строки с"
+    },
+    {
+      "text": "Großer Aufruf zur Reservierung",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:135",
+      "quote": "big ember-CTA band"
+    },
+    {
+      "text": "21 Fotos: Burger, Beilagen, Desserts, Innenraum, Team",
+      "source": "C:/Projects/Ofnstube/STATUS.md:26",
+      "quote": "**21 фото на production:** hero + 7 burgers + 5 sides + 2 desserts + 3 interior + 3 team"
+    },
+    {
+      "text": "Fotos KI-generiert (Higgsfield)",
+      "source": "C:/Projects/Ofnstube/CLAUDE.md:69",
+      "quote": "Image/Video MCP — генерация food-photo, hero-video"
+    },
+    {
+      "text": "Beim Team nur Hände",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:231",
+      "quote": "focus на hands, no faces (anti-uncanny)"
+    },
+    {
+      "text": "Quandoo-Platzhalter erscheint erst nach Einwilligung",
+      "source": "C:/Projects/Ofnstube/pages/reservation.html:165",
+      "quote": "Es wird erst nach deiner Zustimmung geladen."
+    },
+    {
+      "text": "Reservierungsseite: Quandoo-Widget, WhatsApp, Telefon",
+      "source": "C:/Projects/Ofnstube/pages/reservation.html:7",
+      "quote": "bequem über das Quandoo-Widget, per WhatsApp oder telefonisch"
+    },
+    {
+      "text": "Alle Inhaltsseiten zweisprachig, Rechtstexte nur Deutsch",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:213",
+      "quote": "alle 6 Inhaltsseiten zweisprachig; Legal-Seiten"
+    },
+    {
+      "text": "Öffentlich erreichbar über GitHub Pages",
+      "source": "C:/Projects/Ofnstube/STATUS.md:19",
+      "quote": "Stage 3** — GitHub repo Ofnstube-site + Pages + CNAME ofnstube.ais152.com"
+    },
+    {
+      "text": "Angepasst für 375 und 1920 Pixel",
+      "source": "C:/Projects/Ofnstube/STATUS.md:18",
+      "quote": "mobile responsive (375px) + large-desktop (1920px)"
+    },
+    {
+      "text": "Gerichte aus Datendatei gerendert",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:191",
+      "quote": "`menu.html` dish-карточки рендерятся из `menu.json`"
+    },
+    {
+      "text": "Kennzeichnung wird aus den Daten erzeugt",
+      "source": "C:/Projects/Ofnstube/assets/js/menu-renderer.js:25",
+      "quote": "var codes = item['data-allergens'] || [];"
+    },
+    {
+      "text": "Gerichte sind Beispieldaten",
+      "source": "C:/Projects/Ofnstube/data/menu.json:3",
+      "quote": "MOCK-Daten — Stage 1 R&D-Prototyp. Allergen- und Preisdaten sind Platzhalter"
+    },
+    {
+      "text": "Kategorie Bier & Radler",
+      "source": "C:/Projects/Ofnstube/data/drinks.json:9",
+      "quote": "{ \"id\": \"bier\", \"label\": \"Bier & Radler\", \"label_en\": \"Beer & Radler\" }"
+    },
+    {
+      "text": "Quandoo-Widget im Prototyp als Platzhalter",
+      "source": "C:/Projects/Ofnstube/pages/reservation.html:171",
+      "quote": "Im Prototyp ist es als Platzhalter hinterlegt"
+    },
+    {
+      "text": "Alle Angaben sind Beispieldaten",
+      "source": "C:/Projects/Ofnstube/pages/reservation.html:327",
+      "quote": "fiktives Demo-Projekt, alle Angaben sind Platzhalter"
+    },
+    {
+      "text": "Bilder vor der Veröffentlichung komprimiert",
+      "source": "C:/Projects/Ofnstube/DEVLOG.md:209",
+      "quote": "PNG→JPG q85"
+    }
+  ]
+}

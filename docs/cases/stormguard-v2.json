@@ -1,0 +1,184 @@
+{
+  "slug": "stormguard-v2",
+  "ausgangslage": "Storm Guard Professional ist eine Marke für natürliche Pflegekosmetik für Hunde und Katzen mit Premium-Anspruch. Nach eigener Darstellung entstand sie 2025 als Weiterführung eines 1999 gegründeten Familienzwingers. Das Sortiment umfasst sieben Produkte: Shampoos für Welpen, für empfindliche Haut und für die tägliche Pflege, einen Conditioner und drei Pflegesets.\n\nEs gab bereits eine erste Version der Website. Die Entscheidung fiel auf einen kompletten Neubau; die alte Seite wurde archiviert und diente nur noch als Quelle für Texte, Bilder und gestalterische Vorgaben. Die neue Website sollte zunächst Englisch und Bulgarisch sprechen, später kam Deutsch hinzu.",
+  "umsetzung": "Technisch habe ich die Seite mit dem Static-Site-Generator Eleventy und Nunjucks-Templates aufgebaut, dazu modulares CSS und JavaScript ohne Framework. Produkte, Navigation und Übersetzungen liegen jeweils in genau einer Datendatei, Kopf- und Fußbereich sind gemeinsame Bausteine. Seitenspezifische Stile sind so getrennt, dass eine Änderung an einer Seite keine andere berührt.\n\nDie Kollektion lässt sich nach Tierart, Pflegebedarf, Felltyp und Produktart filtern, mit Schnellansicht. Jede Produktseite enthält FAQ und die INCI-Liste der Inhaltsstoffe, dazu strukturierte Produktdaten für Suchmaschinen. Inhaltsseiten zu Herkunft, Herstellung, Zertifizierung und Wissenschaft erzählen die Geschichte der Marke. Die Sprachversionen entstehen aus Übersetzungsdateien, hreflang-Verweise und Sitemap werden automatisch erzeugt. Das Journal lädt seine Beiträge aus Supabase, bereinigt sie vor der Anzeige und wird über einen Admin-Bereich gepflegt.\n\nBeim Datenschutz lädt der Cookie-Banner Analyse-Skripte erst nach Einwilligung. Die Schriften samt kyrillischer Zeichensätze liegen auf dem eigenen Server statt bei Google Fonts, dazu kommen Sicherheits-Header wie HSTS und CSP. Das Redesign im Stil »Apothecary Editorial« setzt auf eine warme Papierpalette und die Serifenschrift Fraunces. Das Deployment läuft automatisch über GitHub Actions.",
+  "ergebnis": "Die neue Seite ist auf der Domain der Marke live: Startseite, Kollektion, Produktseiten und Inhaltsseiten in Englisch, Bulgarisch und Deutsch, alle im neuen Design. Die Inhalte bleiben auch ohne JavaScript sichtbar.\n\nFür die Pflege bedeutet der Aufbau: Ein Produkt, ein Menüpunkt oder eine Übersetzung wird an genau einer Stelle geändert und erscheint auf allen Seiten. Beiträge im Journal entstehen im Admin-Bereich, ohne dass jemand den Code anfassen muss.",
+  "word_count": 341,
+  "claims": [
+    {
+      "text": "Marke für natürliche Pflegekosmetik für Hunde und Katzen, Premium-Anspruch",
+      "source": "C:/Projects/StormGuard-V2/docs/content/de/DE_08_Homepage.md:9",
+      "quote": "Premium natürliche Pflegekosmetik für Hunde und Katzen."
+    },
+    {
+      "text": "2025 als Weiterführung eines 1999 gegründeten Familienzwingers entstanden",
+      "source": "C:/Projects/StormGuard-V2/docs/content/de/DE_08_Homepage.md:18",
+      "quote": "Storm Guard Professional wurde 2025 als Weiterführung eines 1999 gegründeten Familienzwingers ins Leben gerufen."
+    },
+    {
+      "text": "Sortiment: sieben Produkte",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:1149",
+      "quote": "products.json (7 products, all fields from V1)"
+    },
+    {
+      "text": "Drei Shampoos, ein Conditioner, drei Pflegesets",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:325",
+      "quote": "7 product pages (welpenshampoo, hundeshampoo-sensitive, hundeshampoo, hundeconditioner, welpen-pflegeset, sensitive-ritual-set, everyday-ritual-set)"
+    },
+    {
+      "text": "Kompletter Neubau, alte Seite archiviert",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:1141",
+      "quote": "CEO approved full site rebuild. Old project (StormGuard V1) becomes archive."
+    },
+    {
+      "text": "Alte Seite nur Quelle für Texte, Bilder, Gestaltung",
+      "source": "C:/Projects/StormGuard-V2/CLAUDE.md:33",
+      "quote": "use ONLY for reading texts, images, design reference."
+    },
+    {
+      "text": "Sprachen Englisch und Bulgarisch",
+      "source": "C:/Projects/StormGuard-V2/CLAUDE.md:14",
+      "quote": "Directory data files (`en/en.json`, `bg/bg.json`)"
+    },
+    {
+      "text": "Deutsch später hinzugekommen",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:311",
+      "quote": "T004: Немецкая версия сайта (DE) — 24 страницы"
+    },
+    {
+      "text": "Eleventy mit Nunjucks-Templates",
+      "source": "C:/Projects/StormGuard-V2/CLAUDE.md:10",
+      "quote": "11ty v3.1.5 (Nunjucks templates)"
+    },
+    {
+      "text": "JavaScript ohne Framework",
+      "source": "C:/Projects/StormGuard-V2/CLAUDE.md:5",
+      "quote": "Eleventy (11ty) v3.1.5 + Vanilla JS + CSS + Supabase + GSAP"
+    },
+    {
+      "text": "Modulares CSS",
+      "source": "C:/Projects/StormGuard-V2/CLAUDE.md:12",
+      "quote": "Modular (base.css + layout.css + components.css + pages/*.css)"
+    },
+    {
+      "text": "Produkte, Navigation, Übersetzungen in je einer Datendatei; Änderung an einer Stelle",
+      "source": "C:/Projects/StormGuard-V2/CLAUDE.md:19",
+      "quote": "Products in `products.json`, navigation in `navigation.json`, translations in `i18n/*.json`."
+    },
+    {
+      "text": "Kopf- und Fußbereich als gemeinsame Bausteine",
+      "source": "C:/Projects/StormGuard-V2/CLAUDE.md:20",
+      "quote": "Header/footer are `_includes/*.njk` — edit once, all pages update."
+    },
+    {
+      "text": "Seitenspezifische Stile getrennt",
+      "source": "C:/Projects/StormGuard-V2/CLAUDE.md:18",
+      "quote": "Changes to one page MUST NOT affect another."
+    },
+    {
+      "text": "Filter nach Tierart, Pflegebedarf, Felltyp, Produktart",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:776",
+      "quote": "Filter sidebar: 4 groups (Pet, Care Need, Coat Type, Product Type)"
+    },
+    {
+      "text": "Schnellansicht in der Kollektion",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:502",
+      "quote": "checkbox filters, hero slider, quick-view modal, add-to-cart delegation"
+    },
+    {
+      "text": "Produktseiten mit FAQ und INCI-Liste",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:740",
+      "quote": "8 sections + 5 FAQ + INCI"
+    },
+    {
+      "text": "Strukturierte Produktdaten für Suchmaschinen",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:759",
+      "quote": "Schema.org Product with name, sku, price, brand"
+    },
+    {
+      "text": "Inhaltsseiten zu Herkunft, Herstellung, Zertifizierung",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:579",
+      "quote": "F2.6: Heritage Pages (5 pages)"
+    },
+    {
+      "text": "Inhaltsseiten zu Herstellung und Zertifizierung",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:590",
+      "quote": "Manufacturing Standards"
+    },
+    {
+      "text": "Inhaltsseiten zur Wissenschaft",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:563",
+      "quote": "F2.7: Science Pages (3 pages)"
+    },
+    {
+      "text": "hreflang-Verweise automatisch",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:1147",
+      "quote": "hreflang filter: auto-generates"
+    },
+    {
+      "text": "Sitemap automatisch",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:1151",
+      "quote": "sitemap.njk (auto-generated from all pages with xhtml:link hreflang)"
+    },
+    {
+      "text": "Journal lädt Beiträge aus Supabase",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:440",
+      "quote": "`js/journal.js` — fetch posts, render cards"
+    },
+    {
+      "text": "Beiträge werden vor der Anzeige bereinigt",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:449",
+      "quote": "DOMPurify mandatory for all blog content (XSS prevention)"
+    },
+    {
+      "text": "Journal über Admin-Bereich gepflegt, ohne Code",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:451",
+      "quote": "Admin panel = standalone HTML, uses Supabase directly"
+    },
+    {
+      "text": "Analyse-Skripte erst nach Einwilligung",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:421",
+      "quote": "GTM verified NOT in HTML — only loaded by JS after consent"
+    },
+    {
+      "text": "Schriften samt kyrillischer Zeichensätze auf eigenem Server",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:117",
+      "quote": "self-hosted Fraunces+Inter (13 woff2, все сабсеты вкл. cyrillic), Google Fonts CDN убран (DSGVO)"
+    },
+    {
+      "text": "Sicherheits-Header HSTS und CSP",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:423",
+      "quote": ".htaccess updated — HSTS, CSP, Permissions-Policy"
+    },
+    {
+      "text": "Redesign im Stil Apothecary Editorial",
+      "source": "C:/Projects/StormGuard-V2/docs/adr/ADR-004-design-direction-apothecary.md:9",
+      "quote": "Apothecary Editorial"
+    },
+    {
+      "text": "Warme Papierpalette",
+      "source": "C:/Projects/StormGuard-V2/docs/adr/ADR-004-design-direction-apothecary.md:10",
+      "quote": "тёплый крем/бумага"
+    },
+    {
+      "text": "Serifenschrift Fraunces",
+      "source": "C:/Projects/StormGuard-V2/docs/adr/ADR-004-design-direction-apothecary.md:11",
+      "quote": "Display-serif: Fraunces"
+    },
+    {
+      "text": "Deployment automatisch über GitHub Actions",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:405",
+      "quote": "`.github/workflows/deploy.yml` — build → test → SFTP deploy via secrets"
+    },
+    {
+      "text": "Seite live auf der Domain, alle Seitentypen in EN/BG/DE im neuen Design",
+      "source": "C:/Projects/StormGuard-V2/STATUS.md:7",
+      "quote": "**Редизайн concept A — ЖИВ на проде** (T013 Phase 5, W1–W7): home/collection/PDP/контентные × en/bg/de"
+    },
+    {
+      "text": "Inhalte ohne JavaScript sichtbar",
+      "source": "C:/Projects/StormGuard-V2/DEVLOG.md:68",
+      "quote": "каждый деплой виден сразу + контент виден ДАЖЕ без JS"
+    }
+  ]
+}

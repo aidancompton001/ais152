@@ -1,0 +1,254 @@
+{
+  "slug": "rundumshaus",
+  "ausgangslage": "Rund ums Haus Littawe ist ein junger Betrieb aus Osnabrück. Er bietet Hausmeisterservice, Gartenpflege, Dacharbeiten und Entrümpelung an und arbeitet in Osnabrück und Umgebung.\n\nGebraucht wurde eine deutschsprachige Website, die die Leistungen klar zeigt, Anfragen per Telefon, WhatsApp und Formular leicht macht und in der lokalen Google-Suche gefunden wird, auch in den Orten rund um Osnabrück. Geplant waren eine Startseite sowie Seiten für Leistungen, Referenzen und Kontakt. Texte, Bilder und Referenzen sollte der Inhaber später selbst pflegen können, ohne einen Entwickler zu beauftragen.",
+  "umsetzung": "Ich habe die Website mit Next.js 16, Tailwind CSS und GSAP gebaut und veröffentliche sie über GitHub Actions auf GitHub Pages. Symbole sind eigene SVG-Icons, die Bildwelt habe ich mit KI erzeugt. Eine fest stehende WhatsApp-Schaltfläche, ein Kontaktformular und ein DSGVO-Hinweis gehören dazu. Die Startseite bündelt Leistungen, echte Google-Bewertungen in einem Slider, FAQ und einen Kontaktblock mit Anruf, WhatsApp, E-Mail und Formular. Eine Über-uns-Seite stellt den Betrieb vor.\n\nDer Schwerpunkt liegt auf lokaler Sichtbarkeit. Für 98 Orte im Einsatzgebiet erzeugt ein Generator Landingpages je Leistung, zusammen 490 Seiten mit wechselnden Einleitungen, ortsbezogenen Fakten, FAQ und strukturierten Daten. Jede dieser Seiten verlinkt auf die anderen Leistungen am selben Ort, eine Einsatzgebiet-Seite listet alle Orte. Ergänzt wird das durch einen Ratgeber, Schema.org-Daten und eine llms.txt für KI-Suchdienste.\n\nFür die Pflege gibt es ein Admin-Panel auf Basis von Sveltia CMS. Dort ändert der Inhaber Texte, Bilder und Meta-Angaben, hochgeladene Bilder bekommen automatisch responsive Varianten. Als die Schrottabholung durch Garten- und Landschaftsbau ersetzt wurde, habe ich die neue Leistung mit 98 Ortsseiten und Weiterleitungen für die alten Adressen umgesetzt.\n\nIm Sommer 2026 folgte ein Redesign: neue Farbpalette auf allen Seiten, die Schrift Inter lokal eingebunden, eine weiße, mitlaufende Kopfzeile mit WhatsApp-Schaltfläche und ein Footer in vier Spalten.",
+  "ergebnis": "Die Website läuft unter rundumshaus-littawe.de und umfasst nach dem Redesign 617 Seiten und 511 Adressen in der Sitemap.\n\nKunden aus dem ganzen Einsatzgebiet finden zu ihrem Ort eine passende Seite und erreichen den Betrieb mit einem Klick. Der Inhaber pflegt Inhalte inzwischen selbst über das Admin-Panel.",
+  "word_count": 352,
+  "claims": [
+    {
+      "text": "Junger Betrieb (am Start)",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:15",
+      "quote": "бизнес на старте"
+    },
+    {
+      "text": "Sitz Osnabrück",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:15",
+      "quote": "49090 Osnabrück"
+    },
+    {
+      "text": "Leistungen: Hausmeisterservice, Gartenpflege, Dacharbeiten, Entrümpelung",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:15",
+      "quote": "Hausmeisterservice, Gartenpflege, Dacharbeiten, Entrümpelung, Schrottabholung"
+    },
+    {
+      "text": "Einsatzgebiet Osnabrück und Umgebung",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:16",
+      "quote": "Osnabrück und Umgebung (клиент)"
+    },
+    {
+      "text": "Deutschsprachige Website",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:49",
+      "quote": "| Language | Deutsch only | Locked |"
+    },
+    {
+      "text": "Sichtbarkeit auch in Orten rund um Osnabrück",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1035",
+      "quote": "TARGET_CITIES (7 ближних: Osnabrück, Bramsche, Wallenhorst, Belm, Bissendorf, Georgsmarienhütte, Melle)"
+    },
+    {
+      "text": "Geplant: Startseite, Leistungen",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:58",
+      "quote": "| **Leistungen** | Детальные карточки 5 услуг с описаниями и фото |"
+    },
+    {
+      "text": "Geplant: Kontaktseite",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:60",
+      "quote": "| **Kontakt** | Форма (FormSubmit.co), телефон, email |"
+    },
+    {
+      "text": "Referenzen pflegt der Kunde selbst",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:59",
+      "quote": "Vorher/Nachher галерея (клиент наполняет сам)"
+    },
+    {
+      "text": "Texte und Bilder ohne Entwickler pflegen",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1252",
+      "quote": "может самостоятельно: менять тексты, добавлять услуги, загружать фото через CMS"
+    },
+    {
+      "text": "Next.js 16",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1542",
+      "quote": "Framework: Next.js 16 (CEO утвердил, PH blueprint)"
+    },
+    {
+      "text": "Tailwind CSS",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:42",
+      "quote": "| Styling | Tailwind CSS 4 | Locked |"
+    },
+    {
+      "text": "GSAP",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:43",
+      "quote": "| Animations | GSAP + ScrollTrigger + SplitText | Locked |"
+    },
+    {
+      "text": "Veröffentlichung über GitHub Actions",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1565",
+      "quote": "CI GREEN: GitHub Actions (lint→test→build→.nojekyll→deploy)"
+    },
+    {
+      "text": "GitHub Pages mit eigener Domain",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1271",
+      "quote": "GitHub Pages: custom domain = rundumshaus-littawe.de, HTTPS enforced"
+    },
+    {
+      "text": "Eigene SVG-Icons",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1324",
+      "quote": "замена ВСЕХ эмодзи на кастомные dual-tone SVG"
+    },
+    {
+      "text": "KI-generierte Bildwelt",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1642",
+      "quote": "Все 17 AI-фото размещены"
+    },
+    {
+      "text": "Fest stehende WhatsApp-Schaltfläche",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1397",
+      "quote": "WhatsApp кнопка (fixed z-40"
+    },
+    {
+      "text": "Kontaktformular",
+      "source": "C:/Projects/RundUmsHaus/CLAUDE.md:60",
+      "quote": "| **Kontakt** | Форма (FormSubmit.co), телефон, email |"
+    },
+    {
+      "text": "DSGVO-Hinweis",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1208",
+      "quote": "Баннер информационный (DSGVO Art. 13)"
+    },
+    {
+      "text": "Startseite: echte Google-Bewertungen im Slider",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:211",
+      "quote": "scroll-snap slider из 8 реальных Google-отзывов"
+    },
+    {
+      "text": "Startseite: FAQ",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:212",
+      "quote": "FAQPage Schema (на homepage её раньше не было)"
+    },
+    {
+      "text": "Startseite: Kontaktblock mit Anruf, WhatsApp, E-Mail, Formular",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:216",
+      "quote": "большой full-width CTA-блок (Anrufen/WhatsApp/E-Mail/Formular)"
+    },
+    {
+      "text": "Über-uns-Seite",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:789",
+      "quote": "**/ueber-uns страница:** FamilyBusinessBlock"
+    },
+    {
+      "text": "98 Orte",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:897",
+      "quote": "`cities.json` обогащён: 98 городов"
+    },
+    {
+      "text": "490 Landingpages",
+      "source": "C:/Projects/RundUmsHaus/docs/SEO_RESULTS.md:18",
+      "quote": "| Total programmatic landing pages | 490 |"
+    },
+    {
+      "text": "Wechselnde Einleitungen und FAQ",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:900",
+      "quote": "8 intro variants/service, 12 FAQ pool/service с rotation"
+    },
+    {
+      "text": "Ortsbezogene Fakten",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:900",
+      "quote": "city-specific Fakten"
+    },
+    {
+      "text": "Strukturierte Daten",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:930",
+      "quote": "Schema validity: BreadcrumbList, FAQPage, Service"
+    },
+    {
+      "text": "Jede Ortsseite verlinkt auf andere Leistungen am selben Ort",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:576",
+      "quote": "Each of 490 pages now links to 4 same-city other-service pages"
+    },
+    {
+      "text": "Einsatzgebiet-Seite listet alle Orte",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:250",
+      "quote": "/einsatzgebiet/ — все 98 городов"
+    },
+    {
+      "text": "Ratgeber",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:912",
+      "quote": "`/ratgeber` index page + `/ratgeber/[slug]` dynamic route"
+    },
+    {
+      "text": "Schema.org-Daten",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:211",
+      "quote": "AggregateRating уже в LocalBusiness Schema"
+    },
+    {
+      "text": "llms.txt für KI-Suchdienste",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:906",
+      "quote": "`public/llms.txt` (Anthropic standard, 8.1KB)"
+    },
+    {
+      "text": "Admin-Panel auf Basis von Sveltia CMS",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:191",
+      "quote": "/admin/ Sveltia 0.166.1"
+    },
+    {
+      "text": "Meta-Angaben im Admin änderbar",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:191",
+      "quote": "meta-overrides: 5 страниц + {city}-паттерны 5 услуг"
+    },
+    {
+      "text": "Hochgeladene Bilder bekommen automatisch responsive Varianten",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:191",
+      "quote": "generate-image-variants=prebuild"
+    },
+    {
+      "text": "Schrottabholung durch Garten- und Landschaftsbau ersetzt",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:39",
+      "quote": "PX-077: Schrottabholung → Garten- und Landschaftsbau LIVE"
+    },
+    {
+      "text": "Neue Leistung mit 98 Ortsseiten",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:46",
+      "quote": "98 city-страниц"
+    },
+    {
+      "text": "Weiterleitungen für alte Adressen",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:48",
+      "quote": "100 redirect-стабов (meta refresh 0 + canonical + noindex)"
+    },
+    {
+      "text": "Redesign: neue Farbpalette auf allen Seiten",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1688",
+      "quote": "Палитра макета на всех 617 страницах"
+    },
+    {
+      "text": "Schrift Inter lokal eingebunden",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1690",
+      "quote": "Шрифт Inter вместо двух гарнитур, собирается локально"
+    },
+    {
+      "text": "Weiße mitlaufende Kopfzeile mit WhatsApp",
+      "source": "C:/Projects/RundUmsHaus/STATUS.md:10",
+      "quote": "белая липкая шапка с WhatsApp"
+    },
+    {
+      "text": "Footer in vier Spalten",
+      "source": "C:/Projects/RundUmsHaus/STATUS.md:23",
+      "quote": "подвал в четыре колонки"
+    },
+    {
+      "text": "Redesign veröffentlicht",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1809",
+      "quote": "сопровождение после публикации"
+    },
+    {
+      "text": "Läuft unter rundumshaus-littawe.de",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1285",
+      "quote": "https://rundumshaus-littawe.de → 200 OK"
+    },
+    {
+      "text": "617 Seiten, 511 Adressen in der Sitemap",
+      "source": "C:/Projects/RundUmsHaus/STATUS.md:39",
+      "quote": "617 страниц, 511 адресов в карте сайта, 100 редиректов"
+    },
+    {
+      "text": "Inhaber pflegt Inhalte selbst über das Admin-Panel",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1816",
+      "quote": "переписал заголовок и подзаголовок первого экрана через админку"
+    },
+    {
+      "text": "Redesign im Sommer 2026 (August)",
+      "source": "C:/Projects/RundUmsHaus/DEVLOG.md:1681",
+      "quote": "### [S076] — 2026-08-13 — Перенос редизайна: цвета, шрифт, шапка"
+    }
+  ]
+}

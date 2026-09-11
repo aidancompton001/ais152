@@ -216,6 +216,24 @@
   </section>
   <section class="section">
     <div class="container">
+      <h2 class="section-title">Ausgangslage</h2>
+      <p>EKO-OYLIS sammelt und verarbeitet in der Ukraine gebrauchtes Speiseöl. Das Unternehmen besteht seit 2008, arbeitet mit über 2500 Partnerbetrieben und hat eine Vertretung in Bulgarien, also in der EU.</p><p>Die bisherige Website unter eko-oylis.com.ua lief auf einem eigenen PHP- und MySQL-System. Sie sollte vollständig neu entstehen: Layout, Texte, Navigation, Performance, SEO und Barrierefreiheit. Erhalten bleiben sollten das Logo mit sechs grünen Sechsecken, die grüne Farbwelt, das Wabenmotiv sowie die Kontakt- und Rechtsangaben. Die neue Seite sollte zweisprachig sein, mit Ukrainisch als Hauptsprache und Englisch für internationale Geschäftspartner.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Umsetzung</h2>
+      <p>Vor dem Aufbau habe ich sechs Technologie-Varianten mit einer gewichteten Bewertungsmatrix verglichen. Eleventy 3 lag vorn, vor allem wegen des geringen Umbauaufwands vom Designprototyp und des niedrigen Langzeitrisikos. Die Seite besteht aus Nunjucks-Templates, CSS mit Custom Properties und Vanilla JavaScript, gebündelt mit Vite. Animationen laufen mit GSAP, ScrollTrigger und Lenis. Skripte und Schriften werden selbst gehostet, die Content Security Policy lässt nur eigene Skripte zu. Das Logo ist als SVG mit der Markenschrift Airport umgesetzt.</p><p>Inhaltlich stützt sich die Seite auf die belegten Fakten der alten Website. Neu sind eine Chronik mit 11 Meilensteinen von 2008 bis 2026, ein FAQ mit 20 Fragen auf Ukrainisch und 23 auf Englisch samt FAQPage-Auszeichnung sowie eine Partnerseite mit 12 einheitlich aufbereiteten SVG-Logos. Das ISCC-EU-Zertifikat ist mit PDF, Link zum öffentlichen Register und Schema.org-Certification eingebunden. Organization- und LocalBusiness-Daten sowie hreflang für beide Sprachen helfen Suchmaschinen.</p><p>Das Kontaktformular sendet über einen eigenen Cloudflare Worker per SMTP, geschützt durch Honeypot und Rate-Limit. Die E-Mail-Adresse ist gegen Spam-Bots verschleiert. Für das Team des Kunden habe ich eine PHP-Verwaltung gebaut: Artikel und Zertifikate lassen sich ohne Git und ohne Entwickler veröffentlichen, die Seiten werden dabei als statisches HTML geschrieben. Zum Schluss habe ich die Seite auf das Hosting des Kunden umgezogen, alte Adressen wie /sertifikation leiten per 301 auf die neuen weiter.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Ergebnis</h2>
+      <p>Die neue Website läuft unter eko-oylis.com.ua und hat das alte PHP-System vollständig ersetzt. Sie ist zweisprachig, wird statisch ausgeliefert und führt die Markenelemente weiter, die das Unternehmen schon vorher genutzt hat.</p><p>EKO-OYLIS kann Nachrichten und Zertifikate selbst veröffentlichen, ohne auf einen Entwickler zu warten. Das Zertifikat ist direkt auf der Seite prüfbar, und Partner aus der Gastronomie finden Leistungen, Ablauf und Kontakt in ihrer Sprache.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
       <h2 class="section-title">Technik und Umfang</h2>
       <ul class="service-tags"><li>Corporate</li><li>Bilingual</li><li>Eleventy</li><li>GSAP</li></ul>
       <p>Umgesetzt 2026</p>

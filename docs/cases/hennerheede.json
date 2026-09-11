@@ -1,0 +1,184 @@
+{
+  "slug": "hennerheede",
+  "ausgangslage": "Henner Heede ist Creative Director für Fashion und Lifestyle in München, mit Stationen bei BOSS, MANGO, Baldessarini und Mustang. Entsprechend genau mussten Bild und Typografie in seinem Portfolio sitzen.\n\nAusgangspunkt war ein gekauftes Squarespace-Template. Dazu kamen KI-Mockups für die Bildsprache und handgezeichnete Skizzen des Kunden für den Aufbau der Seiten. Die Vorgaben: Markenlogos nur im Original, 1:1 und schwarz. Eine Editorial-Typografie mit engem Buchstabenabstand und großen Headlines. Nur Texte, die vom Kunden selbst stammen. Und später sollte er die Inhalte ohne Hilfe selbst pflegen können.",
+  "umsetzung": "Squarespace setzte der Layout-Genauigkeit enge Grenzen, deshalb bin ich auf WordPress mit einem selbst geschriebenen Theme umgestiegen. Es besteht aus 15 PHP-Dateien, das gesamte Markup ist eigener Code. Case Studies und CV-Stationen sind eigene Inhaltstypen; gepflegt wird über native Eingabefelder mit der WordPress-Mediathek, ohne kostenpflichtige Plugins.\n\nDer Aufbau folgt den Skizzen des Kunden: Case Studies aus Bild-Text-Blöcken mit wechselnden Seiten, ein CV mit Markenlogo je Station, About mit drei Mood-Bildern. Eine Marke kann bis zu vier Projekte mit eigenem Titel, Text und Galerie tragen, und die Lightbox blättert nur innerhalb des jeweiligen Projekts. SVG-Logos lassen sich hochladen, Dateien mit Skripten oder Event-Handlern lehnt das Theme ab.\n\nFür Bewegung gilt eine einzige Easing-Kurve auf der ganzen Seite, Blöcke blenden beim Scrollen ein, und das Mausrad scrollt mit sanfter Trägheit, ganz ohne externe Bibliothek. Bei aktivierter Einstellung für reduzierte Bewegung ist alles aus. Auf dem Smartphone laufen Karussells über CSS-Scroll-Snap ohne JavaScript. Die Projektgalerie zeigt Bilder im Originalformat, sobald ein Motiv beim Zuschnitt mehr als ein Fünftel verlieren würde.",
+  "ergebnis": "Das Portfolio zeigt die Stationen BOSS, MANGO, Baldessarini und Mustang, dazu die eigenen Konzepte ALPHA TAURI und NEON sowie Philosophy, About, CV und Contact. Die Logo-Leiste FORMER BRANDS führt nur Marken, für die er tatsächlich gearbeitet hat.\n\nProjekte, Bilder und CV-Stationen pflegt der Kunde einzeln im WordPress-Backend, die Oberfläche dort ist auf Deutsch. Theme und Schriften liegen auf dem Webserver der Seite, eine Baukasten-Plattform mit Abo braucht sie nicht.",
+  "word_count": 341,
+  "claims": [
+    {
+      "text": "Titel Creative Director",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:423",
+      "quote": "Должность `Design Director` → `Creative Director` везде"
+    },
+    {
+      "text": "Fashion & Lifestyle, München; BOSS, MANGO, Baldessarini, Mustang",
+      "source": "C:\\Projects\\HennerHeede-Site\\CLAUDE.md:5",
+      "quote": "Design Director (Fashion & Lifestyle, München). Бренды: BOSS, MANGO, Baldessarini, Mustang."
+    },
+    {
+      "text": "Hoher Anspruch an Typografie",
+      "source": "C:\\Projects\\HennerHeede-Site\\CLAUDE.md:30",
+      "quote": "Клиент — дизайн-директор с намётанным глазом: качество типографики проверять самим"
+    },
+    {
+      "text": "Gekauftes Squarespace-Template",
+      "source": "C:\\Projects\\HennerHeede-Site\\docs\\adr\\ADR-001-platform-wordpress-pivot.md:7",
+      "quote": "Клиент Henner Heede ранее купил Squarespace-шаблон"
+    },
+    {
+      "text": "KI-Mockups und handgezeichnete Skizzen",
+      "source": "C:\\Projects\\HennerHeede-Site\\CLAUDE.md:40",
+      "quote": "AI-мокапы + рукописные вайрфреймы клиента"
+    },
+    {
+      "text": "Logos nur original, 1:1, schwarz",
+      "source": "C:\\Projects\\HennerHeede-Site\\CLAUDE.md:24",
+      "quote": "только оригинальные, 1:1, чёрные, SVG"
+    },
+    {
+      "text": "Editorial-Typografie mit engem Abstand, großen Headlines",
+      "source": "C:\\Projects\\HennerHeede-Site\\CLAUDE.md:25",
+      "quote": "editorial: тесный letter-spacing, крупные headlines"
+    },
+    {
+      "text": "Nur Texte des Kunden",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:608",
+      "quote": "Подтверждено клиентом, ничего не выдумано"
+    },
+    {
+      "text": "Selbst pflegbar",
+      "source": "C:\\Projects\\HennerHeede-Site\\docs\\adr\\ADR-001-platform-wordpress-pivot.md:12",
+      "quote": "для самостоятельного редактирования клиентом"
+    },
+    {
+      "text": "Squarespace begrenzt Layout-Genauigkeit",
+      "source": "C:\\Projects\\HennerHeede-Site\\docs\\adr\\ADR-001-platform-wordpress-pivot.md:9",
+      "quote": "Squarespace ограничивает пиксель-точность"
+    },
+    {
+      "text": "Wechsel auf WordPress",
+      "source": "C:\\Projects\\HennerHeede-Site\\docs\\adr\\ADR-001-platform-wordpress-pivot.md:12",
+      "quote": "Уходим с Squarespace на **WordPress**"
+    },
+    {
+      "text": "Eigenes Theme mit 15 PHP-Dateien, eigenes Markup",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:561",
+      "quote": "**Кастомная тема `hennerheede`** — 15 файлов PHP, вся вёрстка своя"
+    },
+    {
+      "text": "Inhaltstypen Case Studies und CV-Stationen",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:563",
+      "quote": "Два типа записей: `case_study` (кейсы) и `cv_station` (станции CV)"
+    },
+    {
+      "text": "Native Eingabefelder mit Mediathek",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:562",
+      "quote": "поля сделаны нативными метабоксами с медиа-модалом WordPress"
+    },
+    {
+      "text": "Ohne kostenpflichtige Plugins",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:562",
+      "quote": "**Редактирование без платных плагинов.**"
+    },
+    {
+      "text": "Case Studies als Bild-Text-Blöcke mit wechselnden Seiten",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:472",
+      "quote": "6 блоков с текстом, стороны чередуются"
+    },
+    {
+      "text": "CV mit Markenlogo je Station",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:473",
+      "quote": "Шапка с фото, станции с логотипами брендов и буллетами"
+    },
+    {
+      "text": "About mit drei Mood-Bildern",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:475",
+      "quote": "Текст в две колонки, три mood-кадра"
+    },
+    {
+      "text": "Bis zu vier Projekte je Marke",
+      "source": "C:\\Projects\\HennerHeede-Site\\STATUS.md:41",
+      "quote": "Шаблон и метабоксы расширены с двух проектов до четырёх"
+    },
+    {
+      "text": "Lightbox blättert nur innerhalb des Projekts",
+      "source": "C:\\Projects\\HennerHeede-Site\\STATUS.md:44",
+      "quote": "Листание в лайтбоксе замкнуто внутри проекта"
+    },
+    {
+      "text": "Keine externen CDNs",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:508",
+      "quote": "нет обращений к чужим CDN"
+    },
+    {
+      "text": "SVG-Upload mit Ablehnung von Skripten/Handlern",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:570",
+      "quote": "файл отклоняется, если внутри `<script>`, `<iframe>` или `on*`-обработчик"
+    },
+    {
+      "text": "Eine Easing-Kurve für die ganze Seite",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:530",
+      "quote": "**Одна кривая на весь сайт**"
+    },
+    {
+      "text": "Einblenden beim Scrollen",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:534",
+      "quote": "**Появление блоков при скролле** — `IntersectionObserver`"
+    },
+    {
+      "text": "Trägheits-Scrollen ohne externe Bibliothek",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:535",
+      "quote": "свой обработчик колеса на `requestAnimationFrame`, коэффициент 0.11. Без внешних библиотек"
+    },
+    {
+      "text": "Bewegung aus bei reduzierter Bewegung",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:542",
+      "quote": "**Выключается полностью** при `prefers-reduced-motion`"
+    },
+    {
+      "text": "Karussells mit Scroll-Snap ohne JS",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:449",
+      "quote": "Сделал на `scroll-snap`: нативная инерция пальца, ни строки JS"
+    },
+    {
+      "text": "Galerie ohne Zuschnitt bei mehr als einem Fünftel Verlust",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:140",
+      "quote": "если теряется больше пятой части, галерея показывается"
+    },
+    {
+      "text": "Seiten Philosophy, About, CV, Contact",
+      "source": "C:\\Projects\\HennerHeede-Site\\CLAUDE.md:36",
+      "quote": "Philosophy · About · CV (Stationen) · Contact"
+    },
+    {
+      "text": "Case ALPHA TAURI",
+      "source": "C:\\Projects\\HennerHeede-Site\\STATUS.md:89",
+      "quote": "Новый кейс **ALPHA TAURI**"
+    },
+    {
+      "text": "Case NEON",
+      "source": "C:\\Projects\\HennerHeede-Site\\STATUS.md:90",
+      "quote": "Новый кейс **NEON**"
+    },
+    {
+      "text": "ALPHA TAURI und NEON sind Konzepte; FORMER BRANDS nur Arbeitgeber",
+      "source": "C:\\Projects\\HennerHeede-Site\\STATUS.md:91",
+      "quote": "Концепты убраны из полосы FORMER BRANDS — там только работодатели"
+    },
+    {
+      "text": "Kunde pflegt Einträge einzeln",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:563",
+      "quote": "клиент правит их по одной"
+    },
+    {
+      "text": "Backend auf Deutsch",
+      "source": "C:\\Projects\\HennerHeede-Site\\DEVLOG.md:569",
+      "quote": "в админке немецкий (клиент немец, редактировать ему)"
+    },
+    {
+      "text": "Keine Baukasten-Plattform mit Abo nötig",
+      "source": "C:\\Projects\\HennerHeede-Site\\docs\\adr\\ADR-001-platform-wordpress-pivot.md:15",
+      "quote": "независимость от подписки"
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "slug": "kontur",
+  "ausgangslage": "KONTUR ist ein Konzeptprojekt: eine erfundene deutsche Specialty-Kaffeerösterei, für die ich einen Onlineshop mit dem Anspruch eines echten Produktivshops gebaut habe. Einen realen Auftraggeber gibt es nicht. Ausgangspunkt war ein Prototyp in reinem HTML, CSS und JavaScript mit 18 Seiten, dessen Warenkorb nur im Browser gespeichert wurde.\n\nDie Aufgabe war, diesen Prototyp in ein eigenes WordPress-Theme mit WooCommerce zu überführen, ohne Page-Builder, und dabei die Regeln des deutschen Onlinehandels einzuhalten. Dazu gehören der Grundpreis und der Hinweis „inkl. MwSt.“ nach PAngV, die Pflichtangaben für Lebensmittel nach LMIV, die Bestellschaltfläche nach § 312j BGB, ein Cookie-Banner mit gleichwertigen Schaltflächen nach DSGVO und Barrierefreiheit nach BFSG. Firmendaten und Sortiment sind Beispielinhalte des Konzeptprojekts.",
+  "umsetzung": "Das Theme ist von Hand geschrieben: Kopf- und Fußbereich, Startseite, statische Seiten und eigene Bausteine für Mini-Warenkorb, Cookie-Banner und Brotkrumen. Die Schriften Fraunces und Karla sowie GSAP, ScrollTrigger und Lenis liegen lokal, ohne CDN.\n\nIm Shop gibt es neun Produkte: acht Kaffees mit Varianten nach Packungsgröße (250, 500 oder 1000 g) und Mahlgrad sowie ein Probierpaket. Der Katalog filtert nach Röstgrad, Herkunft, Aufbereitung und Preis, mit Sortierung und Suche. Die Produktseite zeigt die Varianten, den Grundpreis passend zur gewählten Größe und eine LMIV-Tabelle. Ist ein Kaffee ausverkauft, erscheint ein Hinweis, der Kaufbutton ist gesperrt und ein Formular für eine Benachrichtigung steht bereit.\n\nDen Warenkorb steuert WooCommerce über die Store API, ein seitlicher Mini-Warenkorb zeigt den Inhalt. Aus dem vierstufigen Checkout des Prototyps habe ich einen einseitigen gemacht, weil die Checkout-Logik von WooCommerce darauf ausgelegt ist. Die Schaltfläche heißt „Zahlungspflichtig bestellen“. Dazu kommen Versandarten, Gutscheine, ein Kundenkonto und ein Konfigurator für ein Kaffee-Abo.\n\nNeun redaktionelle Produkttexte, Meta-Beschreibungen und Open-Graph-Daten ergänzen den Inhalt. Die Motive Kaffeefarm und Rösterei habe ich mit KI generiert.",
+  "ergebnis": "Der Konzept-Shop ist unter einer eigenen Subdomain öffentlich erreichbar und zeigt den ganzen Kaufweg: Katalog mit Filtern, Produktseite mit Grundpreis und LMIV-Angaben, Warenkorb, Kasse und Bestellbestätigung.\n\nGrundpreis und „inkl. MwSt.“ nach PAngV, die LMIV-Pflichtangaben, die Bestellschaltfläche nach § 312j BGB und ein Cookie-Banner mit gleichwertigen Schaltflächen sind direkt im Theme umgesetzt, dazu Grundlagen der Barrierefreiheit wie Sprachauszeichnung, Sprunglink, Alternativtexte und Landmarken. Die Darstellung ist für Smartphone, Tablet und Desktop ausgelegt.\n\nDas Projekt zeigt, wie sich ein gestalteter Prototyp in einen WooCommerce-Shop überführen lässt, ohne Gestaltung oder Rechtsvorgaben aufzugeben.",
+  "word_count": 386,
+  "claims": [
+    {
+      "text": "Konzeptprojekt: erfundene deutsche Specialty-Kaffeerösterei",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:15",
+      "quote": "Онлайн-магазин specialty-кофе вымышленной немецкой Kaffeerösterei «KONTUR»."
+    },
+    {
+      "text": "Onlineshop mit dem Anspruch eines echten Produktivshops",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:15",
+      "quote": "Цель — production-уровневый портфолио-кейс, портированный из R&D-прототипа."
+    },
+    {
+      "text": "Prototyp in HTML/CSS/JS mit 18 Seiten",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:16",
+      "quote": "Vanilla HTML/CSS/JS, 18 страниц, 6 JS-модулей"
+    },
+    {
+      "text": "Warenkorb des Prototyps nur im Browser",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:109",
+      "quote": "Cart-логика прототипа на `localStorage` в production заменяется WooCommerce cart-session."
+    },
+    {
+      "text": "Eigenes Theme ohne Page-Builder",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:58",
+      "quote": "Кастомная тема (НЕ page-builder, НЕ Elementor/Divi)"
+    },
+    {
+      "text": "PAngV: Grundpreis und inkl. MwSt.",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:249",
+      "quote": "**PAngV:** Grundpreis (€/kg) рядом с ценой упаковки, «inkl. MwSt.»"
+    },
+    {
+      "text": "LMIV-Pflichtangaben",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:250",
+      "quote": "**LMIV:** обязательные данные на каждой странице товара"
+    },
+    {
+      "text": "§ 312j BGB Bestellschaltfläche",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:251",
+      "quote": "**§312j BGB:** кнопка заказа дословно «Zahlungspflichtig bestellen»."
+    },
+    {
+      "text": "Cookie-Banner mit gleichwertigen Schaltflächen (DSGVO)",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:248",
+      "quote": "Cookie-Banner с 3 равнозначными кнопками"
+    },
+    {
+      "text": "Barrierefreiheit nach BFSG",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:252",
+      "quote": "**BFSG 2025 / WCAG AA:**"
+    },
+    {
+      "text": "Kopf, Fuß, Startseite, statische Seiten",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:316",
+      "quote": "Шаблоны темы: `header.php`, `footer.php`, `front-page.php`, `page.php`, `404.php`"
+    },
+    {
+      "text": "Bausteine Mini-Warenkorb, Cookie-Banner, Brotkrumen",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:317",
+      "quote": "Template-parts: `mini-cart-drawer`, `cookie-banner`, `toast-region`, `breadcrumb`"
+    },
+    {
+      "text": "Schriften Fraunces und Karla lokal",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:62",
+      "quote": "Self-hosted WOFF2 — Fraunces + Karla (DSGVO: без Google Fonts CDN)"
+    },
+    {
+      "text": "GSAP, ScrollTrigger, Lenis lokal ohne CDN",
+      "source": "C:/Projects/KONTUR/CLAUDE.md:61",
+      "quote": "GSAP + ScrollTrigger + Lenis (локальные UMD-builds, без CDN)"
+    },
+    {
+      "text": "Neun Produkte: acht variable Kaffees (250/500/1000 g, Mahlgrad) und Probierpaket",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:284",
+      "quote": "9 товаров в WooCommerce: 8 variable products (Größe 250/500/1000 г × Mahlgrad 4 = 12 вариаций) + 1 simple (Probierpaket)"
+    },
+    {
+      "text": "Katalogfilter, Sortierung, Suche",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:285",
+      "quote": "каталог: фильтры (Röstgrad/Herkunft/Aufbereitung/Preis), сортировка, поиск, Grundpreis"
+    },
+    {
+      "text": "Produktseite: Varianten, Grundpreis synchron, LMIV-Tabelle",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:249",
+      "quote": "цена + Grundpreis (синхрон с вариацией), LMIV-таблица из мета"
+    },
+    {
+      "text": "Ausverkauft: Hinweis, gesperrter Button, Benachrichtigungsformular",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:250",
+      "quote": "Out-of-stock (Tolima): badge + disabled + форма уведомления"
+    },
+    {
+      "text": "Warenkorb über WooCommerce Store API",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:259",
+      "quote": "Cart-архитектура: **WC Store API** (add-item/remove-item) + cart-fragments"
+    },
+    {
+      "text": "Seitlicher Mini-Warenkorb",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:252",
+      "quote": "Mini-Cart-Drawer — рендер из WC-корзины"
+    },
+    {
+      "text": "Vierstufiger Checkout zu einseitigem, wegen WooCommerce-Logik",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:226",
+      "quote": "4-шаговый wizard прототипа → **single-page WC-checkout** (надёжность — WC checkout-JS/AJAX рассчитаны на single-page"
+    },
+    {
+      "text": "Schaltfläche Zahlungspflichtig bestellen",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:218",
+      "quote": "кнопка «Zahlungspflichtig bestellen» (§312j BGB)"
+    },
+    {
+      "text": "Versandarten",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:220",
+      "quote": "Доставка: зона DE — Standard"
+    },
+    {
+      "text": "Gutscheine",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:220",
+      "quote": "купон `PROBE10` (10 %)"
+    },
+    {
+      "text": "Kundenkonto",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:222",
+      "quote": "my-account — WC-кабинет, оформлен под тему"
+    },
+    {
+      "text": "Konfigurator für Kaffee-Abo",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:221",
+      "quote": "`page-abo.php` — конфигуратор Abo (порт `abo.html`) + WC-товар «Kaffee-Abo»"
+    },
+    {
+      "text": "Neun redaktionelle Produkttexte",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:192",
+      "quote": "9 редакторских описаний товаров"
+    },
+    {
+      "text": "Meta-Beschreibungen und Open Graph",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:193",
+      "quote": "+ Open Graph (`og:site_name/title/description/type/locale/url/image`)"
+    },
+    {
+      "text": "KI-Motiv Kaffeefarm",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:83",
+      "quote": "Сгенерировано фото кофейной фермы через Higgsfield MCP"
+    },
+    {
+      "text": "KI-Motiv Rösterei",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:37",
+      "quote": "Сгенерировано фото обжарочного цеха через Higgsfield"
+    },
+    {
+      "text": "Öffentlich unter eigener Subdomain",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:108",
+      "quote": "`https://kontur.ais152.com/` → HTTP 200"
+    },
+    {
+      "text": "Seite für die Bestellbestätigung",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:219",
+      "quote": "`woocommerce/checkout/thankyou.php` — Bestellbestätigung (порт `danke.html`)"
+    },
+    {
+      "text": "Warenkorb-Seite",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:251",
+      "quote": "`woocommerce/cart/cart.php` + `cart-empty.php` — корзина на WC cart-форме"
+    },
+    {
+      "text": "Cookie-Banner und PAngV (Grundpreis, inkl. MwSt.) im Theme umgesetzt",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:165",
+      "quote": "DSGVO (cookie-banner 3 кнопки, шрифты self-hosted, без Google-CDN), PAngV (Grundpreis €/kg, «inkl. MwSt.»)"
+    },
+    {
+      "text": "Darstellung für Smartphone, Tablet, Desktop",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:163",
+      "quote": "ключевые страницы на 375/768/1440 — без поломок (Playwright)"
+    },
+    {
+      "text": "Firmendaten und Sortiment sind Beispielinhalte",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:198",
+      "quote": "Данные вымышленного бренда приняты как финальный контент кейса"
+    },
+    {
+      "text": "Einen realen Auftraggeber gibt es nicht",
+      "source": "C:/Projects/AiS152/data/consents.json:43",
+      "quote": "но бренд вымышленный — клиента, который мог бы согласиться, нет"
+    },
+    {
+      "text": "LMIV-Pflichtangaben und Bestellschaltfläche nach § 312j im Theme umgesetzt",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:165",
+      "quote": "LMIV (9 Pflichtangaben на PDP), §312j («Zahlungspflichtig bestellen»)"
+    },
+    {
+      "text": "Barrierefreiheit: Sprachauszeichnung, Sprunglink, Alternativtexte, Landmarken",
+      "source": "C:/Projects/KONTUR/DEVLOG.md:166",
+      "quote": "`<html lang=de>`, skip-link→#main, `<main>`, 1×h1, 0 img без alt, nav с aria-label, 3-уровневые landmarks"
+    }
+  ]
+}

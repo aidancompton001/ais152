@@ -1,0 +1,199 @@
+{
+  "slug": "staskiewitz",
+  "ausgangslage": "Die Imkerei Staskiewitz – The Crazy Bee ist ein Familienbetrieb im Naturpark Spessart und verkauft Honig, Genießerprodukte und Imkereibedarf. Der bisherige Auftritt ist ein ePages-Shop.\n\nDie Aufgabe: Website und Shop auf WordPress mit WooCommerce umziehen, dabei ein neues Design umsetzen und nichts verlieren. Texte und Preise sollten 1:1 vom alten Auftritt kommen, erfunden werden durfte nichts. Bezahlt wird auf Rechnung oder per Vorkasse, ohne externe Zahlungsdienstleister. Und damit kein Ranking verloren geht, durfte beim Umzug keine bestehende Adresse ins Leere laufen.",
+  "umsetzung": "Grundlage ist ein animiertes Design mit GSAP und Lenis, das ich zuerst als Entwurf gebaut und dann in ein eigenes WordPress-Theme überführt habe. Das Theme ist in Vorlagen für Startseite, Seiten, Beiträge und Fehlerseite zerlegt, bindet Skripte sauber über WordPress ein und unterstützt WooCommerce. Für die deutschen Shop-Pflichten läuft Germanized.\n\nDie 26 Inhaltsseiten habe ich übernommen und automatisch gegen das Original abgeglichen, auch Texte in zugeklappten Akkordeons. Der Katalog umfasst 126 Produkte in 30 Kategorien, erreichbar über Unterkategorien und Brotkrumen. Einzelne Artikel hat die Imkerei bewusst nicht übernehmen lassen. Die Steuersätze von 19 und 7 Prozent sind getrennt, den Grundpreis pro Kilogramm berechnet das Theme selbst. Die Regel „versandkostenfrei ab Mindestbestellwert, außer Imkereigeräte“ setzt ein Filter im Theme um, weil WooCommerce das nicht nach Kategorie trennt.\n\nDie Weiterleitungskarte mit 203 alten Adressen steckt im Theme selbst und nicht in einem Plugin, das man versehentlich abschalten könnte. Dazu kommen kanonische Adressen, Rechtstexte über das Plugin der Kanzlei des Kunden, die Online-Widerrufsfunktion nach § 356a BGB, eine Google-Karte, die erst per Klick lädt, und ein Newsletter-Formular für CleverReach.",
+  "ergebnis": "Der Shop ist unter thecrazybee.de online. Für jede Adresse des alten Shops ist eine 301-Weiterleitung auf die passende neue Seite hinterlegt. Für neue Inhalte stehen im Editor sechs fertige Vorlagenblöcke bereit, und legt die Imkerei eine neue Warengruppe an, erscheint sie von selbst im Menü. Ändert die Kanzlei einen Rechtstext, ist die Seite ohne weiteres Zutun aktuell.\n\nMit Zustimmung des Kunden habe ich eine echte Testbestellung durchgeführt: Die Bestellung wurde angelegt, die Bestätigungsmail kam an, und der Auftrag erschien im Backend.",
+  "word_count": 345,
+  "claims": [
+    {
+      "text": "Familienbetrieb im Naturpark Spessart",
+      "source": "C:\\Projects\\AiS152\\data\\projects.json:19",
+      "quote": "für eine Familien-Imkerei im Naturpark Spessart"
+    },
+    {
+      "text": "Name Imkerei Staskiewitz – The Crazy Bee",
+      "source": "C:\\Projects\\Staskiewitz\\DEVLOG.md:161",
+      "quote": "Site Title «Imkerei Staskiewitz – The Crazy Bee»"
+    },
+    {
+      "text": "Sortiment mit Genießer-Shop und Imkereibedarf",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:74",
+      "quote": "Под `Genießer-Shop` и `Imkerei-Bedarf` появились подпункты разделов"
+    },
+    {
+      "text": "Bisheriger Auftritt ist ein ePages-Shop",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:140",
+      "quote": "отключение старого магазина ePages"
+    },
+    {
+      "text": "Texte und Preise 1:1, nichts erfinden",
+      "source": "C:\\Projects\\Staskiewitz\\CLAUDE.md:28",
+      "quote": "Тексты/цены 1:1 со старого сайта, ничего не выдумывать"
+    },
+    {
+      "text": "Rechnung und Vorkasse, ohne externe Zahlungsdienstleister",
+      "source": "C:\\Projects\\Staskiewitz\\CLAUDE.md:30",
+      "quote": "Оплата в шопе: Rechnung и Vorkasse. БЕЗ Stripe/Mollie"
+    },
+    {
+      "text": "Kein Ranking-Verlust durch Weiterleitungen",
+      "source": "C:\\Projects\\AiS152\\data\\projects.json:19",
+      "quote": "203 alte Adressen weitergeleitet, damit kein Ranking verloren geht"
+    },
+    {
+      "text": "Animiertes Design mit GSAP und Lenis als Entwurf",
+      "source": "C:\\Projects\\Staskiewitz\\DEVLOG.md:241",
+      "quote": "собрал итоговый анимированный макет (GSAP/Lenis, пчёлы, потёки мёда)"
+    },
+    {
+      "text": "Entwurf in eigenes WordPress-Theme überführt",
+      "source": "C:\\Projects\\Staskiewitz\\DEVLOG.md:206",
+      "quote": "Принятый макет упакован как WP-тема «The Crazy Bee»"
+    },
+    {
+      "text": "Vorlagen für Startseite, Seiten, Beiträge, Fehlerseite",
+      "source": "C:\\Projects\\Staskiewitz\\DEVLOG.md:150",
+      "quote": "`front-page.php`, `page.php`, `single.php`, `404.php`"
+    },
+    {
+      "text": "Skripte über WordPress eingebunden",
+      "source": "C:\\Projects\\Staskiewitz\\DEVLOG.md:151",
+      "quote": "подключение через `wp_enqueue_*`"
+    },
+    {
+      "text": "Theme unterstützt WooCommerce",
+      "source": "C:\\Projects\\Staskiewitz\\DEVLOG.md:152",
+      "quote": "`add_theme_support('woocommerce')`"
+    },
+    {
+      "text": "WooCommerce und Germanized aktiv",
+      "source": "C:\\Projects\\Staskiewitz\\DEVLOG.md:162",
+      "quote": "**WooCommerce + Germanized установлены и активны.**"
+    },
+    {
+      "text": "26 Inhaltsseiten übernommen und abgeglichen",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:52",
+      "quote": "26 страниц перенесены, тексты и цены сверены по токенам"
+    },
+    {
+      "text": "Automatischer Abgleich gegen das Original",
+      "source": "C:\\Projects\\Staskiewitz\\DEVLOG.md:116",
+      "quote": "**Проверка** (`verify/verify-migration.mjs`)"
+    },
+    {
+      "text": "Inhalte zugeklappter Akkordeons berücksichtigt",
+      "source": "C:\\Projects\\Staskiewitz\\DEVLOG.md:96",
+      "quote": "`innerText` не видит содержимое свёрнутых аккордеонов"
+    },
+    {
+      "text": "126 Produkte in 30 Kategorien",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:54",
+      "quote": "126 товаров, 109 видит покупатель в разделах (126 минус 17 скрытых), 30 категорий"
+    },
+    {
+      "text": "Navigation über Unterkategorien und Brotkrumen",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:54",
+      "quote": "подразделы → под-подразделы, плюс хлебные крошки"
+    },
+    {
+      "text": "Steuersätze 19 und 7 Prozent getrennt",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:56",
+      "quote": "налоги 19 % и 7 % разнесены"
+    },
+    {
+      "text": "Grundpreis pro Kilogramm berechnet das Theme",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:86",
+      "quote": "Вывод Germanized снят, остался наш расчёт"
+    },
+    {
+      "text": "Versandregel außer Imkereigeräte per Theme-Filter",
+      "source": "C:\\Projects\\Staskiewitz\\DEVLOG.md:256",
+      "quote": "(сделано фильтром темы — WooCommerce не умеет отбор по категории)"
+    },
+    {
+      "text": "Weiterleitungskarte mit 203 Adressen",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:46",
+      "quote": "В ней 203 строки"
+    },
+    {
+      "text": "Karte im Theme statt Plugin",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:64",
+      "quote": "Карта вшита в тему, а не в плагин: плагин можно случайно отключить"
+    },
+    {
+      "text": "Kanonische Adressen durch das Theme",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:66",
+      "quote": "Тег ставит тема; оба адреса раздела теперь называют один и тот же канонический."
+    },
+    {
+      "text": "Rechtstexte über Plugin der Kanzlei des Kunden",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:68",
+      "quote": "Клиент 01.08 поставил плагин своей юридической конторы"
+    },
+    {
+      "text": "Online-Widerruf nach § 356a BGB",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:116",
+      "quote": "**Отзыв договора (§ 356a BGB) — сделано 03.08.**"
+    },
+    {
+      "text": "Google-Karte lädt erst per Klick",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:60",
+      "quote": "Google Maps грузится только по щелчку"
+    },
+    {
+      "text": "Newsletter-Formular für CleverReach",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:58",
+      "quote": "Форма подписки собрана заново на адрес CleverReach клиента"
+    },
+    {
+      "text": "Shop unter thecrazybee.de online",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:3",
+      "quote": "**Сайт:** https://thecrazybee.de (открыт для посетителей)"
+    },
+    {
+      "text": "Für jede Adresse des alten Shops ist eine 301-Weiterleitung hinterlegt",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:46",
+      "quote": "301 ровно туда, куда написано в карте"
+    },
+    {
+      "text": "Sechs Vorlagenblöcke im Editor",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:62",
+      "quote": "Шесть готовых блоков в редакторе"
+    },
+    {
+      "text": "Neue Warengruppe erscheint von selbst im Menü",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:74",
+      "quote": "заведёт клиент раздел — тот появится сам"
+    },
+    {
+      "text": "Rechtstext aktualisiert sich bei Änderung durch die Kanzlei",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:68",
+      "quote": "поправит юрист документ — страница обновится сама"
+    },
+    {
+      "text": "Testbestellung mit Zustimmung des Kunden",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:150",
+      "quote": "## Тестовый заказ — проведён 26.08.2026, с разрешения клиента"
+    },
+    {
+      "text": "Bestellung angelegt",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:156",
+      "quote": "| Заказ создан | да,"
+    },
+    {
+      "text": "Bestätigungsmail kam an",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:157",
+      "quote": "| Письмо покупателю | пришло:"
+    },
+    {
+      "text": "Auftrag im Backend sichtbar",
+      "source": "C:\\Projects\\Staskiewitz\\STATUS.md:158",
+      "quote": "| Заказ в админке продавца | есть:"
+    },
+    {
+      "text": "Einzelne Artikel hat die Imkerei bewusst nicht übernehmen lassen",
+      "source": "C:/Projects/Staskiewitz/STATUS.md:78",
+      "quote": "семь из них клиент 29.07 велел не переносить"
+    }
+  ]
+}

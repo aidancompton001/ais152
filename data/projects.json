@@ -22,7 +22,12 @@
     "mark": "staskiewitz",
     "layout": "feature",
     "featured": true,
-    "order": 1
+    "order": 1,
+    "case_de": {
+      "ausgangslage": "Die Imkerei Staskiewitz – The Crazy Bee ist ein Familienbetrieb im Naturpark Spessart und verkauft Honig, Genießerprodukte und Imkereibedarf. Der bisherige Auftritt ist ein ePages-Shop.\n\nDie Aufgabe: Website und Shop auf WordPress mit WooCommerce umziehen, dabei ein neues Design umsetzen und nichts verlieren. Texte und Preise sollten 1:1 vom alten Auftritt kommen, erfunden werden durfte nichts. Bezahlt wird auf Rechnung oder per Vorkasse, ohne externe Zahlungsdienstleister. Und damit kein Ranking verloren geht, durfte beim Umzug keine bestehende Adresse ins Leere laufen.",
+      "umsetzung": "Grundlage ist ein animiertes Design mit GSAP und Lenis, das ich zuerst als Entwurf gebaut und dann in ein eigenes WordPress-Theme überführt habe. Das Theme ist in Vorlagen für Startseite, Seiten, Beiträge und Fehlerseite zerlegt, bindet Skripte sauber über WordPress ein und unterstützt WooCommerce. Für die deutschen Shop-Pflichten läuft Germanized.\n\nDie 26 Inhaltsseiten habe ich übernommen und automatisch gegen das Original abgeglichen, auch Texte in zugeklappten Akkordeons. Der Katalog umfasst 126 Produkte in 30 Kategorien, erreichbar über Unterkategorien und Brotkrumen. Einzelne Artikel hat die Imkerei bewusst nicht übernehmen lassen. Die Steuersätze von 19 und 7 Prozent sind getrennt, den Grundpreis pro Kilogramm berechnet das Theme selbst. Die Regel „versandkostenfrei ab Mindestbestellwert, außer Imkereigeräte“ setzt ein Filter im Theme um, weil WooCommerce das nicht nach Kategorie trennt.\n\nDie Weiterleitungskarte mit 203 alten Adressen steckt im Theme selbst und nicht in einem Plugin, das man versehentlich abschalten könnte. Dazu kommen kanonische Adressen, Rechtstexte über das Plugin der Kanzlei des Kunden, die Online-Widerrufsfunktion nach § 356a BGB, eine Google-Karte, die erst per Klick lädt, und ein Newsletter-Formular für CleverReach.",
+      "ergebnis": "Der Shop ist unter thecrazybee.de online. Für jede Adresse des alten Shops ist eine 301-Weiterleitung auf die passende neue Seite hinterlegt. Für neue Inhalte stehen im Editor sechs fertige Vorlagenblöcke bereit, und legt die Imkerei eine neue Warengruppe an, erscheint sie von selbst im Menü. Ändert die Kanzlei einen Rechtstext, ist die Seite ohne weiteres Zutun aktuell.\n\nMit Zustimmung des Kunden habe ich eine echte Testbestellung durchgeführt: Die Bestellung wurde angelegt, die Bestätigungsmail kam an, und der Auftrag erschien im Backend."
+    }
   },
   {
     "slug": "hennerheede",
@@ -47,7 +52,12 @@
     "mark": "hennerheede",
     "layout": "feature",
     "featured": true,
-    "order": 2
+    "order": 2,
+    "case_de": {
+      "ausgangslage": "Henner Heede ist Creative Director für Fashion und Lifestyle in München, mit Stationen bei BOSS, MANGO, Baldessarini und Mustang. Entsprechend genau mussten Bild und Typografie in seinem Portfolio sitzen.\n\nAusgangspunkt war ein gekauftes Squarespace-Template. Dazu kamen KI-Mockups für die Bildsprache und handgezeichnete Skizzen des Kunden für den Aufbau der Seiten. Die Vorgaben: Markenlogos nur im Original, 1:1 und schwarz. Eine Editorial-Typografie mit engem Buchstabenabstand und großen Headlines. Nur Texte, die vom Kunden selbst stammen. Und später sollte er die Inhalte ohne Hilfe selbst pflegen können.",
+      "umsetzung": "Squarespace setzte der Layout-Genauigkeit enge Grenzen, deshalb bin ich auf WordPress mit einem selbst geschriebenen Theme umgestiegen. Es besteht aus 15 PHP-Dateien, das gesamte Markup ist eigener Code. Case Studies und CV-Stationen sind eigene Inhaltstypen; gepflegt wird über native Eingabefelder mit der WordPress-Mediathek, ohne kostenpflichtige Plugins.\n\nDer Aufbau folgt den Skizzen des Kunden: Case Studies aus Bild-Text-Blöcken mit wechselnden Seiten, ein CV mit Markenlogo je Station, About mit drei Mood-Bildern. Eine Marke kann bis zu vier Projekte mit eigenem Titel, Text und Galerie tragen, und die Lightbox blättert nur innerhalb des jeweiligen Projekts. SVG-Logos lassen sich hochladen, Dateien mit Skripten oder Event-Handlern lehnt das Theme ab.\n\nFür Bewegung gilt eine einzige Easing-Kurve auf der ganzen Seite, Blöcke blenden beim Scrollen ein, und das Mausrad scrollt mit sanfter Trägheit, ganz ohne externe Bibliothek. Bei aktivierter Einstellung für reduzierte Bewegung ist alles aus. Auf dem Smartphone laufen Karussells über CSS-Scroll-Snap ohne JavaScript. Die Projektgalerie zeigt Bilder im Originalformat, sobald ein Motiv beim Zuschnitt mehr als ein Fünftel verlieren würde.",
+      "ergebnis": "Das Portfolio zeigt die Stationen BOSS, MANGO, Baldessarini und Mustang, dazu die eigenen Konzepte ALPHA TAURI und NEON sowie Philosophy, About, CV und Contact. Die Logo-Leiste FORMER BRANDS führt nur Marken, für die er tatsächlich gearbeitet hat.\n\nProjekte, Bilder und CV-Stationen pflegt der Kunde einzeln im WordPress-Backend, die Oberfläche dort ist auf Deutsch. Theme und Schriften liegen auf dem Webserver der Seite, eine Baukasten-Plattform mit Abo braucht sie nicht."
+    }
   },
   {
     "slug": "taxi-moennigmann",
@@ -63,14 +73,19 @@
       "DE/EN/Plattdeutsch",
       "Hero Video"
     ],
-    "summary_en": "Corporate website for a taxi company in Leer and Ostfriesland. Astro static build, Markdown news, hero video, 6 service sections from Krankenfahrten to Zeitlosreisen. trilingual DE/EN/Plattdeutsch, no cookies or tracking, hosted on ALL-INKL.",
-    "summary_de": "Firmenwebsite eines Taxiunternehmens in Leer und Ostfriesland. Astro-Static-Build, Markdown-News, Hero-Video, 6 Leistungsbereiche von Krankenfahrten bis Zeitlosreisen. dreisprachig DE/EN/Plattdeutsch, ohne Cookies und Tracking, Hosting bei ALL-INKL.",
+    "summary_en": "Corporate website for a taxi company in Leer and Ostfriesland. Astro static build, Markdown news, hero video, 6 service sections from Krankenfahrten to Zeitlosreisen. Trilingual DE/EN/Plattdeutsch, no cookies or tracking, hosted on ALL-INKL.",
+    "summary_de": "Firmenwebsite eines Taxiunternehmens in Leer und Ostfriesland. Astro-Static-Build, Markdown-News, Hero-Video, 6 Leistungsbereiche von Krankenfahrten bis Zeitlosreisen. Dreisprachig DE/EN/Plattdeutsch, ohne Cookies und Tracking, Hosting bei ALL-INKL.",
     "screenshot": "assets/taxi-moennigmann-site.jpg",
     "screenshot_2x": "assets/taxi-moennigmann-site.jpg",
     "mark": "taxi-moennigmann",
     "layout": "feature",
     "featured": true,
-    "order": 3
+    "order": 3,
+    "case_de": {
+      "ausgangslage": "Taxi Mönnigmann fährt seit über 20 Jahren in Leer und ganz Ostfriesland: Stadttaxi rund um die Uhr, Krankenfahrten, Inklusionstaxi, Flughafentransfers, Schülertransporte und Oldtimerfahrten für Hochzeiten. Unter den neun Wettbewerbern aus Leer und Ostfriesland, die ich vorab ausgewertet habe, bot keiner ein Inklusionstaxi an. Diese Stärke sollte die neue Website klar zeigen.\n\nDas Briefing des Unternehmens umfasste acht Bereiche und stellte klare Anforderungen: barrierefrei, dreisprachig mit Deutsch, Englisch und Plattdeutsch, optimiert für das Smartphone, kurze Ladezeiten und bewegte Bilder im Hintergrund. Ein Kontaktformular war ausdrücklich nicht gewünscht. Telefon und E-Mail sollten direkt anklickbar sein.",
+      "umsetzung": "Technisch ist die Seite ein statischer Astro-Build. Alle Texte liegen in JSON-Dateien je Sprache, Plattdeutsch hat eigene Formulierungen statt einer Kopie des Deutschen. Insgesamt sind es 30 Seiten, darunter sechs Leistungsseiten in jeder Sprache, die aus denselben Daten entstehen.\n\nVon drei Designkonzepten hat der Kunde die Variante in Bordeaux und Creme gewählt. Die Schriften Bricolage Grotesque und Manrope sind lokal eingebunden, externe CDNs und Tracking gibt es nicht. Das Hero-Video läuft stumm in Schleife, hat eine sichtbare Pause-Taste und wird bei reduzierter Bewegung durch ein Standbild ersetzt. Die Bilder der Leistungsbereiche sind mit KI erzeugt, auf Grundlage echter Fotos der eigenen Fahrzeuge in Firmenlackierung.\n\nBei den Krankenfahrten erklärt die Detailseite den Anspruch nach § 60 SGB V und die Zuzahlung nach § 61 SGB V, mit Verweis auf die Entscheidung der Krankenkasse. Das Impressum enthält alle Angaben nach § 5 DDG. Für die Barrierefreiheit sorgen ein Sprunglink zum Inhalt, ein sichtbarer Fokus und semantische Landmarken, außerdem berücksichtigt die Seite die Systemeinstellung für reduzierte Bewegung.",
+      "ergebnis": "Die Website ist unter taxi-moennigmann.de online und für Suchmaschinen freigegeben. Alle vier Domains des Unternehmens führen auf die neue Seite.\n\nAnrufen oder schreiben geht mit einem Tipp über die Kontaktleiste. Strukturierte Daten mit der Firmenadresse und Sprachverweise für Deutsch, Englisch und Plattdeutsch unterstützen die lokale Suche. Jede Leistung hat eine eigene Seite in drei Sprachen, das Inklusionstaxi eingeschlossen."
+    }
   },
   {
     "slug": "sorrysara",
@@ -83,18 +98,23 @@
     "tags": [
       "Telegram-CMS",
       "Stripe Ticketing",
-      "BG/EN + UK/DE-Inhalte",
       "Anti-Overbooking",
+      "next-intl",
       "Consent Mode v2"
     ],
-    "summary_en": "Website for a Burgas cocktail & fry bar (BG/EN interface, menu and events also in UK/DE). The owner manages menu and events, incl. photos, prices and translations, via a Telegram bot. Paid-event tickets via Stripe, no overbooking. Claude translates BG content to EN/UK/DE.",
-    "summary_de": "Website für eine Cocktail- & Fry-Bar in Burgas (Oberfläche BG/EN, Menü und Events auch UK/DE). Menü und Events samt Fotos, Preisen und Übersetzungen pflegt die Inhaberin per Telegram-Bot. Event-Tickets über Stripe ohne Überbuchung. Claude übersetzt BG-Inhalte nach EN/UK/DE.",
+    "summary_en": "Website for a cocktail & fry bar in Burgas. The site operator manages menu and events, incl. photos, prices and translations, via a Telegram bot. Paid-event tickets via Stripe, no overbooking, translations from Bulgarian with Claude.",
+    "summary_de": "Website für eine Cocktail- & Fry-Bar in Burgas. Menü und Events samt Fotos, Preisen und Übersetzungen pflegt die Betreiberin der Seite per Telegram-Bot. Event-Tickets über Stripe ohne Überbuchung, Übersetzungen aus dem Bulgarischen mit Claude.",
     "screenshot": "assets/sorrysara-site.jpg",
     "screenshot_2x": "assets/sorrysara-site.jpg",
     "mark": "sorrysara",
     "layout": "feature",
     "featured": true,
-    "order": 4
+    "order": 4,
+    "case_de": {
+      "ausgangslage": "Sorry Sara ist eine Cocktail- und Fry-Bar in Burgas, Bulgarien. Gebraucht wurde eine Website mit der warmen, gastfreundlichen Stimme der Figur Sara: eine Speisekarte, die Gäste per QR-Code am Tisch öffnen, Veranstaltungen mit Online-Tickets und eine Tischreservierung über Telegram. Die Seite sollte auf Bulgarisch, Englisch, Ukrainisch und Deutsch laufen und in erster Linie auf dem Smartphone funktionieren.\n\nVeranstaltungen sollte es in zwei Formen geben: kostenpflichtig mit Ticket und kostenlos mit Anmeldung. Die Betreiberin der Seite sollte sie komplett vom Handy aus steuern können: Menü, Preise, Fotos und Veranstaltungen, ohne klassisches Admin-Panel.",
+      "umsetzung": "Die Website ist mit Next.js 16, TypeScript und Tailwind CSS 4 gebaut, die Sprachumschaltung läuft über next-intl. Das anfangs geplante Strapi habe ich durch einen Telegram-Bot auf Basis von grammY ersetzt. Er reagiert nur auf die Betreiberin der Seite und behält laufende Dialoge auch nach einem Neustart.\n\nIm Bot legt sie Kategorien, Gerichte und Veranstaltungen per Klick an und tippt nur die Werte. Preise gibt sie in Euro ein. Nach jeder Änderung aktualisiert der Bot die betroffenen Seiten. Fotos schickt sie als Datei in voller Qualität, der Bot prüft Format und Größe anhand der Bytes. Für Übersetzungen aus dem Bulgarischen ist Claude Haiku eingebunden, eigene Korrekturen bleiben bei einer neuen Übersetzung erhalten. Die letzte Änderung lässt sich rückgängig machen.\n\nTickets laufen über Stripe Checkout. Vor der Zahlung wird ein Platz reserviert, und alle Buchungswege sperren dieselbe Veranstaltung in der Datenbank, damit auch gleichzeitige Buchungen nicht überbuchen. Stripe-Webhooks werden auf ihre Signatur geprüft und nur einmal verarbeitet, eine Rückerstattung gibt den Platz frei. Tracking und Google Maps laden erst nach Einwilligung.",
+      "ergebnis": "Die Website läuft unter sorrysara.space und bezieht Speisekarte und Veranstaltungen aus der Datenbank, die der Bot befüllt. Die Betreiberin der Seite pflegt sie seit der Übergabe selbst über Telegram. Veranstaltungen legt sie als Entwurf an, veröffentlicht sie per Knopfdruck und archiviert sie danach.\n\nDer Ticketkauf ist über Stripe im Live-Modus angebunden, Rückerstattungen eingeschlossen. Reservierungsanfragen kommen geprüft direkt in ihrem Telegram an, und vergangene Abende bleiben mit Bewertungen auf einer eigenen Seite sichtbar."
+    }
   },
   {
     "slug": "silkekleinart",
@@ -119,7 +139,12 @@
     "mark": "silkekleinart",
     "layout": "feature",
     "featured": true,
-    "order": 5
+    "order": 5,
+    "case_de": {
+      "ausgangslage": "Silke Klein ist Malerin aus Kiel. Ihre bisherige Website lief auf WordPress mit dem Page-Builder Elementor, alle Seiten waren aus Blöcken zusammengesetzt. Ohne technisches Vorwissen war das schwer zu pflegen, besonders die Seite mit den Ausstellungen geriet dabei durcheinander.\n\nDie Werke sind in Serien geordnet, jedes mit Nummer, Jahr, Format, Technik und Status. Statt einer punktuellen Reparatur habe ich mich für einen vollständigen Neubau entschieden: Texte, Werkliste und Logo bleiben erhalten, Technik und Gestaltung werden neu aufgebaut. Das Ziel war, dass die Künstlerin Werke und Ausstellungen selbst über einfache Formulare einträgt, ohne mit Layout-Blöcken zu arbeiten.",
+      "umsetzung": "Die Basis ist ein eigenes WordPress-Theme ohne Page-Builder und ein Plugin, das die Datenstruktur im Code festlegt. Es gibt zwei eigene Inhaltstypen, „Werk“ und „Ausstellung“, dazu die Taxonomien Serie und Gattung. Die Felder für Nummer, Jahr, Größe, Technik und Status sind mit Advanced Custom Fields angelegt und liegen versioniert im Code. Ausstellungen sortiert die Verwaltung nach Jahr.\n\nGestalterisch habe ich die Richtung „Galerie-Raum“ umgesetzt: heller Grund, die Kunst im Mittelpunkt, Bordeaux und Gold aus dem bestehenden Logo als Akzente, Galeriekarten mit Milchglas-Effekt und ein Hero mit Parallaxe. Die Schriften Inter und Playfair liegen auf dem eigenen Server.\n\nDie Inhalte habe ich von der alten Website übernommen: 25 Werke mit Bildern und Beschreibungen sowie 10 Ausstellungen. Ein Klick auf ein Werk öffnet jetzt eine eigene Detailseite mit großem Bild, Werkdaten und Beschreibung. Den Beschreibungstext bearbeitet die Künstlerin in einem Editor, der sich wie ein Textprogramm bedienen lässt.\n\nFür die Übergabe habe ich die Verwaltung auf Deutsch umgestellt, ein Redakteurskonto ohne Zugriff auf Plugins und Theme eingerichtet und eine bebilderte PDF-Anleitung mit sechs Kapiteln geschrieben. Zum Schluss ist die Website auf das eigene Webhosting der Kundin umgezogen.",
+      "ergebnis": "Die Künstlerin pflegt ihre Website jetzt selbst: Werk anlegen, Bild austauschen, Ausstellung eintragen. Die Anleitung zeigt jeden dieser Schritte mit Bildschirmfotos aus ihrer eigenen Verwaltung.\n\nSpäter habe ich ein Seiten-Template „Galerie-Rubrik“ ergänzt. Damit kann sie neue Rubriken künftig selbst anlegen, die Rubrik „Kieler Kunstkalender 2027“ ist bereits online.\n\nWird eine Seite in sozialen Netzwerken geteilt, erscheint ein Gemälde als Vorschaubild. Die Website läuft unter ihrer eigenen Domain auf ihrem eigenen Hosting."
+    }
   },
   {
     "slug": "ofnstube",
@@ -143,7 +168,12 @@
     "mark": "ofnstube",
     "layout": "feature",
     "featured": true,
-    "order": 6
+    "order": 6,
+    "case_de": {
+      "ausgangslage": "Ofnstube ist ein Konzeptprojekt: ein erfundenes Craft-Burger-Restaurant in München mit bayerischer Stuben-Atmosphäre. Einen realen Betrieb gibt es nicht. Veröffentlicht ist die Website unter einer Subdomain meines Portfolios.\n\nDie Anforderungen habe ich wie bei einem echten Lokal gesetzt. Die Speisekarte braucht eine Allergenkennzeichnung nach LMIV, beim Bier gilt der Jugendschutz, reserviert wird ohne Onlineshop. Die Inhalte sollten auf Deutsch und Englisch erscheinen, weil in München viele Touristen unterwegs sind, und die Seite sollte die Anforderungen des BFSG an Barrierefreiheit berücksichtigen.\n\nAus drei Markenvarianten habe ich eine ausgewählt: Rauchschwarz, Glut-Orange und Knochenweiß, dazu ein pulsierender „Glut-Ring“ als wiederkehrendes Motiv.",
+      "umsetzung": "Die Website besteht aus zehn Seiten in reinem HTML, CSS und JavaScript, ohne Framework. Animationen laufen über GSAP mit ScrollTrigger und Lenis. Die Bibliotheken und die Schriften Fraunces und Inter liegen lokal, externe Schriftdienste werden nicht geladen. Wer im System reduzierte Bewegung eingestellt hat, sieht die Seite ohne diese Effekte.\n\nDie Speisekarte kommt aus Datendateien mit 14 Beispielgerichten und 15 Getränken. Jedes Gericht zeigt seine Allergene als sichtbare Kennzeichnung direkt unter dem Namen, nicht versteckt in einem Tooltip. Bier und Radler tragen einen Hinweis „ab 16“. Ein Altersfilter für die ganze Seite entfällt, weil das Konzept Alkohol nur zum Verzehr vor Ort vorsieht.\n\nDie Gestaltung setzt auf einen asymmetrischen Hero mit großem Foodbild, eine Speisekarte im Magazin-Stil mit breiten, abwechselnden Zeilen, ein Laufband und einen großen Aufruf zur Reservierung.\n\nDie 21 Fotos von Burgern, Beilagen, Desserts, Innenraum und Team sind KI-generiert, beim Team sind nur Hände zu sehen. Die Reservierungsseite zeigt drei Wege, alle mit Beispieldaten: WhatsApp, Telefon und einen Platzhalter für das Reservierungs-Widget von Quandoo. Wie bei einem echten Widget erscheint er erst nach Einwilligung. Alle Inhaltsseiten gibt es auf Deutsch und Englisch, die Rechtstexte bewusst nur auf Deutsch.",
+      "ergebnis": "Das Ergebnis ist eine vollständige Website für ein Konzept-Restaurant mit zehn Seiten, öffentlich erreichbar über GitHub Pages unter einer eigenen Subdomain. Sie zeigt, wie Allergenkennzeichnung, Jugendschutz, Einwilligung vor externen Diensten und Zweisprachigkeit in einem Auftritt zusammenpassen.\n\nDie Bilder habe ich vor der Veröffentlichung komprimiert. Die Darstellung ist für Smartphones mit 375 Pixel Breite und für große Bildschirme mit 1920 Pixel Breite angepasst.\n\nDie Gerichte der Speisekarte stehen in einer Datendatei. Wer dort ein Gericht ergänzt, sieht es samt Allergenkennzeichnung automatisch auf der Seite."
+    }
   },
   {
     "slug": "elektrocheck-stuttgart",
@@ -167,7 +197,12 @@
     "mark": "elektrocheck",
     "layout": "feature",
     "featured": true,
-    "order": 7
+    "order": 7,
+    "case_de": {
+      "ausgangslage": "ElektroCheck Stuttgart führt DGUV V3 Elektroprüfungen im Raum Stuttgart durch, für Unternehmen und Gewerbekunden. Für diesen Prüfdienst habe ich die Website gebaut.\n\nDie Seite sollte kompakt sein, nur auf Deutsch erscheinen und Anfragen direkt per Formular an den Betrieb weiterleiten. Inhaltlich stand eine Frage im Mittelpunkt, die sich viele Interessenten zuerst stellen: Bin ich überhaupt zur DGUV V3-Prüfung verpflichtet? Die Website sollte darauf eine erste Antwort geben, bevor jemand eine Anfrage schickt, und dabei sachlich bleiben statt zu drängen.\n\nDomain und Webhosting sollten auf den Betrieb selbst laufen, damit er die Seite später ohne mich weiterführen kann.",
+      "umsetzung": "Für die Gestaltung habe ich drei Markenkonzepte entwickelt, gewählt wurde „Schaltplan-Grid“. Aus drei Seitenkonzepten fiel die Wahl auf einen Aufbau, bei dem ein Pflichten-Check im Mittelpunkt steht.\n\nDer Check steht direkt im ersten Bildschirm und stellt drei Fragen: wofür elektrische Geräte beruflich genutzt werden, welche Gerätetypen im Einsatz sind und wann zuletzt geprüft wurde. Daraus ergibt sich eines von sieben Ergebnissen, jeweils mit dem Hinweis, dass die Einordnung keine Rechtsberatung ersetzt. Das Ergebnis wird als verstecktes Feld mit der Anfrage übermittelt, die Datenschutzerklärung weist darauf hin.\n\nDarunter folgen Leistungen, Ablauf, Über uns, häufige Fragen, das Anfrageformular und ein Block für den direkten Kontakt. Das Formular läuft über FormSubmit, mit Captcha und einem versteckten Honeypot-Feld gegen Spam. Auf dem Smartphone gibt es eine fest stehende Aktionsleiste, am Desktop einen Button im Kopfbereich.\n\nTechnisch ist die Seite reines HTML, CSS und JavaScript ohne externe Bibliotheken. Die Schriften liegen als auf die nötigen Zeichen reduzierte Dateien auf dem Webspace, sodass keine externen Schriftdienste nötig sind. Impressum und Datenschutzerklärung habe ich mit aufgebaut.",
+      "ergebnis": "Der Betrieb hat eine eigene Website unter der Domain elektrocheckstuttgart.de. Das Konto für Domain und Hosting läuft auf ihn, die Dateien liegen auf seinem Webspace, die Domain ist mit dem Webspace verbunden.\n\nWer die Seite besucht, beantwortet drei Fragen und bekommt eine erste Einordnung, ob eine Prüfung Pflicht ist.\n\nAuf dem Smartphone führt eine Leiste am unteren Bildschirmrand jederzeit zum Schnellkontakt und zum Pflichten-Check."
+    }
   },
   {
     "slug": "kontur",
@@ -191,7 +226,12 @@
     "mark": "kontur",
     "layout": "feature",
     "featured": true,
-    "order": 8
+    "order": 8,
+    "case_de": {
+      "ausgangslage": "KONTUR ist ein Konzeptprojekt: eine erfundene deutsche Specialty-Kaffeerösterei, für die ich einen Onlineshop mit dem Anspruch eines echten Produktivshops gebaut habe. Einen realen Auftraggeber gibt es nicht. Ausgangspunkt war ein Prototyp in reinem HTML, CSS und JavaScript mit 18 Seiten, dessen Warenkorb nur im Browser gespeichert wurde.\n\nDie Aufgabe war, diesen Prototyp in ein eigenes WordPress-Theme mit WooCommerce zu überführen, ohne Page-Builder, und dabei die Regeln des deutschen Onlinehandels einzuhalten. Dazu gehören der Grundpreis und der Hinweis „inkl. MwSt.“ nach PAngV, die Pflichtangaben für Lebensmittel nach LMIV, die Bestellschaltfläche nach § 312j BGB, ein Cookie-Banner mit gleichwertigen Schaltflächen nach DSGVO und Barrierefreiheit nach BFSG. Firmendaten und Sortiment sind Beispielinhalte des Konzeptprojekts.",
+      "umsetzung": "Das Theme ist von Hand geschrieben: Kopf- und Fußbereich, Startseite, statische Seiten und eigene Bausteine für Mini-Warenkorb, Cookie-Banner und Brotkrumen. Die Schriften Fraunces und Karla sowie GSAP, ScrollTrigger und Lenis liegen lokal, ohne CDN.\n\nIm Shop gibt es neun Produkte: acht Kaffees mit Varianten nach Packungsgröße (250, 500 oder 1000 g) und Mahlgrad sowie ein Probierpaket. Der Katalog filtert nach Röstgrad, Herkunft, Aufbereitung und Preis, mit Sortierung und Suche. Die Produktseite zeigt die Varianten, den Grundpreis passend zur gewählten Größe und eine LMIV-Tabelle. Ist ein Kaffee ausverkauft, erscheint ein Hinweis, der Kaufbutton ist gesperrt und ein Formular für eine Benachrichtigung steht bereit.\n\nDen Warenkorb steuert WooCommerce über die Store API, ein seitlicher Mini-Warenkorb zeigt den Inhalt. Aus dem vierstufigen Checkout des Prototyps habe ich einen einseitigen gemacht, weil die Checkout-Logik von WooCommerce darauf ausgelegt ist. Die Schaltfläche heißt „Zahlungspflichtig bestellen“. Dazu kommen Versandarten, Gutscheine, ein Kundenkonto und ein Konfigurator für ein Kaffee-Abo.\n\nNeun redaktionelle Produkttexte, Meta-Beschreibungen und Open-Graph-Daten ergänzen den Inhalt. Die Motive Kaffeefarm und Rösterei habe ich mit KI generiert.",
+      "ergebnis": "Der Konzept-Shop ist unter einer eigenen Subdomain öffentlich erreichbar und zeigt den ganzen Kaufweg: Katalog mit Filtern, Produktseite mit Grundpreis und LMIV-Angaben, Warenkorb, Kasse und Bestellbestätigung.\n\nGrundpreis und „inkl. MwSt.“ nach PAngV, die LMIV-Pflichtangaben, die Bestellschaltfläche nach § 312j BGB und ein Cookie-Banner mit gleichwertigen Schaltflächen sind direkt im Theme umgesetzt, dazu Grundlagen der Barrierefreiheit wie Sprachauszeichnung, Sprunglink, Alternativtexte und Landmarken. Die Darstellung ist für Smartphone, Tablet und Desktop ausgelegt.\n\nDas Projekt zeigt, wie sich ein gestalteter Prototyp in einen WooCommerce-Shop überführen lässt, ohne Gestaltung oder Rechtsvorgaben aufzugeben."
+    }
   },
   {
     "slug": "pomp",
@@ -239,7 +279,12 @@
     "mark": "baupreis",
     "layout": "feature",
     "featured": true,
-    "order": 10
+    "order": 10,
+    "case_de": {
+      "ausgangslage": "Baustoffpreise in Deutschland schwanken stark. Trotzdem verfolgen die meisten kleinen und mittleren Bauunternehmen ihre Materialkosten von Hand: per Telefon, über Lieferantenkataloge oder in Excel-Tabellen. Genau diese Betriebe mit bis zu 50 Mitarbeitern, ihre Einkäufer und Projektleiter, sind die Zielgruppe von BauPreis.\n\nDie vorhandenen Werkzeuge passen nicht zu ihnen. Baupreis-Nachschlagewerke sind statisch und arbeiten ohne KI, professionelle Rohstoff-Datendienste sind für den Mittelstand zu teuer, und Bausoftware für die Projektabwicklung beobachtet keine Preise. Zusätzlich schafft die Preisgleitklausel bei öffentlichen Aufträgen Bedarf an verlässlichen Preisdaten.\n\nBauPreis ist mein eigenes Produkt, kein Kundenauftrag. Ich wollte Preise für die wichtigsten Baustoffe automatisch erfassen, auswerten und so aufbereiten, dass Entscheidungen im Einkauf schneller fallen.",
+      "umsetzung": "Ich habe BauPreis als mandantenfähige SaaS-Anwendung mit Next.js 14 (App Router), TypeScript und Tailwind gebaut, die Daten liegen in PostgreSQL 16. Preise, Materialien und Analysen teilen sich alle Kunden, Einstellungen wie Preisalarme und Berichte gehören jeweils einer Organisation. Die Anmeldung läuft per E-Mail oder Google-Konto, und Funktionen werden je nach Tarif freigeschaltet.\n\nDie Preisdaten kommen aus mehreren Schnittstellen: Eurostat für Stahl, Holz, Beton und Dämmstoffe, SMARD der Bundesnetzagentur für Strom, metals.dev für Kupfer, Aluminium, Zink und Nickel. Sieben Cron-Jobs übernehmen den Betrieb: Sie sammeln Preise, starten Analysen, verschicken Preisalarme, erstellen Berichte und berechnen den BauPreis Index. Alarme gehen per E-Mail und Telegram raus, im Kopfbereich zeigt eine Glocke neue Benachrichtigungen.\n\nAnalyse, Prognosen und Chat laufen über die Claude API. Die prozentuale Preisänderung rechnet dabei der Server selbst und nicht das Sprachmodell, damit die Zahl reproduzierbar bleibt. Dazu kommen ein Rechner für die Preisgleitklausel nach VHB Formblatt 225, ein Legierungsrechner für 15 Legierungen, eine Oberfläche auf Deutsch, Englisch und Russisch sowie eine PWA. Jedes Material hat eine eigene Seite mit Preisverlauf und gleitendem 7-Tage-Durchschnitt.\n\nDie Oberfläche folgt einem durchgehenden Bauhaus-Design. Besucher können das Dashboard vorab als Gast ansehen, ein Rate-Limiting schützt den Login, und die Datenbank wird nur über parametrisierte Abfragen angesprochen.",
+      "ergebnis": "BauPreis ist unter baupreis.ais152.com erreichbar. Einkäufer und Projektleiter finden dort aktuelle Preise, Trends, Preisalarme und Rechenwerkzeuge für öffentliche Aufträge an einem Ort, statt sie aus Katalogen und Tabellen zusammenzusuchen.\n\nJe nach Tarif kommen CSV-Export, PDF-Berichte, ein API-Zugang und die Verwaltung eines Teams hinzu. Für mich ist BauPreis das Projekt, in dem ich Datenanbindung, KI-Auswertung und den Betrieb einer SaaS-Anwendung in einem eigenen Produkt zusammengeführt habe."
+    }
   },
   {
     "slug": "eko-oylis-ua",
@@ -262,7 +307,12 @@
     "mark": "eko-oylis",
     "layout": "tile",
     "featured": false,
-    "order": 11
+    "order": 11,
+    "case_de": {
+      "ausgangslage": "EKO-OYLIS sammelt und verarbeitet in der Ukraine gebrauchtes Speiseöl. Das Unternehmen besteht seit 2008, arbeitet mit über 2500 Partnerbetrieben und hat eine Vertretung in Bulgarien, also in der EU.\n\nDie bisherige Website unter eko-oylis.com.ua lief auf einem eigenen PHP- und MySQL-System. Sie sollte vollständig neu entstehen: Layout, Texte, Navigation, Performance, SEO und Barrierefreiheit. Erhalten bleiben sollten das Logo mit sechs grünen Sechsecken, die grüne Farbwelt, das Wabenmotiv sowie die Kontakt- und Rechtsangaben. Die neue Seite sollte zweisprachig sein, mit Ukrainisch als Hauptsprache und Englisch für internationale Geschäftspartner.",
+      "umsetzung": "Vor dem Aufbau habe ich sechs Technologie-Varianten mit einer gewichteten Bewertungsmatrix verglichen. Eleventy 3 lag vorn, vor allem wegen des geringen Umbauaufwands vom Designprototyp und des niedrigen Langzeitrisikos. Die Seite besteht aus Nunjucks-Templates, CSS mit Custom Properties und Vanilla JavaScript, gebündelt mit Vite. Animationen laufen mit GSAP, ScrollTrigger und Lenis. Skripte und Schriften werden selbst gehostet, die Content Security Policy lässt nur eigene Skripte zu. Das Logo ist als SVG mit der Markenschrift Airport umgesetzt.\n\nInhaltlich stützt sich die Seite auf die belegten Fakten der alten Website. Neu sind eine Chronik mit 11 Meilensteinen von 2008 bis 2026, ein FAQ mit 20 Fragen auf Ukrainisch und 23 auf Englisch samt FAQPage-Auszeichnung sowie eine Partnerseite mit 12 einheitlich aufbereiteten SVG-Logos. Das ISCC-EU-Zertifikat ist mit PDF, Link zum öffentlichen Register und Schema.org-Certification eingebunden. Organization- und LocalBusiness-Daten sowie hreflang für beide Sprachen helfen Suchmaschinen.\n\nDas Kontaktformular sendet über einen eigenen Cloudflare Worker per SMTP, geschützt durch Honeypot und Rate-Limit. Die E-Mail-Adresse ist gegen Spam-Bots verschleiert. Für das Team des Kunden habe ich eine PHP-Verwaltung gebaut: Artikel und Zertifikate lassen sich ohne Git und ohne Entwickler veröffentlichen, die Seiten werden dabei als statisches HTML geschrieben. Zum Schluss habe ich die Seite auf das Hosting des Kunden umgezogen, alte Adressen wie /sertifikation leiten per 301 auf die neuen weiter.",
+      "ergebnis": "Die neue Website läuft unter eko-oylis.com.ua und hat das alte PHP-System vollständig ersetzt. Sie ist zweisprachig, wird statisch ausgeliefert und führt die Markenelemente weiter, die das Unternehmen schon vorher genutzt hat.\n\nEKO-OYLIS kann Nachrichten und Zertifikate selbst veröffentlichen, ohne auf einen Entwickler zu warten. Das Zertifikat ist direkt auf der Seite prüfbar, und Partner aus der Gastronomie finden Leistungen, Ablauf und Kontakt in ihrer Sprache."
+    }
   },
   {
     "slug": "rundumshaus",
@@ -286,7 +336,12 @@
     "mark": "rundumshaus",
     "layout": "tile",
     "featured": false,
-    "order": 12
+    "order": 12,
+    "case_de": {
+      "ausgangslage": "Rund ums Haus Littawe ist ein junger Betrieb aus Osnabrück. Er bietet Hausmeisterservice, Gartenpflege, Dacharbeiten und Entrümpelung an und arbeitet in Osnabrück und Umgebung.\n\nGebraucht wurde eine deutschsprachige Website, die die Leistungen klar zeigt, Anfragen per Telefon, WhatsApp und Formular leicht macht und in der lokalen Google-Suche gefunden wird, auch in den Orten rund um Osnabrück. Geplant waren eine Startseite sowie Seiten für Leistungen, Referenzen und Kontakt. Texte, Bilder und Referenzen sollte der Inhaber später selbst pflegen können, ohne einen Entwickler zu beauftragen.",
+      "umsetzung": "Ich habe die Website mit Next.js 16, Tailwind CSS und GSAP gebaut und veröffentliche sie über GitHub Actions auf GitHub Pages. Symbole sind eigene SVG-Icons, die Bildwelt habe ich mit KI erzeugt. Eine fest stehende WhatsApp-Schaltfläche, ein Kontaktformular und ein DSGVO-Hinweis gehören dazu. Die Startseite bündelt Leistungen, echte Google-Bewertungen in einem Slider, FAQ und einen Kontaktblock mit Anruf, WhatsApp, E-Mail und Formular. Eine Über-uns-Seite stellt den Betrieb vor.\n\nDer Schwerpunkt liegt auf lokaler Sichtbarkeit. Für 98 Orte im Einsatzgebiet erzeugt ein Generator Landingpages je Leistung, zusammen 490 Seiten mit wechselnden Einleitungen, ortsbezogenen Fakten, FAQ und strukturierten Daten. Jede dieser Seiten verlinkt auf die anderen Leistungen am selben Ort, eine Einsatzgebiet-Seite listet alle Orte. Ergänzt wird das durch einen Ratgeber, Schema.org-Daten und eine llms.txt für KI-Suchdienste.\n\nFür die Pflege gibt es ein Admin-Panel auf Basis von Sveltia CMS. Dort ändert der Inhaber Texte, Bilder und Meta-Angaben, hochgeladene Bilder bekommen automatisch responsive Varianten. Als die Schrottabholung durch Garten- und Landschaftsbau ersetzt wurde, habe ich die neue Leistung mit 98 Ortsseiten und Weiterleitungen für die alten Adressen umgesetzt.\n\nIm Sommer 2026 folgte ein Redesign: neue Farbpalette auf allen Seiten, die Schrift Inter lokal eingebunden, eine weiße, mitlaufende Kopfzeile mit WhatsApp-Schaltfläche und ein Footer in vier Spalten.",
+      "ergebnis": "Die Website läuft unter rundumshaus-littawe.de und umfasst nach dem Redesign 617 Seiten und 511 Adressen in der Sitemap.\n\nKunden aus dem ganzen Einsatzgebiet finden zu ihrem Ort eine passende Seite und erreichen den Betrieb mit einem Klick. Der Inhaber pflegt Inhalte inzwischen selbst über das Admin-Panel."
+    }
   },
   {
     "slug": "stormguard-v2",
@@ -309,7 +364,12 @@
     "mark": "stormguard",
     "layout": "wide",
     "featured": false,
-    "order": 13
+    "order": 13,
+    "case_de": {
+      "ausgangslage": "Storm Guard Professional ist eine Marke für natürliche Pflegekosmetik für Hunde und Katzen mit Premium-Anspruch. Nach eigener Darstellung entstand sie 2025 als Weiterführung eines 1999 gegründeten Familienzwingers. Das Sortiment umfasst sieben Produkte: Shampoos für Welpen, für empfindliche Haut und für die tägliche Pflege, einen Conditioner und drei Pflegesets.\n\nEs gab bereits eine erste Version der Website. Die Entscheidung fiel auf einen kompletten Neubau; die alte Seite wurde archiviert und diente nur noch als Quelle für Texte, Bilder und gestalterische Vorgaben. Die neue Website sollte zunächst Englisch und Bulgarisch sprechen, später kam Deutsch hinzu.",
+      "umsetzung": "Technisch habe ich die Seite mit dem Static-Site-Generator Eleventy und Nunjucks-Templates aufgebaut, dazu modulares CSS und JavaScript ohne Framework. Produkte, Navigation und Übersetzungen liegen jeweils in genau einer Datendatei, Kopf- und Fußbereich sind gemeinsame Bausteine. Seitenspezifische Stile sind so getrennt, dass eine Änderung an einer Seite keine andere berührt.\n\nDie Kollektion lässt sich nach Tierart, Pflegebedarf, Felltyp und Produktart filtern, mit Schnellansicht. Jede Produktseite enthält FAQ und die INCI-Liste der Inhaltsstoffe, dazu strukturierte Produktdaten für Suchmaschinen. Inhaltsseiten zu Herkunft, Herstellung, Zertifizierung und Wissenschaft erzählen die Geschichte der Marke. Die Sprachversionen entstehen aus Übersetzungsdateien, hreflang-Verweise und Sitemap werden automatisch erzeugt. Das Journal lädt seine Beiträge aus Supabase, bereinigt sie vor der Anzeige und wird über einen Admin-Bereich gepflegt.\n\nBeim Datenschutz lädt der Cookie-Banner Analyse-Skripte erst nach Einwilligung. Die Schriften samt kyrillischer Zeichensätze liegen auf dem eigenen Server statt bei Google Fonts, dazu kommen Sicherheits-Header wie HSTS und CSP. Das Redesign im Stil »Apothecary Editorial« setzt auf eine warme Papierpalette und die Serifenschrift Fraunces. Das Deployment läuft automatisch über GitHub Actions.",
+      "ergebnis": "Die neue Seite ist auf der Domain der Marke live: Startseite, Kollektion, Produktseiten und Inhaltsseiten in Englisch, Bulgarisch und Deutsch, alle im neuen Design. Die Inhalte bleiben auch ohne JavaScript sichtbar.\n\nFür die Pflege bedeutet der Aufbau: Ein Produkt, ein Menüpunkt oder eine Übersetzung wird an genau einer Stelle geändert und erscheint auf allen Seiten. Beiträge im Journal entstehen im Admin-Bereich, ohne dass jemand den Code anfassen muss."
+    }
   },
   {
     "slug": "edmi",
@@ -331,7 +391,12 @@
     "mark": "edmi",
     "layout": "tall",
     "featured": false,
-    "order": 14
+    "order": 14,
+    "case_de": {
+      "ausgangslage": "EDMI ist ein Anbieter von Dentalmikroskopen aus Iwano-Frankiwsk in der Ukraine und vertreibt unter anderem Geräte von Zeiss und CJ-Optik über einen WooCommerce-Shop. Zusätzlich zum Shop sollte eine eigenständige Landingpage entstehen.\n\nDie Vorgaben: neue und gebrauchte Mikroskope als eigene Kategorien, ein separater Block für Zubehör, ein Serviceblock, Kontaktformulare sowie Ukrainisch und Englisch mit Umschalter. Einen Warenkorb oder eine Bezahlfunktion sollte die Seite bewusst nicht haben. Gestaltet werden sollte streng nach dem Brandbook von EDMI, mit den Schriften Unbounded und Montserrat und dem dreifarbigen Markenverlauf.",
+      "umsetzung": "Grundlage waren das 60-seitige Brandbook und eine Analyse des bestehenden Shops mit Katalog, Kategorien und Partnern. Die Landingpage ist eine eigene App im Monorepo des Projekts, gebaut mit Vite, Tailwind CSS 4 und JavaScript ohne Framework. Ein gemeinsames Skript übernimmt Sprachumschaltung, Scroll-Animationen, animierte Kennzahlen und weiches Scrollen.\n\nStatt eines einzigen Entwurfs habe ich zunächst drei Richtungen umgesetzt, Glass Prism, Clean Surgical und Neon Depth, vergleichbar über eine Auswahlseite im Browser. Nach einer Trendrecherche kamen vier helle Varianten hinzu: ein Bento-Grid im Stil von Apple und Notion, eine Scroll-Story mit Parallax-Effekten, eine Variante mit Light Glassmorphism und eine helle Fassung von Glass Prism. Jede Variante hat einen eigenen CSS-Namensraum, damit sich die Stile nicht gegenseitig beeinflussen. Die Bento-Variante habe ich mit sieben Mikroskopen von Zeiss und CJ-Optik und elf Zubehörteilen gefüllt und die Katalogdaten per Skript gegen den Shop geprüft.\n\nGewählt wurde die helle Fassung von Glass Prism, die ich anschließend ausgebaut habe: echte Kontaktdaten, Öffnungszeiten und Social-Media-Links, das Original-Logo als SVG, ein schwebender Anruf-Button, Produktfotos in den Karten und beim Zubehör mit Alternativtexten sowie ein Filter nach Marke. Eine Detailansicht als Dialog zeigt Beschreibung und Merkmale, führt den Tastaturfokus, schließt per Escape und leitet direkt zur Beratungsanfrage oder zum Produkt im Shop.",
+      "ergebnis": "EDMI hat mehrere klickbare Entwürfe erhalten, die auf GitHub Pages öffentlich erreichbar sind, und daraus die finale Variante ausgewählt. Es handelt sich um Prototypen zur Abstimmung.\n\nDie gewählte Fassung zeigt das Sortiment mit echten Produktfotos, Markenfilter und Detailansicht, dazu Service, Kontakt und die Wege zu Beratung und Shop in Ukrainisch und Englisch. Weil mehrere Richtungen nebeneinander im Browser liefen, konnte die Entscheidung am fertigen Bildschirm fallen und nicht anhand von Skizzen."
+    }
   },
   {
     "slug": "provenly-homes",
@@ -355,7 +420,12 @@
     "mark": "provenly-homes",
     "layout": "square",
     "featured": false,
-    "order": 15
+    "order": 15,
+    "case_de": {
+      "ausgangslage": "Provenly Homes ist ein Unternehmen aus Köln, das für Eigentümer in NRW Wohnungen in der Kurzzeitvermietung betreut. Zielgruppe sind Eigentümer in Köln, Bonn und Düsseldorf mit einer bis fünf Wohnungen. Der bisherige Auftritt lief auf Framer.\n\nBei der Bestandsaufnahme fielen mehrere Mängel auf: Reste der Vorlage wie eine fremde E-Mail-Adresse im Footer, Kennzahlen, die nur Nullen zeigten, zwei konkurrierende E-Mail-Adressen, Tippfehler in Texten und in der URL der Objektseiten sowie kein Cookie-Hinweis. Ziel war ein neu gebauter Auftritt auf Awwwards-Niveau, der die vorhandenen Inhalte vollständig übernimmt: Leistungen, drei Pakete, Referenzobjekte, Kundenstimmen, FAQ und den Ratgeber.",
+      "umsetzung": "Zuerst habe ich die Inhalte der alten Seite vollständig erfasst, die Tippfehler bereinigt und die Bilder lokal übernommen, mit sprechenden Dateinamen. Gebaut ist die neue Seite mit Next.js 16, App Router, TypeScript und Tailwind CSS v4 als statischer Export. Alle Texte liegen in JSON-Dateien und nicht in den Komponenten.\n\nDas Branding in warmem Sand mit Kupfer-Akzent ist als Design-Tokens hinterlegt und in einem Brand Guide dokumentiert, mit festen Kontrastregeln: Kupfer nie als kleiner Fließtext. Dazu kommen sechs SVG-Logovarianten und die Schriften Lora und Plus Jakarta Sans, lokal eingebunden.\n\nFür Bewegung setze ich GSAP mit ScrollTrigger und SplitText für Scroll-, Text- und Timeline-Animationen ein, Motion für Interface-Zustände und Lenis für weiches Scrollen. Umgesetzt sind unter anderem ein zeichenweise aufgebauter Hero-Titel mit Spotlight-Effekt, eine Navigation, die beim Scrollen aus- und wieder einblendet, eine 3D-Neigung der Objektkarten, eine sich zeichnende Prozesslinie, ein CTA mit umlaufendem Rahmen und schwebende Formularbeschriftungen. Bei reduzierter Bewegung im System entfallen die Animationen.\n\nNeu sind Objektseiten, Ratgeber-Artikel mit FAQ und Standortseiten für Köln, Bonn und Düsseldorf mit Stadtteilen, Marktdaten und Regeln. Das Kontaktformular mit 13 Feldern läuft über FormSubmit mit Honeypot gegen Spam. Datenschutzerklärung und Impressum sind überarbeitet, Schema.org-Daten und Sitemap ergänzt, das Deployment läuft über GitHub Actions.",
+      "ergebnis": "Provenly Homes hat einen vollständig neu gebauten Auftritt mit 20 Seitenrouten erhalten, veröffentlicht auf GitHub Pages. Alle 39 im Designplan festgelegten Effekte sind umgesetzt, auf dem Smartphone teils in einer eigenen mobilen Fassung.\n\nDie Inhalte lassen sich in den JSON-Dateien pflegen, ohne Komponenten anzufassen. Eine schwebende Kontaktleiste mit Telefon und E-Mail hält den Weg zur Anfrage kurz, der Cookie-Hinweis ist vorhanden, und die Seite lädt keine Schriften von Drittanbietern."
+    }
   },
   {
     "slug": "studioglamour",

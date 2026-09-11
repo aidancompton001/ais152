@@ -1,0 +1,229 @@
+{
+  "slug": "edmi",
+  "ausgangslage": "EDMI ist ein Anbieter von Dentalmikroskopen aus Iwano-Frankiwsk in der Ukraine und vertreibt unter anderem Geräte von Zeiss und CJ-Optik über einen WooCommerce-Shop. Zusätzlich zum Shop sollte eine eigenständige Landingpage entstehen.\n\nDie Vorgaben: neue und gebrauchte Mikroskope als eigene Kategorien, ein separater Block für Zubehör, ein Serviceblock, Kontaktformulare sowie Ukrainisch und Englisch mit Umschalter. Einen Warenkorb oder eine Bezahlfunktion sollte die Seite bewusst nicht haben. Gestaltet werden sollte streng nach dem Brandbook von EDMI, mit den Schriften Unbounded und Montserrat und dem dreifarbigen Markenverlauf.",
+  "umsetzung": "Grundlage waren das 60-seitige Brandbook und eine Analyse des bestehenden Shops mit Katalog, Kategorien und Partnern. Die Landingpage ist eine eigene App im Monorepo des Projekts, gebaut mit Vite, Tailwind CSS 4 und JavaScript ohne Framework. Ein gemeinsames Skript übernimmt Sprachumschaltung, Scroll-Animationen, animierte Kennzahlen und weiches Scrollen.\n\nStatt eines einzigen Entwurfs habe ich zunächst drei Richtungen umgesetzt, Glass Prism, Clean Surgical und Neon Depth, vergleichbar über eine Auswahlseite im Browser. Nach einer Trendrecherche kamen vier helle Varianten hinzu: ein Bento-Grid im Stil von Apple und Notion, eine Scroll-Story mit Parallax-Effekten, eine Variante mit Light Glassmorphism und eine helle Fassung von Glass Prism. Jede Variante hat einen eigenen CSS-Namensraum, damit sich die Stile nicht gegenseitig beeinflussen. Die Bento-Variante habe ich mit sieben Mikroskopen von Zeiss und CJ-Optik und elf Zubehörteilen gefüllt und die Katalogdaten per Skript gegen den Shop geprüft.\n\nGewählt wurde die helle Fassung von Glass Prism, die ich anschließend ausgebaut habe: echte Kontaktdaten, Öffnungszeiten und Social-Media-Links, das Original-Logo als SVG, ein schwebender Anruf-Button, Produktfotos in den Karten und beim Zubehör mit Alternativtexten sowie ein Filter nach Marke. Eine Detailansicht als Dialog zeigt Beschreibung und Merkmale, führt den Tastaturfokus, schließt per Escape und leitet direkt zur Beratungsanfrage oder zum Produkt im Shop.",
+  "ergebnis": "EDMI hat mehrere klickbare Entwürfe erhalten, die auf GitHub Pages öffentlich erreichbar sind, und daraus die finale Variante ausgewählt. Es handelt sich um Prototypen zur Abstimmung.\n\nDie gewählte Fassung zeigt das Sortiment mit echten Produktfotos, Markenfilter und Detailansicht, dazu Service, Kontakt und die Wege zu Beratung und Shop in Ukrainisch und Englisch. Weil mehrere Richtungen nebeneinander im Browser liefen, konnte die Entscheidung am fertigen Bildschirm fallen und nicht anhand von Skizzen.",
+  "word_count": 372,
+  "claims": [
+    {
+      "text": "Anbieter von Dentalmikroskopen mit WooCommerce-Shop",
+      "source": "C:/Projects/EDMI/CLAUDE.md:45",
+      "quote": "продаж стоматологічних мікроскопів та обладнання. Додаток синхронізується з існуючим сайтом на WordPress + WooCommerce"
+    },
+    {
+      "text": "Sitz in Iwano-Frankiwsk",
+      "source": "C:/Projects/EDMI/docs/plans/2026-03-09-variant-d-final-dark-bento-design.md:40",
+      "quote": "Реальные данные: Івано-Франківськ"
+    },
+    {
+      "text": "Marken Zeiss und CJ-Optik",
+      "source": "C:/Projects/EDMI/docs/plans/2026-03-09-variant-d-final-dark-bento-design.md:42",
+      "quote": "Бренди: Zeiss, CJ-Optik, Optergo"
+    },
+    {
+      "text": "Vorgabe: neue und gebrauchte Mikroskope als Kategorien",
+      "source": "C:/Projects/EDMI/docs/tz/TZ-006-landing-prototypes.md:12",
+      "quote": "Категории: нови та вживани микроскопи"
+    },
+    {
+      "text": "Vorgabe: separater Block für Zubehör",
+      "source": "C:/Projects/EDMI/docs/tz/TZ-006-landing-prototypes.md:14",
+      "quote": "Окремий блок — аксесуари до микроскопив"
+    },
+    {
+      "text": "Vorgabe: kein Warenkorb, keine Bezahlfunktion",
+      "source": "C:/Projects/EDMI/docs/tz/TZ-006-landing-prototypes.md:15",
+      "quote": "БЕЗ корзини, БЕЗ платижной форми"
+    },
+    {
+      "text": "Vorgabe: Kontaktformulare",
+      "source": "C:/Projects/EDMI/docs/tz/TZ-006-landing-prototypes.md:16",
+      "quote": "Форми зворотного зв'язку"
+    },
+    {
+      "text": "Vorgabe: Serviceblock",
+      "source": "C:/Projects/EDMI/docs/tz/TZ-006-landing-prototypes.md:17",
+      "quote": "Блок сервисного обслуговування"
+    },
+    {
+      "text": "Vorgabe: Ukrainisch und Englisch mit Umschalter",
+      "source": "C:/Projects/EDMI/docs/tz/TZ-006-landing-prototypes.md:18",
+      "quote": "Мова: uk + en (переключатель)"
+    },
+    {
+      "text": "Brandbook: Unbounded, Montserrat, dreifarbiger Verlauf",
+      "source": "C:/Projects/EDMI/docs/tz/TZ-006-landing-prototypes.md:20",
+      "quote": "Строго по брендбуку (Unbounded, Montserrat, gradient #90267C -> #7938A9 -> #11387F)"
+    },
+    {
+      "text": "60-seitiges Brandbook als Grundlage",
+      "source": "C:/Projects/EDMI/DEVLOG.md:379",
+      "quote": "Изучен брендбук EDMI (60 стр.)"
+    },
+    {
+      "text": "Analyse des bestehenden Shops: Katalog, Kategorien, Partner",
+      "source": "C:/Projects/EDMI/DEVLOG.md:380",
+      "quote": "Изучен сайт edmi.com.ua: каталог, категории, партнёры, структура"
+    },
+    {
+      "text": "Eigene App im Monorepo",
+      "source": "C:/Projects/EDMI/DEVLOG.md:462",
+      "quote": "Landing page как отдельное приложение в монорепо (`apps/landing/`)"
+    },
+    {
+      "text": "Vite, Tailwind CSS 4, JavaScript ohne Framework",
+      "source": "C:/Projects/EDMI/docs/tz/TZ-006-landing-prototypes.md:48",
+      "quote": "Vite 6 + TailwindCSS 4 + vanilla JS"
+    },
+    {
+      "text": "Gemeinsames Skript: Sprachumschaltung, Scroll-Animationen, Kennzahlen, weiches Scrollen",
+      "source": "C:/Projects/EDMI/DEVLOG.md:389",
+      "quote": "language switcher uk/en, scroll animations, counter animation, form handler (Telegram), smooth scroll"
+    },
+    {
+      "text": "Drei Richtungen: Glass Prism, Clean Surgical, Neon Depth",
+      "source": "C:/Projects/EDMI/DEVLOG.md:382",
+      "quote": "Brainstorming: 3 варианта дизайна (Glass Prism, Clean Surgical, Neon Depth)"
+    },
+    {
+      "text": "Auswahlseite zum Vergleich im Browser",
+      "source": "C:/Projects/EDMI/DEVLOG.md:393",
+      "quote": "Создана роутер-страница для выбора варианта (index.html)"
+    },
+    {
+      "text": "Vier helle Varianten nach Trendrecherche",
+      "source": "C:/Projects/EDMI/DEVLOG.md:284",
+      "quote": "TZ-008: 4 новых светлых варианта лендинга + деплой"
+    },
+    {
+      "text": "Helle Fassung von Glass Prism",
+      "source": "C:/Projects/EDMI/DEVLOG.md:291",
+      "quote": "Variant A-Light (Glass Prism Light)"
+    },
+    {
+      "text": "Bento-Grid im Stil von Apple und Notion",
+      "source": "C:/Projects/EDMI/DEVLOG.md:292",
+      "quote": "Variant D \"Bento Grid\" — Apple/Notion-стиль"
+    },
+    {
+      "text": "Scroll-Story mit Parallax",
+      "source": "C:/Projects/EDMI/DEVLOG.md:293",
+      "quote": "Variant E \"Scroll Story\" — scroll-driven сторітелінг с паралакс-ефектами"
+    },
+    {
+      "text": "Variante mit Light Glassmorphism",
+      "source": "C:/Projects/EDMI/DEVLOG.md:294",
+      "quote": "Variant F \"Light Glass\""
+    },
+    {
+      "text": "Eigener CSS-Namensraum je Variante",
+      "source": "C:/Projects/EDMI/DEVLOG.md:305",
+      "quote": "Кожен варіант має унікальний CSS namespace (--vd-*, --ve-*, --vf-*) для ізоляції стилів"
+    },
+    {
+      "text": "Sieben Mikroskope von Zeiss und CJ-Optik und elf Zubehörteile",
+      "source": "C:/Projects/EDMI/DEVLOG.md:266",
+      "quote": "7 микроскопов (Zeiss, CJ-Optik) + 11 аксессуаров"
+    },
+    {
+      "text": "Katalogdaten per Skript gegen den Shop geprüft",
+      "source": "C:/Projects/EDMI/docs/plans/2026-03-09-variant-d-final-dark-bento-design.md:122",
+      "quote": "Скрипт проверки: все цены, все URL фото, все названия — сверка с edmi.com.ua"
+    },
+    {
+      "text": "Skriptprüfung durchgeführt",
+      "source": "C:/Projects/EDMI/DEVLOG.md:269",
+      "quote": "верификация через скрипт"
+    },
+    {
+      "text": "Gewählt wurde die helle Fassung von Glass Prism",
+      "source": "C:/Projects/EDMI/STATUS.md:8",
+      "quote": "Клиент выбрал **Variant A-Light (Prism Lite)** как финальный лендинг."
+    },
+    {
+      "text": "Echte Kontaktdaten",
+      "source": "C:/Projects/EDMI/DEVLOG.md:45",
+      "quote": "Заменены все фейковые контакты: телефон, email, адрес"
+    },
+    {
+      "text": "Social-Media-Links",
+      "source": "C:/Projects/EDMI/DEVLOG.md:47",
+      "quote": "Соцсети: Instagram, Facebook, Telegram → реальные URL"
+    },
+    {
+      "text": "Öffnungszeiten",
+      "source": "C:/Projects/EDMI/DEVLOG.md:48",
+      "quote": "Добавлен график работы"
+    },
+    {
+      "text": "Original-Logo als SVG",
+      "source": "C:/Projects/EDMI/DEVLOG.md:59",
+      "quote": "Скачаны SVG лого с edmi.com.ua"
+    },
+    {
+      "text": "Schwebender Anruf-Button",
+      "source": "C:/Projects/EDMI/DEVLOG.md:62",
+      "quote": "FAB кнопка: 56px, #90267C, fixed bottom-right, иконка телефона"
+    },
+    {
+      "text": "Produktfotos in den Karten",
+      "source": "C:/Projects/EDMI/DEVLOG.md:74",
+      "quote": "4 placeholder заменены на `<img>` с реальными фото"
+    },
+    {
+      "text": "Fotos beim Zubehör",
+      "source": "C:/Projects/EDMI/DEVLOG.md:108",
+      "quote": "6 SVG-иконок заменены на `<img>` с реальными фото продуктов"
+    },
+    {
+      "text": "Alternativtexte bei den Zubehörfotos",
+      "source": "C:/Projects/EDMI/DEVLOG.md:109",
+      "quote": "добавлен `alt` на каждое фото"
+    },
+    {
+      "text": "Filter nach Marke",
+      "source": "C:/Projects/EDMI/DEVLOG.md:127",
+      "quote": "3 чіпи: \"Всі\" / \"Zeiss\" / \"CJ-Optik\""
+    },
+    {
+      "text": "Detailansicht zeigt Beschreibung und Merkmale",
+      "source": "C:/Projects/EDMI/DEVLOG.md:88",
+      "quote": "объект PRODUCTS с 4 продуктами (реальные описания 4-5 предложений, features"
+    },
+    {
+      "text": "Detailansicht führt Fokus, schließt per Escape",
+      "source": "C:/Projects/EDMI/DEVLOG.md:89",
+      "quote": "initLightbox() — открытие/закрытие, focus trap, scroll lock, Esc, overlay click"
+    },
+    {
+      "text": "Detailansicht als Dialog",
+      "source": "C:/Projects/EDMI/DEVLOG.md:92",
+      "quote": "lightbox разметка с aria-modal, role=\"dialog\""
+    },
+    {
+      "text": "Weiter zur Beratungsanfrage",
+      "source": "C:/Projects/EDMI/DEVLOG.md:95",
+      "quote": "CTA \"Отримати консультацію\" → scroll to #contact + close lightbox"
+    },
+    {
+      "text": "Weiter zum Produkt im Shop",
+      "source": "C:/Projects/EDMI/DEVLOG.md:96",
+      "quote": "Link \"Дивитись на edmi.com.ua\" → внешнее посилання"
+    },
+    {
+      "text": "Entwürfe öffentlich auf GitHub Pages",
+      "source": "C:/Projects/EDMI/DEVLOG.md:152",
+      "quote": "Задеплоено на GitHub Pages"
+    },
+    {
+      "text": "Prototypen zur Abstimmung",
+      "source": "C:/Projects/EDMI/docs/tz/TZ-006-landing-prototypes.md:1",
+      "quote": "3 прототипа для CEO Review"
+    },
+    {
+      "text": "Service und Kontakt zweisprachig",
+      "source": "C:/Projects/EDMI/DEVLOG.md:123",
+      "quote": "i18n ключі: service.video_placeholder, service.video_hint (uk + en)"
+    }
+  ]
+}

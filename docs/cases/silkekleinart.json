@@ -1,0 +1,189 @@
+{
+  "slug": "silkekleinart",
+  "ausgangslage": "Silke Klein ist Malerin aus Kiel. Ihre bisherige Website lief auf WordPress mit dem Page-Builder Elementor, alle Seiten waren aus Blöcken zusammengesetzt. Ohne technisches Vorwissen war das schwer zu pflegen, besonders die Seite mit den Ausstellungen geriet dabei durcheinander.\n\nDie Werke sind in Serien geordnet, jedes mit Nummer, Jahr, Format, Technik und Status. Statt einer punktuellen Reparatur habe ich mich für einen vollständigen Neubau entschieden: Texte, Werkliste und Logo bleiben erhalten, Technik und Gestaltung werden neu aufgebaut. Das Ziel war, dass die Künstlerin Werke und Ausstellungen selbst über einfache Formulare einträgt, ohne mit Layout-Blöcken zu arbeiten.",
+  "umsetzung": "Die Basis ist ein eigenes WordPress-Theme ohne Page-Builder und ein Plugin, das die Datenstruktur im Code festlegt. Es gibt zwei eigene Inhaltstypen, „Werk“ und „Ausstellung“, dazu die Taxonomien Serie und Gattung. Die Felder für Nummer, Jahr, Größe, Technik und Status sind mit Advanced Custom Fields angelegt und liegen versioniert im Code. Ausstellungen sortiert die Verwaltung nach Jahr.\n\nGestalterisch habe ich die Richtung „Galerie-Raum“ umgesetzt: heller Grund, die Kunst im Mittelpunkt, Bordeaux und Gold aus dem bestehenden Logo als Akzente, Galeriekarten mit Milchglas-Effekt und ein Hero mit Parallaxe. Die Schriften Inter und Playfair liegen auf dem eigenen Server.\n\nDie Inhalte habe ich von der alten Website übernommen: 25 Werke mit Bildern und Beschreibungen sowie 10 Ausstellungen. Ein Klick auf ein Werk öffnet jetzt eine eigene Detailseite mit großem Bild, Werkdaten und Beschreibung. Den Beschreibungstext bearbeitet die Künstlerin in einem Editor, der sich wie ein Textprogramm bedienen lässt.\n\nFür die Übergabe habe ich die Verwaltung auf Deutsch umgestellt, ein Redakteurskonto ohne Zugriff auf Plugins und Theme eingerichtet und eine bebilderte PDF-Anleitung mit sechs Kapiteln geschrieben. Zum Schluss ist die Website auf das eigene Webhosting der Kundin umgezogen.",
+  "ergebnis": "Die Künstlerin pflegt ihre Website jetzt selbst: Werk anlegen, Bild austauschen, Ausstellung eintragen. Die Anleitung zeigt jeden dieser Schritte mit Bildschirmfotos aus ihrer eigenen Verwaltung.\n\nSpäter habe ich ein Seiten-Template „Galerie-Rubrik“ ergänzt. Damit kann sie neue Rubriken künftig selbst anlegen, die Rubrik „Kieler Kunstkalender 2027“ ist bereits online.\n\nWird eine Seite in sozialen Netzwerken geteilt, erscheint ein Gemälde als Vorschaubild. Die Website läuft unter ihrer eigenen Domain auf ihrem eigenen Hosting.",
+  "word_count": 361,
+  "claims": [
+    {
+      "text": "Silke Klein ist Malerin",
+      "source": "C:/Projects/AiS152/data/projects.json:118",
+      "quote": "Premium-Neubau der Website einer Kieler Malerin."
+    },
+    {
+      "text": "Standort Kiel",
+      "source": "C:/Projects/SilkeKleinArt/CLAUDE.md:16",
+      "quote": "**Локация:** Kiel (клиент)"
+    },
+    {
+      "text": "Bisherige Website: WordPress mit Elementor",
+      "source": "C:/Projects/SilkeKleinArt/docs/adr/ADR-001-stack-and-scope.md:12",
+      "quote": "живёт на IONOS + WordPress + Elementor"
+    },
+    {
+      "text": "Seiten aus Elementor-Blöcken, für Laien schwer zu pflegen",
+      "source": "C:/Projects/SilkeKleinArt/docs/tasks/T001_rebuild_phased_roadmap.md:59",
+      "quote": "Elementor-блоки (новичок не справляется)"
+    },
+    {
+      "text": "Ausstellungsseite geriet durcheinander, Pflege schwierig",
+      "source": "C:/Projects/SilkeKleinArt/docs/adr/ADR-001-stack-and-scope.md:12",
+      "quote": "клиент-новичок не может вести его сама (страница выставок ломается, галерея неудобна)"
+    },
+    {
+      "text": "Werke in Serien mit Nummer, Jahr, Format, Technik, Status",
+      "source": "C:/Projects/SilkeKleinArt/docs/content/content-inventory.md:59",
+      "quote": "галереи = **серии → работы** (титул, Nr., год, размер, техника, статус"
+    },
+    {
+      "text": "Neubau statt punktueller Reparatur",
+      "source": "C:/Projects/SilkeKleinArt/docs/adr/ADR-001-stack-and-scope.md:12",
+      "quote": "CEO принял решение о полной пересборке"
+    },
+    {
+      "text": "Texte, Werkliste und Logo bleiben erhalten",
+      "source": "C:/Projects/SilkeKleinArt/docs/adr/ADR-001-stack-and-scope.md:19",
+      "quote": "**Заморожены только:** контент (тексты/Werksliste) и логотип-монограмма SK"
+    },
+    {
+      "text": "Ziel: Pflege über Formulare ohne Blöcke",
+      "source": "C:/Projects/SilkeKleinArt/CLAUDE.md:15",
+      "quote": "Цель — клиент-новичок ведёт контент сама через формы, без блоков."
+    },
+    {
+      "text": "Eigenes Theme ohne Page-Builder",
+      "source": "C:/Projects/SilkeKleinArt/docs/adr/ADR-001-stack-and-scope.md:16",
+      "quote": "Elementor и нулёный PRO Elements убираются."
+    },
+    {
+      "text": "Plugin legt Datenstruktur im Code fest",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:215",
+      "quote": "Плагин `wp-content-plugin/silkekleinart-core/` (5 файлов)"
+    },
+    {
+      "text": "Inhaltstypen Werk und Ausstellung mit Feldern Nummer, Jahr, Größe, Technik, Status",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:216",
+      "quote": "+ `werk` (nr/jahr/groesse/technik/status + beitragsbild)"
+    },
+    {
+      "text": "Taxonomien Serie und Gattung",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:217",
+      "quote": "Таксономии `serie` (7 серий) + `gattung` (abstrakt/gegenständlich)"
+    },
+    {
+      "text": "ACF-Felder im Code versioniert",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:218",
+      "quote": "ACF-поля кодом (`acf_add_local_field_group`, версионируются в git)"
+    },
+    {
+      "text": "Ausstellungen nach Jahr sortiert",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:219",
+      "quote": "Admin-колонка «Jahr» + сортировка выставок jahr DESC"
+    },
+    {
+      "text": "Designrichtung Galerie-Raum, heller Grund, Kunst im Mittelpunkt, Bordeaux und Gold",
+      "source": "C:/Projects/SilkeKleinArt/docs/adr/ADR-002-design-direction.md:12",
+      "quote": "**Направление A «Galerie-Raum»** (музейный минимализм, арт-фёрст, светлый фон, бордо"
+    },
+    {
+      "text": "Galeriekarten mit Milchglas-Effekt, Hero mit Parallaxe",
+      "source": "C:/Projects/SilkeKleinArt/docs/adr/ADR-002-design-direction.md:12",
+      "quote": "frosted-glass карточки галереи, parallax hero"
+    },
+    {
+      "text": "Bordeaux und Gold stammen aus dem Logo",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:271",
+      "quote": "бордо #981B1E + золото #D4AF37 (=лого)"
+    },
+    {
+      "text": "Schriften Inter und Playfair selbst gehostet",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:239",
+      "quote": "Inter (body) + Playfair (headings), self-hosted @font-face"
+    },
+    {
+      "text": "25 Werke und 10 Ausstellungen",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:104",
+      "quote": "werk=25/ausstellung=10"
+    },
+    {
+      "text": "Bilder von der alten Website übernommen",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:193",
+      "quote": "картинки скачаны с live, 24/24"
+    },
+    {
+      "text": "Beschreibungen aller Werke übernommen",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:170",
+      "quote": "25/25 с описанием"
+    },
+    {
+      "text": "Klick auf Werk öffnet Detailseite mit Bild, Werkdaten, Beschreibung",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:173",
+      "quote": "`single-werk.php` рендерит большое изображение + мета-строку + описание"
+    },
+    {
+      "text": "Beschreibung im Editor wie ein Textprogramm",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:178",
+      "quote": "wysiwyg вместо textarea — Silke получает редактор «как Word»"
+    },
+    {
+      "text": "Verwaltung auf Deutsch umgestellt",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:155",
+      "quote": "**Админка → немецкий (de_DE):**"
+    },
+    {
+      "text": "Redakteurskonto ohne Zugriff auf Plugins und Theme",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:154",
+      "quote": "роль Editor — весь контент, не плагины/тема"
+    },
+    {
+      "text": "PDF-Anleitung mit sechs Kapiteln",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:157",
+      "quote": "**PDF-Guide:** 6 глав (Anmelden · Neues Werk · Werk bearbeiten · Bild austauschen · Ausstellung eintragen · Sicherheit)"
+    },
+    {
+      "text": "Anleitung mit Bildschirmfotos aus der eigenen Verwaltung",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:157",
+      "quote": "13 реальных скриншотов из живой админки (Editor-вид)"
+    },
+    {
+      "text": "Umzug auf das eigene Webhosting der Kundin",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:28",
+      "quote": "damit sie auf ihrer eigenen Infrastruktur läuft"
+    },
+    {
+      "text": "Künstlerin pflegt Inhalte selbst",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:14",
+      "quote": "Silke hatte richtig gearbeitet"
+    },
+    {
+      "text": "Seiten-Template Galerie-Rubrik ergänzt",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:16",
+      "quote": "neues Template `page-templates/galerie-rubrik.php`"
+    },
+    {
+      "text": "Neue Rubriken künftig selbst anlegen",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:18",
+      "quote": "damit Silke künftige Rubriken selbst anlegen kann"
+    },
+    {
+      "text": "Rubrik Kieler Kunstkalender 2027 online",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:20",
+      "quote": "/kieler-kunstkalender-2027/ 200 mit Werk-Karte + Bild"
+    },
+    {
+      "text": "Vorschaudaten für soziale Netzwerke pro Seitentyp",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:49",
+      "quote": "neue `skart_social_meta()` (OpenGraph + Twitter-Cards + canonical pro Seitentyp)"
+    },
+    {
+      "text": "Gemälde als Vorschaubild",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:49",
+      "quote": "Home og:image=Gemälde"
+    },
+    {
+      "text": "Eigene Domain auf eigenem Hosting",
+      "source": "C:/Projects/SilkeKleinArt/DEVLOG.md:31",
+      "quote": "Domain silkekleinart.com → Webspace-Ordner verbunden"
+    }
+  ]
+}

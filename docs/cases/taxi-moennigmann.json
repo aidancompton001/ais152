@@ -1,0 +1,214 @@
+{
+  "slug": "taxi-moennigmann",
+  "ausgangslage": "Taxi Mönnigmann fährt seit über 20 Jahren in Leer und ganz Ostfriesland: Stadttaxi rund um die Uhr, Krankenfahrten, Inklusionstaxi, Flughafentransfers, Schülertransporte und Oldtimerfahrten für Hochzeiten. Unter den neun Wettbewerbern aus Leer und Ostfriesland, die ich vorab ausgewertet habe, bot keiner ein Inklusionstaxi an. Diese Stärke sollte die neue Website klar zeigen.\n\nDas Briefing des Unternehmens umfasste acht Bereiche und stellte klare Anforderungen: barrierefrei, dreisprachig mit Deutsch, Englisch und Plattdeutsch, optimiert für das Smartphone, kurze Ladezeiten und bewegte Bilder im Hintergrund. Ein Kontaktformular war ausdrücklich nicht gewünscht. Telefon und E-Mail sollten direkt anklickbar sein.",
+  "umsetzung": "Technisch ist die Seite ein statischer Astro-Build. Alle Texte liegen in JSON-Dateien je Sprache, Plattdeutsch hat eigene Formulierungen statt einer Kopie des Deutschen. Insgesamt sind es 30 Seiten, darunter sechs Leistungsseiten in jeder Sprache, die aus denselben Daten entstehen.\n\nVon drei Designkonzepten hat der Kunde die Variante in Bordeaux und Creme gewählt. Die Schriften Bricolage Grotesque und Manrope sind lokal eingebunden, externe CDNs und Tracking gibt es nicht. Das Hero-Video läuft stumm in Schleife, hat eine sichtbare Pause-Taste und wird bei reduzierter Bewegung durch ein Standbild ersetzt. Die Bilder der Leistungsbereiche sind mit KI erzeugt, auf Grundlage echter Fotos der eigenen Fahrzeuge in Firmenlackierung.\n\nBei den Krankenfahrten erklärt die Detailseite den Anspruch nach § 60 SGB V und die Zuzahlung nach § 61 SGB V, mit Verweis auf die Entscheidung der Krankenkasse. Das Impressum enthält alle Angaben nach § 5 DDG. Für die Barrierefreiheit sorgen ein Sprunglink zum Inhalt, ein sichtbarer Fokus und semantische Landmarken, außerdem berücksichtigt die Seite die Systemeinstellung für reduzierte Bewegung.",
+  "ergebnis": "Die Website ist unter taxi-moennigmann.de online und für Suchmaschinen freigegeben. Alle vier Domains des Unternehmens führen auf die neue Seite.\n\nAnrufen oder schreiben geht mit einem Tipp über die Kontaktleiste. Strukturierte Daten mit der Firmenadresse und Sprachverweise für Deutsch, Englisch und Plattdeutsch unterstützen die lokale Suche. Jede Leistung hat eine eigene Seite in drei Sprachen, das Inklusionstaxi eingeschlossen.",
+  "word_count": 319,
+  "claims": [
+    {
+      "text": "Seit über 20 Jahren in Leer und Ostfriesland",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:149",
+      "quote": "Seit über 20 Jahren, alles was Taxi kann, in Leer und Ostfriesland"
+    },
+    {
+      "text": "Stadttaxi rund um die Uhr",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\CLAUDE.md:91",
+      "quote": "Городское такси, доступность 24/7"
+    },
+    {
+      "text": "Oldtimerfahrten für Hochzeiten",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\CLAUDE.md:96",
+      "quote": "Hochzeits-/Oldtimer-Fahrten"
+    },
+    {
+      "text": "Keiner der ausgewerteten Wettbewerber bot ein Inklusionstaxi an",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:403",
+      "quote": "только Mönnigmann в регионе"
+    },
+    {
+      "text": "Briefing mit acht Bereichen",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\STATUS.md:12",
+      "quote": "Изучен бриф структуры (8 разделов)"
+    },
+    {
+      "text": "Anforderungen: barrierefrei, DE/EN/Platt, mobil, schnell, Hintergrundvideo",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\CLAUDE.md:100",
+      "quote": "**Общие требования клиента:** Barrierefrei · мультиязычность DE/EN/Platt · оптимизация под мобильные · короткая загрузка · фоновые видео"
+    },
+    {
+      "text": "Kein Kontaktformular auf Kundenwunsch",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\CLAUDE.md:164",
+      "quote": "### Kontakt — БЕЗ формы (требование клиента)"
+    },
+    {
+      "text": "Telefon und E-Mail anklickbar",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\CLAUDE.md:166",
+      "quote": "Только кликабельные `tel:` / `mailto:`"
+    },
+    {
+      "text": "Neun Wettbewerber ausgewertet",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:396",
+      "quote": "Разведка 9 конкурентов Leer/Ostfriesland"
+    },
+    {
+      "text": "Statischer Astro-Build",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:343",
+      "quote": "Astro 5 static"
+    },
+    {
+      "text": "Texte in JSON-Dateien je Sprache",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:344",
+      "quote": "весь контент в `src/data/*.json` (0 hardcode)"
+    },
+    {
+      "text": "Drei Sprachen DE/EN/Plattdeutsch mit eigenem Routing",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:344",
+      "quote": "i18n DE/EN/Platt (routing: de=/, en=/en/, nds=/nds/)"
+    },
+    {
+      "text": "Plattdeutsch ist keine Kopie des Deutschen",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:349",
+      "quote": "i18n-парность, Platt≠DE"
+    },
+    {
+      "text": "30 Seiten",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:279",
+      "quote": "**30 страниц собрано:**"
+    },
+    {
+      "text": "Sechs Leistungsseiten je Sprache aus denselben Daten",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:279",
+      "quote": "услуги 6×3 (data-driven `/leistungen/[slug]`)"
+    },
+    {
+      "text": "Drei Designkonzepte",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:300",
+      "quote": "**Stage 1:** 3 концепта"
+    },
+    {
+      "text": "Kunde wählte Variante B",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:232",
+      "quote": "Клиент после превью выбрал **план B**"
+    },
+    {
+      "text": "Bordeaux und Creme",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:233",
+      "quote": "бордовый `#6e1622` ведущий · кремовый `#f6efe7`"
+    },
+    {
+      "text": "Schriften Bricolage Grotesque und Manrope selbst gehostet",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:234",
+      "quote": "Шрифты: self-hosted **Bricolage Grotesque** (500/600/700) + **Manrope**"
+    },
+    {
+      "text": "Keine CDNs und kein Tracking",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:19",
+      "quote": "Grundsatz (0 CDN/трекеров/куки)"
+    },
+    {
+      "text": "Sprunglink, sichtbarer Fokus, semantische Landmarken",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:346",
+      "quote": "a11y-база: skip-link, focus-visible, prefers-reduced-motion, semantic landmarks"
+    },
+    {
+      "text": "Hero-Video in Schleife mit Pause-Taste",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:190",
+      "quote": "hero `<video autoplay muted loop playsinline poster>` + pause-кнопка управляет видео (WCAG SC 2.2.2)"
+    },
+    {
+      "text": "Hero-Video ohne Ton",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:81",
+      "quote": "CRF 28, **без звука**"
+    },
+    {
+      "text": "Standbild bei reduzierter Bewegung",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:95",
+      "quote": "Правило `prefers-reduced-motion: reduce` → постер **оставлено**"
+    },
+    {
+      "text": "KI-Bilder auf Basis echter Flottenfotos",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:126",
+      "quote": "пайплайн «реальное фото → Higgsfield reference (nano_banana_pro) → сцена» даёт бренд 1:1"
+    },
+    {
+      "text": "Firmenlackierung auf den Bildern",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:128",
+      "quote": "Ливрея «Schweif» + splash-Logo «TAXI Mönnigmann» на всех"
+    },
+    {
+      "text": "§ 60/§ 61 SGB V und Krankenkasse auf der Detailseite",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:109",
+      "quote": "§60/§61 + Krankenkasse остаются на `/leistungen/krankenfahrten/`"
+    },
+    {
+      "text": "Zuzahlung nach § 61, Krankenkasse entscheidet",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\CLAUDE.md:148",
+      "quote": "ВСЕГДА с дисклеймером «Entscheidung trifft die Krankenkasse»"
+    },
+    {
+      "text": "Impressum enthält alle Angaben nach § 5 DDG",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:35",
+      "quote": "**Impressum теперь содержит полный набор §5 DDG:**"
+    },
+    {
+      "text": "Online und für Suchmaschinen freigegeben",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:32",
+      "quote": "**`index, follow`** — сайт открыт для Google"
+    },
+    {
+      "text": "Vier Domains führen auf die Seite",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:53",
+      "quote": "**Все 4 домена смотрят в общий корень:**"
+    },
+    {
+      "text": "E-Mail anklickbar",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:20",
+      "quote": "E-Mail был обычным текстом, стал кликабельным `mailto:`"
+    },
+    {
+      "text": "Kontaktleiste im Layout",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:278",
+      "quote": "BaseLayout (head/hreflang/JSON-LD + rail/"
+    },
+    {
+      "text": "Strukturierte Daten mit Adresse für lokale Suche",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:21",
+      "quote": "**JSON-LD** — теперь отдаёт `PostalAddress` (плюс к локальному SEO)"
+    },
+    {
+      "text": "Sprachverweise hreflang für drei Sprachen",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:304",
+      "quote": "hreflang(de/en/nds+x-default)"
+    },
+    {
+      "text": "Eigene Leistungsseite Inklusionstaxi",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:134",
+      "quote": "`/leistungen/inclusionstaxi/`"
+    },
+    {
+      "text": "Leistung Krankenfahrten",
+      "source": "C:/Projects/Taxi-Moennigmann/CLAUDE.md:92",
+      "quote": "| 2 | **Krankenfahrten** |"
+    },
+    {
+      "text": "Leistung Inklusionstaxi",
+      "source": "C:/Projects/Taxi-Moennigmann/CLAUDE.md:93",
+      "quote": "| 3 | **Inclusionstaxi** |"
+    },
+    {
+      "text": "Leistung Flughafentransfers",
+      "source": "C:/Projects/Taxi-Moennigmann/CLAUDE.md:94",
+      "quote": "| 4 | **Flughafentransfers** |"
+    },
+    {
+      "text": "Leistung Schülertransporte",
+      "source": "C:/Projects/Taxi-Moennigmann/CLAUDE.md:95",
+      "quote": "| 5 | **Schülertransporte** |"
+    },
+    {
+      "text": "Sprunglink, sichtbarer Fokus, reduzierte Bewegung, semantische Landmarken",
+      "source": "C:\\Projects\\Taxi-Moennigmann\\DEVLOG.md:346",
+      "quote": "a11y-база: skip-link, focus-visible, prefers-reduced-motion, semantic landmarks"
+    }
+  ]
+}
