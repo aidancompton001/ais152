@@ -65,6 +65,16 @@
         "type": "string",
         "maxLength": 280
       },
+      "case_de": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Развёрнутый текст страницы проекта. Правила: docs/CASE_TEXT_RULES.md, источники: docs/cases/<slug>.json",
+        "properties": {
+          "ausgangslage": { "type": "string", "maxLength": 1600 },
+          "umsetzung": { "type": "string", "maxLength": 2400 },
+          "ergebnis": { "type": "string", "maxLength": 1600 }
+        }
+      },
       "screenshot": {
         "type": "string",
         "description": "Relative path to 1x screenshot, e.g. assets/projects/slug.jpg"
@@ -72,6 +82,14 @@
       "screenshot_2x": {
         "type": "string",
         "description": "Relative path to 2x retina screenshot (optional)"
+      },
+      "mark": {
+        "type": "string",
+        "description": "id значка проекта в assets/marks.svg / <symbol> на главной"
+      },
+      "layout": {
+        "type": "string",
+        "description": "Раскладка карточки в разделе работ (feature, square, tall, tile, wide)"
       },
       "featured": {
         "type": "boolean",
