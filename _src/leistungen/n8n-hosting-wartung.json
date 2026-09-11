@@ -9,7 +9,7 @@
     {
       "h2": "Was n8n Hosting und Wartung umfasst",
       "body": [
-        "<ul><li>Betrieb auf einem Server in der EU</li><li>Auf Wunsch eine eigene n8n-Instanz, getrennt von anderen Kunden</li><li>Updates, wenn sie sicherheitsrelevant sind: nicht blind bei jeder Version</li><li>Überwachung: fehlgeschlagene Läufe melden sich, statt still liegenzubleiben</li><li>Sicherung von Workflows und Daten, mit geprüfter Wiederherstellung</li><li>Zugänge getrennt nach Person, nicht ein gemeinsames Passwort</li></ul>",
+        "<ul><li>Betrieb auf einem Server in der EU</li><li>Auf Wunsch eine eigene n8n-Instanz, getrennt von anderen Kunden</li><li>Updates, wenn sie sicherheitsrelevant sind: nicht blind bei jeder Version</li><li>Überwachung: fehlgeschlagene Läufe melden sich, statt still liegenzubleiben</li><li>Sicherung von Workflows und Daten</li><li>Zugänge getrennt nach Person, nicht ein gemeinsames Passwort</li></ul>",
         "Überwachung ist der Punkt, der am häufigsten fehlt. Ein Workflow, dessen Ausfall niemandem auffällt, war entweder nie wichtig oder wird gerade sehr teuer."
       ]
     },
