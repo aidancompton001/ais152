@@ -305,11 +305,10 @@
       "E-commerce",
       "Multi-language",
       "Eleventy",
-      "Supabase",
-      "BORICA"
+      "Supabase"
     ],
-    "summary_en": "Full rebuild of a premium organic pet care e-commerce platform. Trilingual (EN/BG/DE), Postbank BORICA payment integration, product configurator, merchant dashboard, Hetzner hosting.",
-    "summary_de": "Kompletter Neubau einer Premium-Bio-Tierpflege-Plattform. Dreisprachig (EN/BG/DE), BORICA-Zahlungsintegration, Produktkonfigurator, Händler-Dashboard, Hosting auf Hetzner.",
+    "summary_en": "Full rebuild of the online shop of a natural grooming brand for dogs and cats. Trilingual (EN/BG/DE), filterable collection, product pages with INCI lists, journal with an admin area.",
+    "summary_de": "Kompletter Neubau des Onlineshops einer Marke für natürliche Pflegekosmetik für Hunde und Katzen. Dreisprachig (EN/BG/DE), Kollektion mit Filtern, Produktseiten mit INCI-Liste, Journal mit Admin-Bereich.",
     "screenshot": "assets/stormguard-site.jpg",
     "screenshot_2x": "assets/stormguard-site.jpg",
     "mark": "stormguard",
@@ -320,19 +319,18 @@
   {
     "slug": "edmi",
     "title": "EDMI",
-    "tagline_en": "Dental microscope landing — bento grid",
-    "tagline_de": "Dental-Mikroskop-Landing — Bento-Grid",
+    "tagline_en": "Dental microscope landing — prototype",
+    "tagline_de": "Dental-Mikroskop-Landing — Prototyp",
     "year": 2026,
-    "url": "https://aidancompton001.github.io/edmi-landing/variant-d.html",
+    "url": "https://aidancompton001.github.io/edmi-landing/variant-a-light.html",
     "status": "live",
     "tags": [
       "Landing",
-      "Bento",
-      "AI Configurator",
-      "Catalog"
+      "Catalog",
+      "Prototype"
     ],
-    "summary_en": "Apple-style bento landing for a dental microscope vendor. Seven real microscopes (Zeiss, CJ-Optik), eleven accessories, AI configurator, real pricing.",
-    "summary_de": "Apple-Style Bento-Landing für einen Dentalmikroskop-Anbieter. Sieben echte Mikroskope (Zeiss, CJ-Optik), elf Zubehörteile, KI-Konfigurator, reale Preise.",
+    "summary_en": "Landing prototype for a dental microscope vendor: new and used microscopes from Zeiss and CJ-Optik, accessories by category, service with diagnostics and repair. Several variants, the client picked one.",
+    "summary_de": "Landing-Prototyp für einen Anbieter von Dentalmikroskopen: neue und gebrauchte Mikroskope von Zeiss und CJ-Optik, Zubehör nach Kategorien, Service mit Diagnose und Reparatur. Mehrere Varianten, der Kunde hat eine ausgewählt.",
     "screenshot": "assets/edmi-landing-site.jpg",
     "screenshot_2x": "assets/edmi-landing-site.jpg",
     "mark": "edmi",
