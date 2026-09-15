@@ -5,12 +5,22 @@
     "placeId": "ChIJs2bva2o5_iER4CFUZMe_i7g",
     "profileUrl": "https://www.google.com/maps?cid=13297933187844153824",
     "reviewUrl": "https://g.page/r/CeAhVGTHv4u4EBM/review",
-    "ratingValue": null,
-    "ratingCount": 0,
+    "ratingValue": 5.0,
+    "ratingCount": 6,
     "bestRating": 5,
     "worstRating": 1,
-    "asOfLabel": null,
-    "asOfShort": null
+    "asOfLabel": "15. September 2026",
+    "asOfShort": "15.09.2026"
   },
-  "reviews": []
+  "reviews": [
+    {
+      "author": "Michael Staskiewitz",
+      "rating": 5,
+      "datePublished": "2026-09-11",
+      "text": "Sehr guter Partner. Er betreut für uns unseren Webauftritt. Einfach super und kompetent!",
+      "service": "Website",
+      "sourceUrl": "https://www.google.com/maps/place/?q=place_id:ChIJs2bva2o5_iER4CFUZMe_i7g",
+      "_captured": "Google Maps, анонимно, 15.09.2026 11:07; дата «vor 4 Tagen»"
+    }
+  ]
 }
